@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Chat from 'react-chat';
 
-React.render(<Chat />, document.getElementById('root'));
+ReactDOM.render(<Chat />, document.getElementById('root'));
