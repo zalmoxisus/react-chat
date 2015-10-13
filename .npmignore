@@ -1,0 +1,10 @@
+/.*/
+/coverage/
+/docs/
+/examples/
+/test/
+/.eslint*
+/.gitignore
+/.npmignore
+/.travis.yml
+/webpack.*
