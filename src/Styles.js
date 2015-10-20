@@ -44,14 +44,14 @@ var styles = {
         padding: '5px 5px 2px 5px',
         marginRight: '10px',
         maxWidth: '90%',
-        '@media (max-width: 590px)': {
+        '@media (max-width: 610px)': {
             maxWidth: '85%'
         },
-        '@media (max-width: 400px)': {
+        '@media (max-width: 420px)': {
             maxWidth: '80%'
         },
-        '@media (max-width: 310px)': {
-            maxWidth: '70%'
+        '@media (max-width: 320px)': {
+            maxWidth: '70%' 
         },
         '@media (max-width: 250px)': {
             maxWidth: '55%'
