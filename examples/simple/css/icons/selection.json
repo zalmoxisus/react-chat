@@ -1,0 +1,102 @@
+{
+	"IcoMoonType": "selection",
+	"icons": [
+		{
+			"icon": {
+				"paths": [
+					"M534 298v224l192 114-32 54-224-136v-256h64zM512 854q140 0 241-101t101-241-101-241-241-101-241 101-101 241 101 241 241 101zM512 86q176 0 301 125t125 301-125 301-301 125-301-125-125-301 125-301 301-125z"
+				],
+				"attrs": [
+					{}
+				],
+				"isMulticolor": false,
+				"tags": [
+					"access_time"
+				],
+				"defaultCode": 57486,
+				"grid": 24
+			},
+			"attrs": [
+				{}
+			],
+			"properties": {
+				"order": 2,
+				"id": 142,
+				"prevSize": 24,
+				"code": 57486,
+				"name": "access-time",
+				"ligatures": "access_time"
+			},
+			"setIdx": 0,
+			"setId": 2,
+			"iconIdx": 142
+		},
+		{
+			"icon": {
+				"paths": [
+					"M316 334l196 196 196-196 60 60-256 256-256-256z"
+				],
+				"attrs": [
+					{}
+				],
+				"isMulticolor": false,
+				"tags": [
+					"keyboard_arrow_down"
+				],
+				"defaultCode": 57615,
+				"grid": 24
+			},
+			"attrs": [
+				{}
+			],
+			"properties": {
+				"order": 1,
+				"id": 271,
+				"prevSize": 24,
+				"code": 57615,
+				"name": "keyboard-arrow-down",
+				"ligatures": "keyboard_arrow_down"
+			},
+			"setIdx": 0,
+			"setId": 2,
+			"iconIdx": 271
+		}
+	],
+	"height": 1024,
+	"metadata": {
+		"name": "icons"
+	},
+	"preferences": {
+		"showGlyphs": true,
+		"showQuickUse": true,
+		"showQuickUse2": true,
+		"showSVGs": true,
+		"fontPref": {
+			"prefix": "icon-",
+			"metadata": {
+				"fontFamily": "icons",
+				"majorVersion": 1,
+				"minorVersion": 0
+			},
+			"metrics": {
+				"emSize": 1024,
+				"baseline": 6.25,
+				"whitespace": 50
+			},
+			"embed": false,
+			"showSelector": true,
+			"resetPoint": 58880
+		},
+		"imagePref": {
+			"prefix": "icon-",
+			"png": true,
+			"useClassSelector": true,
+			"color": 4473924,
+			"bgColor": 16777215
+		},
+		"historySize": 100,
+		"showCodes": false,
+		"gridSize": 16,
+		"showLiga": false
+	}
+}

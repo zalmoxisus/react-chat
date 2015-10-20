@@ -27,6 +27,7 @@ class MsgBox extends Component {
           <div style={{fontWeight: '600', fontSize: '16px'}}> {this.props.msg} </div>
           <div style={{fontWeight: '100', fontSize: '10px', color: '#a4a4a4'}}>
             <div style={{float: 'left'}}> {this.props.name} </div>
+            <div className='icon-access-time' style={{float: 'left', margin: '2px 2px 0 3px', opacity: 0.7}}></div>
             <div style={{float: 'left'}}> {getTimeStamp(this.props.time)} </div>
           </div>
         </div>
