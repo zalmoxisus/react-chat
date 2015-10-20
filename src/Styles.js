@@ -23,6 +23,12 @@ var styles = {
         float: 'left'
     },
 
+    arrowRight: {
+        borderWidth: '5px 0 5px 6px',
+        borderColor: 'transparent #e6ffd1',
+        right: '5px',
+        float: 'right'
+    },
     msgBox: {
         width: '98%',
         position: 'relative',
@@ -36,6 +42,12 @@ var styles = {
         padding: '5px 5px 2px 5px',
         marginRight: '10px',
         maxWidth: '90%'
+    },
+
+    my_msg: {
+        background: '#e6ffd1',
+        border: 'solid 1px #b4d89f',
+        float: 'right'
     },
 
     u_msg: {
