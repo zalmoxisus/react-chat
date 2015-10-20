@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/zalmoxisus/react-chat",
   "dependencies": {
+    "radium": "^0.14.1",
     "react": "^0.14.0"
   },
   "devDependencies": {
