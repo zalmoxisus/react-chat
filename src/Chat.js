@@ -18,7 +18,7 @@ class Arrow extends Component {
     return(
         <div style={[styles.arrow, (owner === this.props.sender) ? styles.arrowRight : styles.arrowLeft]}></div>
     );
-  } 
+  }
 }
 
 @Radium
@@ -26,10 +26,10 @@ class MsgBox extends Component {
   render() {
     return(
         <div key={this.props.msg} style={[styles.msg, (owner === this.props.sender) ? styles.my_msg : styles.u_msg]}>
-          <div style={{fontWeight: '600', fontSize: '16px'}}> {this.props.msg} </div>
-          <div style={{fontWeight: '100', fontSize: '10px', color: '#a4a4a4'}}>
+          <div style={styles.content_msg}> {this.props.msg} </div>
+          <div style={styles.footer_msg}>
             <div style={{float: 'left'}}> {this.props.name} </div>
-            <div className='icon-access-time' style={{float: 'left', margin: '2px 2px 0 3px', opacity: 0.7}}></div>
+            <div className='icon-access-time' style={styles.timeIcon}></div>
             <div style={{float: 'left'}}> {getTimeStamp(this.props.time)} </div>
           </div>
         </div>
