@@ -28,8 +28,13 @@ class MsgBox extends Component {
         <div key={this.props.msg} style={[styles.msg, (owner === this.props.sender) ? styles.my_msg : styles.u_msg]}>
           <div style={styles.content_msg}> {this.props.msg} </div>
           <div style={styles.footer_msg}>
-            <div style={{float: 'left'}}> {this.props.name} </div>
-            <div className='icon-access-time' style={styles.timeIcon}></div>
+            {
+              !(owner === this.props.sender) &&
+                  <div>
+                    <div style={{float: 'left'}}> {this.props.name} </div>
+                    <div className='icon-access-time' style={styles.timeIcon}></div>
+                  </div>
+            }
             <div style={{float: 'left'}}> {getTimeStamp(this.props.time)} </div>
           </div>
         </div>
