@@ -21,7 +21,7 @@ var styles = {
     arrowLeft: {
         borderWidth: '5px 6px 5px 0',
         borderColor: 'transparent #f6f9fd',
-        left: '29px',
+        left: '27px',
         float: 'left'
     },
 
@@ -88,6 +88,29 @@ var styles = {
         float: 'left',
         margin: '2px 2px 0 3px',
         opacity: 0.7
+    },
+
+    avatar: {
+        fontSize: '14px',
+        float: 'left',
+        width: '25px',
+        height: '25px',
+        marginRight: '7px',
+        textAlign: 'center'
+    },
+    img: {
+        height: '25px',
+        borderRadius: '4px'
+    },
+    txt: {
+        lineHeight: '1.8',
+        border: '1px solid #90a4ae',
+        borderRadius: '4px',
+        color: '#ddd',
+        fontWeight: '600',
+        background: '#90a4ae',
+        width: '95%',
+        height: '100%'
     }
 };
 

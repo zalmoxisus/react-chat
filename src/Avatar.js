@@ -1,17 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import styles from './Styles';
 
-var styles = {
-  avatar: {
-    fontSize: '16px',
-    float: 'left',
-    width: '25px',
-    height: '25px',
-    border: '1px solid #000',
-    marginRight: '7px',
-    textAlign: 'center',
-    paddingTop: '4px'
-  }
-};
 export default class Avatar extends Component {
   static defaultProps = {
     src: '',
@@ -25,7 +14,9 @@ export default class Avatar extends Component {
 
   render() {
     return (
-      <div style={styles.avatar}>{ this.props.name[0] }</div>
+      <div style={styles.avatar}>
+        { this.props.src ? <img  style={styles.img} src={this.props.src} /> : <div style={styles.txt}>{this.props.name[0]}</div> }
+      </div>
     );
   }
 
