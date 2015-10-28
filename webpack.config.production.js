@@ -4,8 +4,7 @@ var webpack = require('webpack');
 var baseConfig = require('./webpack.config.base');
 
 var config = Object.create(baseConfig);
-config.plugins = [
-  new webpack.optimize.OccurenceOrderPlugin(),
+config.plugins.concat([
   new webpack.DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify('production')
   }),
@@ -15,6 +14,6 @@ config.plugins = [
       warnings: false
     }
   })
-];
+]);
 
 module.exports = config;

@@ -1,43 +1,32 @@
 import React, { Component, PropTypes } from 'react';
 import Avatar from './Avatar';
-import Radium from 'radium';
-import styles from './Styles';
+import styles from './Chat.css';
 
 var owner = 2;
 
 function getTimeStamp(msgTime) {
-  var date = new Date(msgTime*1000);
+  var date = new Date(msgTime * 1000);
   var hours = date.getHours();
   var minutes = "0" + date.getMinutes();
   return (hours + ':' + minutes.substr(-2));
 }
 
-@Radium
-class Arrow extends Component {
-  render() {
-    return(
-        <div style={[styles.arrow, (owner === this.props.sender) ? styles.arrowRight : styles.arrowLeft]}></div>
-    );
-  }
-}
-
-@Radium
 class MsgBox extends Component {
   render() {
-    return(
-        <div key={this.props.msg} style={[styles.msg, (owner === this.props.sender) ? styles.my_msg : styles.u_msg]}>
-          <div style={styles.content_msg}> {this.props.msg} </div>
-          <div style={styles.footer_msg}>
-            {
-              !(owner === this.props.sender) &&
-                  <div>
-                    <div style={{float: 'left'}}> {this.props.name} </div>
-                    <div className='icon-access-time' style={styles.timeIcon}></div>
-                  </div>
-            }
-            <div style={{float: 'left'}}> {getTimeStamp(this.props.time)} </div>
-          </div>
+    return (
+      <div key={this.props.msg} className={(owner === this.props.sender) ? styles.my_msg : styles.u_msg}>
+        <div className={styles.content_msg}> {this.props.msg} </div>
+        <div className={styles.footer_msg}>
+          {
+            !(owner === this.props.sender) &&
+            <div>
+              <div style={{float: 'left'}}> {this.props.name} </div>
+              <div className='icon-access-time'></div>
+            </div>
+          }
+          <div style={{float: 'left'}}> {getTimeStamp(this.props.time)} </div>
         </div>
+      </div>
     );
   }
 }
@@ -52,22 +41,22 @@ export default class Chat extends Component {
   };
 
   /*constructor(props) {
-    super(props);
-  }*/
+   super(props);
+   }*/
 
   render() {
     return (
-      <div style={styles.base}>{
+      <div className={styles.base}>{
         this.props.messages.map( message => {
-          return <div key={message.id} style={styles.msgBox}>
+          return <div key={message.id} className={styles.msgBox}>
             {
               !(owner === message.sender) &&
               <Avatar style={styles.avatar}
                       src={message.avatar}
                       name={message.name}
-                  />
+              />
             }
-            <Arrow sender = {message.sender} />
+            <div className={(owner === message.sender) ? styles.arrowRight : styles.arrowLeft}></div>
             <MsgBox msg={ message.msg} name={message.name} time={message.time} sender={message.sender} />
           </div>
         })

@@ -1,0 +1,136 @@
+html {
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+body {
+    font-size: 13px;
+    line-height: 20px;
+    margin: 0;
+}
+.base {
+    background: #dcdcdc;
+    color: #424242;
+    width: 100%;
+    min-width: 160px;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    position: absolute;
+}
+
+.arrow{
+    content: '';
+    border-style: solid;
+    width: 0;
+    z-index: 1;
+    position: absolute;
+    margin-top: 12px;
+}
+
+.arrowLeft {
+    composes: arrow;
+    border-width: 5px 6px 5px 0;
+    border-color: transparent #f6f9fd;
+    left: 27px;
+    float: left;
+}
+
+.arrowRight {
+    composes: arrow;
+    border-width: 5px 0 5px 6px;
+    border-color: transparent #e6ffd1;
+    right: 5px;
+    float: right;
+}
+
+.msgBox {
+    width: 98%;
+    position: relative;
+    margin: 10px;
+    line-height: 1.4;
+    float: left;
+}
+
+.msg {
+    border-radius: 3px;
+    padding: 5px 5px 2px 5px;
+    margin-right: 10px;
+    max-width: 90%;
+}
+
+.my_msg {
+    composes: msg;
+    background: #e6ffd1;
+    border: solid 1px #b4d89f;
+    float: right
+}
+
+.u_msg {
+    composes: msg;
+    background: rgba(249, 252, 255, 1);
+    border: solid 1px #a6b8c9;
+    float: left;
+}
+
+.content_msg {
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.footer_msg{
+    font-weight: 100;
+    font-size: 10px;
+    color: #a4a4a4;
+}
+
+.avatar {
+    font-size: 14px;
+    float: left;
+    width: 25px;
+    height: 25px;
+    margin-right: 7px;
+    text-align: center;
+}
+
+.img {
+    height: 25px;
+    border-radius: 4px
+}
+
+.txt {
+    line-height: 1.8;
+    border: 1px solid #90a4ae;
+    border-radius: 4px;
+    color: #ddd;
+    font-weight: 600;
+    background: #90a4ae;
+    width: 95%;
+    height: 100%;
+}
+
+@media (max-width: 610px) {
+    .msg {
+        max-width: 85%;
+    }
+}
+@media (max-width: 420px) {
+    .msg {
+        max-width: 80%;
+    }
+    .content_msg{
+        font-size: 14px;
+    }
+}
+@media (max-width: 320px) {
+    .msg {
+        max-width: 70%;
+    }
+}
+@media (max-width: 250px) {
+    .msg {
+        max-width: 55%;
+    }
+    .content_msg{
+        font-size: 12px;
+    }
+}
