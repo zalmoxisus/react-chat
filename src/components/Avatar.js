@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import styles from './Chat.css';
+import styles from '../Chat.css';
 
 export default ({ src, name }) => (
   <div className={styles.avatar}>
