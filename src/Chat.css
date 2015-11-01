@@ -108,6 +108,26 @@ body {
     height: 100%;
 }
 
+.usermsg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 99%;
+    height: 20px;
+    padding: 5px;
+    max-height:100px;
+    border: 0 none;
+    background: #fff;
+    font-size: 10pt;
+    resize: none;
+    border-top: 1px solid #999999;
+}
+
+.usermsg:hover {
+    border-top: 1px solid #333333;
+}
+
 @media (max-width: 610px) {
     .msg {
         max-width: 85%;

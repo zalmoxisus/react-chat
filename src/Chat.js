@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import Message from './components/Message';
+import ChatArea from './components/ChatArea';
+import ChatInput from './components/ChatInput';
 import styles from './Chat.css';
 
 export default({messages}) => (
@@ -7,10 +8,11 @@ export default({messages}) => (
     <div className={styles.base}>{
       messages.map( message => {
         return <div key={message.id} className={styles.msgBox}>
-          <Message message={message} />
+          <ChatArea message={message} />
         </div>
       })
     }
+      <ChatInput />
     </div>
   </div>
 );
