@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../Chat.css';
+import TextareaAutosize from 'react-textarea-autosize';
 
 export default () => (
   <div>
-    <textarea className={styles.usermsg} autoFocus></textarea>
+    <TextareaAutosize className={styles.usermsg} autoFocus />
   </div>
 );
