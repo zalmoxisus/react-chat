@@ -5,14 +5,9 @@ import styles from './Chat.css';
 
 export default({messages}) => (
   <div>
-    <div className={styles.base}>{
-      messages.map( message => {
-        return <div key={message.id} className={styles.msgBox}>
-          <ChatArea message={message} />
-        </div>
-      })
-    }
-      <ChatInput />
+    <div className={styles.base}>
+      <ChatArea messages={messages} />
+      <ChatInput messages={messages} />
     </div>
   </div>
 );
