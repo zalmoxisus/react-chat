@@ -13,6 +13,7 @@ body {
     width: 100%;
     min-width: 160px;
     height: 100%;
+    padding-bottom: 30px;
     overflow-y: scroll;
     overflow-x: hidden;
     position: absolute;
@@ -109,7 +110,7 @@ body {
 }
 
 .usermsg {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right: 0;
     left: 0;
