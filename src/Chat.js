@@ -3,11 +3,11 @@ import ChatArea from './components/ChatArea';
 import ChatInput from './components/ChatInput';
 import styles from './Chat.css';
 
-export default({messages, addMessages}) => (
+export default({ messages = [], onMessage }) => (
   <div>
     <div className={styles.base}>
       <ChatArea messages={messages} />
-      <ChatInput addMessages={addMessages} />
+      <ChatInput onMessage={onMessage} />
     </div>
   </div>
 );
