@@ -9,9 +9,9 @@ export default ({onMessage}) => (
       e.preventDefault();
       const input = e.target;
       const txt = input.value;
-      if (txt === "") return;
+      if (txt === '') return;
       onMessage({ txt: txt }, function success() {
-        input.value = "";
+        input.value = '';
       });
     }
   } />

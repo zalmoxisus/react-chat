@@ -12,7 +12,8 @@ export default ({ messages }) => (
   <div>
     {
       messages.map( message => {
-        return <div key={message.id} className={styles.msgBox}>
+        return (
+          <div key={message.id} className={styles.msgBox}>
           {
             !getMine(message.sender) &&
             <Avatar style={styles.avatar}
@@ -28,13 +29,14 @@ export default ({ messages }) => (
                 !getMine(message.sender) &&
                 <div>
                   <div style={{float: 'left'}}> {message.name} </div>
-                  <div className='icon-access-time'></div>
+                  <div className="icon-access-time"></div>
                 </div>
               }
               <div style={{float: 'left'}}> {getTimeStamp(message.time)} </div>
             </div>
           </div>
         </div>
+        );
       })
     }
 
