@@ -12,8 +12,7 @@ export default ({ messages }) => (
   <div>
     {
       messages.map( message => {
-        return (
-          <div key={message.id} className={styles.msgBox}>
+        return (<div key={message.id} className={styles.msgBox}>
           {
             !getMine(message.sender) &&
             <Avatar style={styles.avatar}

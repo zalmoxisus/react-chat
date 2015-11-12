@@ -34,12 +34,12 @@ class Container extends Component {
 }
 
 ReactDOM.render(<Container
-  me={{ id: 2, name: 'My', avatar: 'https://pp.vk.me/c621720/v621720119/31ca4/ic-nhOiDogM.jpg' }}
+  me={{ id: 2, name: 'Leo', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg' }}
   messages={[
     {
       id: 1,
       name: 'John',
-      avatar: 'https://pp.vk.me/c621720/v621720119/31ca4/ic-nhOiDogM.jpg',
+      avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/oagra/128.jpg',
       msg: 'Hello, Marry!',
       time: 1444428192,
       sender: 1
@@ -61,7 +61,7 @@ ReactDOM.render(<Container
       time: 1444428192,
       sender: 2
     },
-    {id: 5, name: 'John', avatar: '', msg: 'Hello, Marry!', time: 1444428192, sender: 1},
+    {id: 5, name: 'John', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/igorgarybaldi/128.jpg', msg: 'Hello, Marry!', time: 1444428192, sender: 1},
     {id: 6, name: 'Marry', avatar: '', msg: 'Welcome, John!', time: 1444428192, sender: 2},
     {
       id: 7,
