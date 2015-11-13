@@ -5,16 +5,24 @@ import Chat from 'react-chat';
 class Container extends Component {
   static propTypes = {
     messages: PropTypes.array,
-    me: PropTypes.object
+    me: PropTypes.object,
+    MsgStore: PropTypes.func
   };
   static defaultProps = {
     messages: []
   };
-  state = {messages: this.props.messages};
+
+  MsgStore = {
+    messages: this.props.messages,
+
+    addTodo: function(message) {
+      this.messages.push(message);
+    }
+  };
 
   handleReceiveMessage = (msg, success) => {
     const message = {
-      id: Math.random(),
+      id: (Date.now() / 1000 | 0) + Math.random(),
       name: this.props.me.name,
       avatar: this.props.me.avatar,
       msg: msg.txt,
@@ -22,13 +30,14 @@ class Container extends Component {
       sender: 1
     };
 
-    this.setState({messages: this.state.messages.concat(message)});
+    this.MsgStore.addTodo(message);
+    this.setState(this.MsgStore);
     success();
   };
 
   render() {
     return (
-      <Chat me={this.props.me} messages={this.state.messages} onMessage={this.handleReceiveMessage} />
+      <Chat me={this.props.me} messages={this.props.messages} onMessage={this.handleReceiveMessage} />
     );
   }
 }
