@@ -67,6 +67,10 @@
     }
   ],
   "dependencies": {
+    "css-modules-require-hook": "^2.0.2",
+    "legit-tests": "^0.5.4",
+    "node-sass": "^3.4.2",
+    "postcss": "^5.0.12",
     "radium": "^0.14.1",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
