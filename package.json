@@ -51,6 +51,7 @@
     "expect": "^1.8.0",
     "extract-text-webpack-plugin": "^0.8.2",
     "isparta": "^3.0.3",
+    "legit-tests": "^0.6.3",
     "mocha": "^2.2.5",
     "postcss-loader": "^0.7.0",
     "rimraf": "^2.3.4",
@@ -68,7 +69,6 @@
   ],
   "dependencies": {
     "css-modules-require-hook": "^2.0.2",
-    "legit-tests": "^0.5.4",
     "node-sass": "^3.4.2",
     "postcss": "^5.0.12",
     "radium": "^0.14.1",
