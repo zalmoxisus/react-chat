@@ -39,7 +39,7 @@ describe('Messages. ChatArea', () => {
       });
   });
 
-  it('Rendering messages', () => {
+  it('should render messages', () => {
     Test(<ChatArea {...props} />)
       .mixin({findContainer: findContainer})
       .findContainer(styles.container)

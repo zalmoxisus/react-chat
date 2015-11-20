@@ -21,7 +21,7 @@ describe('Messages. ChatInput.', () => {
       });
   });
 
-  it('Input send message to parrent', () => {
+  it('should send messages to parrent', () => {
     Test(<ChatInput {...props} />)
       .find('textarea')
       .simulate({method: 'keyPress', element: 'textarea', options: {nativeEvent: {keyCode: 1}, target: { value: props.text }}})
