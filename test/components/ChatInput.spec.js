@@ -10,7 +10,7 @@ const props = {
   text: 'hello'
 };
 
-describe('Messages. ChatInput.', () => {
+describe('ChatInput.', () => {
   it('should render correctly', () => {
     Test(<ChatInput {...props} />)
       .find('textarea')

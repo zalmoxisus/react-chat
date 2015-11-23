@@ -10,8 +10,7 @@ export default class Chat extends Component {
   };
 
   render() {
-    return (
-      <div>
+    return (<div>
         <div className={styles.base}>
           <ChatArea messages={this.props.messages}/>
           <ChatInput onMessage={this.props.onMessage}/>

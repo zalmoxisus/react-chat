@@ -22,47 +22,32 @@ const props = {
       time: 1444428192,
       sender: 2
     }
-
   ],
   text: 'Hello',
-  onMessage: expect.createSpy(),
-  MsgStore: expect.createSpy()
+  onMessage: (msg, success) => {
+    const message = {
+      id: (Date.now() / 1000 | 0) + Math.random(),
+      name: 'X',
+      avatar: '',
+      msg: props.text,
+      time: Date.now() / 1000 | 0,
+      sender: 1
+    };
+    props.messages.push(message);
+    success();
+  }
 };
 
-describe('Messages. Chat.', () => {
-  props.MsgStore = {
-    messages: props.messages,
-
-    addTodo: function(message) {
-      props.messages.push(message);
-    }
-  };
+describe('Chat', () => {
   it('should add message', () => {
-    props.onMessage = (msg, success) => {
-      const message = {
-        id: (Date.now() / 1000 | 0) + Math.random(),
-        name: 'X',
-        avatar: '',
-        msg: props.text,
-        time: Date.now() / 1000 | 0,
-        sender: 1
-      };
-
-      props.MsgStore.addTodo(message);
-      success();
-    };
-
     Test(<Chat {...props} />)
       .find('textarea')
+      .simulate({
+        method: 'keyPress',
+        element: 'textarea',
+        options: {nativeEvent: {keyCode: 13}, target: {value: props.text}}
+      })
       .test(({textarea}) => {
-        textarea.value = props.text;
-
-        expect(props.messages.length).toBe(2);
-        expect(textarea.value).toBe(props.text);
-
-        props.onMessage({ txt: 'txt' }, function success() {
-          textarea.value = '';
-        });
         expect(props.messages.length).toBe(3);
         expect(props.messages[2].msg).toBe(props.text);
         expect(textarea.value).toBe('');

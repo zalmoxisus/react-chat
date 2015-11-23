@@ -5,17 +5,16 @@ import Chat from 'react-chat';
 class Container extends Component {
   static propTypes = {
     messages: PropTypes.array,
-    me: PropTypes.object,
-    MsgStore: PropTypes.func
+    me: PropTypes.object
   };
   static defaultProps = {
     messages: []
   };
 
-  MsgStore = {
+  state = {
     messages: this.props.messages,
 
-    addTodo: function(message) {
+    add: function(message) {
       this.messages.push(message);
     }
   };
@@ -30,8 +29,8 @@ class Container extends Component {
       sender: 1
     };
 
-    this.MsgStore.addTodo(message);
-    this.setState(this.MsgStore);
+    this.state.add(message);
+    this.setState(this.state);
     success();
   };
 

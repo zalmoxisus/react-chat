@@ -28,7 +28,7 @@ const props = {
   ]
 };
 
-describe('Messages. ChatArea', () => {
+describe('ChatArea', () => {
   it('should render correctly', () => {
     Test(<ChatArea {...props} />)
       .mixin({findContainer: findContainer})
