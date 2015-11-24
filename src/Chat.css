@@ -1,161 +1,163 @@
 html {
-    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 body {
-    font-size: 13px;
-    line-height: 20px;
-    margin: 0;
+  font-size: 13px;
+  line-height: 20px;
+  margin: 0;
+  overflow: hidden;
 }
 .base {
-    background: #dcdcdc;
-    color: #424242;
-    width: 100%;
-    min-width: 160px;
-    height: 96%;
-    padding-bottom: 30px;
-    position: absolute;
+  background: #dcdcdc;
+  color: #424242;
+  width: 100%;
+  min-width: 160px;
+  height: 96%;
+  padding-bottom: 30px;
+  position: absolute;
 }
 
 .arrow{
-    content: '';
-    border-style: solid;
-    width: 0;
-    z-index: 1;
-    position: absolute;
-    margin-top: 12px;
+  content: '';
+  border-style: solid;
+  width: 0;
+  z-index: 1;
+  position: absolute;
+  margin-top: 12px;
 }
 
 .arrowLeft {
-    composes: arrow;
-    border-width: 5px 6px 5px 0;
-    border-color: transparent #f6f9fd;
-    left: 27px;
-    float: left;
+  composes: arrow;
+  border-width: 5px 6px 5px 0;
+  border-color: transparent #f6f9fd;
+  left: 27px;
+  float: left;
 }
 
 .arrowRight {
-    composes: arrow;
-    border-width: 5px 0 5px 6px;
-    border-color: transparent #e6ffd1;
-    right: 5px;
-    float: right;
+  composes: arrow;
+  border-width: 5px 0 5px 6px;
+  border-color: transparent #e6ffd1;
+  right: 5px;
+  float: right;
 }
 
 .msgBox {
-    width: 98%;
-    position: relative;
-    margin: 10px;
-    line-height: 1.4;
-    float: left;
+  width: 99%;
+  position: relative;
+  margin: 10px 8px 10px 8px;
+  line-height: 1.4;
+  float: left;
 }
 
 .msg {
-    border-radius: 3px;
-    padding: 5px 5px 2px 5px;
-    margin-right: 10px;
-    max-width: 90%;
-    word-wrap: break-word;
-    white-space: pre-wrap;
+  border-radius: 3px;
+  padding: 5px 5px 2px 5px;
+  margin-right: 10px;
+  max-width: 90%;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 .my_msg {
-    composes: msg;
-    background: #e6ffd1;
-    border: solid 1px #b4d89f;
-    float: right
+  composes: msg;
+  background: #e6ffd1;
+  border: solid 1px #b4d89f;
+  float: right
 }
 
 .u_msg {
-    composes: msg;
-    background: rgba(249, 252, 255, 1);
-    border: solid 1px #a6b8c9;
-    float: left;
+  composes: msg;
+  background: rgba(249, 252, 255, 1);
+  border: solid 1px #a6b8c9;
+  float: left;
 }
 
 .content_msg {
-    font-weight: 400;
-    font-size: 16px;
-    min-width: 75px;
+  font-weight: 400;
+  font-size: 16px;
+  min-width: 75px;
 }
 
 .footer_msg{
-    font-weight: 100;
-    font-size: 10px;
-    color: #a4a4a4;
+  font-weight: 100;
+  font-size: 10px;
+  color: #a4a4a4;
 }
 
 .avatar {
-    font-size: 14px;
-    float: left;
-    width: 25px;
-    height: 25px;
-    margin-right: 7px;
-    text-align: center;
+  font-size: 14px;
+  float: left;
+  width: 25px;
+  height: 25px;
+  margin-right: 7px;
+  text-align: center;
 }
 
 .img {
-    height: 25px;
-    border-radius: 4px
+  height: 25px;
+  border-radius: 4px
 }
 
 .txt {
-    line-height: 1.8;
-    border: 1px solid #90a4ae;
-    border-radius: 4px;
-    color: #ddd;
-    font-weight: 600;
-    background: #90a4ae;
-    width: 95%;
-    height: 100%;
+  line-height: 1.8;
+  border: 1px solid #90a4ae;
+  border-radius: 4px;
+  color: #ddd;
+  font-weight: 600;
+  background: #90a4ae;
+  width: 95%;
+  height: 100%;
 }
 
 .usermsg {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    width: 99%;
-    height: 20px;
-    padding: 5px;
-    max-height:100px;
-    border: 0 none;
-    background: #fff;
-    font-size: 10pt;
-    resize: none;
-    border-top: 1px solid #999999;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 99%;
+  height: 20px;
+  padding: 5px;
+  max-height:100px;
+  border: 0 none;
+  background: #fff;
+  font-size: 10pt;
+  resize: none;
+  border-top: 1px solid #999999;
 }
 
 .usermsg:hover {
-    border-top: 1px solid #333333;
+  border-top: 1px solid #333333;
 }
 .container{
-    overflow-y: auto;
-    height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
 }
 @media (max-width: 610px) {
-    .msg {
-        max-width: 85%;
-    }
+  .msg {
+    max-width: 85%;
+  }
 }
 @media (max-width: 420px) {
-    .msg {
-        max-width: 80%;
-    }
-    .content_msg{
-        font-size: 14px;
-    }
+  .msg {
+    max-width: 80%;
+  }
+  .content_msg{
+    font-size: 14px;
+  }
 }
 @media (max-width: 320px) {
-    .msg {
-        max-width: 70%;
-    }
+  .msg {
+    max-width: 70%;
+  }
 }
 @media (max-width: 250px) {
-    .msg {
-        max-width: 55%;
-    }
-    .content_msg{
-        font-size: 12px;
-    }
+  .msg {
+    max-width: 55%;
+  }
+  .content_msg{
+    font-size: 12px;
+  }
 }
