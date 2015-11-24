@@ -51,6 +51,20 @@ body {
   float: left;
 }
 
+.msg_name {
+  float: left;
+}
+
+.msg_name:hover {
+  cursor: pointer;
+}
+
+.msg_name:hover div:before {
+  content: "\e082";
+  opacity: 1;
+  color: #000000;
+}
+
 .msg {
   border-radius: 3px;
   padding: 5px 5px 2px 5px;

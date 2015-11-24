@@ -10,7 +10,8 @@ function getMine(owner) {
 
 export default class ChatArea extends Component {
   static propTypes = {
-    messages: PropTypes.array
+    messages: PropTypes.array,
+    updateName: PropTypes.func
   };
 
   componentDidMount() {
@@ -27,6 +28,10 @@ export default class ChatArea extends Component {
       return;
     }
     node.scrollTop = node.scrollHeight;
+  };
+
+  updateName = (e) => {
+    this.props.updateName(e.currentTarget.textContent + ', ');
   };
 
   render() {
@@ -49,8 +54,10 @@ export default class ChatArea extends Component {
                     {
                       !getMine(message.sender) &&
                       <div>
-                        <div style={{float: 'left'}}> {message.name} </div>
-                        <div className="icon-access-time"></div>
+                        <div className={styles.msg_name} onClick={this.updateName}>
+                          <span style={{float: 'left'}}>{message.name}</span>
+                          <div className="icon-access-time"></div>
+                        </div>
                       </div>
                     }
                     <div style={{float: 'left'}}> {getTimeStamp(message.time)} </div>

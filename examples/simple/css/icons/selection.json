@@ -4,6 +4,36 @@
 		{
 			"icon": {
 				"paths": [
+					"M426 384q208 30 321 159t149 311q-154-218-470-218v174l-298-298 298-298v170z"
+				],
+				"attrs": [
+					{}
+				],
+				"isMulticolor": false,
+				"tags": [
+					"reply"
+				],
+				"defaultCode": 57474,
+				"grid": 24
+			},
+			"attrs": [
+				{}
+			],
+			"properties": {
+				"order": 3,
+				"id": 130,
+				"prevSize": 24,
+				"code": 57474,
+				"name": "reply",
+				"ligatures": "reply"
+			},
+			"setIdx": 0,
+			"setId": 2,
+			"iconIdx": 130
+		},
+		{
+			"icon": {
+				"paths": [
 					"M534 298v224l192 114-32 54-224-136v-256h64zM512 854q140 0 241-101t101-241-101-241-241-101-241 101-101 241 101 241 241 101zM512 86q176 0 301 125t125 301-125 301-301 125-301-125-125-301 125-301 301-125z"
 				],
 				"attrs": [
@@ -30,36 +60,6 @@
 			"setIdx": 0,
 			"setId": 2,
 			"iconIdx": 142
-		},
-		{
-			"icon": {
-				"paths": [
-					"M316 334l196 196 196-196 60 60-256 256-256-256z"
-				],
-				"attrs": [
-					{}
-				],
-				"isMulticolor": false,
-				"tags": [
-					"keyboard_arrow_down"
-				],
-				"defaultCode": 57615,
-				"grid": 24
-			},
-			"attrs": [
-				{}
-			],
-			"properties": {
-				"order": 1,
-				"id": 271,
-				"prevSize": 24,
-				"code": 57615,
-				"name": "keyboard-arrow-down",
-				"ligatures": "keyboard_arrow_down"
-			},
-			"setIdx": 0,
-			"setId": 2,
-			"iconIdx": 271
 		}
 	],
 	"height": 1024,

@@ -1,7 +1,8 @@
 @import url(icons/style.css);
 
 .icon-access-time {
-    float: left;
-    margin: 2px 2px 0 3px;
-    opacity: 0.7;
+  float: left;
+  margin: 1px 2px 0 3px;
+  opacity: 0.7;
+  font-size: 12px;
 }
