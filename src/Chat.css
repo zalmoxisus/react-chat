@@ -126,13 +126,11 @@ body {
 }
 
 .usermsg {
-  position: fixed;
   bottom: 0;
   right: 0;
-  left: 0;
-  width: 99%;
-  height: 20px;
-  padding: 5px;
+  width: 98%;
+  min-height: 20px !important;
+  padding: 7px 5px 3px 7px;
   max-height:100px;
   border: 0 none;
   background: #fff;
@@ -144,11 +142,64 @@ body {
 .usermsg:hover {
   border-top: 1px solid #333333;
 }
+
+.chatInpContainer {
+  display: table;
+  width: 100%;
+  bottom: 0;
+  position: absolute;
+  line-height: 0;
+}
+
+.chatOptions {
+  display: table-cell;
+  background: #bbbbbb;
+  width: 35px;
+}
+
+.chatOptions div:hover {
+  color: #d8935d;
+  cursor: pointer;
+}
+
+.usermenu {
+  position: absolute;
+  border: 1px solid #bbbbbb;
+  margin-top: -92px;
+  background: #ffffff;
+  line-height: 2;
+  padding: 0;
+}
+
+.usermenu li{
+  list-style: none;
+  padding: 2px 8px 2px 5px;
+}
+
+.usermenu li:hover{
+  background: #d8935d;
+}
+
+.usermenu span{
+  opacity: 0.6;
+  padding-right: 7px;
+}
+
+.usermenu a{
+  text-decoration: none;
+  color: #555555;
+}
+
+.usermenu li:hover, .usermenu li:hover a{
+  color: #ffffff;
+}
+
 .container{
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
 }
+
 @media (max-width: 610px) {
   .msg {
     max-width: 85%;
