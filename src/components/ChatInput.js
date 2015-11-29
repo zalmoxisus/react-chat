@@ -12,11 +12,23 @@ export default class ChatInput extends Component {
     node.style.visibility = 'hidden';
   };
   hideMenu = (e) => {
-    let node = document.getElementsByTagName('ul')[0];
-    let iconMenu = document.getElementById('iconMenu');
+    const node = document.getElementsByTagName('ul')[0];
+    const iconMenu = document.getElementById('iconMenu');
+    let menuTimer = 0;
     if (node.style.visibility === 'hidden') {
       iconMenu.className = 'icon-keyboard-arrow-up';
       node.style.visibility = 'visible';
+
+      e.currentTarget.addEventListener('mouseleave', function() {
+        menuTimer = setTimeout(function() {
+          iconMenu.className = 'icon-keyboard-arrow-down';
+          node.style.visibility = 'hidden';
+        }, 2000);
+      });
+
+      e.currentTarget.addEventListener('mouseenter', function() {
+        clearTimeout(menuTimer);
+      });
     } else {
       iconMenu.className = 'icon-keyboard-arrow-down';
       node.style.visibility = 'hidden';
