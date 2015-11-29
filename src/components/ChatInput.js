@@ -13,20 +13,21 @@ export default class ChatInput extends Component {
   };
   hideMenu = (e) => {
     let node = document.getElementsByTagName('ul')[0];
+    let iconMenu = document.getElementById('iconMenu');
     if (node.style.visibility === 'hidden') {
-      e.target.className = 'icon-keyboard-arrow-up';
+      iconMenu.className = 'icon-keyboard-arrow-up';
       node.style.visibility = 'visible';
     } else {
-      e.target.className = 'icon-keyboard-arrow-down';
+      iconMenu.className = 'icon-keyboard-arrow-down';
       node.style.visibility = 'hidden';
     }
   };
   render() {
     const onMessage = this.props.onMessage;
     return (<div className={styles.chatInpContainer}>
-        <div className={styles.chatOptions}>
+        <div className={styles.chatOptions} onClick={this.hideMenu}>
           <UserMenu/>
-          <div className="icon-keyboard-arrow-down" onClick={this.hideMenu}></div>
+          <div id="iconMenu" className="icon-keyboard-arrow-down"></div>
         </div>
         <TextareaAutosize className={styles.usermsg} autoFocus onKeyPress={
       function(e) {

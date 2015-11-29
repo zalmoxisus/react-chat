@@ -169,11 +169,13 @@ body {
   background: #ffffff;
   line-height: 2;
   padding: 0;
+  z-index: 2;
 }
 
 .usermenu li{
   list-style: none;
   padding: 2px 8px 2px 5px;
+  cursor: pointer;
 }
 
 .usermenu li:hover{
