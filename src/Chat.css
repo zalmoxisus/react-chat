@@ -128,9 +128,9 @@ body {
 .usermsg {
   bottom: 0;
   right: 0;
-  width: 98%;
+  width: 93%;
   min-height: 20px !important;
-  padding: 7px 5px 3px 7px;
+  padding: 7px 40px 3px 7px;
   max-height:100px;
   border: 0 none;
   background: #fff;
@@ -162,7 +162,7 @@ body {
   cursor: pointer;
 }
 
-.usermenu {
+.chatInpContainer ul {
   position: absolute;
   border: 1px solid #bbbbbb;
   margin-top: -92px;
@@ -172,13 +172,13 @@ body {
   z-index: 2;
 }
 
-.usermenu li{
+.chatInpContainer li{
   list-style: none;
   padding: 2px 8px 2px 5px;
   cursor: pointer;
 }
 
-.usermenu li:hover{
+.chatInpContainer li:hover{
   background: #d8935d;
 }
 
@@ -200,6 +200,27 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
   height: 100%;
+}
+
+.emoticons{
+  position: absolute;
+  right: 22px;
+  top: 2px;
+  border: 1px solid #999999;
+  width: 28px;
+}
+
+.emoticons span{
+  margin: 7px 4px 2px 4px !important;
+  opacity: 0.7;
+}
+
+.emoticons span:hover{
+  opacity: 1;
+}
+
+.emoticons:hover{
+  cursor: pointer;
 }
 
 @media (max-width: 610px) {
