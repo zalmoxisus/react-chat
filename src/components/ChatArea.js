@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import styles from '../Chat.css';
 import Avatar from './Avatar';
 import getTimeStamp from '../utils/getTimeStamp.js';
+import {emojify} from 'react-emojione';
 
 function getMine(owner) {
   let mine = 2;
@@ -49,7 +50,7 @@ export default class ChatArea extends Component {
                 }
                 <div className={getMine(message.sender) ? styles.arrowRight : styles.arrowLeft}></div>
                 <div key={message.msg} className={getMine(message.sender) ? styles.my_msg : styles.u_msg}>
-                  <div className={styles.content_msg}> {message.msg} </div>
+                  <div className={styles.content_msg}> {emojify(message.msg)} </div>
                   <div className={styles.footer_msg}>
                     {
                       !getMine(message.sender) &&

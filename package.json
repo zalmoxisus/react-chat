@@ -69,6 +69,7 @@
   ],
   "dependencies": {
     "css-modules-require-hook": "^2.0.2",
+    "emoji-shortnames": "^1.0.1",
     "node-sass": "^3.4.2",
     "postcss": "^5.0.12",
     "radium": "^0.14.1",
