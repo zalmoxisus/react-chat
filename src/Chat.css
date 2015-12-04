@@ -12,7 +12,7 @@ body {
   background: #dcdcdc;
   color: #424242;
   width: 100%;
-  min-width: 160px;
+  min-width: 175px;
   height: 96%;
   padding-bottom: 30px;
   position: absolute;
@@ -128,8 +128,8 @@ body {
 .usermsg {
   bottom: 0;
   right: 0;
-  width: 93%;
-  min-height: 20px !important;
+  width: 100%;
+  min-height: 30px !important;
   padding: 7px 40px 3px 7px;
   max-height:100px;
   border: 0 none;
@@ -137,6 +137,7 @@ body {
   font-size: 10pt;
   resize: none;
   border-top: 1px solid #999999;
+  box-sizing: border-box;
 }
 
 .usermsg:hover {
@@ -149,12 +150,13 @@ body {
   bottom: 0;
   position: absolute;
   line-height: 0;
+  z-index: 2;
 }
 
 .chatOptions {
   display: table-cell;
   background: #bbbbbb;
-  width: 35px;
+  width: 34px;
 }
 
 .chatOptions div:hover {
@@ -169,7 +171,6 @@ body {
   background: #ffffff;
   line-height: 2;
   padding: 0;
-  z-index: 2;
 }
 
 .usermenu li{
@@ -210,7 +211,7 @@ body {
   width: 28px;
 }
 .emoticonsBtn span{
-  margin: 7px 4px 2px 4px !important;
+  margin: 6px 4px 1px 4px !important;
   opacity: 0.7;
 }
 .emoticonsBtn span:hover{
@@ -226,7 +227,6 @@ body {
   position: absolute;
   background: #ffffff;
   display: table;
-  z-index: 2;
 }
 .emoticons span{
   margin: 6px 4px 6px 4px !important;
@@ -244,9 +244,10 @@ body {
 .categoryBtn{
   border-right: 1px solid #ffffff;
   background: #D2DCEA;
-  padding-top: 4px;
+  padding: 4px 1px 0 1px;
   opacity: 0.8;
   list-style: none;
+  display: inline-block;
 }
 .categoryBtn:hover{
   cursor: pointer;
@@ -254,6 +255,7 @@ body {
 }
 .categoryBtns{
   display: inline-flex;
+  font-size: 11px;
   padding:  0;
   margin: 0 0 0 1px;
 }
@@ -269,6 +271,18 @@ body {
   }
   .content_msg{
     font-size: 14px;
+  }
+  .emoticons{
+    width: 160px;
+  }
+  .categoryBtns{
+    display: inline-block;
+    width: 157px;
+    margin: 3px 0 0 3px;
+  }
+  .categoryBtn{
+    font-size: 8px;
+    border-bottom: 1px solid #ffffff;
   }
 }
 @media (max-width: 320px) {
