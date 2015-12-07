@@ -13,8 +13,8 @@ body {
   color: #424242;
   width: 100%;
   min-width: 175px;
-  height: 100%;
   bottom:0;
+  top: 0;
   padding-bottom: 30px;
   position: absolute;
 }
