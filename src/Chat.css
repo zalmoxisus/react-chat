@@ -138,10 +138,12 @@ body {
   resize: none;
   border-top: 1px solid #999999;
   box-sizing: border-box;
+  overflow-y: hidden;
 }
 
 .usermsg:hover {
   border-top: 1px solid #333333;
+  overflow-y: auto;
 }
 
 .chatInpContainer {
@@ -205,10 +207,10 @@ body {
 
 .emoticonsContainer{
   position: absolute;
-  right: 22px;
+  right: 1px;
   top: 2px;
-  border: 1px solid #999999;
   width: 28px;
+  background: #ffffff;
 }
 .emoticonsBtn span{
   margin: 6px 4px 1px 4px !important;
@@ -221,7 +223,7 @@ body {
   cursor: pointer;
 }
 .emoticons{
-  bottom: 31px;
+  bottom: 28px;
   width: 340px;
   right: 0;
   position: absolute;
@@ -229,13 +231,16 @@ body {
   display: table;
 }
 .emoticons span{
-  margin: 6px 4px 6px 4px !important;
+  margin: 6px 3px 6px 9px !important;
 }
 .emoticonCategory{
   overflow-x: hidden;
   overflow-y: scroll;
   height: 220px;
   padding-top: 10px;
+}
+.emoticons span:not([title]){
+  margin: 0 !important;
 }
 .emoticonCategory span:hover{
   opacity: 0.8;
@@ -244,14 +249,13 @@ body {
 .categoryBtn{
   border-right: 1px solid #ffffff;
   background: #D2DCEA;
-  padding: 4px 1px 0 1px;
+  padding: 4px 6px 0 7px;
   opacity: 0.8;
   list-style: none;
   display: inline-block;
 }
-.categoryBtn:hover{
-  cursor: pointer;
-  opacity: 1;
+.categoryBtn span{
+  margin: 6px !important;
 }
 .categoryBtns{
   display: inline-flex;
@@ -260,6 +264,10 @@ body {
   margin: 0 0 0 1px;
 }
 
+.categoryBtn:hover{
+  cursor: pointer;
+  opacity: 1;
+}
 @media (max-width: 610px) {
   .msg {
     max-width: 85%;

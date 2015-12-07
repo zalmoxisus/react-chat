@@ -3,7 +3,7 @@ import styles from '../Chat.css';
 import TextareaAutosize from 'react-textarea-autosize';
 import UserMenu from './UserMenu';
 import {emojify} from 'react-emojione';
-import EmojiCategories from '../utils/EmojiCategories';
+import EmojiCategories from './EmojiCategories';
 
 export default class ChatInput extends Component {
   static propTypes = {
@@ -15,6 +15,9 @@ export default class ChatInput extends Component {
 
     let emoticons = document.getElementsByClassName(styles.emoticons)[0];
     emoticons.style.visibility = 'hidden';
+
+    let emoticonsBtn = document.getElementsByClassName(styles.emoticonsBtn)[0];
+    emoticonsBtn.querySelectorAll('span')[2].removeAttribute('title');
   };
   hideMenu = (e) => {
     const node = document.getElementsByClassName(styles.usermenu)[0];
@@ -63,6 +66,12 @@ export default class ChatInput extends Component {
     }
   };
 
+  addEmoticon = (e) => {
+    let node = document.getElementsByTagName('textarea')[0];
+    node.value = node.value + e + ' ';
+    node.focus();
+  };
+
   render() {
     const onMessage = this.props.onMessage;
     return (<div className={styles.chatInpContainer}>
@@ -84,7 +93,7 @@ export default class ChatInput extends Component {
       }/>
         <div className={styles.emoticonsContainer} onClick={this.hideEmoticons}>
           <div className={styles.emoticonsBtn}> {emojify(' :) ')}</div>
-          <EmojiCategories/>
+          <EmojiCategories addEmoticon={this.addEmoticon}/>
         </div>
       </div>
     );

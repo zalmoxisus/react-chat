@@ -9,7 +9,8 @@ const categories = Object.keys(shortnames).map((category, i) =>
 
 export default class EmojiCategories extends Component {
   static propTypes = {
-    text: PropTypes.string
+    text: PropTypes.string,
+    addEmoticon: PropTypes.func
   };
   static defaultProps = {
     text: shortnames['people'].join('')
@@ -32,10 +33,15 @@ export default class EmojiCategories extends Component {
       }
     }
   };
+  addEmoticon = (e) => {
+    if (e.target.nodeName === 'SPAN') {
+      this.props.addEmoticon(e.target.title);
+    }
+  };
   render() {
     return (
       <div className={styles.emoticons}>
-        <div className={styles.emoticonCategory}>
+        <div className={styles.emoticonCategory} onClick={this.addEmoticon}>
           {emojify(this.state.text)}
         </div>
         <ul className={styles.categoryBtns} onClick={this.setActive}>

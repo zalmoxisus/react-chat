@@ -11,6 +11,7 @@ export default class Chat extends Component {
   updateName = (e) => {
     let node = document.getElementsByTagName('textarea')[0];
     node.value = e + node.value;
+    node.focus();
   };
 
   render() {
