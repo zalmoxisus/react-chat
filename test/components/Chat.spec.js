@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import expect from 'expect';
-import Test from 'legit-tests';
+import { describeWithDOM, mount } from 'enzyme';
 import hook from 'css-modules-require-hook';
 import Chat from '../../src/Chat';
 
@@ -38,19 +38,11 @@ const props = {
   }
 };
 
-describe('Chat', () => {
+describeWithDOM('Chat', () => {
   it('should add message', () => {
-    Test(<Chat {...props} />)
-      .find('textarea')
-      .simulate({
-        method: 'keyPress',
-        element: 'textarea',
-        options: {nativeEvent: {keyCode: 13}, target: {value: props.text}}
-      })
-      .test(({textarea}) => {
-        expect(props.messages.length).toBe(3);
-        expect(props.messages[2].msg).toBe(props.text);
-        expect(textarea.value).toBe('');
-      });
+    const wrapper = mount(<Chat {...props} />).find('textarea').simulate('keyPress', {nativeEvent: {keyCode: 13}, target: {value: props.text}});
+    expect(props.messages.length).toBe(3);
+    expect(props.messages[2].msg).toBe(props.text);
+    expect(wrapper.text()).toEqual('');
   });
 });

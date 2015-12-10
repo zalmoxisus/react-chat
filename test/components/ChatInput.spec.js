@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import expect from 'expect';
-import Test from 'legit-tests';
+import { describeWithDOM, mount } from 'enzyme';
 import hook from 'css-modules-require-hook';
 import ChatInput from '../../src/components/ChatInput';
 import styles from '../../src/Chat.css';
@@ -10,32 +10,23 @@ const props = {
   text: 'hello'
 };
 
-describe('ChatInput.', () => {
+
+describeWithDOM('ChatInput.', () => {
   it('should render correctly', () => {
-    Test(<ChatInput {...props} />)
-      .find('textarea')
-      .test(({textarea}) => {
-        expect(textarea.type).toBe('textarea');
-        expect(textarea.value).toEqual('');
-        expect(textarea.className).toEqual(styles.usermsg);
-      });
+    const wrapper = mount(<ChatInput {...props} />).find('textarea');
+    expect(wrapper.type()).toBe('textarea');
+    expect(wrapper.text()).toEqual('');
+    expect(wrapper.prop('className')).toBe(styles.usermsg);
   });
 
   it('should send messages to parrent', () => {
-    Test(<ChatInput {...props} />)
-      .find('textarea')
-      .simulate({method: 'keyPress', element: 'textarea', options: {nativeEvent: {keyCode: 1}, target: { value: props.text }}})
-      .test(({textarea}) => {
-        expect(props.onMessage.calls.length).toBe(0);
-      })
-      .simulate({method: 'keyPress', element: 'textarea', options: {nativeEvent: {keyCode: 13}, target: { value: '' }}})
-      .test(({textarea}) => {
-        expect(props.onMessage.calls.length).toBe(0);
-      })
-      .simulate({method: 'keyPress', element: 'textarea', options: {nativeEvent: {keyCode: 13}, target: { value: props.text }}})
-      .test(({textarea}) => {
-        expect(props.onMessage).toHaveBeenCalled();
-        expect(props.onMessage.calls.length).toBe(1);
-      });
+    const wrapper = mount(<ChatInput {...props} />).find('textarea');
+    wrapper.simulate('keyPress', {nativeEvent: {keyCode: 1}, target: {value: props.text}});
+    expect(props.onMessage.calls.length).toBe(0);
+    wrapper.simulate('keyPress', {nativeEvent: {keyCode: 13}, target: {value: ''}});
+    expect(props.onMessage.calls.length).toBe(0);
+    wrapper.simulate('keyPress', {nativeEvent: {keyCode: 13}, target: {value: props.text}});
+    expect(props.onMessage).toHaveBeenCalled();
+    expect(props.onMessage.calls.length).toBe(1);
   });
 });

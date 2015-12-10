@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import expect from 'expect';
-import Test from 'legit-tests';
+import { describeWithDOM, mount } from 'enzyme';
 import hook from 'css-modules-require-hook';
 import ChatArea from '../../src/components/ChatArea';
 import styles from '../../src/Chat.css';
-import {findContainer} from '../testMixins';
 
 const props = {
   messages: [
@@ -19,35 +18,44 @@ const props = {
     {
       id: 2,
       name: 'Marry',
-      avatar: '',
-      msg: 'Welcome, John!',
+      avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/oagra/129.jpg',
+      msg: 'Hello, John!',
       time: 1444428192,
-      sender: 2
+      sender: 1
+    },
+    {
+      id: 3,
+      name: 'John',
+      avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/oagra/130.jpg',
+      msg: 'Hello, Marry!',
+      time: 1444428192,
+      sender: 1
+    },
+    {
+      id: 4,
+      name: 'Marry',
+      avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/oagra/131.jpg',
+      msg: 'Hello, John!',
+      time: 1444428192,
+      sender: 1
     }
-
   ]
 };
 
-describe('ChatArea', () => {
+describeWithDOM('ChatArea', () => {
   it('should render correctly', () => {
-    Test(<ChatArea {...props} />)
-      .mixin({findContainer: findContainer})
-      .findContainer(styles.container)
-      .test(({container}) => {
-        expect(container).toExist();
-        expect(container.tagName).toBe('DIV');
-      });
+    const wrapper = mount(<ChatArea {...props} />).find('#container');
+    expect(wrapper).toExist();
+    expect(wrapper.type()).toBe('div');
+    expect(wrapper.prop('className')).toBe(styles.container);
   });
 
   it('should render messages', () => {
-    Test(<ChatArea {...props} />)
-      .mixin({findContainer: findContainer})
-      .findContainer(styles.container)
-      .test(({container}) => {
-        let renderedAvatar = container.querySelectorAll('img');
-        for (let i = 0; i < renderedAvatar.length; i++) {
-          expect(renderedAvatar[i].src).toBe(props.messages[i].avatar);
-        }
-      });
+    const wrapper = mount(<ChatArea {...props} />).find('#container');
+    expect(wrapper.children().length).toBe(props.messages.length);
+    wrapper.children().forEach(function(node, i) {
+      expect(node.find('img').node.src).toBe(props.messages[i].avatar);
+    });
+
   });
 });
