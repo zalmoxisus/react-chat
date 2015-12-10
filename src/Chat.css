@@ -269,6 +269,10 @@ body {
   cursor: pointer;
   opacity: 1;
 }
+.categoryBtn:first-child{
+  background: #ffffff;
+}
+
 @media (max-width: 610px) {
   .msg {
     max-width: 85%;

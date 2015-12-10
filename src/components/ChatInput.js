@@ -7,62 +7,56 @@ import EmojiCategories from './EmojiCategories';
 
 export default class ChatInput extends Component {
   static propTypes = {
-    onMessage: PropTypes.func
+    onMessage: PropTypes.func,
+    emoticonShow: PropTypes.bool,
+    menuShow: PropTypes.bool
   };
-  componentDidMount = () => {
-    let usermenu = document.getElementsByClassName(styles.usermenu)[0];
-    usermenu.style.visibility = 'hidden';
-
-    let emoticons = document.getElementsByClassName(styles.emoticons)[0];
-    emoticons.style.visibility = 'hidden';
-
-    let emoticonsBtn = document.getElementsByClassName(styles.emoticonsBtn)[0];
-    emoticonsBtn.querySelectorAll('span')[2].removeAttribute('title');
+  state = {
+    emoticonShow: false,
+    menuShow: false
   };
+
   hideMenu = (e) => {
-    const node = document.getElementsByClassName(styles.usermenu)[0];
-    const iconMenu = document.getElementById('iconMenu');
-    let menuTimer = 0;
-    if (node.style.visibility === 'hidden') {
-      iconMenu.className = 'icon-keyboard-arrow-up';
-      node.style.visibility = 'visible';
-
+    let menuBtn = this.iconMenu;
+    if (this.state.menuShow === false) {
+      let menuTimer = 0;
+      const that = this;
+      this.setState({ menuShow: true });
+      menuBtn.style.transform = 'rotate(180deg)';
       e.currentTarget.addEventListener('mouseleave', function() {
         menuTimer = setTimeout(function() {
-          iconMenu.className = 'icon-keyboard-arrow-down';
-          node.style.visibility = 'hidden';
+          menuBtn.style.transform = 'rotate(0deg)';
+          that.setState({ menuShow: false });
         }, 1000);
       });
-
       e.currentTarget.addEventListener('mouseenter', function() {
         clearTimeout(menuTimer);
       });
     } else {
-      iconMenu.className = 'icon-keyboard-arrow-down';
-      node.style.visibility = 'hidden';
+      menuBtn.style.transform = 'rotate(0deg)';
+      this.setState({menuShow: false});
     }
   };
-  hideEmoticons = (e) => {
-    const node = document.getElementsByClassName(styles.emoticons)[0];
-    const this_ = e.currentTarget.getElementsByClassName(styles.emoticonsBtn)[0];
-    let menuTimer = 0;
-    if (node.style.visibility === 'hidden') {
-      this_.style.transform = 'rotate(180deg)';
-      node.style.visibility = 'visible';
 
+  hideEmoticons = (e) => {
+    let emoticonBtn = e.target;
+    if (this.state.emoticonShow === false) {
+      let menuTimer = 0;
+      const that = this;
+      this.setState({ emoticonShow: true });
+      emoticonBtn.style.transform = 'rotate(180deg)';
       e.currentTarget.addEventListener('mouseleave', function() {
         menuTimer = setTimeout(function() {
-          this_.style.transform = 'rotate(0deg)';
-          node.style.visibility = 'hidden';
+          emoticonBtn.style.transform = 'rotate(0deg)';
+          that.setState({ emoticonShow: false });
         }, 1000);
       });
-
       e.currentTarget.addEventListener('mouseenter', function() {
         clearTimeout(menuTimer);
       });
     } else if (e.target.parentNode.className === styles.emoticonsBtn) {
-      this_.style.transform = 'rotate(0deg)';
-      node.style.visibility = 'hidden';
+      emoticonBtn.style.transform = 'rotate(0deg)';
+      this.setState({emoticonShow: false});
     }
   };
 
@@ -72,12 +66,16 @@ export default class ChatInput extends Component {
     node.focus();
   };
 
+  btnHovered = (e) => {
+    e.currentTarget.querySelectorAll('span')[2].removeAttribute('title');
+  };
+
   render() {
     const onMessage = this.props.onMessage;
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.hideMenu}>
-          <UserMenu/>
-          <div id="iconMenu" className="icon-keyboard-arrow-down"></div>
+          { this.state.menuShow ? <UserMenu/> : null }
+          <div id="iconMenu" className="icon-keyboard-arrow-down" ref={(ref) => this.iconMenu = ref}></div>
         </div>
         <TextareaAutosize className={styles.usermsg} autoFocus onKeyPress={
       function(e) {
@@ -92,8 +90,8 @@ export default class ChatInput extends Component {
       }
       }/>
         <div className={styles.emoticonsContainer} onClick={this.hideEmoticons}>
-          <div className={styles.emoticonsBtn}> {emojify(' :) ')}</div>
-          <EmojiCategories addEmoticon={this.addEmoticon}/>
+          <div className={styles.emoticonsBtn} onMouseOver={this.btnHovered}> {emojify(' :) ')}</div>
+          { this.state.emoticonShow ? <EmojiCategories addEmoticon={this.addEmoticon} /> : null }
         </div>
       </div>
     );

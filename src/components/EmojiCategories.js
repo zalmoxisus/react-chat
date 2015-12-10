@@ -18,10 +18,6 @@ export default class EmojiCategories extends Component {
   state = {
     text: this.props.text
   };
-  componentDidMount = () => {
-    let firstBtn = document.getElementsByClassName(styles.categoryBtn)[0];
-    firstBtn.style.background = '#ffffff';
-  };
   setActive = (node) => {
     let children = (node.target.tagName === 'LI') ? node.target.parentNode.childNodes : node.target.parentNode.parentNode.childNodes;
     let child = (node.target.tagName === 'LI') ? node.target : node.target.parentNode;
