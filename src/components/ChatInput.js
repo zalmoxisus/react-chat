@@ -2,14 +2,13 @@ import React, { Component, PropTypes } from 'react';
 import styles from '../Chat.css';
 import TextareaAutosize from 'react-textarea-autosize';
 import UserMenu from './UserMenu';
+import ToggleDisplay from '../utils/ToggleDisplay';
 import {emojify} from 'react-emojione';
 import EmojiCategories from './EmojiCategories';
 
 export default class ChatInput extends Component {
   static propTypes = {
-    onMessage: PropTypes.func,
-    emoticonShow: PropTypes.bool,
-    menuShow: PropTypes.bool
+    onMessage: PropTypes.func
   };
   state = {
     emoticonShow: false,
@@ -18,10 +17,10 @@ export default class ChatInput extends Component {
 
   hideMenu = (e) => {
     let menuBtn = this.iconMenu;
+    this.setState({ menuShow: !this.state.menuShow });
     if (this.state.menuShow === false) {
       let menuTimer = 0;
       const that = this;
-      this.setState({ menuShow: true });
       menuBtn.style.transform = 'rotate(180deg)';
       e.currentTarget.addEventListener('mouseleave', function() {
         menuTimer = setTimeout(function() {
@@ -34,16 +33,15 @@ export default class ChatInput extends Component {
       });
     } else {
       menuBtn.style.transform = 'rotate(0deg)';
-      this.setState({menuShow: false});
     }
   };
 
   hideEmoticons = (e) => {
     let emoticonBtn = e.target;
+    this.setState({ emoticonShow: !this.state.emoticonShow });
     if (this.state.emoticonShow === false) {
       let menuTimer = 0;
       const that = this;
-      this.setState({ emoticonShow: true });
       emoticonBtn.style.transform = 'rotate(180deg)';
       e.currentTarget.addEventListener('mouseleave', function() {
         menuTimer = setTimeout(function() {
@@ -56,12 +54,11 @@ export default class ChatInput extends Component {
       });
     } else if (e.target.parentNode.className === styles.emoticonsBtn) {
       emoticonBtn.style.transform = 'rotate(0deg)';
-      this.setState({emoticonShow: false});
     }
   };
 
   addEmoticon = (e) => {
-    let node = document.getElementsByTagName('textarea')[0];
+    let node = this.usermsg;
     node.value = node.value + e + ' ';
     node.focus();
   };
@@ -74,10 +71,12 @@ export default class ChatInput extends Component {
     const onMessage = this.props.onMessage;
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.hideMenu}>
-          { this.state.menuShow ? <UserMenu/> : null }
-          <div id="iconMenu" className="icon-keyboard-arrow-down" ref={(ref) => this.iconMenu = ref}></div>
+          <ToggleDisplay show={this.state.menuShow}>
+            <UserMenu/>
+          </ToggleDisplay>
+          <div className="icon-keyboard-arrow-down" ref={(ref) => this.iconMenu = ref}></div>
         </div>
-        <TextareaAutosize className={styles.usermsg} autoFocus onKeyPress={
+        <TextareaAutosize ref={(ref) => this.usermsg = ref} className={styles.usermsg} autoFocus onKeyPress={
       function(e) {
         if (e.nativeEvent.keyCode !== 13 || e.shiftKey) return;
         e.preventDefault();
@@ -90,8 +89,10 @@ export default class ChatInput extends Component {
       }
       }/>
         <div className={styles.emoticonsContainer} onClick={this.hideEmoticons}>
-          <div className={styles.emoticonsBtn} onMouseOver={this.btnHovered}> {emojify(' :) ')}</div>
-          { this.state.emoticonShow ? <EmojiCategories addEmoticon={this.addEmoticon} /> : null }
+          <div id="emoticonBtn" className={styles.emoticonsBtn} onMouseOver={this.btnHovered}> {emojify(' :) ')}</div>
+          <ToggleDisplay show={this.state.emoticonShow}>
+            <EmojiCategories addEmoticon={this.addEmoticon} />
+          </ToggleDisplay>
         </div>
       </div>
     );
