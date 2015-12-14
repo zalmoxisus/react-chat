@@ -37,4 +37,12 @@ describeWithDOM('ChatInput.', () => {
     wrapper.find('.icon-keyboard-arrow-down').simulate('click');
     expect(wrapper.node.state.menuShow).toBe(false);
   });
+  it('should open emoticons popup', () => {
+    let wrapper = mount(<ChatInput {...props} />);
+    expect(wrapper.node.state.emoticonShow).toBe(false);
+    wrapper.find('.' + styles.emoticonsBtn).simulate('click');
+    expect(wrapper.node.state.emoticonShow).toBe(true);
+    wrapper.find('.' + styles.emoticonsBtn).simulate('click');
+    expect(wrapper.node.state.emoticonShow).toBe(false);
+  });
 });
