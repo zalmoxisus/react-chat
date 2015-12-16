@@ -8,7 +8,8 @@ import EmojiCategories from './EmojiCategories';
 
 export default class ChatInput extends Component {
   static propTypes = {
-    onMessage: PropTypes.func
+    onMessage: PropTypes.func,
+    submenuShow: PropTypes.bool
   };
   state = {
     emoticonShow: false,
@@ -17,6 +18,10 @@ export default class ChatInput extends Component {
 
   hideMenu = (e) => {
     let menuBtn = this.iconMenu;
+    if ((e.target.tagName === 'P') || ((e.target.tagName === 'INPUT'))) {
+      this.setState({ menuShow: false });
+      return;
+    }
     this.setState({ menuShow: !this.state.menuShow });
     if (this.state.menuShow === false) {
       let menuTimer = 0;
@@ -71,10 +76,8 @@ export default class ChatInput extends Component {
     const onMessage = this.props.onMessage;
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.hideMenu}>
-          <ToggleDisplay show={this.state.menuShow}>
-            <UserMenu/>
-          </ToggleDisplay>
           <div className="icon-keyboard-arrow-down" ref={(ref) => this.iconMenu = ref}></div>
+          <UserMenu menuShow={this.state.menuShow} submenuShow={this.props.submenuShow}/>
         </div>
         <TextareaAutosize ref={(ref) => this.usermsg = ref} className={styles.usermsg} autoFocus onKeyPress={
       function(e) {

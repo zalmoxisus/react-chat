@@ -34,6 +34,36 @@
 		{
 			"icon": {
 				"paths": [
+					"M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z"
+				],
+				"attrs": [
+					{}
+				],
+				"isMulticolor": false,
+				"tags": [
+					"clear"
+				],
+				"defaultCode": 57456,
+				"grid": 24
+			},
+			"attrs": [
+				{}
+			],
+			"properties": {
+				"order": 12,
+				"id": 112,
+				"prevSize": 24,
+				"code": 57456,
+				"name": "clear",
+				"ligatures": "clear"
+			},
+			"setIdx": 0,
+			"setId": 2,
+			"iconIdx": 112
+		},
+		{
+			"icon": {
+				"paths": [
 					"M426 384q208 30 321 159t149 311q-154-218-470-218v174l-298-298 298-298v170z"
 				],
 				"attrs": [

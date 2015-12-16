@@ -162,13 +162,29 @@ body {
   width: 34px;
 }
 
-.chatOptions div:hover {
+.chatOptions > div:first-child:hover {
   color: #d8935d;
   cursor: pointer;
 }
 
-.usermenu {
+.userContainer {
   position: absolute;
+}
+
+.videoInpContainer{
+  padding: 20px 7px 20px 7px;
+  background: #ffffff;
+  position: fixed;
+  bottom: 30px;
+  border: 1px solid #aaaaaa;
+}
+
+.userContainer input {
+  height: 25px;
+  width: 280px;
+}
+
+.usermenu {
   border: 1px solid #bbbbbb;
   margin-top: -92px;
   background: #ffffff;
@@ -297,6 +313,9 @@ body {
     font-size: 8px;
     border-bottom: 1px solid #ffffff;
   }
+  .userContainer input{
+    width: 180px;
+  }
 }
 @media (max-width: 320px) {
   .msg {
@@ -309,5 +328,9 @@ body {
   }
   .content_msg{
     font-size: 12px;
+  }
+  .userContainer input{
+    width: 135px;
+    font-size: 11px;
   }
 }
