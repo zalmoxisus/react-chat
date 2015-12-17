@@ -68,6 +68,7 @@
     }
   ],
   "dependencies": {
+    "autolinker": "^0.22.0",
     "css-modules-require-hook": "^2.0.2",
     "emoji-shortnames": "^1.0.1",
     "node-sass": "^3.4.2",

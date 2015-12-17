@@ -172,16 +172,18 @@ body {
 }
 
 .videoInpContainer{
-  padding: 20px 7px 20px 7px;
+  padding: 15px 12px 15px 12px;
   background: #ffffff;
   position: fixed;
   bottom: 30px;
   border: 1px solid #aaaaaa;
+  width: 290px;
+  line-height: 2;
 }
 
 .userContainer input {
   height: 25px;
-  width: 280px;
+  width: 99%;
 }
 
 .usermenu {
