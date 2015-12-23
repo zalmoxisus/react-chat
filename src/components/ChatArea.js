@@ -3,6 +3,8 @@ import styles from '../Chat.css';
 import Avatar from './Avatar';
 import getTimeStamp from '../utils/getTimeStamp.js';
 import {emojify} from 'react-emojione';
+import convertMedia from '../utils/convertMedia';
+import VideoContainer from './VideoContainer';
 
 function getMine(owner) {
   let mine = 2;
@@ -35,6 +37,12 @@ export default class ChatArea extends Component {
     this.props.updateName(e.currentTarget.textContent + ', ');
   };
 
+  isMedia = (msg) => {
+    const media = convertMedia(msg, 150, true);
+    if (media.startsWith('<iframe') || media.startsWith('<a href')) return media;
+    return false;
+  };
+
   render() {
     return (
       <div id="container" className={styles.container}>
@@ -50,7 +58,7 @@ export default class ChatArea extends Component {
                 }
                 <div className={getMine(message.sender) ? styles.arrowRight : styles.arrowLeft}></div>
                 <div key={message.msg} className={getMine(message.sender) ? styles.my_msg : styles.u_msg}>
-                  <div className={styles.content_msg}> {emojify(message.msg)} </div>
+                  <div className={styles.content_msg}> {this.isMedia(message.msg) ? <VideoContainer src={this.isMedia(message.msg)}/> : emojify(message.msg)} </div>
                   <div className={styles.footer_msg}>
                     {
                       !getMine(message.sender) &&

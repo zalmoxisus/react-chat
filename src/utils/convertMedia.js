@@ -9,14 +9,14 @@ export default function convertMedia(html, height, onlyvideo, autoplay, isAct, s
   let pattern4 = /(?:https?:\/\/)?(?:www\.)?(?:prezi\.com)\/?([^/]+)\/?(.+)/;
 
   if (pattern1.test(html)) {
-    replacement = '<iframe width="100%" height="' + (height || 320) + '" src="//player.vimeo.com/video/$1?autoplay=' + (autoplay || '0') + '&portrait=0&title=0&byline=0&badge=0" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+    replacement = '<iframe width="100%" height="' + (height || 320) + '" src="//player.vimeo.com/video/$1?autoplay=' + (autoplay || '0') + '&portrait=0&title=0&byline=0&badge=0" frameBorder="0" webkitallowfullscreen mozallowfullscreen allowFullScreen></iframe>';
     htmlReplace = html.replace(pattern1, replacement);
   } else if (pattern2.test(html)) {
-    replacement = '<iframe ' + (isAct ? 'id="act_player"' : '') + ' width="100%" height="' + (height || 320) + '" src="//www.youtube.com/embed/$1?autohide=1&controls=2&modestbranding=1&rel=0&showinfo=1&playsinline=1&autoplay=' + (autoplay || '0') + (start ? '&start=' + start : '') + (isAct ? '&enablejsapi=1' : '') + '" frameborder="0" allowfullscreen></iframe>';
+    replacement = '<iframe ' + (isAct ? 'id="act_player"' : '') + ' width="100%" height="' + (height || 320) + '" src="//www.youtube.com/embed/$1?autohide=1&controls=2&modestbranding=1&rel=0&showinfo=1&playsinline=1&autoplay=' + (autoplay || '0') + (start ? '&start=' + start : '') + (isAct ? '&enablejsapi=1' : '') + '" frameBorder="0" allowFullScreen></iframe>';
     htmlReplace = html.replace(pattern2, replacement);
   } else if (typeof onlyvideo === 'undefined') {
     if (pattern4.test(html)) {
-      replacement = '<iframe width="100%" height="' + (height || 320) + '" src="//prezi.com/player/?oid=$1&explorable=0&controls=1&autoplay=1" frameborder="0" allowfullscreen></iframe>';
+      replacement = '<iframe width="100%" height="' + (height || 320) + '" src="//prezi.com/player/?oid=$1&explorable=0&controls=1&autoplay=1" frameBorder="0" allowFullScreen></iframe>';
       htmlReplace = html.replace(pattern4, replacement);
     } else if (pattern3.test(html)) htmlReplace = '<img class="mimg" src="' + encodeURI(html) + '" />';
     else htmlReplace = Autolink.link(html);

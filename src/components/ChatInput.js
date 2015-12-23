@@ -77,7 +77,7 @@ export default class ChatInput extends Component {
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.hideMenu}>
           <div className="icon-keyboard-arrow-down" ref={(ref) => this.iconMenu = ref}></div>
-          <UserMenu menuShow={this.state.menuShow} submenuShow={this.props.submenuShow}/>
+          <UserMenu menuShow={this.state.menuShow} submenuShow={this.props.submenuShow} onMessage={this.props.onMessage}/>
         </div>
         <TextareaAutosize ref={(ref) => this.usermsg = ref} className={styles.usermsg} autoFocus onKeyPress={
       function(e) {
