@@ -94,6 +94,7 @@ body {
   font-size: 16px;
   min-width: 75px;
   display: flex;
+  word-break: break-all;
 }
 
 .footer_msg{

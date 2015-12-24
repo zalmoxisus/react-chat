@@ -39,7 +39,7 @@ export default class ChatArea extends Component {
 
   isMedia = (msg) => {
     const media = convertMedia(msg, 150, true);
-    if (media.startsWith('<iframe') || media.startsWith('<a href')) return media;
+    if ((media.indexOf('<iframe') > -1) || (media.indexOf('<a href') > -1)) return media;
     return false;
   };
 

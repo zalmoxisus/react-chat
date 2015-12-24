@@ -2,27 +2,31 @@ import React, { Component, PropTypes } from 'react';
 import styles from '../Chat.css';
 import ToggleDisplay from '../utils/ToggleDisplay';
 import convertMedia from '../utils/convertMedia';
-import VideoContainer from './VideoContainer';
 
 export default class UserMenu extends Component {
   static propTypes = {
     menuShow: PropTypes.bool,
     onMessage: PropTypes.func
   };
-  state = {
-    src: ''
-  };
   changeVideoInp = (e) => {
-    this.setState({ src: convertMedia(e.target.value, 150, true) });
-    let that = this;
+    let media = convertMedia(e.target.value, 150, true);
+    let videoContainer = this.videoInpContainer;
+    let mediaContainer = document.createElement('span');
+
+    mediaContainer.innerHTML = media;
+    if (videoContainer.children.length === 2) videoContainer.appendChild(mediaContainer);
+    else videoContainer.replaceChild(mediaContainer, videoContainer.children[2]);
+
+
     if (e.nativeEvent.keyCode === 13) {
       const input = e.target;
       const txt = e.target.value;
       if (txt === '') return;
+      const that = this;
       this.props.onMessage({ txt: txt }, function success() {
         input.value = '';
         that.submenuShow = false;
-        that.setState({ src: '' });
+        mediaContainer.innerHTML = '';
       });
     }
   };
@@ -67,7 +71,6 @@ export default class UserMenu extends Component {
         <ToggleDisplay show={this.submenuShow}>
           <div ref={(ref) => this.videoInpContainer = ref} className={styles.videoInpContainer}>
             <input ref={(ref) => this.videoInp = ref} placeholder="Video url (youtube, vimeo)" onKeyUp={this.changeVideoInp}/>
-            <VideoContainer src={this.state.src}/>
             <div style={{position: 'fixed', left: 0, bottom: '23px', height: '30px' }} onClick={this.handleClose}>
               <p className="icon-clear" ref={(ref) => this.usermsg = ref}></p>
             </div>
