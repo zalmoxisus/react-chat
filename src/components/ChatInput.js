@@ -43,8 +43,8 @@ export default class ChatInput extends Component {
 
   hideEmoticons = (e) => {
     let emoticonBtn = e.target;
-    this.setState({ emoticonShow: !this.state.emoticonShow });
     if (this.state.emoticonShow === false) {
+      this.setState({ emoticonShow: !this.state.emoticonShow });
       let menuTimer = 0;
       const that = this;
       emoticonBtn.style.transform = 'rotate(180deg)';
@@ -58,6 +58,7 @@ export default class ChatInput extends Component {
         clearTimeout(menuTimer);
       });
     } else if (e.target.parentNode.className === styles.emoticonsBtn) {
+      this.setState({ emoticonShow: !this.state.emoticonShow });
       emoticonBtn.style.transform = 'rotate(0deg)';
     }
   };
