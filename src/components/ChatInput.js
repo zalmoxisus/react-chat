@@ -3,7 +3,7 @@ import styles from '../Chat.css';
 import TextareaAutosize from 'react-textarea-autosize';
 import UserMenu from './UserMenu';
 import ToggleDisplay from '../utils/ToggleDisplay';
-import {emojify} from 'react-emojione';
+import emojify from '../utils/emojify';
 import EmojiCategories from './EmojiCategories';
 
 export default class ChatInput extends Component {

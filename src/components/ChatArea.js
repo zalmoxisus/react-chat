@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import styles from '../Chat.css';
 import Avatar from './Avatar';
 import getTimeStamp from '../utils/getTimeStamp.js';
-import {emojify} from 'react-emojione';
+import emojify from '../utils/emojify';
 import convertMedia from '../utils/convertMedia';
 import VideoContainer from './VideoContainer';
 

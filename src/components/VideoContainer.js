@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../Chat.css';
-import {emojify} from 'react-emojione';
+import emojify from '../utils/emojify';
 
 export default class VideoContainer extends Component {
   static propTypes = {

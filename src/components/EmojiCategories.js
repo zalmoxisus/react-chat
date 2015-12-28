@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../Chat.css';
-import {emojify} from 'react-emojione';
+import emojify from '../utils/emojify';
 import shortnames from 'emoji-shortnames';
 
 const categories = Object.keys(shortnames).map((category, i) =>
