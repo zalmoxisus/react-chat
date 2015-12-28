@@ -10,7 +10,7 @@ export default class Chat extends Component {
     me: PropTypes.shape()
   };
   updateName = (e) => {
-    let node = document.getElementsByTagName('textarea')[0];
+    const node = this.input.usermsg;
     node.value = e + node.value;
     node.focus();
   };
@@ -20,7 +20,7 @@ export default class Chat extends Component {
     return (<div>
         <div className={styles.base}>
           <ChatArea messages={this.props.messages} updateName={this.updateName} isMine={this.isMine} />
-          <ChatInput onMessage={this.props.onMessage}/>
+          <ChatInput onMessage={this.props.onMessage} ref={node => {this.input = node;}} />
         </div>
       </div>
     );
