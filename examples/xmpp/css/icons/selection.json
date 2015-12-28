@@ -1,0 +1,282 @@
+{
+	"IcoMoonType": "selection",
+	"icons": [
+		{
+			"icon": {
+				"paths": [
+					"M738 470h72q0 108-75 189t-181 97v140h-84v-140q-106-16-181-97t-75-189h72q0 94 67 155t159 61 159-61 67-155zM512 598q-52 0-90-38t-38-90v-256q0-52 38-90t90-38 90 38 38 90v256q0 52-38 90t-90 38z"
+				],
+				"attrs": [
+					{}
+				],
+				"isMulticolor": false,
+				"tags": [
+					"mic"
+				],
+				"defaultCode": 57359,
+				"grid": 24
+			},
+			"attrs": [
+				{}
+			],
+			"properties": {
+				"order": 11,
+				"id": 15,
+				"prevSize": 24,
+				"code": 57359,
+				"name": "mic",
+				"ligatures": "mic"
+			},
+			"setIdx": 0,
+			"setId": 2,
+			"iconIdx": 15
+		},
+		{
+			"icon": {
+				"paths": [
+					"M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z"
+				],
+				"attrs": [
+					{}
+				],
+				"isMulticolor": false,
+				"tags": [
+					"clear"
+				],
+				"defaultCode": 57456,
+				"grid": 24
+			},
+			"attrs": [
+				{}
+			],
+			"properties": {
+				"order": 12,
+				"id": 112,
+				"prevSize": 24,
+				"code": 57456,
+				"name": "clear",
+				"ligatures": "clear"
+			},
+			"setIdx": 0,
+			"setId": 2,
+			"iconIdx": 112
+		},
+		{
+			"icon": {
+				"paths": [
+					"M426 384q208 30 321 159t149 311q-154-218-470-218v174l-298-298 298-298v170z"
+				],
+				"attrs": [
+					{}
+				],
+				"isMulticolor": false,
+				"tags": [
+					"reply"
+				],
+				"defaultCode": 57474,
+				"grid": 24
+			},
+			"attrs": [
+				{}
+			],
+			"properties": {
+				"order": 3,
+				"id": 130,
+				"prevSize": 24,
+				"code": 57474,
+				"name": "reply",
+				"ligatures": "reply"
+			},
+			"setIdx": 0,
+			"setId": 2,
+			"iconIdx": 130
+		},
+		{
+			"icon": {
+				"paths": [
+					"M534 298v224l192 114-32 54-224-136v-256h64zM512 854q140 0 241-101t101-241-101-241-241-101-241 101-101 241 101 241 241 101zM512 86q176 0 301 125t125 301-125 301-301 125-301-125-125-301 125-301 301-125z"
+				],
+				"attrs": [
+					{}
+				],
+				"isMulticolor": false,
+				"tags": [
+					"access_time"
+				],
+				"defaultCode": 57486,
+				"grid": 24
+			},
+			"attrs": [
+				{}
+			],
+			"properties": {
+				"order": 2,
+				"id": 142,
+				"prevSize": 24,
+				"code": 57486,
+				"name": "access-time",
+				"ligatures": "access_time"
+			},
+			"setIdx": 0,
+			"setId": 2,
+			"iconIdx": 142
+		},
+		{
+			"icon": {
+				"paths": [
+					"M768 342v-86h-512v86h512zM768 470v-86h-512v86h512zM768 598v-86h-512v86h512zM854 86q34 0 59 25t25 59v768l-170-170h-598q-34 0-59-26t-25-60v-512q0-34 25-59t59-25h684z"
+				],
+				"attrs": [
+					{}
+				],
+				"isMulticolor": false,
+				"tags": [
+					"insert_comment"
+				],
+				"defaultCode": 57574,
+				"grid": 24
+			},
+			"attrs": [
+				{}
+			],
+			"properties": {
+				"order": 9,
+				"id": 230,
+				"prevSize": 24,
+				"code": 57574,
+				"name": "insert-comment",
+				"ligatures": "insert_comment"
+			},
+			"setIdx": 0,
+			"setId": 2,
+			"iconIdx": 230
+		},
+		{
+			"icon": {
+				"paths": [
+					"M316 334l196 196 196-196 60 60-256 256-256-256z"
+				],
+				"attrs": [
+					{}
+				],
+				"isMulticolor": false,
+				"tags": [
+					"keyboard_arrow_down"
+				],
+				"defaultCode": 57615,
+				"grid": 24
+			},
+			"attrs": [
+				{}
+			],
+			"properties": {
+				"order": 4,
+				"id": 271,
+				"prevSize": 24,
+				"code": 57615,
+				"name": "keyboard-arrow-down",
+				"ligatures": "keyboard_arrow_down"
+			},
+			"setIdx": 0,
+			"setId": 2,
+			"iconIdx": 271
+		},
+		{
+			"icon": {
+				"paths": [
+					"M316 658l-60-60 256-256 256 256-60 60-196-196z"
+				],
+				"attrs": [
+					{}
+				],
+				"isMulticolor": false,
+				"tags": [
+					"keyboard_arrow_up"
+				],
+				"defaultCode": 57618,
+				"grid": 24
+			},
+			"attrs": [
+				{}
+			],
+			"properties": {
+				"order": 5,
+				"id": 274,
+				"prevSize": 24,
+				"code": 57618,
+				"name": "keyboard-arrow-up",
+				"ligatures": "keyboard_arrow_up"
+			},
+			"setIdx": 0,
+			"setId": 2,
+			"iconIdx": 274
+		},
+		{
+			"icon": {
+				"paths": [
+					"M682 470l-298 170v-342zM896 726v-512h-768v512h768zM896 128q34 0 60 25t26 61l-2 512q0 34-25 59t-59 25h-214v86h-340v-86h-214q-36 0-61-25t-25-59v-512q0-36 25-61t61-25h768z"
+				],
+				"attrs": [
+					{}
+				],
+				"isMulticolor": false,
+				"tags": [
+					"ondemand_video"
+				],
+				"defaultCode": 57918,
+				"grid": 24
+			},
+			"attrs": [
+				{}
+			],
+			"properties": {
+				"order": 7,
+				"id": 574,
+				"prevSize": 24,
+				"code": 57918,
+				"name": "ondemand-video",
+				"ligatures": "ondemand_video"
+			},
+			"setIdx": 0,
+			"setId": 2,
+			"iconIdx": 574
+		}
+	],
+	"height": 1024,
+	"metadata": {
+		"name": "icons"
+	},
+	"preferences": {
+		"showGlyphs": true,
+		"showQuickUse": true,
+		"showQuickUse2": true,
+		"showSVGs": true,
+		"fontPref": {
+			"prefix": "icon-",
+			"metadata": {
+				"fontFamily": "icons",
+				"majorVersion": 1,
+				"minorVersion": 0
+			},
+			"metrics": {
+				"emSize": 1024,
+				"baseline": 6.25,
+				"whitespace": 50
+			},
+			"embed": false,
+			"showSelector": true,
+			"resetPoint": 58880
+		},
+		"imagePref": {
+			"prefix": "icon-",
+			"png": true,
+			"useClassSelector": true,
+			"color": 4473924,
+			"bgColor": 16777215
+		},
+		"historySize": 100,
+		"showCodes": false,
+		"gridSize": 16,
+		"showLiga": false
+	}
+}
