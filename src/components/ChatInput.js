@@ -57,7 +57,7 @@ export default class ChatInput extends Component {
       e.currentTarget.addEventListener('mouseenter', function() {
         clearTimeout(menuTimer);
       });
-    } else if (e.target.parentNode.className === styles.emoticonsBtn) {
+    } else if ((e.target.parentNode.className === styles.emoticonsBtn) || (e.target.className === styles.emoticonsBtn)) {
       this.setState({ emoticonShow: !this.state.emoticonShow });
       emoticonBtn.style.transform = 'rotate(0deg)';
     }

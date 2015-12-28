@@ -35,7 +35,8 @@ const props = {
     };
     props.messages.push(message);
     success();
-  }
+  },
+  me: {id: 2}
 };
 
 describeWithDOM('Chat', () => {

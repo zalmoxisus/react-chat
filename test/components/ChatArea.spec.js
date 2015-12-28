@@ -39,7 +39,9 @@ const props = {
       time: 1444428192,
       sender: 1
     }
-  ]
+  ],
+  me: {id: 2},
+  isMine: id => props.me.id === id
 };
 
 describeWithDOM('ChatArea', () => {
