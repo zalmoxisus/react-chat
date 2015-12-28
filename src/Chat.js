@@ -6,18 +6,20 @@ import styles from './Chat.css';
 export default class Chat extends Component {
   static propTypes = {
     messages: PropTypes.array,
-    onMessage: PropTypes.func
+    onMessage: PropTypes.func,
+    me: PropTypes.shape()
   };
   updateName = (e) => {
     let node = document.getElementsByTagName('textarea')[0];
     node.value = e + node.value;
     node.focus();
   };
+  isMine = id => this.props.me.id === id;
 
   render() {
     return (<div>
         <div className={styles.base}>
-          <ChatArea messages={this.props.messages} updateName={this.updateName} />
+          <ChatArea messages={this.props.messages} updateName={this.updateName} isMine={this.isMine} />
           <ChatInput onMessage={this.props.onMessage}/>
         </div>
       </div>
