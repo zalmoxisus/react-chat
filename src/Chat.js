@@ -9,9 +9,10 @@ export default class Chat extends Component {
     onMessage: PropTypes.func,
     me: PropTypes.shape()
   };
-  updateName = (e) => {
+  replay = (e) => {
+    const name = e.currentTarget.textContent;
     const node = this.input.usermsg;
-    node.value = e + node.value;
+    node.value = name + ', ' + node.value;
     node.focus();
   };
   isMine = id => this.props.me.id === id;
@@ -19,7 +20,7 @@ export default class Chat extends Component {
   render() {
     return (<div>
         <div className={styles.base}>
-          <ChatArea messages={this.props.messages} updateName={this.updateName} isMine={this.isMine} />
+          <ChatArea messages={this.props.messages} replay={this.replay} isMine={this.isMine} />
           <ChatInput onMessage={this.props.onMessage} ref={node => {this.input = node;}} />
         </div>
       </div>

@@ -9,7 +9,7 @@ import VideoContainer from './VideoContainer';
 export default class ChatArea extends Component {
   static propTypes = {
     messages: PropTypes.array,
-    updateName: PropTypes.func,
+    replay: PropTypes.func,
     isMine: PropTypes.func
   };
 
@@ -29,10 +29,6 @@ export default class ChatArea extends Component {
     node.scrollTop = node.scrollHeight;
   };
 
-  updateName = (e) => {
-    this.props.updateName(e.currentTarget.textContent + ', ');
-  };
-
   isMedia = (msg) => {
     const media = convertMedia(msg, 150, true);
     if ((media.indexOf('<iframe') > -1) || (media.indexOf('<a href') > -1)) return media;
@@ -40,7 +36,7 @@ export default class ChatArea extends Component {
   };
 
   render() {
-    const { messages, isMine } = this.props;
+    const { messages, replay, isMine } = this.props;
     return (
       <div id="container" className={styles.container}>
         {
@@ -60,7 +56,7 @@ export default class ChatArea extends Component {
                     {
                       !isMine(message.sender) &&
                       <div>
-                        <div className={styles.msg_name} onClick={this.updateName}>
+                        <div className={styles.msg_name} onClick={replay}>
                           <span style={{float: 'left'}}>{message.name}</span>
                           <div className="icon-access-time"></div>
                         </div>
