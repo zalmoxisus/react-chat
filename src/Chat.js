@@ -6,9 +6,14 @@ import styles from './Chat.css';
 export default class Chat extends Component {
   static propTypes = {
     messages: PropTypes.array,
-    onMessage: PropTypes.func,
-    me: PropTypes.shape()
+    onMessage: PropTypes.func.isRequired,
+    me: PropTypes.shape().isRequired
   };
+
+  static defaultProps = {
+    messages: []
+  };
+
   replay = (e) => {
     const name = e.currentTarget.textContent;
     const node = this.input.usermsg;
