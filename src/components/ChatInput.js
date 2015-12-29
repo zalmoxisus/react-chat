@@ -42,7 +42,7 @@ export default class ChatInput extends Component {
   };
 
   hideEmoticons = (e) => {
-    let emoticonBtn = e.target;
+    let emoticonBtn = this.emoticonsBtn;
     if (this.state.emoticonShow === false) {
       this.setState({ emoticonShow: !this.state.emoticonShow });
       let menuTimer = 0;
@@ -57,7 +57,7 @@ export default class ChatInput extends Component {
       e.currentTarget.addEventListener('mouseenter', function() {
         clearTimeout(menuTimer);
       });
-    } else if ((e.target.parentNode.className === styles.emoticonsBtn) || (e.target.className === styles.emoticonsBtn)) {
+    } else if ((e.target.parentNode.className !== styles.categoryBtns) && (e.target.parentNode.className !== styles.categoryBtn)) {
       this.setState({ emoticonShow: !this.state.emoticonShow });
       emoticonBtn.style.transform = 'rotate(0deg)';
     }
@@ -93,7 +93,7 @@ export default class ChatInput extends Component {
       }
       }/>
         <div className={styles.emoticonsContainer} onClick={this.hideEmoticons}>
-          <div id="emoticonBtn" className={styles.emoticonsBtn} onMouseOver={this.btnHovered}> {emojify(' :) ')}</div>
+          <div ref={(ref) => this.emoticonsBtn = ref} className={styles.emoticonsBtn} onMouseOver={this.btnHovered}> {emojify(' :) ')}</div>
           <ToggleDisplay show={this.state.emoticonShow}>
             <EmojiCategories addEmoticon={this.addEmoticon} />
           </ToggleDisplay>
