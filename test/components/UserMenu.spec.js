@@ -13,7 +13,7 @@ const props = {
       avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/oagra/128.jpg',
       msg: 'Hello, Marry!',
       time: 1444428192,
-      sender: 1
+      sender: '1'
     }
   ],
   text: 'https://www.youtube.com/watch?v=kuRn2S7iPNU',
@@ -24,7 +24,7 @@ const props = {
       avatar: '',
       msg: props.text,
       time: Date.now() / 1000 | 0,
-      sender: 1
+      sender: '1'
     };
     props.messages.push(message);
     success();

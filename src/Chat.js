@@ -7,7 +7,11 @@ export default class Chat extends Component {
   static propTypes = {
     messages: PropTypes.array,
     onMessage: PropTypes.func.isRequired,
-    me: PropTypes.shape().isRequired
+    me: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      avatar: PropTypes.string
+    }).isRequired
   };
 
   static defaultProps = {

@@ -12,7 +12,7 @@ const props = {
       avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/oagra/128.jpg',
       msg: 'Hello, Marry!',
       time: 1444428192,
-      sender: 1
+      sender: '1'
     },
     {
       id: 2,
@@ -20,7 +20,7 @@ const props = {
       avatar: '',
       msg: 'Welcome, John!',
       time: 1444428192,
-      sender: 2
+      sender: '2'
     }
   ],
   text: 'Hello',
@@ -31,12 +31,12 @@ const props = {
       avatar: '',
       msg: props.text,
       time: Date.now() / 1000 | 0,
-      sender: 1
+      sender: '1'
     };
     props.messages.push(message);
     success();
   },
-  me: {id: 2}
+  me: { id: '2', name: 'Leo' }
 };
 
 describeWithDOM('Chat', () => {
