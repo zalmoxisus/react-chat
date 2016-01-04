@@ -6,7 +6,8 @@ import convertMedia from '../utils/convertMedia';
 export default class UserMenu extends Component {
   static propTypes = {
     menuShow: PropTypes.bool,
-    onMessage: PropTypes.func
+    onMessage: PropTypes.func,
+    addTranslation: PropTypes.func
   };
   changeVideoInp = (e) => {
     let media = convertMedia(e.target.value, 150, true);
@@ -24,15 +25,21 @@ export default class UserMenu extends Component {
       if (txt === '') return;
       const that = this;
       this.props.onMessage({ txt: txt }, function success() {
-        input.value = '';
-        that.submenuShow = false;
-        that.videoInpContainer.removeChild(mediaContainer);
+        that.handleClose(e);
       });
     }
   };
-  insertTranslation = (e) => {
 
+  translate___ = str => str;
+
+  insertTranslation = (e) => {
+    if (e.nativeEvent.keyCode === 13) {
+      const str = this.translate___(e.target.value);
+      this.props.addTranslation(str);
+      this.handleClose(this);
+    }
   };
+
   handleClick = (opt, e) => {
     switch (opt) {
       case 0: {

@@ -63,7 +63,11 @@ export default class ChatInput extends Component {
     }
   };
 
-  addEmoticon = (e) => {
+  addTranslation = (e) => {
+    this.addStr(e);
+    this.setState({ menuShow: false });
+  };
+  addStr = (e) => {
     let node = this.usermsg;
     node.value = node.value + e + ' ';
     node.focus();
@@ -78,7 +82,7 @@ export default class ChatInput extends Component {
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.hideMenu}>
           <div className="icon-keyboard-arrow-down" ref={(ref) => this.iconMenu = ref}></div>
-          <UserMenu menuShow={this.state.menuShow} submenuShow={this.props.submenuShow} onMessage={this.props.onMessage}/>
+          <UserMenu menuShow={this.state.menuShow} submenuShow={this.props.submenuShow} addTranslation={this.addTranslation} onMessage={this.props.onMessage}/>
         </div>
         <TextareaAutosize ref={(ref) => this.usermsg = ref} className={styles.usermsg} autoFocus onKeyPress={
       function(e) {
@@ -95,7 +99,7 @@ export default class ChatInput extends Component {
         <div className={styles.emoticonsContainer} onClick={this.hideEmoticons}>
           <div ref={(ref) => this.emoticonsBtn = ref} className={styles.emoticonsBtn} onMouseOver={this.btnHovered}> {emojify(' :) ')}</div>
           <ToggleDisplay show={this.state.emoticonShow}>
-            <EmojiCategories addEmoticon={this.addEmoticon} />
+            <EmojiCategories addEmoticon={this.addStr} />
           </ToggleDisplay>
         </div>
       </div>
