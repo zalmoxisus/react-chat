@@ -7,7 +7,7 @@
   font-size: 12px;
 }
 
-.icon-keyboard-arrow-down, .icon-clear{
+.icon-keyboard-arrow-down, .icon-clear, p.icon-mic{
   color: #ffffff;
   background: #bbbbbb;
   font-size: 22px;
@@ -22,4 +22,15 @@
 }
 .icon-clear{
   position: relative;
+}
+p.icon-mic{
+  margin: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-size: 20px;
+}
+p.icon-mic:hover:before{
+  content: "\e011";
+  color: #d8935d;
 }

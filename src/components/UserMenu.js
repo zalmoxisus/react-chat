@@ -6,6 +6,7 @@ import convertMedia from '../utils/convertMedia';
 export default class UserMenu extends Component {
   static propTypes = {
     menuShow: PropTypes.bool,
+    micShow: PropTypes.bool,
     onMessage: PropTypes.func,
     addTranslation: PropTypes.func
   };
@@ -43,6 +44,7 @@ export default class UserMenu extends Component {
   handleClick = (opt, e) => {
     switch (opt) {
       case 0: {
+        this.micShow = true;
         break;
       }
       case 1: {
@@ -67,6 +69,9 @@ export default class UserMenu extends Component {
       }
       default:
     }
+  };
+  hideIndicator = (e) => {
+    this.micShow = false;
   };
   handleClose = (e) => {
     this.submenuShow = false;
@@ -95,10 +100,13 @@ export default class UserMenu extends Component {
             <input ref={(ref) => this.videoInp = ref} placeholder="Video url (youtube, vimeo)" onKeyUp={this.changeVideoInp}/>
             <input ref={(ref) => this.translateInp = ref} placeholder="Tape a phrase to be translated" onKeyUp={this.insertTranslation}/>
             <div style={{position: 'fixed', left: 0, bottom: '23px', height: '30px' }} onClick={this.handleClose}>
-              <p className="icon-clear" ref={(ref) => this.usermsg = ref}></p>
+              <p className="icon-clear"></p>
             </div>
           </div>
         </ToggleDisplay>
+      <ToggleDisplay show={this.micShow}>
+        <p className="icon-mic" onClick={this.hideIndicator}></p>
+      </ToggleDisplay>
       </div>
     );
   }
