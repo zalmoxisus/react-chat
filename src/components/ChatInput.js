@@ -28,9 +28,11 @@ export default class ChatInput extends Component {
       let menuTimer = 0;
       const that = this;
       menuBtn.style.transform = 'rotate(180deg)';
+      menuBtn.style.boxShadow = 'none';
       e.currentTarget.addEventListener('mouseleave', function() {
         menuTimer = setTimeout(function() {
           menuBtn.style.transform = 'rotate(0deg)';
+          menuBtn.style.boxShadow = '0 -1px 1px rgba(5, 5, 5, 0.3)';
           that.setState({ menuShow: false });
         }, 1000);
       });
@@ -39,6 +41,7 @@ export default class ChatInput extends Component {
       });
     } else {
       menuBtn.style.transform = 'rotate(0deg)';
+      menuBtn.style.boxShadow = '0 -1px 1px rgba(5, 5, 5, 0.3)';
     }
   };
 

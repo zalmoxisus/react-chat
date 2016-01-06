@@ -162,6 +162,7 @@ body {
   display: table-cell;
   background: #bbbbbb;
   width: 34px;
+  height: 100%;
 }
 
 .chatOptions > div:first-child:hover {
@@ -176,8 +177,8 @@ body {
 .videoInpContainer{
   padding: 15px 12px 15px 12px;
   background: #ffffff;
-  position: fixed;
-  bottom: 30px;
+  position: absolute;
+  bottom: 0;
   border: 1px solid #aaaaaa;
   width: 290px;
   line-height: 2;

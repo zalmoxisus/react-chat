@@ -135,7 +135,7 @@ export default class UserMenu extends Component {
           <div ref={(ref) => this.videoInpContainer = ref} className={styles.videoInpContainer}>
             <input ref={(ref) => this.videoInp = ref} placeholder="Video url (youtube, vimeo)" onKeyUp={this.changeVideoInp}/>
             <input ref={(ref) => this.translateInp = ref} placeholder="Tape a phrase to be translated" onKeyUp={this.insertTranslation}/>
-            <div style={{position: 'fixed', left: 0, bottom: '23px', height: '30px' }} onClick={this.handleClose}>
+            <div style={{position: 'absolute', left: 0, marginTop: '-7px', height: '200px' }} onClick={this.handleClose}>
               <p className="icon-clear"></p>
             </div>
           </div>
