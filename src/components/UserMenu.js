@@ -3,12 +3,16 @@ import styles from '../Chat.css';
 import ToggleDisplay from '../utils/ToggleDisplay';
 import convertMedia from '../utils/convertMedia';
 
+let recognition;
 export default class UserMenu extends Component {
   static propTypes = {
     menuShow: PropTypes.bool,
-    micShow: PropTypes.bool,
     onMessage: PropTypes.func,
-    addTranslation: PropTypes.func
+    addTranslation: PropTypes.func,
+    lang: PropTypes.string
+  };
+  state = {
+    micShow: false
   };
   changeVideoInp = (e) => {
     let media = convertMedia(e.target.value, 150, true);
@@ -44,7 +48,38 @@ export default class UserMenu extends Component {
   handleClick = (opt, e) => {
     switch (opt) {
       case 0: {
-        this.micShow = true;
+        this.setState({ micShow: true });
+        const that = this;
+        const SpeechRecognition = window.SpeechRecognition ||
+          window.webkitSpeechRecognition ||
+          window.mozSpeechRecognition ||
+          window.msSpeechRecognition ||
+          window.oSpeechRecognition;
+        if (SpeechRecognition !== undefined) {
+          recognition = new SpeechRecognition();
+          recognition.continuous = true;
+          recognition.interimResults = true;
+          recognition.lang = that.props.lang;
+          recognition.start();
+          recognition.onresult = function(event) {
+            let interimTranscript = '';
+            let finalTranscript = '';
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+              if (event.results[i].isFinal) {
+                finalTranscript += event.results[i][0].transcript;
+              } else {
+                interimTranscript += event.results[i][0].transcript;
+              }
+            }
+            if (finalTranscript !== '') that.props.addTranslation(finalTranscript);
+          };
+          recognition.onerror = function(event) {
+            that.hideIndicator(e);
+          };
+          recognition.onend = function() {
+            that.hideIndicator();
+          };
+        }
         break;
       }
       case 1: {
@@ -71,7 +106,8 @@ export default class UserMenu extends Component {
     }
   };
   hideIndicator = (e) => {
-    this.micShow = false;
+    recognition.stop();
+    this.setState({ micShow: false });
   };
   handleClose = (e) => {
     this.submenuShow = false;
@@ -104,7 +140,7 @@ export default class UserMenu extends Component {
             </div>
           </div>
         </ToggleDisplay>
-      <ToggleDisplay show={this.micShow}>
+      <ToggleDisplay show={this.state.micShow}>
         <p className="icon-mic" onClick={this.hideIndicator}></p>
       </ToggleDisplay>
       </div>

@@ -42,7 +42,7 @@ class Container extends Component {
 }
 
 ReactDOM.render(<Container
-  me={{ id: '2', name: 'Leo', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg' }}
+  me={{ id: '2', name: 'Leo', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg', lng: 'en' }}
   messages={[
     {
       id: 1,

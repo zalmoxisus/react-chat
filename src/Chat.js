@@ -10,7 +10,8 @@ export default class Chat extends Component {
     me: PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      avatar: PropTypes.string
+      avatar: PropTypes.string,
+      lng: PropTypes.string
     }).isRequired
   };
 
@@ -30,7 +31,7 @@ export default class Chat extends Component {
     return (<div>
         <div className={styles.base}>
           <ChatArea messages={this.props.messages} replay={this.replay} isMine={this.isMine} />
-          <ChatInput onMessage={this.props.onMessage} ref={node => {this.input = node;}} />
+          <ChatInput onMessage={this.props.onMessage} me={this.props.me.lng} ref={node => {this.input = node;}} />
         </div>
       </div>
     );

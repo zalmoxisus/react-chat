@@ -9,7 +9,8 @@ import EmojiCategories from './EmojiCategories';
 export default class ChatInput extends Component {
   static propTypes = {
     onMessage: PropTypes.func,
-    submenuShow: PropTypes.bool
+    submenuShow: PropTypes.bool,
+    lng: PropTypes.string
   };
   state = {
     emoticonShow: false,
@@ -82,7 +83,7 @@ export default class ChatInput extends Component {
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.hideMenu}>
           <div className="icon-keyboard-arrow-down" ref={(ref) => this.iconMenu = ref}></div>
-          <UserMenu menuShow={this.state.menuShow} submenuShow={this.props.submenuShow} addTranslation={this.addTranslation} onMessage={this.props.onMessage}/>
+          <UserMenu menuShow={this.state.menuShow} submenuShow={this.props.submenuShow} addTranslation={this.addTranslation} onMessage={this.props.onMessage} lng={this.props.lng}/>
         </div>
         <TextareaAutosize ref={(ref) => this.usermsg = ref} className={styles.usermsg} autoFocus onKeyPress={
       function(e) {
