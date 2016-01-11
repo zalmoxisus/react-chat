@@ -4,7 +4,9 @@ import { describeWithDOM, mount } from 'enzyme';
 import hook from 'css-modules-require-hook';
 import styles from '../../src/Chat.css';
 import UserMenu from '../../src/components/UserMenu';
+import ChatInput from '../../src/components/ChatInput';
 
+let usermsgWrapper;
 const props = {
   messages: [
     {
@@ -28,6 +30,15 @@ const props = {
     };
     props.messages.push(message);
     success();
+  },
+  menuShow: false,
+  addTranslation: (e) => {
+    props.addStr(e);
+    props.menuShow = true;
+  },
+  addStr: (e) => {
+    let node = usermsgWrapper;
+    node.value = e;
   }
 };
 
@@ -62,5 +73,25 @@ describeWithDOM('UserMenu.', () => {
     const videoInput = wrapper.find('input').at(0);
     videoInput.simulate('keyUp', {target: {value: props.text}});
     expect(container.node.children[3].innerHTML).toBe('<iframe width="100%" height="150" src="//www.youtube.com/embed/kuRn2S7iPNU?autohide=1&amp;controls=2&amp;modestbranding=1&amp;rel=0&amp;showinfo=1&amp;playsinline=1&amp;autoplay=0" frameborder="0" allowfullscreen=""></iframe>');
+  });
+  it('should open translate popup', () => {
+    const wrapper = mount(<UserMenu />);
+    wrapper.find('li').at(1).simulate('click');
+    expect(wrapper.node.submenuShow).toBe(true);
+  });
+  it('should add translation', () => {
+    const wrapper = mount(<UserMenu {...props} />);
+    const container = wrapper.find('.' + styles.videoInpContainer);
+    const translationInput = wrapper.find('input').at(1);
+    usermsgWrapper = mount(<ChatInput />).find('textarea');
+    expect(usermsgWrapper.value).toBe(undefined);
+    translationInput.simulate('keyUp', {nativeEvent: {keyCode: 13}, target: {value: 'hi'}});
+    expect(props.menuShow).toBe(true);
+    expect(usermsgWrapper.value).toNotBe(undefined);
+  });
+  it('should open dictate text popup', () => {
+    const wrapper = mount(<UserMenu />);
+    wrapper.find('li').at(0).simulate('click');
+    expect(wrapper.node.state.micShow).toBe(true);
   });
 });
