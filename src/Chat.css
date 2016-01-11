@@ -72,7 +72,6 @@ body {
   margin-right: 10px;
   max-width: 90%;
   word-wrap: break-word;
-  white-space: pre-wrap;
 }
 
 .my_msg {
@@ -98,6 +97,7 @@ body {
 }
 
 .footer_msg{
+  display: flex;
   font-weight: 100;
   font-size: 10px;
   color: #a4a4a4;
