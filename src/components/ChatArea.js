@@ -43,7 +43,7 @@ export default class ChatArea extends Component {
           messages.map( message => {
             return (<div key={message.id} className={styles.msgBox}>
                 {
-                  !isMine(message.sender) &&
+                  !isMine(message.sender) && ((typeof message.showAvatars === 'undefined') ? true : message.showAvatars) &&
                   <Avatar style={styles.avatar}
                           src={message.avatar}
                           name={message.name}
