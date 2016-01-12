@@ -20,14 +20,14 @@ export default class UserMenu extends Component {
     let mediaContainer = document.createElement('span');
 
     mediaContainer.innerHTML = media;
-    if (videoContainer.children.length === 3) videoContainer.appendChild(mediaContainer);
-    else videoContainer.replaceChild(mediaContainer, videoContainer.children[3]);
+    if (videoContainer.children.length === 2) videoContainer.appendChild(mediaContainer);
+    else videoContainer.replaceChild(mediaContainer, videoContainer.children[2]);
 
 
     if (e.nativeEvent.keyCode === 13) {
       const input = e.target;
       const txt = e.target.value;
-      if (txt === '') return;
+      if ((txt === '') || (txt === ' ')) return;
       const that = this;
       this.props.onMessage({ txt: txt }, function success() {
         that.handleClose(e);
@@ -39,7 +39,10 @@ export default class UserMenu extends Component {
 
   insertTranslation = (e) => {
     if (e.nativeEvent.keyCode === 13) {
-      const str = this.translate___(e.target.value);
+      let str = e.target.value;
+      str = str.replace(/\s\s+/g, ' ');
+      if ((str === '') || (str === ' ')) return;
+      str = this.translate___(str);
       this.props.addTranslation(str);
       this.handleClose(this);
     }
@@ -113,7 +116,7 @@ export default class UserMenu extends Component {
     this.submenuShow = false;
     this.videoInp.value = '';
     this.translateInp.value = '';
-    if (this.videoInpContainer.childNodes.length > 3) this.videoInpContainer.removeChild(this.videoInpContainer.childNodes[3]);
+    if (this.videoInpContainer.childNodes.length > 2) this.videoInpContainer.removeChild(this.videoInpContainer.childNodes[2]);
   };
 
   render() {
@@ -135,14 +138,14 @@ export default class UserMenu extends Component {
           <div ref={(ref) => this.videoInpContainer = ref} className={styles.videoInpContainer}>
             <input ref={(ref) => this.videoInp = ref} placeholder="Video url (youtube, vimeo)" onKeyUp={this.changeVideoInp}/>
             <input ref={(ref) => this.translateInp = ref} placeholder="Tape a phrase to be translated" onKeyUp={this.insertTranslation}/>
-            <div style={{position: 'absolute', left: 0, marginTop: '-7px', height: '200px' }} onClick={this.handleClose}>
-              <p className="icon-clear"></p>
-            </div>
+          </div>
+          <div style={{position: 'absolute', left: 0, marginTop: '-22px', height: '200px' }} onClick={this.handleClose}>
+            <p className="icon-clear"></p>
           </div>
         </ToggleDisplay>
-      <ToggleDisplay show={this.state.micShow}>
-        <p className="icon-mic" onClick={this.hideIndicator}></p>
-      </ToggleDisplay>
+        <ToggleDisplay show={this.state.micShow}>
+          <p className="icon-mic" onClick={this.hideIndicator}></p>
+        </ToggleDisplay>
       </div>
     );
   }

@@ -93,8 +93,13 @@ export default class ChatInput extends Component {
         if (e.nativeEvent.keyCode !== 13 || e.shiftKey) return;
         e.preventDefault();
         const input = e.target;
-        const txt = input.value;
-        if (txt === '') return;
+        let txt = input.value;
+        txt = txt.replace(/[\t ]+/g, ' ');
+        if ((txt === '') || (txt === ' ') || (txt === '\n')) {
+          e.target.style.height = '26px';
+          e.target.value = '';
+          return;
+        }
         onMessage({ txt: txt }, function success() {
           input.value = '';
         });

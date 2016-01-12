@@ -24,7 +24,7 @@ class Container extends Component {
       id: (Date.now() / 1000 | 0) + Math.random(),
       name: this.props.me.name,
       avatar: this.props.me.avatar,
-      msg: msg.txt,
+      msg: msg.txt.replace(/\s\s+/g, ' '),
       time: Date.now() / 1000 | 0,
       sender: '1'
     };

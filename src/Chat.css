@@ -70,6 +70,7 @@ body {
   margin-right: -1px;
   max-width: 90%;
   word-wrap: break-word;
+  white-space: pre-wrap;
   margin-left: -1px;
   z-index: 0;
 }
