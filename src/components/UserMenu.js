@@ -9,7 +9,8 @@ export default class UserMenu extends Component {
     menuShow: PropTypes.bool,
     onMessage: PropTypes.func,
     addTranslation: PropTypes.func,
-    lang: PropTypes.string
+    lng: PropTypes.string,
+    onTranslate: PropTypes.func
   };
   state = {
     micShow: false
@@ -35,16 +36,16 @@ export default class UserMenu extends Component {
     }
   };
 
-  translate___ = str => str;
-
   insertTranslation = (e) => {
     if (e.nativeEvent.keyCode === 13) {
-      let str = e.target.value;
-      str = str.replace(/\s\s+/g, ' ');
-      if ((str === '') || (str === ' ')) return;
-      str = this.translate___(str);
-      this.props.addTranslation(str);
-      this.handleClose(this);
+      this.props.onTranslate(
+        e.target.value,
+        this.props.lng,
+        txt => {
+          this.props.addTranslation(txt);
+          this.handleClose();
+        }
+      );
     }
   };
 
@@ -62,7 +63,7 @@ export default class UserMenu extends Component {
           recognition = new SpeechRecognition();
           recognition.continuous = true;
           recognition.interimResults = true;
-          recognition.lang = that.props.lang;
+          recognition.lang = that.props.lng;
           recognition.start();
           recognition.onresult = function(event) {
             let interimTranscript = '';
@@ -124,13 +125,13 @@ export default class UserMenu extends Component {
         <ToggleDisplay show={this.props.menuShow}>
           <ul className={styles.usermenu}>
             <li onClick={this.handleClick.bind(this, 0)}>
-              <span className="icon-mic"></span><a href="#">Dictate text</a>
+              <span className="icon-mic"/><a href="#">Dictate text</a>
             </li>
             <li onClick={this.handleClick.bind(this, 1)}>
-              <span className="icon-insert-comment"></span><a href="#">Translate a phrase</a>
+              <span className="icon-insert-comment"/><a href="#">Translate a phrase</a>
             </li>
             <li onClick={this.handleClick.bind(this, 2)}>
-              <span className="icon-ondemand-video"></span><a href="#">Insert video</a>
+              <span className="icon-ondemand-video"/><a href="#">Insert video</a>
             </li>
           </ul>
         </ToggleDisplay>

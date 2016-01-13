@@ -12,7 +12,8 @@ export default class Chat extends Component {
       name: PropTypes.string.isRequired,
       avatar: PropTypes.string,
       lng: PropTypes.string
-    }).isRequired
+    }).isRequired,
+    onTranslate: PropTypes.func
   };
 
   static defaultProps = {
@@ -28,10 +29,16 @@ export default class Chat extends Component {
   isMine = id => this.props.me.id === id;
 
   render() {
+    const { messages, me, onMessage, onTranslate } = this.props;
     return (<div>
         <div className={styles.base}>
-          <ChatArea messages={this.props.messages} replay={this.replay} isMine={this.isMine} />
-          <ChatInput onMessage={this.props.onMessage} me={this.props.me.lng} ref={node => {this.input = node;}} />
+          <ChatArea messages={messages} replay={this.replay} isMine={this.isMine} />
+          <ChatInput
+            onMessage={onMessage}
+            lng={me.lng}
+            onTranslate={onTranslate}
+            ref={node => {this.input = node;}}
+          />
         </div>
       </div>
     );

@@ -33,9 +33,19 @@ class Container extends Component {
     success();
   };
 
+  handleTranslate = (txt, to, cb) => {
+    // Add here your translation method
+    cb(txt);
+  };
+
   render() {
     return (
-      <Chat me={me} messages={testMessages} onMessage={this.handleReceiveMessage} />
+      <Chat
+        me={me}
+        messages={testMessages}
+        onMessage={this.handleReceiveMessage}
+        onTranslate={this.handleTranslate}
+      />
     );
   }
 }
