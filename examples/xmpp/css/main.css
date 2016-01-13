@@ -48,7 +48,7 @@ html, body {
 }
 
 #usermenu {
-  margin:10px; text-align: center
+  margin: 10px; text-align: center;
   display: -webkit-flex;
   display: -moz-flex;
   display: -ms-flex;
@@ -58,7 +58,7 @@ html, body {
 }
 
 #usermenu>a {
-  flex: 50px 1 1 ;
+  flex: 50px 1 1;
   align-self: flex-start;
   text-align: center;
   color: #fff;
