@@ -1,18 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Chat from 'react-chat';
+import testMessages from './testMessages';
+const me = {
+  id: '2',
+  name: 'Leo',
+  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg',
+  lng: 'en'
+};
 
 class Container extends Component {
-  static propTypes = {
-    messages: PropTypes.array,
-    me: PropTypes.object
-  };
-  static defaultProps = {
-    messages: []
-  };
-
   state = {
-    messages: this.props.messages,
+    messages: testMessages,
 
     add: function(message) {
       this.messages.push(message);
@@ -22,9 +21,9 @@ class Container extends Component {
   handleReceiveMessage = (msg, success) => {
     const message = {
       id: (Date.now() / 1000 | 0) + Math.random(),
-      name: this.props.me.name,
-      avatar: this.props.me.avatar,
-      msg: msg.txt.replace(/\s\s+/g, ' '),
+      name: me.name,
+      avatar: me.avatar,
+      msg: msg.txt.trim(),
       time: Date.now() / 1000 | 0,
       sender: '1'
     };
@@ -36,55 +35,9 @@ class Container extends Component {
 
   render() {
     return (
-      <Chat me={this.props.me} messages={this.props.messages} onMessage={this.handleReceiveMessage} />
+      <Chat me={me} messages={testMessages} onMessage={this.handleReceiveMessage} />
     );
   }
 }
 
-ReactDOM.render(<Container
-  me={{ id: '2', name: 'Leo', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg', lng: 'en' }}
-  messages={[
-    {
-      id: 1,
-      name: 'John',
-      avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/oagra/128.jpg',
-      msg: 'Hello, Marry!',
-      time: 1444428192,
-      sender: '1'
-    },
-    {id: 2, name: 'Marry', avatar: '', msg: 'Welcome, John!', time: 1444428192, sender: '2'},
-    {
-      id: 3,
-      name: 'John',
-      avatar: '',
-      msg: 'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry!',
-      time: 1444428192,
-      sender: '1'
-    },
-    {
-      id: 4,
-      name: 'Marry',
-      avatar: '',
-      msg: 'Welcome, John! Welcome, John! Welcome, John! Welcome, John! Welcome, John! Welcome, John! Welcome, John! Welcome, John! Welcome, John! Welcome, John! Welcome, John! Welcome, John! Welcome, John!',
-      time: 1444428192,
-      sender: '2'
-    },
-    {id: 5, name: 'John', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/igorgarybaldi/128.jpg', msg: 'Hello, Marry!', time: 1444428192, sender: '1'},
-    {id: 6, name: 'Marry', avatar: '', msg: 'Welcome, John!', time: 1444428192, sender: '2'},
-    {
-      id: 7,
-      name: 'John',
-      avatar: '',
-      msg: 'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry!',
-      time: 1444428192,
-      sender: '1'
-    },
-    {
-      id: 8,
-      name: 'Marry',
-      avatar: '',
-      msg: 'Welcome, John! Welcome, John! Welcome, John! Welcome, John! Welcome, John! Welcome, John! Welcome, John! Welcome, John! Welcome, John! Welcome, John! Welcome, John! Welcome, John! Welcome, John!',
-      time: 1444428192,
-      sender: '2'
-    }
-  ]} />, document.getElementById('root'));
+ReactDOM.render(<Container/>, document.getElementById('root'));
