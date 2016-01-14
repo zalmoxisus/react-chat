@@ -21,11 +21,11 @@ describeWithDOM('ChatInput.', () => {
 
   it('should send messages to parrent', () => {
     const wrapper = mount(<ChatInput {...props} />).find('textarea');
-    wrapper.simulate('keyPress', {nativeEvent: {keyCode: 1}, target: {value: props.text}});
+    wrapper.simulate('keyPress', { nativeEvent: { keyCode: 1 }, target: { value: props.text } });
     expect(props.onMessage.calls.length).toBe(0);
-    wrapper.simulate('keyPress', {nativeEvent: {keyCode: 13}, target: {value: ''}});
+    wrapper.simulate('keyPress', { nativeEvent: { keyCode: 13 }, target: { value: '' } });
     expect(props.onMessage.calls.length).toBe(0);
-    wrapper.simulate('keyPress', {nativeEvent: {keyCode: 13}, target: {value: props.text}});
+    wrapper.simulate('keyPress', { nativeEvent: { keyCode: 13 }, target: { value: props.text } });
     expect(props.onMessage).toHaveBeenCalled();
     expect(props.onMessage.calls.length).toBe(1);
   });

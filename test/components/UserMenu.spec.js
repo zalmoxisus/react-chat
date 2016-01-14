@@ -63,7 +63,7 @@ describeWithDOM('UserMenu.', () => {
     expect(container.node.children.length).toBe(4);
 
     expect(props.messages.length).toBe(1);
-    videoInput.simulate('keyUp', {nativeEvent: {keyCode: 13}, target: {value: props.text}});
+    videoInput.simulate('keyUp', { nativeEvent: { keyCode: 13 }, target: { value: props.text } });
     expect(props.messages.length).toBe(2);
     expect(props.messages[1].msg).toBe(props.text);
   });
@@ -71,8 +71,11 @@ describeWithDOM('UserMenu.', () => {
     const wrapper = mount(<UserMenu {...props} />);
     const container = wrapper.find('.' + styles.videoInpContainer);
     const videoInput = wrapper.find('input').at(0);
-    videoInput.simulate('keyUp', {target: {value: props.text}});
-    expect(container.node.children[3].innerHTML).toBe('<iframe width="100%" height="150" src="//www.youtube.com/embed/kuRn2S7iPNU?autohide=1&amp;controls=2&amp;modestbranding=1&amp;rel=0&amp;showinfo=1&amp;playsinline=1&amp;autoplay=0" frameborder="0" allowfullscreen=""></iframe>');
+    videoInput.simulate('keyUp', { target: { value: props.text } });
+    expect(container.node.children[3].innerHTML)
+      .toBe('<iframe width="100%" height="150" ' +
+        'src="//www.youtube.com/embed/kuRn2S7iPNU?autohide=1&amp;controls=2&amp;modestbranding=1&amp;rel=0&amp;showinfo=1&amp;playsinline=1&amp;autoplay=0" ' + // eslint-disable-line max-len
+        'frameborder="0" allowfullscreen=""></iframe>');
   });
   it('should open translate popup', () => {
     const wrapper = mount(<UserMenu />);
@@ -85,7 +88,7 @@ describeWithDOM('UserMenu.', () => {
     const translationInput = wrapper.find('input').at(1);
     usermsgWrapper = mount(<ChatInput />).find('textarea');
     expect(usermsgWrapper.value).toBe(undefined);
-    translationInput.simulate('keyUp', {nativeEvent: {keyCode: 13}, target: {value: 'hi'}});
+    translationInput.simulate('keyUp', { nativeEvent: { keyCode: 13 }, target: { value: 'hi' } });
     expect(props.menuShow).toBe(true);
     expect(usermsgWrapper.value).toNotBe(undefined);
   });

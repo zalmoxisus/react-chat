@@ -19,12 +19,14 @@ export default class EmojiCategories extends Component {
     text: this.props.text
   };
   setActive = (node) => {
-    let children = (node.target.tagName === 'LI') ? node.target.parentNode.childNodes : node.target.parentNode.parentNode.childNodes;
+    let children = (node.target.tagName === 'LI') ?
+      node.target.parentNode.childNodes :
+      node.target.parentNode.parentNode.childNodes;
     let child = (node.target.tagName === 'LI') ? node.target : node.target.parentNode;
     for (let i = 0; i < children.length; i++) {
       children[i].style.background = '#D2DCEA';
       if (child === children[i]) {
-        this.setState({text: shortnames[Object.keys(shortnames)[i]].join('')});
+        this.setState({ text: shortnames[Object.keys(shortnames)[i]].join('') });
         child.style.background = '#ffffff';
       }
     }

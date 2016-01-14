@@ -8,7 +8,7 @@ import EmojiCategories from './EmojiCategories';
 
 export default class ChatInput extends Component {
   static propTypes = {
-    onMessage: PropTypes.func,
+    onSend: PropTypes.func,
     submenuShow: PropTypes.bool,
     lng: PropTypes.string,
     onTranslate: PropTypes.func
@@ -30,14 +30,14 @@ export default class ChatInput extends Component {
       const that = this;
       menuBtn.style.transform = 'rotate(180deg)';
       menuBtn.style.boxShadow = 'none';
-      e.currentTarget.addEventListener('mouseleave', function() {
-        menuTimer = setTimeout(function() {
+      e.currentTarget.addEventListener('mouseleave', function () {
+        menuTimer = setTimeout(function () {
           menuBtn.style.transform = 'rotate(0deg)';
           menuBtn.style.boxShadow = '0 -1px 1px rgba(5, 5, 5, 0.3)';
           that.setState({ menuShow: false });
         }, 1000);
       });
-      e.currentTarget.addEventListener('mouseenter', function() {
+      e.currentTarget.addEventListener('mouseenter', function () {
         clearTimeout(menuTimer);
       });
     } else {
@@ -53,16 +53,17 @@ export default class ChatInput extends Component {
       let menuTimer = 0;
       const that = this;
       emoticonBtn.style.transform = 'rotate(180deg)';
-      e.currentTarget.addEventListener('mouseleave', function() {
-        menuTimer = setTimeout(function() {
+      e.currentTarget.addEventListener('mouseleave', function () {
+        menuTimer = setTimeout(function () {
           emoticonBtn.style.transform = 'rotate(0deg)';
           that.setState({ emoticonShow: false });
         }, 1000);
       });
-      e.currentTarget.addEventListener('mouseenter', function() {
+      e.currentTarget.addEventListener('mouseenter', function () {
         clearTimeout(menuTimer);
       });
-    } else if ((e.target.parentNode.className !== styles.categoryBtns) && (e.target.parentNode.className !== styles.categoryBtn)) {
+    } else if ((e.target.parentNode.className !== styles.categoryBtns) &&
+      (e.target.parentNode.className !== styles.categoryBtn)) {
       this.setState({ emoticonShow: !this.state.emoticonShow });
       emoticonBtn.style.transform = 'rotate(0deg)';
     }
@@ -83,7 +84,7 @@ export default class ChatInput extends Component {
   };
 
   render() {
-    const onMessage = this.props.onMessage;
+    const onSend = this.props.onSend;
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.hideMenu}>
           <div className="icon-keyboard-arrow-down" ref={(ref) => this.iconMenu = ref}></div>
@@ -91,30 +92,38 @@ export default class ChatInput extends Component {
             menuShow={this.state.menuShow}
             submenuShow={this.props.submenuShow}
             addTranslation={this.addTranslation}
-            onMessage={this.props.onMessage}
+            onSend={this.props.onSend}
             lng={this.props.lng}
             onTranslate={this.props.onTranslate}
           />
         </div>
-        <TextareaAutosize ref={(ref) => this.usermsg = ref} className={styles.usermsg} autoFocus onKeyPress={
-      function(e) {
-        if (e.nativeEvent.keyCode !== 13 || e.shiftKey) return;
-        e.preventDefault();
-        const input = e.target;
-        let txt = input.value;
-        txt = txt.replace(/[\t ]+/g, ' ');
-        if ((txt === '') || (txt === ' ') || (txt === '\n')) {
-          e.target.style.height = '26px';
-          e.target.value = '';
-          return;
-        }
-        onMessage({ txt: txt }, function success() {
-          input.value = '';
-        });
-      }
-      }/>
+        <TextareaAutosize
+          ref={(ref) => this.usermsg = ref} className={styles.usermsg} autoFocus onKeyPress={
+            (e) => {
+              if (e.nativeEvent.keyCode !== 13 || e.shiftKey) return;
+              e.preventDefault();
+              const input = e.target;
+              let txt = input.value;
+              txt = txt.trim();
+              if ((txt === '') || (txt === ' ') || (txt === '\n')) {
+                this.usermsg._rootDOMNode.style.height = '26px';
+                this.usermsg.value = '';
+                return;
+              }
+              onSend({ txt }, function success() {
+                input.value = '';
+              });
+            }
+          }
+        />
         <div className={styles.emoticonsContainer} onClick={this.hideEmoticons}>
-          <div ref={(ref) => this.emoticonsBtn = ref} className={styles.emoticonsBtn} onMouseOver={this.btnHovered}> {emojify(' :) ')}</div>
+          <div
+            ref={(ref) => this.emoticonsBtn = ref}
+            className={styles.emoticonsBtn}
+            onMouseOver={this.btnHovered}
+          >
+            {emojify(' :) ')}
+          </div>
           <ToggleDisplay show={this.state.emoticonShow}>
             <EmojiCategories addEmoticon={this.addStr} />
           </ToggleDisplay>

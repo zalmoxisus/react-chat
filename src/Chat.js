@@ -6,7 +6,7 @@ import styles from './Chat.css';
 export default class Chat extends Component {
   static propTypes = {
     messages: PropTypes.array,
-    onMessage: PropTypes.func.isRequired,
+    onSend: PropTypes.func.isRequired,
     me: PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
@@ -29,12 +29,12 @@ export default class Chat extends Component {
   isMine = id => this.props.me.id === id;
 
   render() {
-    const { messages, me, onMessage, onTranslate } = this.props;
+    const { messages, me, onSend, onTranslate } = this.props;
     return (<div>
         <div className={styles.base}>
           <ChatArea messages={messages} replay={this.replay} isMine={this.isMine} />
           <ChatInput
-            onMessage={onMessage}
+            onSend={onSend}
             lng={me.lng}
             onTranslate={onTranslate}
             ref={node => {this.input = node;}}

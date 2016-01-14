@@ -25,7 +25,7 @@ class Container extends Component {
   constructor(props) {
     super(props);
 
-    conn.send($pres({ 'from': data.jid, 'to': data.muc + '/' + data.name }));
+    conn.send($pres({ from: data.jid, to: data.muc + '/' + data.name }));
     /*
      const iq = $iq({ to: data.muc, type: 'set' }).c("query", {
      xmlns: Strophe.NS.MUC_OWNER
@@ -33,7 +33,9 @@ class Container extends Component {
      iq.c('x', { xmlns: "jabber:x:data", type: "submit" });
      iq.c('field', { 'var': 'FORM_TYPE' }).c('value').t('http://jabber.org/protocol/muc#roomconfig').up().up();
      iq.c('field', { 'var': 'muc#roomconfig_persistentroom' }).c('value').t(true).up().up();
-     conn.sendIQ(iq.tree(), function() { console.log('success'); }, function(err) { console.log('error', err); });
+     conn.sendIQ(iq.tree(), function() {
+      console.log('success'); }, function(err) { console.log('error', err);
+     });
      */
     conn.addHandler(this.onMessage, null, 'message', null, null, null);
     conn.addHandler(this.onMessage, null, 'iq', 'set', null, null);
@@ -42,7 +44,7 @@ class Container extends Component {
   state = {
     messages: this.props.messages,
 
-    add: function(message) {
+    add(message) {
       this.messages.push(message);
     }
   };
@@ -52,12 +54,14 @@ class Container extends Component {
     const id = Strophe.getResourceFromJid(stanza.attributes.from.value);
     const msg = stanza.querySelectorAll('body')[0].innerHTML;
     const delay = stanza.querySelectorAll('delay')[0];
-    const time = (delay ? (new Date(delay.attributes.stamp.value)).getTime() : Date.now()) / 1000 | 0;
+    const time = (delay ?
+        (new Date(delay.attributes.stamp.value)).getTime() :
+        Date.now()) / 1000 | 0;
     const message = {
       id: id + time,
       name: id,
-      msg: msg,
-      time: time,
+      msg,
+      time,
       sender: id
     };
 
@@ -67,7 +71,7 @@ class Container extends Component {
   };
 
   sendMessage = (message, to) => {
-    const reply = $msg({ to: to, type: 'groupchat' })
+    const reply = $msg({ to, type: 'groupchat' })
       .cnode(Strophe.xmlElement('body', message)).up();
     conn.send(reply);
     console.log(`I sent to ${to}: ${message}`);
@@ -90,7 +94,7 @@ function init() {
 }
 
 conn = new Strophe.Connection(data.bosh);
-conn.connect(data.jid, data.password, function(status) {
+conn.connect(data.jid, data.password, function (status) {
   console.log('status', status);
   if (status === Strophe.Status.CONNECTED) {
     console.log('connected');

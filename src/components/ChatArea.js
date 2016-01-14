@@ -40,29 +40,38 @@ export default class ChatArea extends Component {
     return (
       <div id="container" className={styles.container}>
         {
-          messages.map( message => {
+          messages.map(message => {
             return (<div key={message.id} className={styles.msgBox}>
                 {
-                  !isMine(message.sender) && ((typeof message.showAvatars === 'undefined') ? true : message.showAvatars) &&
+                  !isMine(message.sender) &&
+                  ((typeof message.showAvatars === 'undefined') ? true : message.showAvatars) &&
                   <Avatar style={styles.avatar}
-                          src={message.avatar}
-                          name={message.name}
-                    />
+                    src={message.avatar}
+                    name={message.name}
+                  />
                 }
-                <div className={isMine(message.sender) ? styles.arrowRight : styles.arrowLeft}></div>
-                <div key={message.msg} className={isMine(message.sender) ? styles.my_msg : styles.u_msg}>
-                  <div className={styles.content_msg}> {this.isMedia(message.msg) ? <VideoContainer src={this.isMedia(message.msg)}/> : emojify(message.msg)} </div>
+                <div className={isMine(message.sender) ? styles.arrowRight : styles.arrowLeft}>
+                </div>
+                <div
+                  key={message.msg}
+                  className={isMine(message.sender) ? styles.my_msg : styles.u_msg}
+                >
+                  <div className={styles.content_msg}>
+                    {this.isMedia(message.msg) ?
+                      <VideoContainer src={this.isMedia(message.msg)}/> :
+                      emojify(message.msg)}
+                  </div>
                   <div className={styles.footer_msg}>
                     {
                       !isMine(message.sender) &&
                       <div>
                         <div className={styles.msg_name} onClick={replay}>
-                          <span style={{float: 'left'}}>{message.name}</span>
+                          <span style={{ float: 'left' }}>{message.name}</span>
                           <div className="icon-access-time"></div>
                         </div>
                       </div>
                     }
-                    <div style={{float: 'left'}}> {getTimeStamp(message.time)} </div>
+                    <div style={{ float: 'left' }}> {getTimeStamp(message.time)} </div>
                   </div>
                 </div>
               </div>

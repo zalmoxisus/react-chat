@@ -10,7 +10,11 @@ export default function getTimeStamp(msgTime) {
   if (day === today.getDate()) {
     time = (date.getHours() + ':' + minutes.substr(-2));
   } else {
-    time = day + '.' + (date.getMonth() + 1) + '.' + date.getFullYear() + ' ' + (date.getHours() + ':' + minutes.substr(-2));
+    time = day +
+      '.' + (date.getMonth() + 1) +
+      '.' + date.getFullYear() +
+      ' ' + (date.getHours() +
+      ':' + minutes.substr(-2));
   }
   return time;
 }

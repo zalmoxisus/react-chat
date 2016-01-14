@@ -13,17 +13,17 @@ class Container extends Component {
   state = {
     messages: testMessages,
 
-    add: function(message) {
+    add(message) {
       this.messages.push(message);
     }
   };
 
-  handleReceiveMessage = (msg, success) => {
+  handleSend = (msg, success) => {
     const message = {
       id: (Date.now() / 1000 | 0) + Math.random(),
       name: me.name,
       avatar: me.avatar,
-      msg: msg.txt.trim(),
+      msg: msg.txt,
       time: Date.now() / 1000 | 0,
       sender: '1'
     };
@@ -43,7 +43,7 @@ class Container extends Component {
       <Chat
         me={me}
         messages={testMessages}
-        onMessage={this.handleReceiveMessage}
+        onSend={this.handleSend}
         onTranslate={this.handleTranslate}
       />
     );

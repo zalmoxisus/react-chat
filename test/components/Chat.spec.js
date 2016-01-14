@@ -41,7 +41,9 @@ const props = {
 
 describeWithDOM('Chat', () => {
   it('should add message', () => {
-    const wrapper = mount(<Chat {...props} />).find('textarea').simulate('keyPress', {nativeEvent: {keyCode: 13}, target: {value: props.text}});
+    const wrapper = mount(<Chat {...props} />)
+      .find('textarea')
+      .simulate('keyPress', { nativeEvent: { keyCode: 13 }, target: { value: props.text } });
     expect(props.messages.length).toBe(3);
     expect(props.messages[2].msg).toBe(props.text);
     expect(wrapper.text()).toEqual('');

@@ -40,7 +40,7 @@ const props = {
       sender: 1
     }
   ],
-  me: {id: 2},
+  me: { id: 2 },
   isMine: id => props.me.id === id
 };
 
@@ -55,7 +55,7 @@ describeWithDOM('ChatArea', () => {
   it('should render messages', () => {
     const wrapper = mount(<ChatArea {...props} />).find('#container');
     expect(wrapper.children().length).toBe(props.messages.length);
-    wrapper.children().forEach(function(node, i) {
+    wrapper.children().forEach(function (node, i) {
       expect(node.find('img').node.src).toBe(props.messages[i].avatar);
     });
 

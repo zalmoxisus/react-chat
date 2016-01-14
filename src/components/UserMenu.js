@@ -7,10 +7,13 @@ let recognition;
 export default class UserMenu extends Component {
   static propTypes = {
     menuShow: PropTypes.bool,
-    onMessage: PropTypes.func,
+    onSend: PropTypes.func,
     addTranslation: PropTypes.func,
     lng: PropTypes.string,
     onTranslate: PropTypes.func
+  };
+  static defaultProps = {
+    lng: 'en'
   };
   state = {
     micShow: false
@@ -30,7 +33,7 @@ export default class UserMenu extends Component {
       const txt = e.target.value;
       if ((txt === '') || (txt === ' ')) return;
       const that = this;
-      this.props.onMessage({ txt: txt }, function success() {
+      this.props.onSend({ txt }, function success() {
         that.handleClose(e);
       });
     }
@@ -65,7 +68,7 @@ export default class UserMenu extends Component {
           recognition.interimResults = true;
           recognition.lang = that.props.lng;
           recognition.start();
-          recognition.onresult = function(event) {
+          recognition.onresult = function (event) {
             let interimTranscript = '';
             let finalTranscript = '';
             for (let i = event.resultIndex; i < event.results.length; ++i) {
@@ -77,10 +80,10 @@ export default class UserMenu extends Component {
             }
             if (finalTranscript !== '') that.props.addTranslation(finalTranscript);
           };
-          recognition.onerror = function(event) {
+          recognition.onerror = function (event) {
             that.hideIndicator(e);
           };
-          recognition.onend = function() {
+          recognition.onend = function () {
             that.hideIndicator();
           };
         }
@@ -89,7 +92,7 @@ export default class UserMenu extends Component {
       case 1: {
         this.submenuShow = true;
         const that = this;
-        setTimeout(function() {
+        setTimeout(function () {
           that.translateInp.focus();
         }, 0);
         this.videoInp.style.display = 'none';
@@ -99,7 +102,7 @@ export default class UserMenu extends Component {
       case 2: {
         this.submenuShow = true;
         const that = this;
-        setTimeout(function() {
+        setTimeout(function () {
           that.videoInp.focus();
         }, 0);
         this.translateInp.style.display = 'none';
@@ -117,7 +120,9 @@ export default class UserMenu extends Component {
     this.submenuShow = false;
     this.videoInp.value = '';
     this.translateInp.value = '';
-    if (this.videoInpContainer.childNodes.length > 2) this.videoInpContainer.removeChild(this.videoInpContainer.childNodes[2]);
+    if (this.videoInpContainer.childNodes.length > 2) {
+      this.videoInpContainer.removeChild(this.videoInpContainer.childNodes[2]);
+    }
   };
 
   render() {
@@ -137,10 +142,18 @@ export default class UserMenu extends Component {
         </ToggleDisplay>
         <ToggleDisplay show={this.submenuShow}>
           <div ref={(ref) => this.videoInpContainer = ref} className={styles.videoInpContainer}>
-            <input ref={(ref) => this.videoInp = ref} placeholder="Video url (youtube, vimeo)" onKeyUp={this.changeVideoInp}/>
-            <input ref={(ref) => this.translateInp = ref} placeholder="Tape a phrase to be translated" onKeyUp={this.insertTranslation}/>
+            <input
+              ref={(ref) => this.videoInp = ref}
+              placeholder="Video url (youtube, vimeo)"
+              onKeyUp={this.changeVideoInp}
+            />
+            <input
+              ref={(ref) => this.translateInp = ref}
+              placeholder="Tape a phrase to be translated"
+              onKeyUp={this.insertTranslation}
+            />
           </div>
-          <div style={{position: 'absolute', left: 0, marginTop: '-22px', height: '200px' }} onClick={this.handleClose}>
+          <div className={styles.clearContainer} onClick={this.handleClose}>
             <p className="icon-clear"></p>
           </div>
         </ToggleDisplay>
