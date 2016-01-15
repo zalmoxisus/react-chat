@@ -20,7 +20,8 @@ export default class UserMenu extends Component {
     lng: 'en'
   };
   state = {
-    micShow: false
+    micShow: false,
+    submenuShow: false
   };
   changeVideoInp = (e) => {
     let media = convertMedia(e.target.value, 150, true);
@@ -40,6 +41,8 @@ export default class UserMenu extends Component {
       this.props.onSend({ txt }, function success() {
         that.handleClose(e);
       });
+    } else if (e.nativeEvent.keyCode === 27) {
+      this.handleClose(e);
     }
   };
 
@@ -53,6 +56,8 @@ export default class UserMenu extends Component {
           this.handleClose();
         }
       );
+    } else if (e.nativeEvent.keyCode === 27) {
+      this.handleClose(e);
     }
   };
 
@@ -94,7 +99,7 @@ export default class UserMenu extends Component {
         break;
       }
       case 1: {
-        this.submenuShow = true;
+        this.setState({ submenuShow: true });
         const that = this;
         setTimeout(function () {
           that.translateInp.focus();
@@ -104,7 +109,7 @@ export default class UserMenu extends Component {
         break;
       }
       case 2: {
-        this.submenuShow = true;
+        this.setState({ submenuShow: true });
         const that = this;
         setTimeout(function () {
           that.videoInp.focus();
@@ -122,6 +127,7 @@ export default class UserMenu extends Component {
   };
   handleClose = (e) => {
     this.submenuShow = false;
+    this.setState({ submenuShow: false });
     this.videoInp.value = '';
     this.translateInp.value = '';
     if (this.videoInpContainer.childNodes.length > 2) {
@@ -144,7 +150,7 @@ export default class UserMenu extends Component {
             </li>
           </ul>
         </ToggleDisplay>
-        <ToggleDisplay show={this.submenuShow}>
+        <ToggleDisplay show={this.state.submenuShow}>
           <div ref={(ref) => this.videoInpContainer = ref} className={styles.videoInpContainer}>
             <input
               ref={(ref) => this.videoInp = ref}
