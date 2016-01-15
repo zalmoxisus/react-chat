@@ -5,6 +5,8 @@ import UserMenu from './UserMenu';
 import ToggleDisplay from '../utils/ToggleDisplay';
 import emojify from '../utils/emojify';
 import EmojiCategories from './EmojiCategories';
+import MdKeyboardArrowDown from 'react-icons/lib/md/keyboard-arrow-down';
+import MdKeyboardArrowUp from 'react-icons/lib/md/keyboard-arrow-up';
 
 export default class ChatInput extends Component {
   static propTypes = {
@@ -19,8 +21,8 @@ export default class ChatInput extends Component {
   };
 
   hideMenu = (e) => {
-    let menuBtn = this.iconMenu;
-    if ((e.target.tagName === 'P') || ((e.target.tagName === 'INPUT'))) {
+    if ((e.target.parentNode.className === styles.btnContainer) ||
+      ((e.target.tagName === 'INPUT'))) {
       this.setState({ menuShow: false });
       return;
     }
@@ -28,21 +30,14 @@ export default class ChatInput extends Component {
     if (this.state.menuShow === false) {
       let menuTimer = 0;
       const that = this;
-      menuBtn.style.transform = 'rotate(180deg)';
-      menuBtn.style.boxShadow = 'none';
       e.currentTarget.addEventListener('mouseleave', function () {
         menuTimer = setTimeout(function () {
-          menuBtn.style.transform = 'rotate(0deg)';
-          menuBtn.style.boxShadow = '0 -1px 1px rgba(5, 5, 5, 0.3)';
           that.setState({ menuShow: false });
         }, 1000);
       });
       e.currentTarget.addEventListener('mouseenter', function () {
         clearTimeout(menuTimer);
       });
-    } else {
-      menuBtn.style.transform = 'rotate(0deg)';
-      menuBtn.style.boxShadow = '0 -1px 1px rgba(5, 5, 5, 0.3)';
     }
   };
 
@@ -87,7 +82,12 @@ export default class ChatInput extends Component {
     const onSend = this.props.onSend;
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.hideMenu}>
-          <div className="icon-keyboard-arrow-down" ref={(ref) => this.iconMenu = ref}></div>
+          <ToggleDisplay show={!this.state.menuShow}>
+            <MdKeyboardArrowDown className={styles.arrowDown} />
+          </ToggleDisplay>
+          <ToggleDisplay show={this.state.menuShow}>
+            <MdKeyboardArrowUp className={styles.arrowUp} />
+          </ToggleDisplay>
           <UserMenu
             menuShow={this.state.menuShow}
             submenuShow={this.props.submenuShow}

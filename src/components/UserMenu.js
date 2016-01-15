@@ -2,6 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import styles from '../Chat.css';
 import ToggleDisplay from '../utils/ToggleDisplay';
 import convertMedia from '../utils/convertMedia';
+import MdMic from 'react-icons/lib/md/mic';
+import MdMessage from 'react-icons/lib/md/message';
+import MdOndemandVideo from 'react-icons/lib/md/ondemand-video';
+import MdClose from 'react-icons/lib/md/close';
 
 let recognition;
 export default class UserMenu extends Component {
@@ -130,13 +134,13 @@ export default class UserMenu extends Component {
         <ToggleDisplay show={this.props.menuShow}>
           <ul className={styles.usermenu}>
             <li onClick={this.handleClick.bind(this, 0)}>
-              <span className="icon-mic"/><a href="#">Dictate text</a>
+              <MdMic /><a href="#">Dictate text</a>
             </li>
             <li onClick={this.handleClick.bind(this, 1)}>
-              <span className="icon-insert-comment"/><a href="#">Translate a phrase</a>
+              <MdMessage /><a href="#">Translate a phrase</a>
             </li>
             <li onClick={this.handleClick.bind(this, 2)}>
-              <span className="icon-ondemand-video"/><a href="#">Insert video</a>
+              <MdOndemandVideo /><a href="#">Insert video</a>
             </li>
           </ul>
         </ToggleDisplay>
@@ -153,12 +157,12 @@ export default class UserMenu extends Component {
               onKeyUp={this.insertTranslation}
             />
           </div>
-          <div className={styles.clearContainer} onClick={this.handleClose}>
-            <p className="icon-clear"></p>
+          <div className={styles.btnContainer} onClick={this.handleClose}>
+            <MdClose className={styles.iconClear} />
           </div>
         </ToggleDisplay>
-        <ToggleDisplay show={this.state.micShow}>
-          <p className="icon-mic" onClick={this.hideIndicator}></p>
+        <ToggleDisplay show={this.state.micShow} className={styles.btnContainer}>
+          <MdMic className={styles.iconMic} onClick={this.hideIndicator} />
         </ToggleDisplay>
       </div>
     );

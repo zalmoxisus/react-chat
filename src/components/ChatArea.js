@@ -5,6 +5,8 @@ import getTimeStamp from '../utils/getTimeStamp.js';
 import emojify from '../utils/emojify';
 import convertMedia from '../utils/convertMedia';
 import VideoContainer from './VideoContainer';
+import MdAccessTime from 'react-icons/lib/md/access-time';
+import MdReply from 'react-icons/lib/md/reply';
 
 export default class ChatArea extends Component {
   static propTypes = {
@@ -67,11 +69,12 @@ export default class ChatArea extends Component {
                       <div>
                         <div className={styles.msg_name} onClick={replay}>
                           <span style={{ float: 'left' }}>{message.name}</span>
-                          <div className="icon-access-time"></div>
+                          <MdAccessTime className={styles.timeIcon} />
+                          <MdReply className={styles.replyIcon} />
                         </div>
                       </div>
                     }
-                    <div style={{ float: 'left' }}> {getTimeStamp(message.time)} </div>
+                    <div style={{ float: 'left' }}>{getTimeStamp(message.time)} </div>
                   </div>
                 </div>
               </div>
