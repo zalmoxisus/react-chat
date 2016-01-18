@@ -255,11 +255,6 @@ body {
   background: #d8935d;
 }
 
-.usermenu span{
-  opacity: 0.6;
-  padding-right: 7px;
-}
-
 .usermenu a{
   text-decoration: none;
   color: #555555;

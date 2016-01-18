@@ -46,6 +46,13 @@ export default class UserMenu extends Component {
     }
   };
 
+  showTranslate() {
+    if (this.usermenu && !this.props.onTranslate) {
+      this.usermenu.style.marginTop = '-61px';
+    }
+    return (this.props.onTranslate) ? true : false;
+  }
+
   insertTranslation = (e) => {
     if (e.nativeEvent.keyCode === 13) {
       this.props.onTranslate(
@@ -138,13 +145,15 @@ export default class UserMenu extends Component {
   render() {
     return (<div className={styles.userContainer}>
         <ToggleDisplay show={this.props.menuShow}>
-          <ul className={styles.usermenu}>
+          <ul className={styles.usermenu} ref={(ref) => this.usermenu = ref}>
             <li onClick={this.handleClick.bind(this, 0)}>
               <MdMic /><a href="#">Dictate text</a>
             </li>
-            <li onClick={this.handleClick.bind(this, 1)}>
-              <MdMessage /><a href="#">Translate a phrase</a>
-            </li>
+            <ToggleDisplay show={this.showTranslate()}>
+              <li onClick={this.handleClick.bind(this, 1)}>
+                <MdMessage /><a href="#">Translate a phrase</a>
+              </li>
+            </ToggleDisplay>
             <li onClick={this.handleClick.bind(this, 2)}>
               <MdOndemandVideo /><a href="#">Insert video</a>
             </li>
