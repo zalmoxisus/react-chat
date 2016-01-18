@@ -20,6 +20,12 @@ export default class ChatArea extends Component {
   }
 
   componentDidUpdate = () => {
+    if (this.message.childNodes.length === 3) {
+      if ((this.message.childNodes[0].textContent === '') &&
+        (this.message.childNodes[2].textContent === '')) {
+        this.message.childNodes[1].style.fontSize = '34px';
+      }
+    }
     this.updateScrollTop();
   };
 
@@ -58,7 +64,10 @@ export default class ChatArea extends Component {
                   key={message.msg}
                   className={isMine(message.sender) ? styles.my_msg : styles.u_msg}
                 >
-                  <div className={styles.content_msg}>
+                  <div
+                    ref={(ref) => this.message = ref}
+                    className={message.msg.length < 8 ? styles.big_content_msg : styles.small_content_msg}
+                  >
                     {this.isMedia(message.msg) ?
                       <VideoContainer src={this.isMedia(message.msg)}/> :
                       emojify(message.msg)}

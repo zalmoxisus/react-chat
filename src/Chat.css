@@ -101,10 +101,17 @@ body {
 
 .content_msg {
   font-weight: 400;
-  font-size: 16px;
   min-width: 75px;
   display: flex;
   word-break: break-all;
+}
+.big_content_msg {
+  composes: content_msg;
+  font-size: 22px;
+}
+.small_content_msg {
+  composes: content_msg;
+  font-size: 16px;
 }
 
 .footer_msg{
