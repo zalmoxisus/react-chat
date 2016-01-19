@@ -79,10 +79,10 @@ body {
   padding: 5px 5px 2px 5px;
 }
 .u_msg .firstCellMsg {
-  margin-right: 12px;
+  margin-right: 18px;
 }
 .my_msg .firstCellMsg {
-  margin-left: 12px;
+  margin-left: 18px;
 }
 .secondCellMsg {
   display: table-cell;
@@ -99,9 +99,8 @@ body {
   border-right: 1px solid #cccccc;
 }
 .secondCellMsg > div {
-  font-size: 10px;
   height: 32%;
-  width: 14px;
+  width: 18px;
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   transform-style: preserve-3d;
@@ -111,22 +110,15 @@ body {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-}
-.u_msg .secondCellMsg  svg {
-  border: 1px solid rgba(249, 252, 255, 1);
-}
-.my_msg .secondCellMsg  svg {
-  border: 1px solid #e6ffd1;
+  padding: 2px;
 }
 .secondCellMsg > div:nth-child(1), .secondCellMsg > div:nth-child(2){
   border-bottom: 1px solid #cccccc;
 }
 .secondCellMsg > div:hover {
   cursor: pointer;
-  color: #a1510c;
-}
-.secondCellMsg > div:hover svg{
-  border: 1px solid #a1510c;
+  color: #A24E06;
+  background: #eeeeee;
 }
 
 .msg {
@@ -140,6 +132,7 @@ body {
   display: flex;
   height: 100%;
   position: relative;
+  min-height: 50px;
 }
 
 .my_msg {
@@ -176,7 +169,7 @@ body {
   font-weight: 100;
   font-size: 10px;
   color: #a4a4a4;
-  vertical-align: middle;
+  margin-top: 6px;
 }
 
 .avatar {
