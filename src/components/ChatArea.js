@@ -7,6 +7,9 @@ import convertMedia from '../utils/convertMedia';
 import VideoContainer from './VideoContainer';
 import MdAccessTime from 'react-icons/lib/md/access-time';
 import MdReply from 'react-icons/lib/md/reply';
+import MdClose from 'react-icons/lib/md/close';
+import MdPlayArrow from 'react-icons/lib/md/play-arrow';
+import MdTranslate from 'react-icons/lib/md/translate';
 
 export default class ChatArea extends Component {
   static propTypes = {
@@ -64,9 +67,12 @@ export default class ChatArea extends Component {
                   key={message.msg}
                   className={isMine(message.sender) ? styles.my_msg : styles.u_msg}
                 >
+                  <div className={styles.firstCellMsg}>
                   <div
                     ref={(ref) => this.message = ref}
-                    className={message.msg.length < 8 ? styles.big_content_msg : styles.small_content_msg}
+                    className={message.msg.length < 8 ?
+                    styles.big_content_msg :
+                    styles.small_content_msg}
                   >
                     {this.isMedia(message.msg) ?
                       <VideoContainer src={this.isMedia(message.msg)}/> :
@@ -84,6 +90,12 @@ export default class ChatArea extends Component {
                       </div>
                     }
                     <div style={{ float: 'left' }}>{getTimeStamp(message.time)} </div>
+                  </div>
+                    </div>
+                  <div className={styles.secondCellMsg}>
+                    <div><MdTranslate/></div>
+                    <div><MdPlayArrow/></div>
+                    <div><MdClose/></div>
                   </div>
                 </div>
               </div>

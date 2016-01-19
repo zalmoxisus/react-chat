@@ -74,22 +74,79 @@ body {
   padding: 2px 1px;
 }
 
+.firstCellMsg {
+  display: table-cell;
+  padding: 5px 5px 2px 5px;
+}
+.u_msg .firstCellMsg {
+  margin-right: 12px;
+}
+.my_msg .firstCellMsg {
+  margin-left: 12px;
+}
+.secondCellMsg {
+  display: table-cell;
+  height: 100%;
+  position: absolute;
+  font-size: 13px;
+}
+.u_msg .secondCellMsg {
+  right: 0;
+  border-left: 1px solid #cccccc;
+}
+.my_msg .secondCellMsg {
+  left: 0;
+  border-right: 1px solid #cccccc;
+}
+.secondCellMsg > div {
+  font-size: 10px;
+  height: 32%;
+  width: 14px;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+.secondCellMsg  svg {
+  margin-left: 1px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.u_msg .secondCellMsg  svg {
+  border: 1px solid rgba(249, 252, 255, 1);
+}
+.my_msg .secondCellMsg  svg {
+  border: 1px solid #e6ffd1;
+}
+.secondCellMsg > div:nth-child(1), .secondCellMsg > div:nth-child(2){
+  border-bottom: 1px solid #cccccc;
+}
+.secondCellMsg > div:hover {
+  cursor: pointer;
+  color: #a1510c;
+}
+.secondCellMsg > div:hover svg{
+  border: 1px solid #a1510c;
+}
+
 .msg {
   border-radius: 3px;
-  padding: 5px 5px 2px 5px;
   margin-right: -1px;
   max-width: 90%;
   word-wrap: break-word;
   white-space: pre-wrap;
   margin-left: -1px;
   z-index: 0;
+  display: flex;
+  height: 100%;
+  position: relative;
 }
 
 .my_msg {
   composes: msg;
   background: #e6ffd1;
   border: solid 1px #b4d89f;
-  float: right
+  float: right;
 }
 
 .u_msg {
