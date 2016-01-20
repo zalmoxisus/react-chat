@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../Chat.css';
 import Avatar from './Avatar';
+import ToggleDisplay from '../utils/ToggleDisplay';
 import getTimeStamp from '../utils/getTimeStamp.js';
 import emojify from '../utils/emojify';
 import convertMedia from '../utils/convertMedia';
@@ -11,12 +12,19 @@ import MdClose from 'react-icons/lib/md/close';
 import MdPlayArrow from 'react-icons/lib/md/play-arrow';
 import MdTranslate from 'react-icons/lib/md/translate';
 
+let className_;
 export default class ChatArea extends Component {
   static propTypes = {
     messages: PropTypes.array,
     replay: PropTypes.func,
-    isMine: PropTypes.func
+    isMine: PropTypes.func,
+    onTranslate: PropTypes.func
   };
+
+  componentWillMount() {
+    if (!this.props.onTranslate) className_ = styles.secondCellMsg2;
+    else className_ = styles.secondCellMsg3;
+  }
 
   componentDidMount() {
     setTimeout(this.updateScrollTop, 500);
@@ -44,6 +52,10 @@ export default class ChatArea extends Component {
     const media = convertMedia(msg, 150, true);
     if ((media.indexOf('<iframe') > -1) || (media.indexOf('<a href') > -1)) return media;
     return false;
+  };
+
+  showTranslate = () => {
+    return (this.props.onTranslate) ? true : false;
   };
 
   render() {
@@ -92,10 +104,12 @@ export default class ChatArea extends Component {
                     <div style={{ float: 'left' }}>{getTimeStamp(message.time)} </div>
                   </div>
                     </div>
-                  <div className={styles.secondCellMsg}>
-                    <div><MdTranslate/></div>
-                    <div><MdPlayArrow/></div>
-                    <div><MdClose/></div>
+                  <div ref={(ref) => this.secondCellMsg = ref} className={className_}>
+                    <ToggleDisplay show={this.showTranslate()}>
+                        <MdTranslate/>
+                    </ToggleDisplay>
+                    <span><MdPlayArrow/></span>
+                    <span><MdClose/></span>
                   </div>
                 </div>
               </div>

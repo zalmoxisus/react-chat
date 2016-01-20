@@ -98,12 +98,24 @@ body {
   left: 0;
   border-right: 1px solid #cccccc;
 }
-.secondCellMsg > div {
-  height: 32%;
+.secondCellMsg > span {
+  display: block;
   width: 18px;
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   transform-style: preserve-3d;
+}
+.secondCellMsg1, .secondCellMsg2, .secondCellMsg3 {
+  composes: secondCellMsg;
+}
+.secondCellMsg1 > span{
+  height: 99%;
+}
+.secondCellMsg2 > span{
+  height: 49%;
+}
+.secondCellMsg3 > span{
+  height: 32%;
 }
 .secondCellMsg  svg {
   margin-left: 1px;
@@ -112,10 +124,10 @@ body {
   transform: translateY(-50%);
   padding: 2px;
 }
-.secondCellMsg > div:nth-child(1), .secondCellMsg > div:nth-child(2){
+.secondCellMsg > span:nth-child(1), .secondCellMsg > span:nth-child(2){
   border-bottom: 1px solid #cccccc;
 }
-.secondCellMsg > div:hover {
+.secondCellMsg > span:hover {
   cursor: pointer;
   color: #A24E06;
   background: #eeeeee;

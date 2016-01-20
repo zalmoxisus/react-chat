@@ -32,7 +32,11 @@ export default class Chat extends Component {
     const { messages, me, onSend, onTranslate } = this.props;
     return (<div>
         <div className={styles.base}>
-          <ChatArea messages={messages} replay={this.replay} isMine={this.isMine} />
+          <ChatArea messages={messages}
+            replay={this.replay}
+            isMine={this.isMine}
+            onTranslate={onTranslate}
+          />
           <ChatInput
             onSend={onSend}
             lng={me.lng}
