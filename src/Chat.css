@@ -88,7 +88,6 @@ body {
   display: table-cell;
   height: 100%;
   position: absolute;
-  font-size: 13px;
 }
 .u_msg .secondCellMsg {
   right: 0;
@@ -110,12 +109,18 @@ body {
 }
 .secondCellMsg1 > span{
   height: 99%;
+  font-size: 16px;
+}
+.secondCellMsg1 > span svg{
+  padding-left: 0;
 }
 .secondCellMsg2 > span{
   height: 49%;
+  font-size: 13px;
 }
 .secondCellMsg3 > span{
   height: 32%;
+  font-size: 12px;
 }
 .secondCellMsg  svg {
   margin-left: 1px;

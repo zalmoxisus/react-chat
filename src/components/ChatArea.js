@@ -23,7 +23,12 @@ export default class ChatArea extends Component {
   };
 
   componentWillMount() {
-    if (!this.props.onTranslate) className_ = styles.secondCellMsg2;
+    if ((!this.props.onDelete) && (!this.props.onTranslate)) {
+      className_ = styles.secondCellMsg1;
+    }
+    else if ((!this.props.onDelete) || (!this.props.onTranslate)) {
+      className_ = styles.secondCellMsg2;
+    }
     else className_ = styles.secondCellMsg3;
   }
 
@@ -57,6 +62,9 @@ export default class ChatArea extends Component {
 
   showTranslate = () => {
     return (this.props.onTranslate) ? true : false;
+  };
+  showDelete = () => {
+    return (this.props.onDelete) ? true : false;
   };
 
   deleteMsg = (message, e) => {
@@ -116,7 +124,12 @@ export default class ChatArea extends Component {
                         <MdTranslate/>
                     </ToggleDisplay>
                     <span><MdPlayArrow/></span>
-                    <span onClick={this.deleteMsg.bind(this, message.id)}><MdClose/></span>
+                    <ToggleDisplay
+                      show={this.showDelete()}
+                      onClick={this.deleteMsg.bind(this, message.id)}
+                    >
+                      <MdClose/>
+                    </ToggleDisplay>
                   </div>
                 </div>
               </div>
