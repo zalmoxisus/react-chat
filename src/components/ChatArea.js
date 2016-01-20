@@ -18,7 +18,8 @@ export default class ChatArea extends Component {
     messages: PropTypes.array,
     replay: PropTypes.func,
     isMine: PropTypes.func,
-    onTranslate: PropTypes.func
+    onTranslate: PropTypes.func,
+    onDelete: PropTypes.func
   };
 
   componentWillMount() {
@@ -56,6 +57,12 @@ export default class ChatArea extends Component {
 
   showTranslate = () => {
     return (this.props.onTranslate) ? true : false;
+  };
+
+  deleteMsg = (message, e) => {
+    this.props.onDelete(message, function success() {
+      //on delete success
+    });
   };
 
   render() {
@@ -109,7 +116,7 @@ export default class ChatArea extends Component {
                         <MdTranslate/>
                     </ToggleDisplay>
                     <span><MdPlayArrow/></span>
-                    <span><MdClose/></span>
+                    <span onClick={this.deleteMsg.bind(this, message.id)}><MdClose/></span>
                   </div>
                 </div>
               </div>

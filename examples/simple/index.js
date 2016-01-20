@@ -15,6 +15,14 @@ class Container extends Component {
 
     add(message) {
       this.messages.push(message);
+    },
+
+    delete(message) {
+      this.messages.forEach(function (item, index, object) {
+        if (item.id === message) {
+          object.splice(index, 1);
+        }
+      });
     }
   };
 
@@ -38,6 +46,13 @@ class Container extends Component {
     cb(txt);
   };
 
+  handleDelete = (message, success) => {
+    // Add here delete method
+    this.state.delete(message);
+    this.setState(this.state);
+    success();
+  };
+
   render() {
     return (
       <Chat
@@ -45,6 +60,7 @@ class Container extends Component {
         messages={testMessages}
         onSend={this.handleSend}
         onTranslate={this.handleTranslate}
+        onDelete={this.handleDelete}
       />
     );
   }
