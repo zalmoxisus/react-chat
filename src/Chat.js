@@ -38,6 +38,7 @@ export default class Chat extends Component {
             isMine={this.isMine}
             onTranslate={onTranslate}
             onDelete={onDelete}
+            lng={me.lng}
           />
           <ChatInput
             onSend={onSend}

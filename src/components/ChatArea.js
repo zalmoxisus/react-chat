@@ -19,14 +19,18 @@ export default class ChatArea extends Component {
     replay: PropTypes.func,
     isMine: PropTypes.func,
     onTranslate: PropTypes.func,
-    onDelete: PropTypes.func
+    onDelete: PropTypes.func,
+    lng: PropTypes.string,
+  };
+
+  static defaultProps = {
+    lng: 'en'
   };
 
   componentWillMount() {
     if ((!this.props.onDelete) && (!this.props.onTranslate)) {
       className_ = styles.secondCellMsg1;
-    }
-    else if ((!this.props.onDelete) || (!this.props.onTranslate)) {
+    } else if ((!this.props.onDelete) || (!this.props.onTranslate)) {
       className_ = styles.secondCellMsg2;
     }
     else className_ = styles.secondCellMsg3;
@@ -71,6 +75,14 @@ export default class ChatArea extends Component {
     this.props.onDelete(message, function success() {
       //on delete success
     });
+  };
+  prepareForTranslation = (message) => {
+    return message.replace(/(<([^>]+)>)/ig, '').replace(/\+/g, '');
+  };
+  play = (message, e) => {
+    const msg = new SpeechSynthesisUtterance(this.prepareForTranslation(message));
+    msg.lang = this.props.lng;
+    window.speechSynthesis.speak(msg);
   };
 
   render() {
@@ -123,7 +135,7 @@ export default class ChatArea extends Component {
                     <ToggleDisplay show={this.showTranslate()}>
                         <MdTranslate/>
                     </ToggleDisplay>
-                    <span><MdPlayArrow/></span>
+                    <span><MdPlayArrow onClick={this.play.bind(this, message.msg)}/></span>
                     <ToggleDisplay
                       show={this.showDelete()}
                       onClick={this.deleteMsg.bind(this, message.id)}
