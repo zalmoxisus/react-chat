@@ -10,6 +10,7 @@ import MdAccessTime from 'react-icons/lib/md/access-time';
 import MdReply from 'react-icons/lib/md/reply';
 import MdClose from 'react-icons/lib/md/close';
 import MdPlayArrow from 'react-icons/lib/md/play-arrow';
+import MdStop from 'react-icons/lib/md/stop';
 import MdTranslate from 'react-icons/lib/md/translate';
 
 let className_;
@@ -80,9 +81,28 @@ export default class ChatArea extends Component {
     return message.replace(/(<([^>]+)>)/ig, '').replace(/\+/g, '');
   };
   play = (message, e) => {
+    const node = e.currentTarget.parentNode;
+    this.toggleIcons(node.children[1], node.children[0]);
+
     const msg = new SpeechSynthesisUtterance(this.prepareForTranslation(message));
     msg.lang = this.props.lng;
+    const that = this;
+    msg.onend = function (event) {
+      that.toggleIcons(node.children[0], node.children[1]);
+    };
     window.speechSynthesis.speak(msg);
+  };
+  stop = (e) => {
+    window.speechSynthesis.cancel();
+
+    const node = e.currentTarget.parentNode;
+    this.toggleIcons(node.children[0], node.children[1]);
+  };
+  toggleIcons = (icon1, icon2) => {
+    const node1 = icon1;
+    const node2 = icon2;
+    node1.style.display = 'none';
+    node2.style.display = 'block';
   };
 
   render() {
@@ -135,7 +155,10 @@ export default class ChatArea extends Component {
                     <ToggleDisplay show={this.showTranslate()}>
                         <MdTranslate/>
                     </ToggleDisplay>
-                    <span><MdPlayArrow onClick={this.play.bind(this, message.msg)}/></span>
+                    <span>
+                      <MdStop onClick={this.stop.bind(this)} style={{ display: 'none' }}/>
+                      <MdPlayArrow onClick={this.play.bind(this, message.msg)}/>
+                    </span>
                     <ToggleDisplay
                       show={this.showDelete()}
                       onClick={this.deleteMsg.bind(this, message.id)}
