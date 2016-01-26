@@ -12,6 +12,7 @@ import MdClose from 'react-icons/lib/md/close';
 import MdPlayArrow from 'react-icons/lib/md/play-arrow';
 import MdStop from 'react-icons/lib/md/stop';
 import MdTranslate from 'react-icons/lib/md/translate';
+import ToolTip from 'react-portal-tooltip';
 
 let className_;
 export default class ChatArea extends Component {
@@ -26,6 +27,10 @@ export default class ChatArea extends Component {
 
   static defaultProps = {
     lng: 'en'
+  };
+
+  state = {
+    isTooltipActive: false
   };
 
   componentWillMount() {
@@ -62,6 +67,13 @@ export default class ChatArea extends Component {
       }
     }
     this.updateScrollTop();
+  };
+
+  showTooltip = () => {
+    this.setState({ isTooltipActive: true })
+  };
+  hideTooltip = () => {
+    this.setState({ isTooltipActive: false })
   };
 
   updateScrollTop = () => {
@@ -165,7 +177,8 @@ export default class ChatArea extends Component {
                     </div>
                   <div ref={(ref) => this.secondCellMsg = ref} className={className_}>
                     <ToggleDisplay show={this.showTranslate()}>
-                        <MdTranslate/>
+                      <div id={'a' + message.id} onClick={this.showTooltip}><MdTranslate/></div>
+                      <ToolTip active={this.state.isTooltipActive} position="top" arrow="center" parent={'#a' + message.id}>hi</ToolTip>
                     </ToggleDisplay>
                     <span
                       onClick={this.play.bind(this, message.msg)}
