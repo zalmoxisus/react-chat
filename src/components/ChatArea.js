@@ -21,7 +21,7 @@ export default class ChatArea extends Component {
     isMine: PropTypes.func,
     onTranslate: PropTypes.func,
     onDelete: PropTypes.func,
-    lng: PropTypes.string,
+    lng: PropTypes.string
   };
 
   static defaultProps = {
@@ -42,10 +42,23 @@ export default class ChatArea extends Component {
   }
 
   componentDidUpdate = () => {
-    if (this.message.childNodes.length === 3) {
+    const playSpan = this.playSpan;
+    if (this.message.childNodes.length === 3) { //if emoticon
+      playSpan.style.display = 'none';
       if ((this.message.childNodes[0].textContent === '') &&
         (this.message.childNodes[2].textContent === '')) {
         this.message.childNodes[1].style.fontSize = '34px';
+      }
+    }
+    if (this.message.childNodes[0].childNodes.length === 2
+      || this.message.childNodes.length === 3) { //if link or emoticon
+      playSpan.style.display = 'none';
+
+      if ((!this.props.onDelete) || (!this.props.onTranslate)) {
+        playSpan.parentNode.childNodes[0].style.height = '99%';
+      } else {
+        playSpan.parentNode.childNodes[0].style.height = '49%';
+        playSpan.parentNode.childNodes[2].style.height = '49%';
       }
     }
     this.updateScrollTop();
@@ -154,7 +167,10 @@ export default class ChatArea extends Component {
                     <ToggleDisplay show={this.showTranslate()}>
                         <MdTranslate/>
                     </ToggleDisplay>
-                    <span onClick={this.play.bind(this, message.msg)}>
+                    <span
+                      onClick={this.play.bind(this, message.msg)}
+                      ref={(ref) => this.playSpan = ref}
+                    >
                       <MdStop style={{ display: 'none' }}/>
                       <MdPlayArrow/>
                     </span>
