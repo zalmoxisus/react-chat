@@ -50,11 +50,11 @@ body {
   float: left;
 }
 
-.msg_name {
+.msgName {
   float: left;
 }
 
-.msg_name:hover {
+.msgName:hover {
   cursor: pointer;
 }
 
@@ -65,7 +65,7 @@ body {
   opacity: 0;
 }
 
-.msg_name:hover .replyIcon {
+.msgName:hover .replyIcon {
   opacity: 0.9;
 }
 
@@ -74,65 +74,47 @@ body {
   padding: 2px 1px;
 }
 
-.firstCellMsg {
+.firstCell {
   display: table-cell;
   padding: 5px 5px 2px 5px;
 }
-.u_msg .firstCellMsg {
-  margin-right: 18px;
+.uMsg .firstCell {
+  margin-right: 32px;
 }
-.my_msg .firstCellMsg {
-  margin-left: 18px;
+.myMsg .firstCell {
+  margin-left: 32px;
 }
-.secondCellMsg {
-  display: table-cell;
-  height: 100%;
+.secondCell {
+  display: flex;
+  flex-direction: column;
   position: absolute;
+  height: 100%;
+  width: 30px;
 }
-.u_msg .secondCellMsg {
+.uMsg .secondCell {
   right: 0;
   border-left: 1px solid #cccccc;
 }
-.my_msg .secondCellMsg {
+.myMsg .secondCell {
   left: 0;
   border-right: 1px solid #cccccc;
 }
-.secondCellMsg > span {
-  display: block;
-  width: 18px;
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  transform-style: preserve-3d;
+.secondCell > div {
+  display: flex;
+  width: 100%;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
 }
-.secondCellMsg1, .secondCellMsg2, .secondCellMsg3 {
-  composes: secondCellMsg;
+.secondCell > div:before {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
 }
-.secondCellMsg1 > span{
-  height: 99%;
-  font-size: 16px;
-}
-.secondCellMsg1 > span svg{
-  padding-left: 0;
-}
-.secondCellMsg2 > span{
-  height: 49%;
-  font-size: 13px;
-}
-.secondCellMsg3 > span{
-  height: 32%;
-  font-size: 12px;
-}
-.secondCellMsg  svg {
-  margin-left: 1px;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 2px;
-}
-.secondCellMsg > span:nth-child(1), .secondCellMsg > span:nth-child(2){
+.secondCell > div:nth-child(1), .secondCell > div:nth-child(2){
   border-bottom: 1px solid #cccccc;
 }
-.secondCellMsg > span:hover {
+.secondCell > div:hover {
   cursor: pointer;
   color: #A24E06;
   background: #eeeeee;
@@ -149,44 +131,50 @@ body {
   display: flex;
   height: 100%;
   position: relative;
-  min-height: 50px;
+  min-height: 55px;
 }
 
-.my_msg {
+.myMsg {
   composes: msg;
   background: #e6ffd1;
   border: solid 1px #b4d89f;
   float: right;
 }
 
-.u_msg {
+.uMsg {
   composes: msg;
   background: rgba(249, 252, 255, 1);
   border: solid 1px #a6b8c9;
   float: left;
 }
 
-.content_msg {
+.contentMsg {
   font-weight: 400;
   min-width: 75px;
   display: flex;
   word-break: break-all;
 }
-.big_content_msg {
-  composes: content_msg;
-  font-size: 22px;
+.bigContent {
+  composes: contentMsg;
+  font-size: 26px;
 }
-.small_content_msg {
-  composes: content_msg;
+.smallContent {
+  composes: contentMsg;
   font-size: 16px;
 }
+.contentMsg .videoContainer{
+  position: relative;
+  top: 5px;
+  margin-left: 5px;
+  margin-top: 7px;
+}
 
-.footer_msg{
+.footerMsg{
   display: flex;
   font-weight: 100;
   font-size: 10px;
   color: #a4a4a4;
-  margin-top: 6px;
+  margin-top: 10px;
 }
 
 .avatar {
@@ -425,7 +413,7 @@ body {
   .msg {
     max-width: 80%;
   }
-  .content_msg{
+  .contentMsg{
     font-size: 14px;
   }
   .emoticons{
@@ -454,7 +442,7 @@ body {
   .msg {
     max-width: 55%;
   }
-  .content_msg{
+  .contentMsg{
     font-size: 12px;
   }
   .videoInpContainer{

@@ -27,10 +27,10 @@ export default class VideoContainer extends Component {
     return (
       <span>
         <span>
-        { emojify(this.state.emojiSrc) }
-      </span>
-      <span ref={(ref) => this.contentMsg = ref} style={{ marginTop: '5px', width: '300px' }}>
-      </span>
+          { emojify(this.state.emojiSrc) }
+        </span>
+        <span ref={(ref) => this.contentMsg = ref} className={styles.videoContainer}>
+        </span>
       </span>
     );
   }
