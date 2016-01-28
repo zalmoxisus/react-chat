@@ -1,4 +1,4 @@
-const testCountries = [
+const translateLanguages = [
   { c: 'sq', l: 'Albanian' },
   { c: 'ar', l: 'Arabic' },
   { c: 'hy', l: 'Armenian' },
@@ -52,4 +52,4 @@ const testCountries = [
   { c: 'vi', l: 'Vietnamese' }
 ];
 
-export default testCountries;
+export default translateLanguages;

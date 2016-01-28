@@ -21,7 +21,8 @@ export default class ChatInput extends Component {
     isMine: PropTypes.func,
     replay: PropTypes.func,
     onTranslate: PropTypes.func,
-    onDelete: PropTypes.func
+    onDelete: PropTypes.func,
+    translateLanguages: PropTypes.array
   };
   state = {
     isTooltipActive: false
@@ -69,7 +70,7 @@ export default class ChatInput extends Component {
     node2.style.display = 'block';
   };
   render() {
-    const { message, isMine, replay, onTranslate, onDelete } = this.props;
+    const { message, isMine, replay, onTranslate, onDelete, translateLanguages } = this.props;
     return (
       <div className={styles.msgBox}>
         {
@@ -113,7 +114,7 @@ export default class ChatInput extends Component {
           </div>
           <div className={styles.secondCell}>
             {
-              (onTranslate && !this.isVideo(message.msg)) ?
+              (onTranslate && translateLanguages && !this.isVideo(message.msg)) ?
                 <div id={'a' + message.id} onClick={this.showTooltip}>
                   <MdTranslate/>
                   <ToolTip
@@ -124,7 +125,7 @@ export default class ChatInput extends Component {
                     <div className={styles.tooltip}>
                       <div className={styles.titleTooltip}>Translate it to</div>
                       <div style={{ display: 'flex' }}>
-                        <LangSelect/>
+                        <LangSelect translateLanguages={translateLanguages}/>
                         <MdCheck className={styles.btn}/>
                         <MdClose className={styles.btn} onClick={this.showTooltip}/>
                       </div>
