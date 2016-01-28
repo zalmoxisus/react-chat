@@ -28,7 +28,7 @@ class Container extends Component {
 
   handleSend = (msg, success) => {
     const message = {
-      id: (Date.now() / 1000 | 0) + Math.random(),
+      id: (Date.now() / 1000 | 0),
       name: me.name,
       avatar: me.avatar,
       msg: msg.txt,

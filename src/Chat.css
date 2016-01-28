@@ -404,6 +404,26 @@ body {
   background: #ffffff;
 }
 
+.tooltip {
+  background: #f5f5f5;
+  padding: 4px;
+}
+.tooltip select{
+  width: 100px;
+  margin: 2px;
+}
+.tooltip .btn {
+  padding: 4px;
+  margin: 2px;
+  border: 1px solid #f5f5f5;
+  background: #e8e3de;
+}
+.tooltip .btn:hover {
+  cursor: pointer;
+  color: #A24E06;
+  border: 1px solid #A24E06;
+}
+
 @media (max-width: 610px) {
   .msg {
     max-width: 85%;

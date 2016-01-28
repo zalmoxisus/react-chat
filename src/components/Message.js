@@ -11,7 +11,9 @@ import MdClose from 'react-icons/lib/md/close';
 import MdPlayArrow from 'react-icons/lib/md/play-arrow';
 import MdStop from 'react-icons/lib/md/stop';
 import MdTranslate from 'react-icons/lib/md/translate';
+import MdCheck from 'react-icons/lib/md/check';
 import ToolTip from 'react-portal-tooltip';
+import LangSelect from './LangSelect';
 
 export default class ChatInput extends Component {
   static propTypes = {
@@ -112,14 +114,21 @@ export default class ChatInput extends Component {
           <div className={styles.secondCell}>
             {
               (onTranslate) ?
-                <div>
-                  <MdTranslate id={'a' + message.id} onClick={this.showTooltip}/>
+                <div id={'a' + message.id} onClick={this.showTooltip}>
+                  <MdTranslate/>
                   <ToolTip
                     active={this.state.isTooltipActive}
-                    position="top" arrow="center"
+                    position="bottom" arrow="center"
                     parent={'#a' + message.id}
                   >
-                    hi
+                    <div className={styles.tooltip}>
+                      <div>Translate it to</div>
+                      <div style={{ display: 'flex' }}>
+                        <LangSelect/>
+                        <MdCheck className={styles.btn}/>
+                        <MdClose className={styles.btn} onClick={this.showTooltip}/>
+                      </div>
+                    </div>
                   </ToolTip>
                 </div> : null
             }
