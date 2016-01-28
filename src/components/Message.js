@@ -29,12 +29,12 @@ export default class ChatInput extends Component {
   showTooltip = () => {
     this.setState({ isTooltipActive: !this.state.isTooltipActive });
   };
-  isMedia = (msg) => {
+  isLink = (msg) => {
     const media = convertMedia(msg, 150, true);
     if ((media.indexOf('<iframe') > -1) || (media.indexOf('<a href') > -1)) return media;
     return false;
   };
-  showPlay = (msg) => {
+  isVideo = (msg) => {
     const media = convertMedia(msg, 150, true);
     if (media.indexOf('<iframe') > -1) return true;
   };
@@ -93,8 +93,8 @@ export default class ChatInput extends Component {
                     styles.bigContent :
                     styles.smallContent}
             >
-              {this.isMedia(message.msg) ?
-                <VideoContainer src={this.isMedia(message.msg)}/> :
+              {this.isLink(message.msg) ?
+                <VideoContainer src={this.isLink(message.msg)}/> :
                 emojify(message.msg)}
             </div>
             <div className={styles.footerMsg}>
@@ -113,7 +113,7 @@ export default class ChatInput extends Component {
           </div>
           <div className={styles.secondCell}>
             {
-              (onTranslate) ?
+              (onTranslate && !this.isVideo(message.msg)) ?
                 <div id={'a' + message.id} onClick={this.showTooltip}>
                   <MdTranslate/>
                   <ToolTip
@@ -132,7 +132,8 @@ export default class ChatInput extends Component {
                   </ToolTip>
                 </div> : null
             }
-            {!this.showPlay(message.msg) ?
+            {
+              !this.isVideo(message.msg) ?
               <div
                 onClick={this.play.bind(this, message.msg)}
                 ref={(ref) => this.playSpan = ref}
