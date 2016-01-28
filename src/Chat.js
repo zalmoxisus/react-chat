@@ -10,9 +10,9 @@ export default class Chat extends Component {
     me: PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      avatar: PropTypes.string,
-      lng: PropTypes.string
+      avatar: PropTypes.string
     }).isRequired,
+    lang: PropTypes.string,
     onTranslate: PropTypes.func,
     onDelete: PropTypes.func,
     translateLanguages: PropTypes.array
@@ -31,7 +31,7 @@ export default class Chat extends Component {
   isMine = id => this.props.me.id === id;
 
   render() {
-    const { messages, me, onSend, onTranslate, onDelete, translateLanguages } = this.props;
+    const { messages, me, lang, onSend, onTranslate, onDelete, translateLanguages } = this.props;
     return (<div>
         <div className={styles.base}>
           <ChatArea messages={messages}
@@ -39,12 +39,12 @@ export default class Chat extends Component {
             isMine={this.isMine}
             onTranslate={onTranslate}
             onDelete={onDelete}
-            lng={me.lng}
+            lang={lang}
             translateLanguages={translateLanguages}
           />
           <ChatInput
             onSend={onSend}
-            lng={me.lng}
+            lang={lang}
             onTranslate={onTranslate}
             ref={node => {this.input = node;}}
           />

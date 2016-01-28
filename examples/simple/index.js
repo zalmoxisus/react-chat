@@ -6,9 +6,9 @@ import translateLanguages from './translateLanguages';
 const me = {
   id: '2',
   name: 'Leo',
-  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg',
-  lng: 'en'
+  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg'
 };
+const lang = 'en';
 
 class Container extends Component {
   state = {
@@ -58,6 +58,7 @@ class Container extends Component {
     return (
       <Chat
         me={me}
+        lang={lang}
         messages={testMessages}
         onSend={this.handleSend}
         onTranslate={this.handleTranslate}

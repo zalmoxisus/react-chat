@@ -9,7 +9,8 @@ export default class ChatArea extends Component {
     isMine: PropTypes.func,
     onTranslate: PropTypes.func,
     onDelete: PropTypes.func,
-    translateLanguages: PropTypes.array
+    translateLanguages: PropTypes.array,
+    lang: PropTypes.string
   };
 
   componentDidMount() {
@@ -27,7 +28,15 @@ export default class ChatArea extends Component {
   };
 
   render() {
-    const { messages, replay, isMine, onTranslate, onDelete, translateLanguages } = this.props;
+    const {
+      messages,
+      replay,
+      isMine,
+      onTranslate,
+      onDelete,
+      translateLanguages,
+      lang
+    } = this.props;
     return (
       <div id="container" className={styles.container}>
         {
@@ -40,6 +49,7 @@ export default class ChatArea extends Component {
                 onTranslate={onTranslate}
                 onDelete={onDelete}
                 translateLanguages={translateLanguages}
+                lang={lang}
               />
             );
           })

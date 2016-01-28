@@ -13,11 +13,11 @@ export default class UserMenu extends Component {
     menuShow: PropTypes.bool,
     onSend: PropTypes.func,
     addTranslation: PropTypes.func,
-    lng: PropTypes.string,
+    lang: PropTypes.string,
     onTranslate: PropTypes.func
   };
   static defaultProps = {
-    lng: 'en'
+    lang: 'en'
   };
   state = {
     micShow: false,
@@ -57,7 +57,7 @@ export default class UserMenu extends Component {
     if (e.nativeEvent.keyCode === 13) {
       this.props.onTranslate(
         e.target.value,
-        this.props.lng,
+        this.props.lang,
         txt => {
           this.props.addTranslation(txt);
           this.handleClose();
@@ -82,7 +82,7 @@ export default class UserMenu extends Component {
           recognition = new SpeechRecognition();
           recognition.continuous = true;
           recognition.interimResults = true;
-          recognition.lang = that.props.lng;
+          recognition.lang = that.props.lang;
           recognition.start();
           recognition.onresult = function (event) {
             let interimTranscript = '';

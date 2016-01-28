@@ -12,7 +12,7 @@ export default class ChatInput extends Component {
   static propTypes = {
     onSend: PropTypes.func,
     submenuShow: PropTypes.bool,
-    lng: PropTypes.string,
+    lang: PropTypes.string,
     onTranslate: PropTypes.func
   };
   state = {
@@ -93,7 +93,7 @@ export default class ChatInput extends Component {
             submenuShow={this.props.submenuShow}
             addTranslation={this.addTranslation}
             onSend={this.props.onSend}
-            lng={this.props.lng}
+            lang={this.props.lang}
             onTranslate={this.props.onTranslate}
           />
         </div>

@@ -22,7 +22,11 @@ export default class ChatInput extends Component {
     replay: PropTypes.func,
     onTranslate: PropTypes.func,
     onDelete: PropTypes.func,
-    translateLanguages: PropTypes.array
+    translateLanguages: PropTypes.array,
+    lang: PropTypes.string
+  };
+  static defaultProps = {
+    lang: 'en'
   };
   state = {
     isTooltipActive: false
@@ -52,6 +56,7 @@ export default class ChatInput extends Component {
       msg.onend = function (event) {
         that.toggleIcons(node.children[0], node.children[1]);
       };
+      msg.lang = this.props.lang;
       window.speechSynthesis.speak(msg);
     } else {
       window.speechSynthesis.cancel();
