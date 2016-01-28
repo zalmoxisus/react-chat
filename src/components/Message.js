@@ -122,7 +122,7 @@ export default class ChatInput extends Component {
                     parent={'#a' + message.id}
                   >
                     <div className={styles.tooltip}>
-                      <div>Translate it to</div>
+                      <div className={styles.titleTooltip}>Translate it to</div>
                       <div style={{ display: 'flex' }}>
                         <LangSelect/>
                         <MdCheck className={styles.btn}/>
