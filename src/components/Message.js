@@ -139,7 +139,7 @@ export default class ChatInput extends Component {
                 </div> : null
             }
             {
-              !this.isVideo(message.msg) ?
+              (!this.isVideo(message.msg) && (window.SpeechSynthesisUtterance)) ?
               <div
                 onClick={this.play.bind(this, message.msg)}
                 ref={(ref) => this.playSpan = ref}
