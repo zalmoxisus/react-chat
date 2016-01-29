@@ -13,7 +13,8 @@ export default class ChatInput extends Component {
     onSend: PropTypes.func,
     submenuShow: PropTypes.bool,
     lang: PropTypes.string,
-    onTranslate: PropTypes.func
+    onTranslate: PropTypes.func,
+    translateLanguages: PropTypes.array
   };
   state = {
     emoticonShow: false,
@@ -79,7 +80,7 @@ export default class ChatInput extends Component {
   };
 
   render() {
-    const onSend = this.props.onSend;
+    const { onSend, onTranslate, translateLanguages, submenuShow, lang } = this.props;
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.hideMenu}>
           <ToggleDisplay show={!this.state.menuShow}>
@@ -90,11 +91,12 @@ export default class ChatInput extends Component {
           </ToggleDisplay>
           <UserMenu
             menuShow={this.state.menuShow}
-            submenuShow={this.props.submenuShow}
+            submenuShow={submenuShow}
             addTranslation={this.addTranslation}
-            onSend={this.props.onSend}
-            lang={this.props.lang}
-            onTranslate={this.props.onTranslate}
+            onSend={onSend}
+            lang={lang}
+            onTranslate={onTranslate}
+            translateLanguages={translateLanguages}
           />
         </div>
         <TextareaAutosize

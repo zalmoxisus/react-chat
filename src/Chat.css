@@ -75,7 +75,6 @@ body {
 }
 
 .firstCell {
-  display: table-cell;
   padding: 5px 5px 2px 5px;
 }
 .uMsg .firstCell {
@@ -207,7 +206,7 @@ body {
   right: 0;
   width: 100%;
   min-height: 30px !important;
-  padding: 7px 40px 3px 7px;
+  padding: 7px 40px 3px 40px;
   max-height:100px;
   border: 0 none;
   background: #fff;
@@ -224,7 +223,6 @@ body {
 }
 
 .chatInpContainer {
-  display: table;
   width: 100%;
   bottom: 0;
   position: absolute;
@@ -286,6 +284,8 @@ body {
   border: 1px solid #aaaaaa;
   width: 290px;
   line-height: 2;
+  display: flex;
+  flex-direction: column;
 }
 
 .btnContainer {
@@ -295,7 +295,6 @@ body {
 
 .userContainer input {
   height: 25px;
-  width: 95%;
   padding: 0 5px 0 5px;
 }
 

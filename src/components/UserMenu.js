@@ -7,6 +7,7 @@ import MdMessage from 'react-icons/lib/md/message';
 import MdOndemandVideo from 'react-icons/lib/md/ondemand-video';
 import MdClose from 'react-icons/lib/md/close';
 
+let SpeechRecognition;
 let recognition;
 export default class UserMenu extends Component {
   static propTypes = {
@@ -14,7 +15,8 @@ export default class UserMenu extends Component {
     onSend: PropTypes.func,
     addTranslation: PropTypes.func,
     lang: PropTypes.string,
-    onTranslate: PropTypes.func
+    onTranslate: PropTypes.func,
+    translateLanguages: PropTypes.array
   };
   static defaultProps = {
     lang: 'en'
@@ -23,6 +25,20 @@ export default class UserMenu extends Component {
     micShow: false,
     submenuShow: false
   };
+  componentWillMount() {
+    SpeechRecognition = window.SpeechRecognition ||
+      window.webkitSpeechRecognition ||
+      window.mozSpeechRecognition ||
+      window.msSpeechRecognition ||
+      window.oSpeechRecognition;
+  }
+  componentDidMount() {
+    if (!SpeechRecognition && (!this.props.onTranslate || !this.props.translateLanguages)) {
+      this.usermenu.style.marginTop = '-31px';
+    } else if (!SpeechRecognition || !this.props.onTranslate || !this.props.translateLanguages) {
+      this.usermenu.style.marginTop = '-61px';
+    }
+  }
   changeVideoInp = (e) => {
     let media = convertMedia(e.target.value, 150, true);
     let videoContainer = this.videoInpContainer;
@@ -46,13 +62,6 @@ export default class UserMenu extends Component {
     }
   };
 
-  showTranslate() {
-    if (this.usermenu && !this.props.onTranslate) {
-      this.usermenu.style.marginTop = '-61px';
-    }
-    return (this.props.onTranslate) ? true : false;
-  }
-
   insertTranslation = (e) => {
     if (e.nativeEvent.keyCode === 13) {
       this.props.onTranslate(
@@ -73,12 +82,7 @@ export default class UserMenu extends Component {
       case 0: {
         this.setState({ micShow: true });
         const that = this;
-        const SpeechRecognition = window.SpeechRecognition ||
-          window.webkitSpeechRecognition ||
-          window.mozSpeechRecognition ||
-          window.msSpeechRecognition ||
-          window.oSpeechRecognition;
-        if (SpeechRecognition !== undefined) {
+        if (SpeechRecognition) {
           recognition = new SpeechRecognition();
           recognition.continuous = true;
           recognition.interimResults = true;
@@ -143,17 +147,22 @@ export default class UserMenu extends Component {
   };
 
   render() {
+    const { menuShow, onTranslate, translateLanguages } = this.props;
     return (<div className={styles.userContainer}>
-        <ToggleDisplay show={this.props.menuShow}>
+        <ToggleDisplay show={menuShow}>
           <ul className={styles.usermenu} ref={(ref) => this.usermenu = ref}>
-            <li onClick={this.handleClick.bind(this, 0)}>
-              <MdMic /><a href="#">Dictate text</a>
-            </li>
-            <ToggleDisplay show={this.showTranslate()}>
+            {
+              SpeechRecognition ?
+              <li onClick={this.handleClick.bind(this, 0)}>
+                <MdMic /><a href="#">Dictate text</a>
+              </li> : null
+            }
+            {
+              (onTranslate && translateLanguages) ?
               <li onClick={this.handleClick.bind(this, 1)}>
                 <MdMessage /><a href="#">Translate a phrase</a>
-              </li>
-            </ToggleDisplay>
+              </li> : null
+            }
             <li onClick={this.handleClick.bind(this, 2)}>
               <MdOndemandVideo /><a href="#">Insert video</a>
             </li>

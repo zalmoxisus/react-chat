@@ -46,6 +46,7 @@ export default class Chat extends Component {
             onSend={onSend}
             lang={lang}
             onTranslate={onTranslate}
+            translateLanguages={translateLanguages}
             ref={node => {this.input = node;}}
           />
         </div>
