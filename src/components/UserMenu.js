@@ -159,11 +159,11 @@ export default class UserMenu extends Component {
             }
             {
               (onTranslate && translateLanguages) ?
-              <li onClick={this.handleClick.bind(this, 1)}>
+              <li className={styles.liTranslate} onClick={this.handleClick.bind(this, 1)}>
                 <MdMessage /><a href="#">Translate a phrase</a>
               </li> : null
             }
-            <li onClick={this.handleClick.bind(this, 2)}>
+            <li className={styles.liVideo} onClick={this.handleClick.bind(this, 2)}>
               <MdOndemandVideo /><a href="#">Insert video</a>
             </li>
           </ul>

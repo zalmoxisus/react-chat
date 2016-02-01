@@ -45,6 +45,7 @@
     "babel-eslint": "^5.0.0-beta6",
     "babel-loader": "^5.1.4",
     "css-loader": "^0.21.0",
+    "enzyme": "^1.4.1",
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^3.1.0",
     "eslint-plugin-react": "^3.14.0",

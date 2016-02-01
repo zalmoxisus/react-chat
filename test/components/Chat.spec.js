@@ -24,7 +24,7 @@ const props = {
     }
   ],
   text: 'Hello',
-  onMessage: (msg, success) => {
+  onSend: (msg, success) => {
     const message = {
       id: (Date.now() / 1000 | 0) + Math.random(),
       name: 'X',
