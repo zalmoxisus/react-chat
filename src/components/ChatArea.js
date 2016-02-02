@@ -18,7 +18,7 @@ export default class ChatArea extends Component {
   }
   componentDidUpdate = () => {
     const msg = this.messages.message.childNodes[1];
-    if (msg.style.backgroundImage === 'url("//cdnjs.cloudflare.com/ajax/libs/emojione/1.5.2/assets/sprites/emojione.sprites.png")') { // eslint-disable-line max-len
+    if (msg && msg.style.backgroundImage === 'url("//cdnjs.cloudflare.com/ajax/libs/emojione/1.5.2/assets/sprites/emojione.sprites.png")') { // eslint-disable-line max-len
       msg.style.fontSize = '34px';
     }
     this.updateScrollTop();

@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../Chat.css';
 
 export default class ChatInput extends Component {
   static propTypes = {
