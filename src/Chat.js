@@ -39,7 +39,6 @@ export default class Chat extends Component {
             isMine={this.isMine}
             onTranslate={onTranslate}
             onDelete={onDelete}
-            lang={lang}
             translateLanguages={translateLanguages}
           />
           <ChatInput
