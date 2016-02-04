@@ -14,50 +14,77 @@ export default class SpeechSynthesis extends Component {
     message: PropTypes.object
   };
   state = {
-    isPlayTooltipActive: false,
-    isPlaying: true
+    isPlayTooltipActive: false
   };
   showPlayTooltip = () => {
     this.setState({ isPlayTooltipActive: !this.state.isPlayTooltipActive });
-  };
-  showPlayBtn = () => {
-    this.setState({ isPlaying: !this.state.isPlaying });
   };
   prepareForTranslation = (message) => {
     return message.replace(/(<([^>]+)>)/ig, '').replace(/\+/g, '');
   };
   play = (message, id) => {
-    this.showPlayBtn();
     const msg = new SpeechSynthesisUtterance(this.prepareForTranslation(message));
     const that = this;
-    msg.onend = function (event) {
-      that.showPlayBtn();
+    this.toggleIcons(true);
+    msg.onstart = function (event) {
+      if (that.state.isPlayTooltipActive) {
+        that.showPlayTooltip();
+      }
     };
+    msg.onend = function (event) {
+      that.toggleIcons(false);
+    };
+    msg.onerror = function (event) {
+      that.toggleIcons(false);
+    };
+    const voices = window.speechSynthesis.getVoices();
+    msg.voice = voices.filter(function (voice) { return voice.name === voiceName; })[0];
     window.speechSynthesis.speak(msg);
   };
 
   speak = (message, id, e) => {
     const node = e.currentTarget;
-    if (this.state.isPlaying) {
-      if (lastSpoken === id) {
+    if (this.playSpan.childNodes[1].style.visibility === 'hidden') {
+      if (lastSpoken !== '') {
+        if (this.speech) {
+          this.speech.speechSelect.value = voiceName;
+        }
         this.showPlayTooltip();
       } else {
         lastSpoken = id;
         this.play(message, id);
       }
     } else {
+      this.toggleIcons(false);
       window.speechSynthesis.cancel();
+    }
+  };
+  speak2 = (message, id) => {
+    voiceName = this.speech.speechSelect.value;
+    this.play(message, id);
+  };
+  changeVoice = (value) => {
+    voiceName = value;
+  };
+  toggleIcons = (val) => {
+    let node1 = this.playSpan.childNodes[0];
+    let node2 = this.playSpan.childNodes[1];
+    if (val) {
+      node1.style.visibility = 'hidden';
+      node2.style.visibility = 'visible';
+    } else {
+      node2.style.visibility = 'hidden';
+      node1.style.visibility = 'visible';
     }
   };
   render() {
     const { message } = this.props;
     return (
       <div onClick={this.speak.bind(this, message.msg, message.id)}>
-        {
-          (this.state.isPlaying) ?
-          <MdPlayArrow id={'play' + message.id} /> :
-          <MdStop />
-        }
+        <span ref={(ref) => this.playSpan = ref}>
+          <MdPlayArrow id={'play' + message.id} style={{ position: 'absolute', marginTop: '2px' }}/>
+          <MdStop style={{ visibility: 'hidden' }} />
+        </span>
         <ToolTip
           active={this.state.isPlayTooltipActive}
           position="bottom" arrow="center"
@@ -68,9 +95,13 @@ export default class SpeechSynthesis extends Component {
             <div style={{ display: 'flex' }}>
               <SpeechSelect
                 voices={window.speechSynthesis.getVoices()}
+                changeVoice = {this.changeVoice}
                 ref={(ref) => this.speech = ref}
               />
-              <MdCheck className={styles.btn}/>
+              <MdCheck
+                className={styles.btn}
+                onClick={this.speak2.bind(this, message.msg, message.id)}
+              />
               <MdClose className={styles.btn} onClick={this.showPlayTooltip}/>
             </div>
           </div>

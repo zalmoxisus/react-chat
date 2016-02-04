@@ -24,8 +24,7 @@ export default class ChatInput extends Component {
     translateLanguages: PropTypes.array
   };
   state = {
-    isTooltipActive: false,
-    isPlayTooltipActive: false
+    isTooltipActive: false
   };
   showTooltip = () => {
     this.setState({ isTooltipActive: !this.state.isTooltipActive });
