@@ -21,13 +21,19 @@ export default class ChatInput extends Component {
     replay: PropTypes.func,
     onTranslate: PropTypes.func,
     onDelete: PropTypes.func,
-    translateLanguages: PropTypes.array
+    translateLanguages: PropTypes.array,
+    lang: PropTypes.string
   };
   state = {
     isTooltipActive: false
   };
   showTooltip = () => {
-    this.setState({ isTooltipActive: !this.state.isTooltipActive });
+    if (this.SpeechSynthesis.state.isPlayTooltipActive) {
+      this.SpeechSynthesis.state.isPlayTooltipActive = false;
+      this.forceUpdate();
+    } else {
+      this.setState({ isTooltipActive: !this.state.isTooltipActive });
+    }
   };
   isLink = (msg) => {
     const media = convertMedia(msg, 150, true);
@@ -44,7 +50,7 @@ export default class ChatInput extends Component {
     });
   };
   render() {
-    const { message, isMine, replay, onTranslate, onDelete, translateLanguages } = this.props;
+    const { message, isMine, replay, onTranslate, onDelete, translateLanguages, lang } = this.props;
     return (
       <div className={styles.msgBox}>
         {
@@ -109,7 +115,11 @@ export default class ChatInput extends Component {
             }
             {
               (!this.isVideo(message.msg) && (window.SpeechSynthesisUtterance)) ?
-                <SpeechSynthesis message={message}/> : null
+                <SpeechSynthesis
+                  message={message}
+                  lang={lang}
+                  ref={(ref) => this.SpeechSynthesis = ref}
+                /> : null
             }
             {
               (onDelete) ?

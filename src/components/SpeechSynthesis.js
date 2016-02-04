@@ -11,7 +11,8 @@ let lastSpoken = '';
 let voiceName = 'Google US English';
 export default class SpeechSynthesis extends Component {
   static propTypes = {
-    message: PropTypes.object
+    message: PropTypes.object,
+    lang: PropTypes.string
   };
   state = {
     isPlayTooltipActive: false
@@ -78,7 +79,7 @@ export default class SpeechSynthesis extends Component {
     }
   };
   render() {
-    const { message } = this.props;
+    const { message, lang } = this.props;
     return (
       <div onClick={this.speak.bind(this, message.msg, message.id)}>
         <span ref={(ref) => this.playSpan = ref}>
@@ -95,7 +96,7 @@ export default class SpeechSynthesis extends Component {
             <div style={{ display: 'flex' }}>
               <SpeechSelect
                 voices={window.speechSynthesis.getVoices()}
-                changeVoice = {this.changeVoice}
+                lang={lang}
                 ref={(ref) => this.speech = ref}
               />
               <MdCheck
