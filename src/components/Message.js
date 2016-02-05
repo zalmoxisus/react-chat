@@ -23,7 +23,7 @@ export default class ChatInput extends Component {
     onDelete: PropTypes.func,
     translateLanguages: PropTypes.array,
     lang: PropTypes.string,
-    voiceName: PropTypes.string
+    voicesArr: PropTypes.array
   };
   state = {
     isTooltipActive: false
@@ -66,7 +66,7 @@ export default class ChatInput extends Component {
   render() {
     const {
       message, isMine, replay, onTranslate,
-      onDelete, translateLanguages, lang, voiceName } = this.props;
+      onDelete, translateLanguages, lang, voicesArr } = this.props;
     return (
       <div className={styles.msgBox}>
         {
@@ -130,11 +130,13 @@ export default class ChatInput extends Component {
                 </div> : null
             }
             {
-              (!this.isVideo(message.msg) && window.SpeechSynthesisUtterance && voiceName !== '') ?
+              (!this.isVideo(message.msg) &&
+              window.SpeechSynthesisUtterance &&
+              voicesArr.length > 0) ?
                 <SpeechSynthesis
                   message={message}
                   lang={lang}
-                  voiceName={voiceName}
+                  voicesArr={voicesArr}
                   ref={(ref) => this.SpeechSynthesis = ref}
                 /> : null
             }

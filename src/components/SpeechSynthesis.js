@@ -8,15 +8,19 @@ import ToolTip from 'react-portal-tooltip';
 import SpeechSelect from './SpeechSelect';
 
 let lastSpoken = '';
+let voiceName = '';
 export default class SpeechSynthesis extends Component {
   static propTypes = {
     message: PropTypes.object,
     lang: PropTypes.string,
-    voiceName: PropTypes.string
+    voicesArr: PropTypes.array
   };
   state = {
     isPlayTooltipActive: false
   };
+  componentDidMount() {
+    voiceName = this.props.voicesArr[0].name;
+  }
   showPlayTooltip = () => {
     this.setState({ isPlayTooltipActive: !this.state.isPlayTooltipActive });
   };
@@ -39,16 +43,16 @@ export default class SpeechSynthesis extends Component {
       that.toggleIcons(false);
     };
     const voices = window.speechSynthesis.getVoices();
-    msg.voice = voices.filter(function (voice) { return voice.name === that.props.voiceName; })[0];
+    msg.voice = voices.filter(function (voice) { return voice.name === voiceName; })[0];
     window.speechSynthesis.speak(msg);
   };
 
   speak = (message, id, e) => {
     const node = e.currentTarget;
     if (this.playSpan.childNodes[1].style.visibility === 'hidden') {
-      if (lastSpoken !== '') {
+      if (lastSpoken !== '' && this.props.voicesArr.length > 1) {
         if (this.speech) {
-          this.speech.speechSelect.value = this.props.voiceName;
+          this.speech.speechSelect.value = voiceName;
         }
         this.showPlayTooltip();
       } else {
@@ -60,12 +64,9 @@ export default class SpeechSynthesis extends Component {
       window.speechSynthesis.cancel();
     }
   };
-  speak2 = (message, id) => {
-    this.props.voiceName = this.speech.speechSelect.value;
+  speakFromTooltip = (message, id) => {
+    voiceName = this.speech.speechSelect.value;
     this.play(message, id);
-  };
-  changeVoice = (value) => {
-    this.props.voiceName = value;
   };
   toggleIcons = (val) => {
     let node1 = this.playSpan.childNodes[0];
@@ -101,7 +102,7 @@ export default class SpeechSynthesis extends Component {
               />
               <MdCheck
                 className={styles.btn}
-                onClick={this.speak2.bind(this, message.msg, message.id)}
+                onClick={this.speakFromTooltip.bind(this, message.msg, message.id)}
               />
               <MdClose className={styles.btn} onClick={this.showPlayTooltip}/>
             </div>

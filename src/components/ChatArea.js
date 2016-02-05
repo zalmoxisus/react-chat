@@ -14,7 +14,10 @@ export default class ChatArea extends Component {
   };
 
   state = {
-    voiceName: ''
+    voicesArr: [],
+    add(voice) {
+      this.voicesArr.push(voice);
+    }
   };
 
   componentWillMount() {
@@ -24,10 +27,10 @@ export default class ChatArea extends Component {
       let voicesByLang = [];
       for (let i = 0; i < voices.length; i++) {
         let option = voices[i];
-        if (option.lang.indexOf(that.props.lang) > -1) voicesByLang.push(option);
-      }
-      if (voicesByLang.length !== 0) {
-        that.setState({ voiceName: voicesByLang[0].name });
+        if (option.lang.indexOf(that.props.lang) > -1) {
+          that.state.add(option);
+          that.setState(that.state);
+        }
       }
     };
   }
@@ -72,7 +75,7 @@ export default class ChatArea extends Component {
                 onDelete={onDelete}
                 translateLanguages={translateLanguages}
                 lang={lang}
-                voiceName={this.state.voiceName}
+                voicesArr={this.state.voicesArr}
                 ref={(ref) => this.messages = ref}
               />
             );
