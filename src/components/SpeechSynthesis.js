@@ -8,11 +8,11 @@ import ToolTip from 'react-portal-tooltip';
 import SpeechSelect from './SpeechSelect';
 
 let lastSpoken = '';
-let voiceName = 'Google US English';
 export default class SpeechSynthesis extends Component {
   static propTypes = {
     message: PropTypes.object,
-    lang: PropTypes.string
+    lang: PropTypes.string,
+    voiceName: PropTypes.string
   };
   state = {
     isPlayTooltipActive: false
@@ -39,7 +39,7 @@ export default class SpeechSynthesis extends Component {
       that.toggleIcons(false);
     };
     const voices = window.speechSynthesis.getVoices();
-    msg.voice = voices.filter(function (voice) { return voice.name === voiceName; })[0];
+    msg.voice = voices.filter(function (voice) { return voice.name === that.props.voiceName; })[0];
     window.speechSynthesis.speak(msg);
   };
 
@@ -48,7 +48,7 @@ export default class SpeechSynthesis extends Component {
     if (this.playSpan.childNodes[1].style.visibility === 'hidden') {
       if (lastSpoken !== '') {
         if (this.speech) {
-          this.speech.speechSelect.value = voiceName;
+          this.speech.speechSelect.value = this.props.voiceName;
         }
         this.showPlayTooltip();
       } else {
@@ -61,11 +61,11 @@ export default class SpeechSynthesis extends Component {
     }
   };
   speak2 = (message, id) => {
-    voiceName = this.speech.speechSelect.value;
+    this.props.voiceName = this.speech.speechSelect.value;
     this.play(message, id);
   };
   changeVoice = (value) => {
-    voiceName = value;
+    this.props.voiceName = value;
   };
   toggleIcons = (val) => {
     let node1 = this.playSpan.childNodes[0];

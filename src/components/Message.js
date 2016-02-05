@@ -22,11 +22,25 @@ export default class ChatInput extends Component {
     onTranslate: PropTypes.func,
     onDelete: PropTypes.func,
     translateLanguages: PropTypes.array,
-    lang: PropTypes.string
+    lang: PropTypes.string,
+    voiceName: PropTypes.string
   };
   state = {
     isTooltipActive: false
   };
+  componentDidMount() {
+    /*const voices = window.speechSynthesis.getVoices();
+    console.log(voices);
+    let voicesByLang = [];
+    for (let i = 0; i < voices.length; i++) {
+      let option = voices[i];
+      if (option.lang.indexOf(this.props.lang) > -1) voicesByLang.push(option);
+    }
+    if (voicesByLang.length === 0) console.log('hide play button');
+    else if (voicesByLang.length === 1) console.log('hide tooltip');
+    else voiceName = voicesByLang[0].name;*/
+
+  }
   showTooltip = () => {
     if (this.SpeechSynthesis.state.isPlayTooltipActive) {
       this.SpeechSynthesis.state.isPlayTooltipActive = false;
@@ -50,7 +64,9 @@ export default class ChatInput extends Component {
     });
   };
   render() {
-    const { message, isMine, replay, onTranslate, onDelete, translateLanguages, lang } = this.props;
+    const {
+      message, isMine, replay, onTranslate,
+      onDelete, translateLanguages, lang, voiceName } = this.props;
     return (
       <div className={styles.msgBox}>
         {
@@ -114,10 +130,11 @@ export default class ChatInput extends Component {
                 </div> : null
             }
             {
-              (!this.isVideo(message.msg) && (window.SpeechSynthesisUtterance)) ?
+              (!this.isVideo(message.msg) && window.SpeechSynthesisUtterance && voiceName !== '') ?
                 <SpeechSynthesis
                   message={message}
                   lang={lang}
+                  voiceName={voiceName}
                   ref={(ref) => this.SpeechSynthesis = ref}
                 /> : null
             }
