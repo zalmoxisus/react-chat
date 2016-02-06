@@ -50,7 +50,7 @@ export default class SpeechSynthesis extends Component {
   speak = (message, id, e) => {
     const node = e.currentTarget;
     if (this.playSpan.childNodes[1].style.visibility === 'hidden') {
-      if (lastSpoken !== '' && this.props.voicesArr.length > 1) {
+      if (lastSpoken === id && this.props.voicesArr.length > 1) {
         if (this.speech) {
           this.speech.speechSelect.value = voiceName;
         }
