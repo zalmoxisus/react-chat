@@ -13,7 +13,8 @@ export default class SpeechSynthesis extends Component {
   static propTypes = {
     message: PropTypes.object,
     lang: PropTypes.string,
-    voicesArr: PropTypes.array
+    voicesArr: PropTypes.array,
+    msgCount: PropTypes.number
   };
   state = {
     isPlayTooltipActive: false
@@ -80,7 +81,7 @@ export default class SpeechSynthesis extends Component {
     }
   };
   render() {
-    const { message, lang } = this.props;
+    const { message, lang, msgCount } = this.props;
     return (
       <div onClick={this.speak.bind(this, message.msg, message.id)}>
         <span ref={(ref) => this.playSpan = ref}>
@@ -89,7 +90,7 @@ export default class SpeechSynthesis extends Component {
         </span>
         <ToolTip
           active={this.state.isPlayTooltipActive}
-          position="bottom" arrow="center"
+          position={msgCount > 1 ? 'top' : 'bottom'} arrow="center"
           parent={'#play' + message.id}
         >
           <div className={styles.tooltip}>
