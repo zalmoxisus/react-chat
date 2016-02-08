@@ -14,6 +14,7 @@ import ToolTip from 'react-portal-tooltip';
 import LangSelect from './LangSelect';
 import SpeechSynthesis from './SpeechSynthesis';
 
+let currId = '';
 export default class ChatInput extends Component {
   static propTypes = {
     message: PropTypes.object,
@@ -29,13 +30,20 @@ export default class ChatInput extends Component {
   state = {
     isTooltipActive: false
   };
-  showTooltip = () => {
+  showTooltip = (e) => {
+    let currState;
+    if (!e.currentTarget.id) currState = false;
+    else {
+      currState = !(currId === e.currentTarget.id && this.state.isTooltipActive === true);
+      currId = e.currentTarget.id;
+    }
     if (this.SpeechSynthesis.state.isPlayTooltipActive) {
       this.SpeechSynthesis.state.isPlayTooltipActive = false;
+      currId = e.currentTarget.id;
+      currState = false;
       this.forceUpdate();
-    } else {
-      this.setState({ isTooltipActive: !this.state.isTooltipActive });
     }
+    this.setState({ isTooltipActive: currState });
   };
   isLink = (msg) => {
     const media = convertMedia(msg, 150, true);
@@ -103,7 +111,7 @@ export default class ChatInput extends Component {
                   <MdTranslate/>
                   <ToolTip
                     active={this.state.isTooltipActive}
-                    position="bottom" arrow="center"
+                    position={msgCount > 1 ? 'top' : 'bottom'} arrow="center"
                     parent={'#a' + message.id}
                   >
                     <div className={styles.tooltip}>
