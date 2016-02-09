@@ -442,6 +442,7 @@ body {
   font-size: 11px;
   padding: 2px 3px;
   float: right;
+  width: 25px;
 }
 .trText{
   padding: 3px;

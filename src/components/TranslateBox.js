@@ -5,7 +5,11 @@ import MdTranslate from 'react-icons/lib/md/translate';
 
 export default class TranslateBox extends Component {
   static propTypes = {
-    trLangs: PropTypes.array
+    trLangs: PropTypes.array,
+    onDelete: PropTypes.func
+  };
+  removeBox = (trLang, e) => {
+    this.props.onDelete(trLang);
   };
   render() {
     return (
@@ -15,7 +19,7 @@ export default class TranslateBox extends Component {
             return (
               <div key={trLang.id} className={styles.trBox}>
                 <span className={styles.trText}>Hello</span>
-                <span onClick={this.hideTranslate} className={styles.trSpan}>
+                <span onClick={this.removeBox.bind(this, trLang.id)} className={styles.trSpan}>
                   <span>
                     <MdTranslate/>
                     <MdClose/>

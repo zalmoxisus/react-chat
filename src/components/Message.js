@@ -53,6 +53,10 @@ export default class Message extends Component {
     this.setState(this.state);
     this.showTooltip(e);
   };
+  deleteBox = (trLang) => {
+    this.state.delete(trLang);
+    this.setState(this.state);
+  };
   showTooltip = (e) => {
     let currState;
     if (!e.currentTarget.id) currState = false;
@@ -112,7 +116,7 @@ export default class Message extends Component {
               {this.isLink(message.msg) ?
                 <VideoContainer src={this.isLink(message.msg)}/> :
                 emojify(message.msg)}
-              <TranslateBox trLangs={this.state.trLangs}/>
+              <TranslateBox trLangs={this.state.trLangs} onDelete={this.deleteBox}/>
             </div>
             <div className={styles.footerMsg}>
               {
