@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-export default class ChatInput extends Component {
+export default class SpeechSelect extends Component {
   static propTypes = {
     voices: PropTypes.array,
     lang: PropTypes.string

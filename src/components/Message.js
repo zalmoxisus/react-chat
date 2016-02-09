@@ -29,7 +29,29 @@ export default class Message extends Component {
     msgCount: PropTypes.number
   };
   state = {
-    isTooltipActive: false
+    isTooltipActive: false,
+    trLangs: [],
+
+    add(trLang) {
+      this.trLangs.push(trLang);
+    },
+
+    delete(trLang) {
+      this.trLangs.forEach(function (item, index, object) {
+        if (item.id === trLang) {
+          object.splice(index, 1);
+        }
+      });
+    }
+  };
+  selectLang = (e) => {
+    const trLang = {
+      id: 'tr' + this.state.trLangs.length,
+      lang: this.langSelect.languageSelect.value
+    };
+    this.state.add(trLang);
+    this.setState(this.state);
+    this.showTooltip(e);
   };
   showTooltip = (e) => {
     let currState;
@@ -90,7 +112,7 @@ export default class Message extends Component {
               {this.isLink(message.msg) ?
                 <VideoContainer src={this.isLink(message.msg)}/> :
                 emojify(message.msg)}
-              <TranslateBox lang={lang} ref={(ref) => this.translateBox = ref}/>
+              <TranslateBox trLangs={this.state.trLangs}/>
             </div>
             <div className={styles.footerMsg}>
               {
@@ -119,8 +141,11 @@ export default class Message extends Component {
                     <div className={styles.tooltip}>
                       <div className={styles.titleTooltip}>Translate it to</div>
                       <div style={{ display: 'flex' }}>
-                        <LangSelect translateLanguages={translateLanguages}/>
-                        <MdCheck className={styles.btn}/>
+                        <LangSelect
+                          translateLanguages={translateLanguages}
+                          ref={(ref) => this.langSelect = ref}
+                        />
+                        <MdCheck className={styles.btn} onClick={this.selectLang}/>
                         <MdClose className={styles.btn} onClick={this.showTooltip}/>
                       </div>
                     </div>
