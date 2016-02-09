@@ -13,9 +13,10 @@ import MdCheck from 'react-icons/lib/md/check';
 import ToolTip from 'react-portal-tooltip';
 import LangSelect from './LangSelect';
 import SpeechSynthesis from './SpeechSynthesis';
+import TranslateBox from './TranslateBox';
 
 let currId = '';
-export default class ChatInput extends Component {
+export default class Message extends Component {
   static propTypes = {
     message: PropTypes.object,
     isMine: PropTypes.func,
@@ -89,6 +90,7 @@ export default class ChatInput extends Component {
               {this.isLink(message.msg) ?
                 <VideoContainer src={this.isLink(message.msg)}/> :
                 emojify(message.msg)}
+              <TranslateBox lang={lang} ref={(ref) => this.translateBox = ref}/>
             </div>
             <div className={styles.footerMsg}>
               {

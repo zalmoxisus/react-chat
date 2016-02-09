@@ -151,7 +151,6 @@ body {
 .contentMsg {
   font-weight: 400;
   min-width: 75px;
-  display: flex;
   word-break: break-all;
 }
 .bigContent {
@@ -429,6 +428,40 @@ body {
 }
 .liVideo{}
 .liTranslate{}
+
+.trBox{
+  border: 1px dotted #ccc;
+  background: #fff;
+  font-size: 14px;
+  color: #777a7e;
+}
+.trSpan{
+  background: #eee;
+  margin-left: 5px;
+  font-size: 11px;
+  padding: 2px 3px;
+  float: right;
+}
+.trText{
+  padding: 3px;
+}
+
+.trSpan svg:nth-child(1){
+  position: absolute;
+  padding: 2px 0;
+}
+.trSpan svg:nth-child(2){
+  background: #eee;
+  padding: 2px 0;
+  margin-top: -2px;
+  opacity: 0;
+}
+.trSpan:hover{
+  cursor: pointer;
+}
+.trSpan:hover svg:nth-child(2) {
+  opacity: 0.9;
+}
 
 @media (max-width: 610px) {
   .msg {
