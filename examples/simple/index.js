@@ -9,6 +9,7 @@ const me = {
   avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg'
 };
 const lang = 'en';
+const nativeLng = 'en';
 
 class Container extends Component {
   state = {
@@ -64,6 +65,7 @@ class Container extends Component {
         onTranslate={this.handleTranslate}
         onDelete={this.handleDelete}
         translateLanguages={translateLanguages}
+        nativeLng={nativeLng}
       />
     );
   }

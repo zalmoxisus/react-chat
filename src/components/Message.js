@@ -16,6 +16,8 @@ import SpeechSynthesis from './SpeechSynthesis';
 import TranslateBox from './TranslateBox';
 
 let currId = '';
+let lastTranslate = '';
+let nativeLng;
 export default class Message extends Component {
   static propTypes = {
     message: PropTypes.object,
@@ -26,7 +28,8 @@ export default class Message extends Component {
     translateLanguages: PropTypes.array,
     lang: PropTypes.string,
     voicesArr: PropTypes.array,
-    msgCount: PropTypes.number
+    msgCount: PropTypes.number,
+    nativeLng: PropTypes.string
   };
   state = {
     isTooltipActive: false,
@@ -44,29 +47,47 @@ export default class Message extends Component {
       });
     }
   };
+  componentDidMount() {
+    if (this.props.nativeLng) {
+      nativeLng = this.props.nativeLng;
+    }
+  }
+  translate = (id, msg, e) => {
+    if (lastTranslate === id || !nativeLng) {
+      this.showTooltip(e);
+    } else {
+      lastTranslate = id;
+      this.insertTranslation(nativeLng, msg, e);
+    }
+  };
   selectLang = (msg, e) => {
     const that = this;
-    const selectedLng = that.langSelect.languageSelect.value;
+    nativeLng = that.langSelect.languageSelect.value;
+    this.insertTranslation(nativeLng, msg, e);
+    this.showTooltip(e);
+  };
+  insertTranslation = (lng, msg, e) => {
     let isLng = false;
     this.state.trLangs.forEach(function (item, index, object) {
-      if (item.lang === selectedLng) {
+      if (item.lang === nativeLng) {
         isLng = true;
       }
     });
     if (!isLng) {
       this.props.onTranslate(
         msg,
-        selectedLng,
+        lng,
         txt => {
           const trLang = {
             id: 'tr' + (Date.now() / 1000 | 0),
-            lang: selectedLng,
+            lang: lng,
             txt
           };
           this.state.add(trLang);
           this.setState(this.state);
         }
       );
+    } else {
       this.showTooltip(e);
     }
   };
@@ -98,7 +119,7 @@ export default class Message extends Component {
     const media = convertMedia(msg, 150, true);
     if (media.indexOf('<iframe') > -1) return true;
   };
-  deleteMsg = (message, e) => {
+  deleteMsg = (message) => {
     this.props.onDelete(message, function success() {
       //on delete success
     });
@@ -152,7 +173,10 @@ export default class Message extends Component {
           <div className={styles.secondCell}>
             {
               (onTranslate && translateLanguages && !this.isVideo(message.msg)) ?
-                <div id={'a' + message.id} onClick={this.showTooltip}>
+                <div
+                  id={'a' + message.id}
+                  onClick={this.translate.bind(this, message.id, message.msg)}
+                >
                   <MdTranslate/>
                   <ToolTip
                     active={this.state.isTooltipActive}
@@ -166,7 +190,10 @@ export default class Message extends Component {
                           translateLanguages={translateLanguages}
                           ref={(ref) => this.langSelect = ref}
                         />
-                        <MdCheck className={styles.btn} onClick={this.selectLang.bind(this, message.msg)}/>
+                        <MdCheck
+                          className={styles.btn}
+                          onClick={this.selectLang.bind(this, message.msg)}
+                        />
                         <MdClose className={styles.btn} onClick={this.showTooltip}/>
                       </div>
                     </div>

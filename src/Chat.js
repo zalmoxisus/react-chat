@@ -15,7 +15,8 @@ export default class Chat extends Component {
     lang: PropTypes.string,
     onTranslate: PropTypes.func,
     onDelete: PropTypes.func,
-    translateLanguages: PropTypes.array
+    translateLanguages: PropTypes.array,
+    nativeLng: PropTypes.string
   };
 
   static defaultProps = {
@@ -31,7 +32,9 @@ export default class Chat extends Component {
   isMine = id => this.props.me.id === id;
 
   render() {
-    const { messages, me, lang, onSend, onTranslate, onDelete, translateLanguages } = this.props;
+    const {
+      messages, me, lang, onSend, onTranslate,
+      onDelete, translateLanguages, nativeLng } = this.props;
     return (<div>
         <div className={styles.base}>
           <ChatArea messages={messages}
@@ -41,6 +44,7 @@ export default class Chat extends Component {
             onDelete={onDelete}
             lang={lang}
             translateLanguages={translateLanguages}
+            nativeLng={nativeLng}
           />
           <ChatInput
             onSend={onSend}

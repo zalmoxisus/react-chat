@@ -18,7 +18,6 @@ export default class TranslateBox extends Component {
           this.props.trLangs.map(trLang => {
             return (
               <div key={trLang.id} className={styles.trBox}>
-                <span className={styles.trText}>{trLang.txt}</span>
                 <span onClick={this.removeBox.bind(this, trLang.id)} className={styles.trSpan}>
                   <span>
                     <MdTranslate/>
@@ -26,6 +25,7 @@ export default class TranslateBox extends Component {
                   </span>
                   <span>{trLang.lang.toUpperCase()}</span>
                 </span>
+                <span className={styles.trText}>{trLang.txt}</span>
               </div>
             );
           })
