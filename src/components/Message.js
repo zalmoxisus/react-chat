@@ -44,13 +44,20 @@ export default class Message extends Component {
       });
     }
   };
-  selectLang = (e) => {
-    const trLang = {
-      id: 'tr' + this.state.trLangs.length,
-      lang: this.langSelect.languageSelect.value
-    };
-    this.state.add(trLang);
-    this.setState(this.state);
+  selectLang = (msg, e) => {
+    this.props.onTranslate(
+      msg,
+      this.langSelect.languageSelect.value,
+      txt => {
+        const trLang = {
+          id: 'tr' + this.state.trLangs.length,
+          lang: this.langSelect.languageSelect.value,
+          txt
+        };
+        this.state.add(trLang);
+        this.setState(this.state);
+      }
+    );
     this.showTooltip(e);
   };
   deleteBox = (trLang) => {
@@ -149,7 +156,7 @@ export default class Message extends Component {
                           translateLanguages={translateLanguages}
                           ref={(ref) => this.langSelect = ref}
                         />
-                        <MdCheck className={styles.btn} onClick={this.selectLang}/>
+                        <MdCheck className={styles.btn} onClick={this.selectLang.bind(this, message.msg)}/>
                         <MdClose className={styles.btn} onClick={this.showTooltip}/>
                       </div>
                     </div>
