@@ -45,20 +45,30 @@ export default class Message extends Component {
     }
   };
   selectLang = (msg, e) => {
-    this.props.onTranslate(
-      msg,
-      this.langSelect.languageSelect.value,
-      txt => {
-        const trLang = {
-          id: 'tr' + this.state.trLangs.length,
-          lang: this.langSelect.languageSelect.value,
-          txt
-        };
-        this.state.add(trLang);
-        this.setState(this.state);
+    const that = this;
+    const selectedLng = that.langSelect.languageSelect.value;
+    let isLng = false;
+    this.state.trLangs.forEach(function (item, index, object) {
+      if (item.lang === selectedLng) {
+        isLng = true;
       }
-    );
-    this.showTooltip(e);
+    });
+    if (!isLng) {
+      this.props.onTranslate(
+        msg,
+        selectedLng,
+        txt => {
+          const trLang = {
+            id: 'tr' + (Date.now() / 1000 | 0),
+            lang: selectedLng,
+            txt
+          };
+          this.state.add(trLang);
+          this.setState(this.state);
+        }
+      );
+      this.showTooltip(e);
+    }
   };
   deleteBox = (trLang) => {
     this.state.delete(trLang);

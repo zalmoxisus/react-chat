@@ -24,7 +24,7 @@ export default class TranslateBox extends Component {
                     <MdTranslate/>
                     <MdClose/>
                   </span>
-                  <span>{trLang.lang}</span>
+                  <span>{trLang.lang.toUpperCase()}</span>
                 </span>
               </div>
             );
