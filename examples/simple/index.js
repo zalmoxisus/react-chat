@@ -22,7 +22,7 @@ class Container extends Component {
     delete(message) {
       this.messages.forEach(function (item, index, object) {
         if (item.id === message) {
-          object.splice(index, 1);
+          //object.splice(index, 1);
         }
       });
     }

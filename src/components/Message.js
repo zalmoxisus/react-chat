@@ -120,8 +120,11 @@ export default class Message extends Component {
     if (media.indexOf('<iframe') > -1) return true;
   };
   deleteMsg = (message) => {
+    const msg = this.msg;
     this.props.onDelete(message, function success() {
-      //on delete success
+      msg.children[0].style.display = 'none';
+      msg.children[1].style.display = 'none';
+      msg.children[2].style.display = 'block';
     });
   };
   render() {
@@ -141,6 +144,7 @@ export default class Message extends Component {
         <div className={isMine(message.sender) ? styles.arrowRight : styles.arrowLeft}>
         </div>
         <div
+          ref={(ref) => this.msg = ref}
           key={message.msg}
           className={isMine(message.sender) ? styles.myMsg : styles.uMsg}
         >
@@ -218,6 +222,9 @@ export default class Message extends Component {
                   <MdClose/>
                 </div> : null
             }
+          </div>
+          <div className={styles.restoreMsg}>
+            <span>Restore the message</span>
           </div>
         </div>
       </div>
