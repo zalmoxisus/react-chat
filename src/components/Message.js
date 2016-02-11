@@ -25,6 +25,7 @@ export default class Message extends Component {
     replay: PropTypes.func,
     onTranslate: PropTypes.func,
     onDelete: PropTypes.func,
+    onRestore: PropTypes.func,
     translateLanguages: PropTypes.array,
     lang: PropTypes.string,
     voicesArr: PropTypes.array,
@@ -127,6 +128,14 @@ export default class Message extends Component {
       msg.children[2].style.display = 'block';
     });
   };
+  restoreMsg = (message) => {
+    const msg = this.msg;
+    this.props.onRestore(message, function success() {
+      msg.children[0].style.display = 'block';
+      msg.children[1].style.display = 'block';
+      msg.children[2].style.display = 'none';
+    });
+  };
   render() {
     const {
       message, isMine, replay, onTranslate,
@@ -224,7 +233,7 @@ export default class Message extends Component {
             }
           </div>
           <div className={styles.restoreMsg}>
-            <span>Restore the message</span>
+            <span onClick={this.restoreMsg}>Restore the message</span>
           </div>
         </div>
       </div>

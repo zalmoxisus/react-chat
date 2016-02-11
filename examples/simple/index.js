@@ -17,14 +17,6 @@ class Container extends Component {
 
     add(message) {
       this.messages.push(message);
-    },
-
-    delete(message) {
-      this.messages.forEach(function (item, index, object) {
-        if (item.id === message) {
-          //object.splice(index, 1);
-        }
-      });
     }
   };
 
@@ -50,8 +42,11 @@ class Container extends Component {
 
   handleDelete = (message, success) => {
     // Add here delete method
-    this.state.delete(message);
-    this.setState(this.state);
+    success();
+  };
+
+  handleRestore = (message, success) => {
+    // Add here restore method
     success();
   };
 
@@ -64,6 +59,7 @@ class Container extends Component {
         onSend={this.handleSend}
         onTranslate={this.handleTranslate}
         onDelete={this.handleDelete}
+        onRestore={this.handleRestore}
         translateLanguages={translateLanguages}
         nativeLng={nativeLng}
       />
