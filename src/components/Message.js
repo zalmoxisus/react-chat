@@ -28,6 +28,7 @@ export default class Message extends Component {
     onTranslate: PropTypes.func,
     onDelete: PropTypes.func,
     onRestore: PropTypes.func,
+    onBan: PropTypes.func,
     translateLanguages: PropTypes.array,
     lang: PropTypes.string,
     voicesArr: PropTypes.array,
@@ -138,6 +139,20 @@ export default class Message extends Component {
       msg.children[2].style.display = 'none';
     });
   };
+  ban = (name, id, e) => {
+    let banned = confirm(name + ' will be banned for this discussion');
+    if (banned === true) {
+      this.props.onBan(id, function success() {
+        const node = e.currentTarget;
+        node.innerHTML = 'Banned';
+        node.style.color = '#bbb';
+        node.style.cursor = 'default';
+        node.onclick = function (event) {
+          event.stopPropagation();
+        };
+      });
+    }
+  };
   render() {
     const {
       message, isMine, replay, onTranslate,
@@ -247,8 +262,10 @@ export default class Message extends Component {
               null :
               <span>
                 <span style={{ color: '#bbb' }}> | </span>
-                <MdBlock/>
-                <span>Ban for an hour</span>
+                <span onClick={this.ban.bind(this, message.name, message.id)}>
+                  <MdBlock/>
+                  <span>Ban for an hour</span>
+                </span>
               </span>
             }
           </div>

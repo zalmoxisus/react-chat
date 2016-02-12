@@ -11,6 +11,7 @@ export default class ChatArea extends Component {
     onTranslate: PropTypes.func,
     onDelete: PropTypes.func,
     onRestore: PropTypes.func,
+    onBan: PropTypes.func,
     translateLanguages: PropTypes.array,
     lang: PropTypes.string,
     nativeLng: PropTypes.string
@@ -64,6 +65,7 @@ export default class ChatArea extends Component {
       onTranslate,
       onDelete,
       onRestore,
+      onBan,
       translateLanguages,
       lang,
       nativeLng
@@ -81,6 +83,7 @@ export default class ChatArea extends Component {
                 onTranslate={onTranslate}
                 onDelete={onDelete}
                 onRestore={onRestore}
+                onBan={onBan}
                 translateLanguages={translateLanguages}
                 lang={lang}
                 voicesArr={this.state.voicesArr}

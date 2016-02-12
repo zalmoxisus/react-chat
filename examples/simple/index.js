@@ -50,6 +50,11 @@ class Container extends Component {
     success();
   };
 
+  handleBan = (id, success) => {
+    // Add here ban method
+    success();
+  };
+
   render() {
     return (
       <Chat
@@ -60,6 +65,7 @@ class Container extends Component {
         onTranslate={this.handleTranslate}
         onDelete={this.handleDelete}
         onRestore={this.handleRestore}
+        onBan={this.handleBan}
         translateLanguages={translateLanguages}
         nativeLng={nativeLng}
       />
