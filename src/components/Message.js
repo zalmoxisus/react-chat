@@ -11,6 +11,7 @@ import MdClose from 'react-icons/lib/md/close';
 import MdTranslate from 'react-icons/lib/md/translate';
 import MdCheck from 'react-icons/lib/md/check';
 import MdReplay from 'react-icons/lib/md/replay';
+import MdBlock from 'react-icons/lib/md/block';
 import ToolTip from 'react-portal-tooltip';
 import LangSelect from './LangSelect';
 import SpeechSynthesis from './SpeechSynthesis';
@@ -236,11 +237,20 @@ export default class Message extends Component {
           <div className={styles.restoreMsg}>
             <div>
               <MdClose/>
-              <span style={{ verticalAlign: 'middle' }}>Message deleted</span>
+              <span>Message deleted</span>
             </div>
             <span onClick={this.restoreMsg}>
-              <MdReplay style={{ fontSize: '12px' }}/>
-              <span>Restore the message</span></span>
+              <MdReplay/>
+              <span>Restore the message</span>
+            </span>
+            {isMine(message.sender) ?
+              null :
+              <span>
+                <span style={{ color: '#bbb' }}> | </span>
+                <MdBlock/>
+                <span>Ban for an hour</span>
+              </span>
+            }
           </div>
         </div>
       </div>

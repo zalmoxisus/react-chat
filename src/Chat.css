@@ -171,16 +171,21 @@ body {
   padding: 5px;
   display: none;
 }
+.restoreMsg span{
+  vertical-align: middle;
+}
 .restoreMsg > span{
   cursor: pointer;
   color: blue;
   font-size: 10px;
-  vertical-align: middle;
 }
 .restoreMsg > div{
   color: #bbb;
   font-size: 15px;
   margin-bottom: 7px;
+}
+.restoreMsg svg{
+  font-size: 12px;
 }
 .footerMsg{
   display: flex;
