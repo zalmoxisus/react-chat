@@ -31,17 +31,19 @@ export default class SpeechSynthesis extends Component {
   play = (message, id) => {
     const msg = new SpeechSynthesisUtterance(this.prepareForTranslation(message));
     const that = this;
-    this.toggleIcons(true);
+    this.toggleIcons(this.playSpan.childNodes[0], this.playSpan.childNodes[1]);
     msg.onstart = function (event) {
       if (that.state.isPlayTooltipActive) {
         that.showPlayTooltip();
       }
     };
+    const playBtn = this.playSpan.childNodes[0];
+    const stopBtn = this.playSpan.childNodes[1];
     msg.onend = function (event) {
-      that.toggleIcons(false);
+      that.toggleIcons(stopBtn, playBtn);
     };
     msg.onerror = function (event) {
-      that.toggleIcons(false);
+      that.toggleIcons(stopBtn, playBtn);
     };
     const voices = window.speechSynthesis.getVoices();
     msg.voice = voices.filter(function (voice) { return voice.name === voiceName; })[0];
@@ -61,7 +63,7 @@ export default class SpeechSynthesis extends Component {
         this.play(message, id);
       }
     } else {
-      this.toggleIcons(false);
+      this.toggleIcons(this.playSpan.childNodes[1], this.playSpan.childNodes[0]);
       window.speechSynthesis.cancel();
     }
   };
@@ -69,24 +71,19 @@ export default class SpeechSynthesis extends Component {
     voiceName = this.speech.speechSelect.value;
     this.play(message, id);
   };
-  toggleIcons = (val) => {
-    let node1 = this.playSpan.childNodes[0];
-    let node2 = this.playSpan.childNodes[1];
-    if (val) {
-      node1.style.visibility = 'hidden';
-      node2.style.visibility = 'visible';
-    } else {
-      node2.style.visibility = 'hidden';
-      node1.style.visibility = 'visible';
-    }
+  toggleIcons = (n1, n2) => {
+    const node1 = n1;
+    const node2 = n2;
+    node1.style.visibility = 'hidden';
+    node2.style.visibility = 'visible';
   };
   render() {
     const { message, lang, msgCount } = this.props;
     return (
       <div onClick={this.speak.bind(this, message.msg, message.id)}>
-        <span ref={(ref) => this.playSpan = ref}>
-          <MdPlayArrow id={'play' + message.id} style={{ position: 'absolute', marginTop: '2px' }}/>
-          <MdStop style={{ visibility: 'hidden' }} />
+        <span ref={(ref) => this.playSpan = ref} id={'play' + message.id}>
+          <MdPlayArrow className={styles.playBtn}/>
+          <MdStop style={{ visibility: 'hidden' }}/>
         </span>
         <ToolTip
           active={this.state.isPlayTooltipActive}
