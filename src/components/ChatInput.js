@@ -126,9 +126,7 @@ export default class ChatInput extends Component {
           >
             {emojify(' :) ')}
           </div>
-          <ToggleDisplay show={this.state.emoticonShow}>
-            <EmojiCategories addEmoticon={this.addStr} />
-          </ToggleDisplay>
+          <EmojiCategories addEmoticon={this.addStr} emoticonShow={this.state.emoticonShow}/>
         </div>
       </div>
     );
