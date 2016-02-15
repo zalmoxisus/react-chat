@@ -149,25 +149,26 @@ export default class UserMenu extends Component {
   render() {
     const { menuShow, onTranslate, translateLanguages } = this.props;
     return (<div className={styles.userContainer}>
-        <ToggleDisplay show={menuShow}>
-          <ul className={styles.usermenu} ref={(ref) => this.usermenu = ref}>
-            {
-              SpeechRecognition ?
-              <li onClick={this.handleClick.bind(this, 0)}>
-                <MdMic /><a href="#">Dictate text</a>
-              </li> : null
-            }
-            {
-              (onTranslate && translateLanguages) ?
-              <li className={styles.liTranslate} onClick={this.handleClick.bind(this, 1)}>
-                <MdMessage /><a href="#">Translate a phrase</a>
-              </li> : null
-            }
-            <li className={styles.liVideo} onClick={this.handleClick.bind(this, 2)}>
-              <MdOndemandVideo /><a href="#">Insert video</a>
-            </li>
-          </ul>
-        </ToggleDisplay>
+        <ul
+          className={menuShow ? styles.showUmenu : styles.hideUmenu}
+          ref={(ref) => this.usermenu = ref}
+        >
+          {
+            SpeechRecognition ?
+            <li onClick={this.handleClick.bind(this, 0)}>
+              <MdMic /><a href="#">Dictate text</a>
+            </li> : null
+          }
+          {
+            (onTranslate && translateLanguages) ?
+            <li className={styles.liTranslate} onClick={this.handleClick.bind(this, 1)}>
+              <MdMessage /><a href="#">Translate a phrase</a>
+            </li> : null
+          }
+          <li className={styles.liVideo} onClick={this.handleClick.bind(this, 2)}>
+            <MdOndemandVideo /><a href="#">Insert video</a>
+          </li>
+        </ul>
         <ToggleDisplay show={this.state.submenuShow}>
           <div ref={(ref) => this.videoInpContainer = ref} className={styles.videoInpContainer}>
             <input
