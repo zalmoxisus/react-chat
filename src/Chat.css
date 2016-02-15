@@ -280,7 +280,6 @@ body {
 
 .iconClear {
   position: relative;
-  padding-bottom: 200px;
 }
 
 .iconMic{
@@ -288,7 +287,6 @@ body {
   position: absolute;
   left: 0;
   font-size: 20px;
-  padding-bottom: 200px;
 }
 
 .userContainer {
@@ -487,10 +485,10 @@ body {
   margin-top: 2px;
 }
 .show {
-  -moz-transition-duration: 0.4s;
-  -webkit-transition-duration: 0.4s;
-  -o-transition-duration: 0.4s;
-  transition-duration: 0.4s;
+  -moz-transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  -o-transition-duration: 0.5s;
+  transition-duration: 0.5s;
   -moz-transition-timing-function: ease-in;
   -webkit-transition-timing-function: ease-in;
   -o-transition-timing-function: ease-in;
@@ -502,25 +500,16 @@ body {
   border: transparent;
   overflow: hidden;
   max-height: 0;
-  opacity: 0.3;
   padding-top: 0;
   padding-bottom: 0;
   margin-top: 0;
   margin-bottom: 0;
-  -moz-transition-duration: 0.3s;
-  -webkit-transition-duration: 0.3s;
-  -o-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-  -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-  -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
-.hideUmenu{
+.hideUmenu {
   composes: usermenu;
   composes: hide;
 }
-.showUmenu{
+.showUmenu {
   composes: usermenu;
   composes: show;
 }
