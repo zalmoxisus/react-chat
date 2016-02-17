@@ -83,12 +83,6 @@ export default class ChatInput extends Component {
     const { onSend, onTranslate, translateLanguages, submenuShow, lang } = this.props;
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.hideMenu}>
-          <ToggleDisplay show={!this.state.menuShow}>
-            <MdKeyboardArrowDown className={styles.arrowDown} />
-          </ToggleDisplay>
-          <ToggleDisplay show={this.state.menuShow}>
-            <MdKeyboardArrowUp className={styles.arrowUp} />
-          </ToggleDisplay>
           <UserMenu
             menuShow={this.state.menuShow}
             submenuShow={submenuShow}
@@ -98,6 +92,12 @@ export default class ChatInput extends Component {
             onTranslate={onTranslate}
             translateLanguages={translateLanguages}
           />
+          <ToggleDisplay show={!this.state.menuShow}>
+            <MdKeyboardArrowDown className={styles.arrowDown} />
+          </ToggleDisplay>
+          <ToggleDisplay show={this.state.menuShow}>
+            <MdKeyboardArrowUp className={styles.arrowUp} />
+          </ToggleDisplay>
         </div>
         <TextareaAutosize
           ref={(ref) => this.usermsg = ref} className={styles.usermsg} autoFocus onKeyPress={

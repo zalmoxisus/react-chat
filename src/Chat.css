@@ -221,8 +221,6 @@ body {
 }
 
 .usermsg {
-  bottom: 0;
-  right: 0;
   width: 100%;
   min-height: 30px !important;
   padding: 7px 40px 3px 40px;
@@ -256,11 +254,6 @@ body {
   height: 100%;
 }
 
-/*.chatOptions > div:first-child:hover {
-  color: #d8935d;
-  cursor: pointer;
-}*/
-
 .arrowDown, .arrowUp, .iconClear, .iconMic {
   color: #ffffff;
   background: #bbbbbb;
@@ -273,7 +266,7 @@ body {
   box-shadow: 0 -1px 1px rgba(5, 5, 5, 0.3);
 }
 
-.arrowDown:hover, .arrowUp:hover, .iconClear:hover {
+.arrowDown:hover, .arrowUp:hover, .iconClear, .iconMic:hover {
   color: #d8935d;
   cursor: pointer;
 }
@@ -308,6 +301,7 @@ body {
 .btnContainer {
   position: absolute;
   left: 0;
+  z-index: 2;
 }
 
 .userContainer input {
@@ -484,11 +478,19 @@ body {
   position: absolute;
   margin-top: 2px;
 }
-.show {
+.showMenu {
+  -moz-transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.showEmoticons {
   -moz-transition-duration: 0.5s;
   -webkit-transition-duration: 0.5s;
   -o-transition-duration: 0.5s;
   transition-duration: 0.5s;
+}
+.show {
   -moz-transition-timing-function: ease-in;
   -webkit-transition-timing-function: ease-in;
   -o-transition-timing-function: ease-in;
@@ -508,9 +510,11 @@ body {
 .hideUmenu {
   composes: usermenu;
   composes: hide;
+  opacity: 0;
 }
 .showUmenu {
   composes: usermenu;
+  composes: showMenu;
   composes: show;
 }
 .hideEmoticons{
@@ -519,6 +523,7 @@ body {
 }
 .showEmoticons{
   composes: emoticons;
+  composes: showEmoticons;
   composes: show;
 }
 @media (max-width: 610px) {
