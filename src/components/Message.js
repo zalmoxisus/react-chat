@@ -163,6 +163,7 @@ export default class Message extends Component {
           !isMine(message.sender) &&
           ((typeof message.showAvatars === 'undefined') ? true : message.showAvatars) &&
           <Avatar style={styles.avatar}
+            id={message.id}
             src={message.avatar}
             name={message.name}
           />

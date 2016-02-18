@@ -204,6 +204,28 @@ body {
   text-align: center;
 }
 
+.avatar:hover {
+  cursor: pointer;
+}
+
+.avtrTooltip {
+  background: #f5f5f5;
+  opacity: 0.9;
+}
+
+.avtrTooltip img {
+  padding: 7px;
+}
+
+.avtrName {
+  font-size: 16px;
+  padding: 5px;
+  border-bottom: 1px solid #bbb;
+  margin-bottom: 5px;
+  width: 92%;
+  background: #eee;
+}
+
 .img {
   height: 25px;
   border-radius: 4px
