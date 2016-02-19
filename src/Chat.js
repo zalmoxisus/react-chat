@@ -18,7 +18,8 @@ export default class Chat extends Component {
     onRestore: PropTypes.func,
     onBan: PropTypes.func,
     translateLanguages: PropTypes.array,
-    nativeLng: PropTypes.string
+    nativeLng: PropTypes.string,
+    withPhoto: PropTypes.bool
   };
 
   static defaultProps = {
@@ -35,7 +36,7 @@ export default class Chat extends Component {
 
   render() {
     const {
-      messages, me, lang, onSend, onTranslate,
+      messages, me, lang, onSend, onTranslate, withPhoto,
       onDelete, translateLanguages, nativeLng, onRestore, onBan } = this.props;
     return (<div>
         <div className={styles.base}>
@@ -49,6 +50,7 @@ export default class Chat extends Component {
             lang={lang}
             translateLanguages={translateLanguages}
             nativeLng={nativeLng}
+            withPhoto={withPhoto}
           />
           <ChatInput
             onSend={onSend}

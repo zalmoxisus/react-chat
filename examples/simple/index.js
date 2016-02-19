@@ -10,6 +10,7 @@ const me = {
 };
 const lang = 'en';
 const nativeLng = 'en';
+const withPhoto = true;
 
 class Container extends Component {
   state = {
@@ -68,6 +69,7 @@ class Container extends Component {
         onBan={this.handleBan}
         translateLanguages={translateLanguages}
         nativeLng={nativeLng}
+        withPhoto={withPhoto}
       />
     );
   }

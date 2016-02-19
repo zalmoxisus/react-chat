@@ -14,7 +14,8 @@ export default class ChatArea extends Component {
     onBan: PropTypes.func,
     translateLanguages: PropTypes.array,
     lang: PropTypes.string,
-    nativeLng: PropTypes.string
+    nativeLng: PropTypes.string,
+    withPhoto: PropTypes.bool
   };
 
   state = {
@@ -68,7 +69,8 @@ export default class ChatArea extends Component {
       onBan,
       translateLanguages,
       lang,
-      nativeLng
+      nativeLng,
+      withPhoto
     } = this.props;
     return (
       <div id="container" className={styles.container}>
@@ -89,6 +91,7 @@ export default class ChatArea extends Component {
                 voicesArr={this.state.voicesArr}
                 msgCount={msgCount}
                 nativeLng={nativeLng}
+                withPhoto={withPhoto}
                 ref={(ref) => this.messages = ref}
               />
             );

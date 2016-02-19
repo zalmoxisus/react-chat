@@ -33,7 +33,8 @@ export default class Message extends Component {
     lang: PropTypes.string,
     voicesArr: PropTypes.array,
     msgCount: PropTypes.number,
-    nativeLng: PropTypes.string
+    nativeLng: PropTypes.string,
+    withPhoto: PropTypes.bool
   };
   state = {
     isTooltipActive: false,
@@ -155,11 +156,12 @@ export default class Message extends Component {
   };
   render() {
     const {
-      message, isMine, replay, onTranslate,
+      message, isMine, replay, onTranslate, withPhoto,
       onDelete, translateLanguages, lang, voicesArr, msgCount } = this.props;
     return (
       <div className={styles.msgBox}>
         {
+          withPhoto &&
           !isMine(message.sender) &&
           ((typeof message.showAvatars === 'undefined') ? true : message.showAvatars) &&
           <Avatar style={styles.avatar}
