@@ -214,15 +214,16 @@ body {
 }
 
 .avtrTooltip img {
-  padding: 7px;
+  padding: 7px 12px 7px 12px;
+  max-width: 150px;
 }
 
 .avtrName {
-  font-size: 16px;
-  padding: 5px;
+  font-size: 15px;
+  padding: 9px;
   border-bottom: 1px solid #bbb;
   margin-bottom: 5px;
-  width: 92%;
+  width: auto;
   background: #eee;
 }
 

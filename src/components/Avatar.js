@@ -2,6 +2,15 @@ import React, { Component, PropTypes } from 'react';
 import styles from '../Chat.css';
 import ToolTip from 'react-portal-tooltip';
 
+let position;
+let style = {
+  style: {
+    padding: 0
+  },
+  arrowStyle: {
+    borderColor: false
+  }
+};
 export default class Avatar extends Component {
   static propTypes = {
     id: PropTypes.number,
@@ -11,9 +20,20 @@ export default class Avatar extends Component {
   state = {
     isTooltipActive: false
   };
-  showTooltip = () => {
+  showTooltip = (e) => {
     this.setState({ isTooltipActive: true });
+    position = this.avtrLeft(e);
+    if (e.currentTarget.offsetParent.offsetTop < 100) {
+      style.style.marginTop = '85px';
+      style.arrowStyle.marginTop = '-85px';
+      style.arrowStyle.color = '#eee';
+    } else {
+      style.style.marginTop = 0;
+      style.arrowStyle.marginTop = '-15px';
+      style.arrowStyle.color = '#f5f5f5';
+    }
   };
+  avtrLeft = e => e.currentTarget.offsetParent.offsetParent.offsetLeft;
   hideTooltip = () => {
     this.setState({ isTooltipActive: false });
   };
@@ -35,8 +55,9 @@ export default class Avatar extends Component {
           src ?
             <ToolTip
               active={this.state.isTooltipActive}
-              position={'right'} arrow="center"
+              position={ position > 170 ? 'left' : 'right' } arrow="center"
               parent={'#avtr' + id}
+              style={style}
             >
               <div className={styles.avtrTooltip}>
                 <div className={styles.avtrName}>{name}</div>
