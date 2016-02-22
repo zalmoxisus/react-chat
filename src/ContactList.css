@@ -13,6 +13,7 @@ body {
   height: 100%;
   width: 100%;
   background: #22262A;
+  overflow-y: auto;
 }
 .headerlist{
   background: #333c44;
@@ -36,11 +37,12 @@ body {
 .contactlist li{
   margin: 0 5px;
   border-bottom: 1px solid #555;
-  height: 34px;
   line-height: 2.7;
+  display: flex;
 }
 .img{
   width: 25px;
+  height: 25px;
   border-radius: 2px;
   vertical-align:middle;
   margin: 4px 5px 4px 0;
@@ -50,11 +52,38 @@ body {
   border: 1px solid #90a4ae;
   border-radius: 4px;
   color: #ddd;
-  font-weight: 600;
   background: #90a4ae;
   width: 25px;
   text-align: center;
   height: 25px;
   float: left;
   margin: 4px 5px 4px 0;
+  font-size: 12px;
+}
+.arrow{
+  background: #484A4E;
+  border-radius: 8px;
+  color: #c1c1c1;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  right: 7px;
+  margin-top: 8px;
+}
+.arrow svg{
+  position: absolute;
+  padding: 1px;
+  font-size: 16px;
+}
+.arrow:hover{
+  background: #5E6062;
+  color: #fff;
+  cursor: pointer;
+}
+.rotateSvg{
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
 }
