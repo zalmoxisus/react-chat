@@ -13,6 +13,11 @@ const testContacts = [
     id: 3,
     name: 'Hellen',
     avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg'
+  },
+  {
+    id: 4,
+    name: 'Peter',
+    avatar: ''
   }
 ];
 

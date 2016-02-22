@@ -13,7 +13,7 @@ export default class ContactList extends Component {
         {
           this.props.src ?
             <img className={styles.img} src={this.props.src}/> :
-            <div className={styles.txt}>{name[0]}</div>
+            <span className={styles.txt}>{this.props.name[0]}</span>
         }
         <span>{this.props.name}</span>
       </li>

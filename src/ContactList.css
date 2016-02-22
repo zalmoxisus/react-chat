@@ -34,12 +34,27 @@ body {
   color: #d0d0d1;
 }
 .contactlist li{
-  margin: 5px;
+  margin: 0 5px;
   border-bottom: 1px solid #555;
+  height: 34px;
+  line-height: 2.7;
 }
 .img{
   width: 25px;
   border-radius: 2px;
   vertical-align:middle;
-  margin-right: 5px;
+  margin: 4px 5px 4px 0;
+}
+.txt {
+  line-height: 2.2;
+  border: 1px solid #90a4ae;
+  border-radius: 4px;
+  color: #ddd;
+  font-weight: 600;
+  background: #90a4ae;
+  width: 25px;
+  text-align: center;
+  height: 25px;
+  float: left;
+  margin: 4px 5px 4px 0;
 }
