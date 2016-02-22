@@ -1,0 +1,45 @@
+html {
+  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+body {
+  font-size: 13px;
+  line-height: 20px;
+  margin: 0;
+  overflow: hidden;
+}
+.contactlist{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: #22262A;
+}
+.headerlist{
+  background: #333c44;
+  color: #cbcfd5;
+  padding: 5px;
+  border-bottom: 2px solid #676767;
+}
+.headerlist span{
+  vertical-align: middle;
+}
+.headerlist svg{
+  padding: 2px;
+  font-size: 18px;
+}
+.contactlist ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  color: #d0d0d1;
+}
+.contactlist li{
+  margin: 5px;
+  border-bottom: 1px solid #555;
+}
+.img{
+  width: 25px;
+  border-radius: 2px;
+  vertical-align:middle;
+  margin-right: 5px;
+}
