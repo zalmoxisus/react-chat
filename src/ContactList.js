@@ -19,7 +19,7 @@ export default class ContactList extends Component {
             this.props.listContacts.map(contact => {
               return (
                 <Contacts key={contact.id}
-                  src={contact.avatar}
+                  avatar={contact.avatar}
                   name={contact.name}
                 />
               );

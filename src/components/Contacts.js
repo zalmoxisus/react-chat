@@ -10,7 +10,7 @@ import MdClose from 'react-icons/lib/md/close';
 export default class ContactList extends Component {
   static propTypes = {
     name: PropTypes.string,
-    src: PropTypes.string
+    avatar: PropTypes.string
   };
 
   toggleInfo = (e) => {
@@ -41,8 +41,8 @@ export default class ContactList extends Component {
     return (
       <li ref={(ref) => this.avatar = ref}>
         {
-          this.props.src ?
-            <img className={styles.img} src={this.props.src}/> :
+          this.props.avatar ?
+            <img className={styles.img} src={this.props.avatar}/> :
             <span className={styles.txt}>{this.props.name[0]}</span>
         }
         <span>

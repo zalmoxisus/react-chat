@@ -115,5 +115,6 @@ body {
 }
 .optionsRight{
   composes: options;
-  margin-top: 35px;
+  margin-top: 33px;
+  padding-bottom: 1px;
 }
