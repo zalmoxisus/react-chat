@@ -37,7 +37,7 @@ body {
 .contactlist li{
   margin: 0 5px;
   border-bottom: 1px solid #555;
-  line-height: 2.7;
+  line-height: 2.3;
   display: flex;
 }
 .img{
@@ -86,4 +86,20 @@ body {
   -o-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   transform: rotate(90deg);
+}
+.optionsLeft{
+  background: #5E6063;
+  font-size: 15px;
+  color: #939393;
+  border-radius: 2px;
+  margin-bottom: 4px;
+  display: none;
+}
+.optionsLeft svg{
+  padding: 3px;
+  font-size: 17px;
+}
+.optionsLeft svg:hover{
+  cursor: pointer;
+  color: #FFFFFF;
 }
