@@ -27,17 +27,19 @@ export default class ChatArea extends Component {
 
   componentWillMount() {
     const that = this;
-    window.speechSynthesis.onvoiceschanged = function (e) {
-      const voices = window.speechSynthesis.getVoices();
-      let voicesByLang = [];
-      for (let i = 0; i < voices.length; i++) {
-        let option = voices[i];
-        if (option.lang.indexOf(that.props.lang) > -1) {
-          that.state.add(option);
-          that.setState(that.state);
+    if (window.speechSynthesis) {
+      window.speechSynthesis.onvoiceschanged = function (e) {
+        const voices = window.speechSynthesis.getVoices();
+        let voicesByLang = [];
+        for (let i = 0; i < voices.length; i++) {
+          let option = voices[i];
+          if (option.lang.indexOf(that.props.lang) > -1) {
+            that.state.add(option);
+            that.setState(that.state);
+          }
         }
-      }
-    };
+      };
+    }
   }
   componentDidMount() {
     setTimeout(this.updateScrollTop, 500);

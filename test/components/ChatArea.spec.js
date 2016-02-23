@@ -56,7 +56,7 @@ describeWithDOM('ChatArea', () => {
     const wrapper = mount(<ChatArea {...props} />).find('#container');
     expect(wrapper.children().length).toBe(props.messages.length);
     wrapper.children().forEach(function (node, i) {
-      expect(node.find('img').node.src).toBe(props.messages[i].avatar);
+      expect(node.node.props.message.avatar).toBe(props.messages[i].avatar);
     });
 
   });

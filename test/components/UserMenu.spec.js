@@ -54,7 +54,6 @@ describeWithDOM('UserMenu.', () => {
   it('should render correctly', () => {
     const wrapper = mount(<UserMenu />).find('ul');
     expect(wrapper.type()).toBe('ul');
-    expect(wrapper.prop('className')).toBe(styles.usermenu);
   });
   it('should open video popup', () => {
     const wrapper = mount(<UserMenu />);
