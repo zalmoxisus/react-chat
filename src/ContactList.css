@@ -12,6 +12,7 @@ body {
   position: absolute;
   height: 100%;
   width: 100%;
+  min-width: 175px;
   background: #22262A;
   overflow-y: auto;
 }
@@ -117,4 +118,11 @@ body {
   composes: options;
   margin-top: 33px;
   padding-bottom: 1px;
+}
+
+@media (max-width: 200px) {
+  .img{
+    max-width: 25px;
+    max-height: 25px;
+  }
 }
