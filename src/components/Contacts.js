@@ -4,6 +4,8 @@ import MdKeyboardArrowDown from 'react-icons/lib/md/keyboard-arrow-down';
 import MdInfo from 'react-icons/lib/md/info';
 import MdMessage from 'react-icons/lib/md/message';
 import MdVideocam from 'react-icons/lib/md/videocam';
+import MdEdit from 'react-icons/lib/md/edit';
+import MdClose from 'react-icons/lib/md/close';
 
 export default class ContactList extends Component {
   static propTypes = {
@@ -13,20 +15,25 @@ export default class ContactList extends Component {
 
   toggleInfo = (e) => {
     const node = e.currentTarget.children[0];
+    const avatarStyle = this.avatar.children[0].style;
+    const leftStyle = this.optionsLeft.style;
+    const rightStyle = this.optionsRight.style;
     if (node.style.transform === 'rotate(180deg)') {
       node.style.transform = 'rotate(0deg)';
-      this.avatar.children[0].style.width = '25px';
-      this.avatar.children[0].style.height = '25px';
-      this.avatar.children[0].style.fontSize = '12px';
+      avatarStyle.width = '25px';
+      avatarStyle.height = '25px';
+      avatarStyle.fontSize = '12px';
 
-      this.optionsLeft.style.display = 'none';
+      leftStyle.display = 'none';
+      rightStyle.display = 'none';
     } else {
       node.style.transform = 'rotate(180deg)';
-      this.avatar.children[0].style.width = '48px';
-      this.avatar.children[0].style.height = '48px';
-      this.avatar.children[0].style.fontSize = '23px';
+      avatarStyle.width = '54px';
+      avatarStyle.height = '54px';
+      avatarStyle.fontSize = '25px';
 
-      this.optionsLeft.style.display = 'flex';
+      leftStyle.display = 'flex';
+      rightStyle.display = 'flex';
     }
   };
 
@@ -46,7 +53,15 @@ export default class ContactList extends Component {
             <MdVideocam/>
           </div>
         </span>
-        <div className={styles.arrow} onClick={this.toggleInfo}><MdKeyboardArrowDown/></div>
+        <span className={styles.right}>
+          <div className={styles.arrow} onClick={this.toggleInfo}>
+            <MdKeyboardArrowDown/>
+          </div>
+          <div ref={(ref) => this.optionsRight = ref} className={styles.optionsRight}>
+            <MdEdit/>
+            <MdClose/>
+          </div>
+        </span>
       </li>
     );
   }

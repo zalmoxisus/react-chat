@@ -49,7 +49,6 @@ body {
 }
 .txt {
   line-height: 2.2;
-  border: 1px solid #90a4ae;
   border-radius: 4px;
   color: #ddd;
   background: #90a4ae;
@@ -67,7 +66,7 @@ body {
   width: 18px;
   height: 18px;
   position: absolute;
-  right: 7px;
+  right: 3px;
   margin-top: 8px;
 }
 .arrow svg{
@@ -87,19 +86,34 @@ body {
   -ms-transform: rotate(90deg);
   transform: rotate(90deg);
 }
-.optionsLeft{
+.options{
   background: #5E6063;
   font-size: 15px;
   color: #939393;
   border-radius: 2px;
-  margin-bottom: 4px;
+  margin: 4px 0 4px 0;
   display: none;
 }
-.optionsLeft svg{
-  padding: 3px;
+.optionsLeft{
+  composes: options;
+}
+.options svg{
+  padding: 3px 4px 3px 4px;
   font-size: 17px;
 }
-.optionsLeft svg:hover{
+.optionsLeft svg:nth-child(3){
+  font-size: 20px;
+  padding-top: 1px;
+}
+.options svg:hover{
   cursor: pointer;
   color: #FFFFFF;
+}
+.right{
+  position: absolute;
+  right: 7px;
+}
+.optionsRight{
+  composes: options;
+  margin-top: 35px;
 }
