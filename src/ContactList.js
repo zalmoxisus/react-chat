@@ -5,9 +5,11 @@ import Contacts from './components/Contacts';
 
 export default class ContactList extends Component {
   static propTypes = {
-    listContacts: PropTypes.array
+    listContacts: PropTypes.array,
+    onInfo: PropTypes.func
   };
   render() {
+    const { listContacts, onInfo } = this.props;
     return (
       <div className={styles.contactlist}>
         <div className={styles.headerlist}>
@@ -16,11 +18,12 @@ export default class ContactList extends Component {
         </div>
         <ul>
           {
-            this.props.listContacts.map(contact => {
+            listContacts.map(contact => {
               return (
                 <Contacts key={contact.id}
                   avatar={contact.avatar}
                   name={contact.name}
+                  onInfo={onInfo}
                 />
               );
             })
