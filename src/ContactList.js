@@ -7,10 +7,11 @@ export default class ContactList extends Component {
   static propTypes = {
     listContacts: PropTypes.array,
     onInfo: PropTypes.func,
-    onMessage: PropTypes.func
+    onMessage: PropTypes.func,
+    onCall: PropTypes.func
   };
   render() {
-    const { listContacts, onInfo, onMessage } = this.props;
+    const { listContacts, onInfo, onMessage, onCall } = this.props;
     return (
       <div className={styles.contactlist}>
         <div className={styles.headerlist}>
@@ -26,6 +27,7 @@ export default class ContactList extends Component {
                   name={contact.name}
                   onInfo={onInfo}
                   onMessage={onMessage}
+                  onCall={onCall}
                 />
               );
             })

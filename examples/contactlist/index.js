@@ -15,12 +15,18 @@ class Container extends Component {
     console.log('message method');
   };
 
+  handleCall = () => {
+    // Add here call method
+    console.log('call method');
+  };
+
   render() {
     return (
       <ContactList
         listContacts={testContacts}
         onInfo={this.handleInfo}
         onMessage={this.handleMessage}
+        onCall={this.handleCall}
       />
     );
   }

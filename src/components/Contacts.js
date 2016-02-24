@@ -12,7 +12,8 @@ export default class ContactList extends Component {
     name: PropTypes.string,
     avatar: PropTypes.string,
     onInfo: PropTypes.func,
-    onMessage: PropTypes.func
+    onMessage: PropTypes.func,
+    onCall: PropTypes.func
   };
 
   toggleInfo = (e) => {
@@ -46,6 +47,9 @@ export default class ContactList extends Component {
   sendMessage = () => {
     this.props.onMessage();
   };
+  videoCall = () => {
+    this.props.onCall();
+  };
 
   render() {
     const { name, avatar } = this.props;
@@ -61,7 +65,7 @@ export default class ContactList extends Component {
           <div ref={(ref) => this.optionsLeft = ref} className={styles.optionsLeft}>
             <MdInfo onClick={this.showInfo}/>
             <MdMessage onClick={this.sendMessage}/>
-            <MdVideocam/>
+            <MdVideocam onClick={this.videoCall}/>
           </div>
         </span>
         <span className={styles.right}>
