@@ -11,7 +11,8 @@ export default class ContactList extends Component {
   static propTypes = {
     name: PropTypes.string,
     avatar: PropTypes.string,
-    onInfo: PropTypes.func
+    onInfo: PropTypes.func,
+    onMessage: PropTypes.func
   };
 
   toggleInfo = (e) => {
@@ -38,8 +39,12 @@ export default class ContactList extends Component {
     }
   };
 
-  handleInfo = () => {
+  showInfo = () => {
     this.props.onInfo();
+  };
+
+  sendMessage = () => {
+    this.props.onMessage();
   };
 
   render() {
@@ -54,8 +59,8 @@ export default class ContactList extends Component {
         <span>
           <span>{name}</span>
           <div ref={(ref) => this.optionsLeft = ref} className={styles.optionsLeft}>
-            <MdInfo onClick={this.handleInfo}/>
-            <MdMessage/>
+            <MdInfo onClick={this.showInfo}/>
+            <MdMessage onClick={this.sendMessage}/>
             <MdVideocam/>
           </div>
         </span>

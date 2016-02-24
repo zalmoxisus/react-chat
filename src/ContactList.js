@@ -6,10 +6,11 @@ import Contacts from './components/Contacts';
 export default class ContactList extends Component {
   static propTypes = {
     listContacts: PropTypes.array,
-    onInfo: PropTypes.func
+    onInfo: PropTypes.func,
+    onMessage: PropTypes.func
   };
   render() {
-    const { listContacts, onInfo } = this.props;
+    const { listContacts, onInfo, onMessage } = this.props;
     return (
       <div className={styles.contactlist}>
         <div className={styles.headerlist}>
@@ -24,6 +25,7 @@ export default class ContactList extends Component {
                   avatar={contact.avatar}
                   name={contact.name}
                   onInfo={onInfo}
+                  onMessage={onMessage}
                 />
               );
             })
