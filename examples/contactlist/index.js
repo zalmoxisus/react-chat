@@ -20,6 +20,11 @@ class Container extends Component {
     console.log('call method');
   };
 
+  handleChangeName = (name, success) => {
+    // Add here edit name method
+    success();
+  };
+
   render() {
     return (
       <ContactList
@@ -27,6 +32,7 @@ class Container extends Component {
         onInfo={this.handleInfo}
         onMessage={this.handleMessage}
         onCall={this.handleCall}
+        onChangeName={this.handleChangeName}
       />
     );
   }

@@ -8,10 +8,11 @@ export default class ContactList extends Component {
     listContacts: PropTypes.array,
     onInfo: PropTypes.func,
     onMessage: PropTypes.func,
-    onCall: PropTypes.func
+    onCall: PropTypes.func,
+    onChangeName: PropTypes.func
   };
   render() {
-    const { listContacts, onInfo, onMessage, onCall } = this.props;
+    const { listContacts, onInfo, onMessage, onCall, onChangeName } = this.props;
     return (
       <div className={styles.contactlist}>
         <div className={styles.headerlist}>
@@ -23,11 +24,11 @@ export default class ContactList extends Component {
             listContacts.map(contact => {
               return (
                 <Contacts key={contact.id}
-                  avatar={contact.avatar}
-                  name={contact.name}
+                  contactItem={contact}
                   onInfo={onInfo}
                   onMessage={onMessage}
                   onCall={onCall}
+                  onChangeName={onChangeName}
                 />
               );
             })

@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../ContactList.css';
+import ToolTip from 'react-portal-tooltip';
+import EditName from './EditName';
 import MdKeyboardArrowDown from 'react-icons/lib/md/keyboard-arrow-down';
 import MdInfo from 'react-icons/lib/md/info';
 import MdMessage from 'react-icons/lib/md/message';
@@ -9,11 +11,20 @@ import MdClose from 'react-icons/lib/md/close';
 
 export default class ContactList extends Component {
   static propTypes = {
-    name: PropTypes.string,
-    avatar: PropTypes.string,
+    contactItem: PropTypes.object,
     onInfo: PropTypes.func,
     onMessage: PropTypes.func,
-    onCall: PropTypes.func
+    onCall: PropTypes.func,
+    onChangeName: PropTypes.func
+  };
+
+  state = {
+    isTooltipActive: false,
+    username: this.props.contactItem.name
+  };
+
+  showTooltip = () => {
+    this.setState({ isTooltipActive: !this.state.isTooltipActive });
   };
 
   toggleInfo = (e) => {
@@ -43,7 +54,6 @@ export default class ContactList extends Component {
   showInfo = () => {
     this.props.onInfo();
   };
-
   sendMessage = () => {
     this.props.onMessage();
   };
@@ -51,17 +61,22 @@ export default class ContactList extends Component {
     this.props.onCall();
   };
 
+  editName = (name) => {
+    this.showTooltip();
+    this.setState({ username: name });
+  };
+
   render() {
-    const { name, avatar } = this.props;
+    const { contactItem, onChangeName } = this.props;
     return (
       <li ref={(ref) => this.avatar = ref}>
         {
-          this.props.avatar ?
-            <img className={styles.img} src={avatar}/> :
-            <span className={styles.txt}>{name[0]}</span>
+          contactItem.avatar ?
+            <img className={styles.img} src={contactItem.avatar}/> :
+            <span className={styles.txt}>{this.state.username[0]}</span>
         }
         <span>
-          <span>{name}</span>
+          <span>{this.state.username}</span>
           <div ref={(ref) => this.optionsLeft = ref} className={styles.optionsLeft}>
             <MdInfo onClick={this.showInfo}/>
             <MdMessage onClick={this.sendMessage}/>
@@ -73,7 +88,20 @@ export default class ContactList extends Component {
             <MdKeyboardArrowDown/>
           </div>
           <div ref={(ref) => this.optionsRight = ref} className={styles.optionsRight}>
-            <MdEdit/>
+            <span id={'a' + contactItem.id} style={{ lineHeight: '0.7' }}>
+              <MdEdit onClick={this.showTooltip}/>
+            </span>
+            <ToolTip
+              active={this.state.isTooltipActive}
+              position="left" arrow="center"
+              parent={'#a' + contactItem.id}
+            >
+              <EditName
+                name={this.state.username}
+                onChangeName={onChangeName}
+                editName={this.editName}
+              />
+            </ToolTip>
             <MdClose/>
           </div>
         </span>
