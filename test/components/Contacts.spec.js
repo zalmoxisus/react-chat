@@ -22,3 +22,12 @@ describeWithDOM('Contacts', () => {
     expect(wrapper.node.state.isTooltipActive).toBe(true);
   });
 });
+
+describeWithDOM('Contacts', () => {
+  it('should change name', () => {
+    const wrapper = mount(<Contacts {...props} />);
+    expect(wrapper.node.state.username).toBe('John');
+    wrapper.node.editName('Johnny');
+    expect(wrapper.node.state.username).toBe('Johnny');
+  });
+});
