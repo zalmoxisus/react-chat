@@ -15,7 +15,8 @@ export default class ContactList extends Component {
     onInfo: PropTypes.func,
     onMessage: PropTypes.func,
     onCall: PropTypes.func,
-    onChangeName: PropTypes.func
+    onChangeName: PropTypes.func,
+    onDelete: PropTypes.func
   };
 
   state = {
@@ -66,6 +67,16 @@ export default class ContactList extends Component {
     this.setState({ username: name });
   };
 
+  deleteContact = (id, name) => {
+    let deleted = confirm('You are about to remove ' + name +
+      '. All related chats will be closed.');
+    if (deleted === true) {
+      this.props.onDelete(id, function success() {
+        console.log('onDelete success');
+      });
+    }
+  };
+
   render() {
     const { contactItem, onChangeName } = this.props;
     return (
@@ -102,7 +113,7 @@ export default class ContactList extends Component {
                 editName={this.editName}
               />
             </ToolTip>
-            <MdClose/>
+            <MdClose onClick={this.deleteContact.bind(this, contactItem.id, contactItem.name)}/>
           </div>
         </span>
       </li>

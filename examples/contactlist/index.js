@@ -4,7 +4,17 @@ import ContactList from 'react-chat/ContactList';
 import testContacts from './testContacts';
 
 class Container extends Component {
+  state = {
+    contacts: testContacts,
 
+    delete(contact) {
+      this.contacts.forEach(function (item, index, object) {
+        if (item.id === contact) {
+          object.splice(index, 1);
+        }
+      });
+    }
+  };
   handleInfo = () => {
     // Add here info method
     console.log('info method');
@@ -25,6 +35,13 @@ class Container extends Component {
     success();
   };
 
+  handleDelete = (contact, success) => {
+    // Add here delete method
+    this.state.delete(contact);
+    this.setState(this.state);
+    success();
+  };
+
   render() {
     return (
       <ContactList
@@ -33,6 +50,7 @@ class Container extends Component {
         onMessage={this.handleMessage}
         onCall={this.handleCall}
         onChangeName={this.handleChangeName}
+        onDelete={this.handleDelete}
       />
     );
   }

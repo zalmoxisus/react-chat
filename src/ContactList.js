@@ -9,10 +9,11 @@ export default class ContactList extends Component {
     onInfo: PropTypes.func,
     onMessage: PropTypes.func,
     onCall: PropTypes.func,
-    onChangeName: PropTypes.func
+    onChangeName: PropTypes.func,
+    onDelete: PropTypes.func
   };
   render() {
-    const { listContacts, onInfo, onMessage, onCall, onChangeName } = this.props;
+    const { listContacts, onInfo, onMessage, onCall, onChangeName, onDelete } = this.props;
     return (
       <div className={styles.contactlist}>
         <div className={styles.headerlist}>
@@ -29,6 +30,7 @@ export default class ContactList extends Component {
                   onMessage={onMessage}
                   onCall={onCall}
                   onChangeName={onChangeName}
+                  onDelete={onDelete}
                 />
               );
             })
