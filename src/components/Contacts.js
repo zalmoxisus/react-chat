@@ -52,14 +52,14 @@ export default class ContactList extends Component {
     }
   };
 
-  showInfo = () => {
-    this.props.onInfo();
+  showInfo = (id) => {
+    this.props.onInfo(id);
   };
-  sendMessage = () => {
-    this.props.onMessage();
+  sendMessage = (id) => {
+    this.props.onMessage(id);
   };
-  videoCall = () => {
-    this.props.onCall();
+  videoCall = (id) => {
+    this.props.onCall(id);
   };
 
   editName = (name) => {
@@ -89,9 +89,9 @@ export default class ContactList extends Component {
         <span>
           <span>{this.state.username}</span>
           <div ref={(ref) => this.optionsLeft = ref} className={styles.optionsLeft}>
-            <MdInfo onClick={this.showInfo}/>
-            <MdMessage onClick={this.sendMessage}/>
-            <MdVideocam onClick={this.videoCall}/>
+            <MdInfo onClick={this.showInfo.bind(this, contactItem.id)}/>
+            <MdMessage onClick={this.sendMessage.bind(this, contactItem.id)}/>
+            <MdVideocam onClick={this.videoCall.bind(this, contactItem.id)}/>
           </div>
         </span>
         <span className={styles.right}>
@@ -108,6 +108,7 @@ export default class ContactList extends Component {
               parent={'#a' + contactItem.id}
             >
               <EditName
+                id={contactItem.id}
                 name={this.state.username}
                 onChangeName={onChangeName}
                 editName={this.editName}

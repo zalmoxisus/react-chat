@@ -3,6 +3,7 @@ import styles from '../Chat.css';
 
 export default class EditName extends Component {
   static propTypes = {
+    id: PropTypes.number,
     name: PropTypes.string,
     onChangeName: PropTypes.func,
     editName: PropTypes.func
@@ -13,8 +14,9 @@ export default class EditName extends Component {
   handleName = (e) => {
     if (e.nativeEvent.keyCode === 13) {
       const name = e.target.value;
+      const id = this.props.id;
       const that = this;
-      this.props.onChangeName({ name }, function success() {
+      this.props.onChangeName(id, name, function success() {
         that.props.editName(name);
       });
     }

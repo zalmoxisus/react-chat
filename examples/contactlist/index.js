@@ -3,6 +3,12 @@ import ReactDOM from 'react-dom';
 import ContactList from 'react-chat/ContactList';
 import testContacts from './testContacts';
 
+const me = {
+  id: '2',
+  name: 'Leo',
+  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg'
+};
+
 class Container extends Component {
   state = {
     contacts: testContacts,
@@ -15,22 +21,22 @@ class Container extends Component {
       });
     }
   };
-  handleInfo = () => {
+  handleInfo = (id) => {
     // Add here info method
     console.log('info method');
   };
 
-  handleMessage = () => {
+  handleMessage = (id) => {
     // Add here message method
     console.log('message method');
   };
 
-  handleCall = () => {
+  handleCall = (id) => {
     // Add here call method
     console.log('call method');
   };
 
-  handleChangeName = (name, success) => {
+  handleChangeName = (id, name, success) => {
     // Add here edit name method
     success();
   };
