@@ -111,7 +111,7 @@ body {
   height: 100%;
   vertical-align: middle;
 }
-.secondCell > div:nth-child(1), .secondCell > div:nth-child(2){
+.secondCell > div:nth-child(1), .secondCell > div:nth-child(3){
   border-bottom: 1px solid #cccccc;
 }
 .secondCell > div:hover {
@@ -437,11 +437,11 @@ body {
 }
 
 .tooltip {
-  background: #f5f5f5;
+  background: #ffffff;
   padding: 4px;
 }
 .titleTooltip {
-  padding: 7px;
+  padding: 3px;
   font-size: 16px;
 }
 .tooltip select{

@@ -12,7 +12,7 @@ import MdTranslate from 'react-icons/lib/md/translate';
 import MdCheck from 'react-icons/lib/md/check';
 import MdReplay from 'react-icons/lib/md/replay';
 import MdBlock from 'react-icons/lib/md/block';
-import ToolTip from 'react-portal-tooltip';
+import ToolTip from '../utils/Tooltip';
 import LangSelect from './LangSelect';
 import SpeechSynthesis from './SpeechSynthesis';
 import TranslateBox from './TranslateBox';
@@ -211,28 +211,32 @@ export default class Message extends Component {
                   onClick={this.translate.bind(this, message.id, message.msg)}
                 >
                   <MdTranslate/>
-                  <ToolTip
-                    active={this.state.isTooltipActive}
-                    position={msgCount > 1 ? 'top' : 'bottom'} arrow="center"
-                    parent={'#a' + message.id}
-                  >
-                    <div className={styles.tooltip}>
-                      <div className={styles.titleTooltip}>Translate it to</div>
-                      <div style={{ display: 'flex' }}>
-                        <LangSelect
-                          translateLanguages={translateLanguages}
-                          ref={(ref) => this.langSelect = ref}
-                        />
-                        <MdCheck
-                          className={styles.btn}
-                          onClick={this.selectLang.bind(this, message.msg)}
-                        />
-                        <MdClose className={styles.btn} onClick={this.showTooltip}/>
-                      </div>
-                    </div>
-                  </ToolTip>
                 </div> : null
             }
+            <ToolTip className="class-for-tooltip-contents"
+              horizontalPosition="left"
+              horizontalAlign="left"
+              verticalPosition="bottom"
+              arrowSize={7}
+              borderColor="#7F7E7E"
+              show={this.state.isTooltipActive}
+            >
+              <div></div>
+              <div className={styles.tooltip}>
+                <div className={styles.titleTooltip}>Translate it to</div>
+                <div style={{ display: 'flex' }}>
+                  <LangSelect
+                    translateLanguages={translateLanguages}
+                    ref={(ref) => this.langSelect = ref}
+                  />
+                  <MdCheck
+                    className={styles.btn}
+                    onClick={this.selectLang.bind(this, message.msg)}
+                  />
+                  <MdClose className={styles.btn} onClick={this.showTooltip}/>
+                </div>
+              </div>
+            </ToolTip>
             {
               (!this.isVideo(message.msg) &&
               window.SpeechSynthesisUtterance &&
