@@ -213,7 +213,7 @@ export default class Message extends Component {
                   <MdTranslate/>
                 </div> : null
             }
-            <ToolTip className="class-for-tooltip-contents"
+            <ToolTip className={styles.translateTooltip}
               horizontalPosition="left"
               horizontalAlign="left"
               verticalPosition="bottom"

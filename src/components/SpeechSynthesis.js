@@ -4,7 +4,7 @@ import MdClose from 'react-icons/lib/md/close';
 import MdPlayArrow from 'react-icons/lib/md/play-arrow';
 import MdStop from 'react-icons/lib/md/stop';
 import MdCheck from 'react-icons/lib/md/check';
-import ToolTip from 'react-portal-tooltip';
+import ToolTip from '../utils/Tooltip';
 import SpeechSelect from './SpeechSelect';
 
 let lastSpoken = '';
@@ -80,16 +80,25 @@ export default class SpeechSynthesis extends Component {
   render() {
     const { message, lang, msgCount } = this.props;
     return (
-      <div onClick={this.speak.bind(this, message.msg, message.id)}>
-        <span ref={(ref) => this.playSpan = ref} id={'play' + message.id}>
+      <div>
+        <div
+          className={styles.playContainer}
+          onClick={this.speak.bind(this, message.msg, message.id)}
+          ref={(ref) => this.playSpan = ref}
+          id={'play' + message.id}
+        >
           <MdPlayArrow className={styles.playBtn}/>
           <MdStop style={{ visibility: 'hidden' }}/>
-        </span>
+        </div>
         <ToolTip
-          active={this.state.isPlayTooltipActive}
-          position={msgCount > 1 ? 'top' : 'bottom'} arrow="center"
-          parent={'#play' + message.id}
+          horizontalPosition="left"
+          horizontalAlign="left"
+          verticalPosition="bottom"
+          arrowSize={7}
+          borderColor="#7F7E7E"
+          show={this.state.isPlayTooltipActive}
         >
+          <div></div>
           <div className={styles.tooltip}>
             <div className={styles.titleTooltip}>Read it as</div>
             <div style={{ display: 'flex' }}>

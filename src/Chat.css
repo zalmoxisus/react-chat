@@ -443,16 +443,21 @@ body {
 .titleTooltip {
   padding: 3px;
   font-size: 16px;
+  color: #1F1F1F;
 }
-.tooltip select{
-  width: 120px;
+.translateTooltip select{
+  width: 130px;
   margin: 2px;
+}
+.playContainer select {
+  width: 160px;
 }
 .tooltip .btn {
   padding: 4px;
   margin: 2px;
   border: 1px solid #f5f5f5;
   background: #e8e3de;
+  color: #1F1F1F;
 }
 .tooltip .btn:hover {
   cursor: pointer;
@@ -497,9 +502,18 @@ body {
 .trSpan:hover svg:nth-child(2) {
   opacity: 0.9;
 }
-.playBtn{
+.playContainer {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.playContainer svg{
   position: absolute;
-  margin-top: 2px;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 .showMenu {
   -moz-transition-duration: 0.3s;
