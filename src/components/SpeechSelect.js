@@ -6,6 +6,7 @@ export default class SpeechSelect extends Component {
     lang: PropTypes.string
   };
   componentDidMount() {
+    console.log(this.props.voices);
     let voicesByLang = [];
     for (let i = 0, l = this.props.voices.length; i < l; i++) {
       let option = this.props.voices[i];
@@ -13,7 +14,7 @@ export default class SpeechSelect extends Component {
     }
     for (let i = 0, l = voicesByLang.length; i < l; i++) {
       let option = voicesByLang[i];
-      this.speechSelect.options.add(new Option(option.name, option.name));
+      this.speechSelect.options.add(new Option(option.name.replace('Google', ''), option.name));
     }
   }
   render() {

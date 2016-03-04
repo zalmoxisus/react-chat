@@ -45,7 +45,6 @@ export default class ChatArea extends Component {
     setTimeout(this.updateScrollTop, 500);
   }
   componentDidUpdate = () => {
-    msgCount = 0;
     const msg = this.messages.message.childNodes[1];
     if (msg && msg.style.backgroundImage === 'url("//cdnjs.cloudflare.com/ajax/libs/emojione/1.5.2/assets/sprites/emojione.sprites.png")') { // eslint-disable-line max-len
       msg.style.fontSize = '34px';
@@ -78,7 +77,6 @@ export default class ChatArea extends Component {
       <div id="container" className={styles.container}>
         {
           messages.map(message => {
-            msgCount++;
             return (
               <Messages key={message.id}
                 message={message}
@@ -91,7 +89,6 @@ export default class ChatArea extends Component {
                 translateLanguages={translateLanguages}
                 lang={lang}
                 voicesArr={this.state.voicesArr}
-                msgCount={msgCount}
                 nativeLng={nativeLng}
                 withPhoto={withPhoto}
                 ref={(ref) => this.messages = ref}

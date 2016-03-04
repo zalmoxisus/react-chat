@@ -14,7 +14,7 @@ export default class SpeechSynthesis extends Component {
     message: PropTypes.object,
     lang: PropTypes.string,
     voicesArr: PropTypes.array,
-    msgCount: PropTypes.number
+    isMine: PropTypes.bool
   };
   state = {
     isPlayTooltipActive: false
@@ -78,7 +78,7 @@ export default class SpeechSynthesis extends Component {
     node2.style.visibility = 'visible';
   };
   render() {
-    const { message, lang, msgCount } = this.props;
+    const { message, lang, isMine } = this.props;
     return (
       <div>
         <div
@@ -91,10 +91,10 @@ export default class SpeechSynthesis extends Component {
           <MdStop style={{ visibility: 'hidden' }}/>
         </div>
         <ToolTip
-          horizontalPosition="left"
-          horizontalAlign="left"
+          horizontalPosition={(isMine && message.msg.length > 15) ? 'left' : 'right'}
+          horizontalAlign={(isMine && message.msg.length > 15) ? 'left' : 'right'}
           verticalPosition="bottom"
-          arrowSize={7}
+          arrowSize={5}
           borderColor="#7F7E7E"
           show={this.state.isPlayTooltipActive}
         >

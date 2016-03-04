@@ -32,7 +32,6 @@ export default class Message extends Component {
     translateLanguages: PropTypes.array,
     lang: PropTypes.string,
     voicesArr: PropTypes.array,
-    msgCount: PropTypes.number,
     nativeLng: PropTypes.string,
     withPhoto: PropTypes.bool
   };
@@ -157,7 +156,7 @@ export default class Message extends Component {
   render() {
     const {
       message, isMine, replay, onTranslate, withPhoto,
-      onDelete, translateLanguages, lang, voicesArr, msgCount } = this.props;
+      onDelete, translateLanguages, lang, voicesArr } = this.props;
     return (
       <div className={styles.msgBox}>
         {
@@ -214,14 +213,14 @@ export default class Message extends Component {
                 </div> : null
             }
             <ToolTip className={styles.translateTooltip}
-              horizontalPosition="left"
-              horizontalAlign="left"
+              horizontalPosition={isMine(message.sender) ? "left" : "right"}
+              horizontalAlign={isMine(message.sender) ? "left" : "right"}
               verticalPosition="bottom"
               arrowSize={7}
               borderColor="#7F7E7E"
               show={this.state.isTooltipActive}
             >
-              <div></div>
+              <div ref={(ref) => this.tooltipDiv = ref}></div>
               <div className={styles.tooltip}>
                 <div className={styles.titleTooltip}>Translate it to</div>
                 <div style={{ display: 'flex' }}>
@@ -245,7 +244,7 @@ export default class Message extends Component {
                   message={message}
                   lang={lang}
                   voicesArr={voicesArr}
-                  msgCount={msgCount}
+                  isMine={isMine(message.sender)}
                   ref={(ref) => this.SpeechSynthesis = ref}
                 /> : null
             }

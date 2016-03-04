@@ -199,7 +199,3 @@ export default class Tooltip extends Component {
     );
   }
 }
-
-
-// Sorry.  // Apology-Oriented-Programming
-//module.exports = Tooltip;
