@@ -208,6 +208,7 @@ export default class Message extends Component {
                 <div
                   id={'a' + message.id}
                   onClick={this.translate.bind(this, message.id, message.msg)}
+                  className={styles.btn}
                 >
                   <MdTranslate/>
                 </div> : null
@@ -220,7 +221,7 @@ export default class Message extends Component {
               borderColor="#7F7E7E"
               show={this.state.isTooltipActive}
             >
-              <div ref={(ref) => this.tooltipDiv = ref}></div>
+              <div></div>
               <div className={styles.tooltip}>
                 <div className={styles.titleTooltip}>Translate it to</div>
                 <div style={{ display: 'flex' }}>
@@ -250,7 +251,7 @@ export default class Message extends Component {
             }
             {
               (onDelete) ?
-                <div onClick={this.deleteMsg.bind(this, message.id)}>
+                <div onClick={this.deleteMsg.bind(this, message.id)} className={styles.btn}>
                   <MdClose/>
                 </div> : null
             }

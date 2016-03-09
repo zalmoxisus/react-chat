@@ -97,7 +97,7 @@ export default class Tooltip extends Component {
         verticalDirection="top"
         horizontalDirection={this.props.horizontalAlign}
         position="absolute"
-        color="white"
+        color="#eee"
         border={this.props.borderColor}
         left={settings.arrowLeft(this.props.arrowSize)}
         top={-this.props.arrowSize + 2}
@@ -112,7 +112,7 @@ export default class Tooltip extends Component {
         verticalDirection="top"
         horizontalDirection={this.props.horizontalAlign}
         visibility="hidden"
-        color="white"
+        color="#eee"
         border={this.props.borderColor}
         left={settings.arrowLeft(this.props.arrowSize)}
         top={-1}
@@ -124,7 +124,7 @@ export default class Tooltip extends Component {
       arrowAbove = (<TooltipArrow
         verticalDirection="bottom"
         horizontalDirection={this.props.horizontalAlign}
-        color="white"
+        color="#eee"
         border={this.props.borderColor}
         left={settings.arrowLeft(this.props.arrowSize)}
         top={-1}
@@ -139,13 +139,13 @@ export default class Tooltip extends Component {
     /* A positioned div below the input to be the parent for our
      tooltip */
     return (<div style={{
-      position: "relative",
+      position: 'relative',
       height: 0,
-      display: this.props.show ? "block" : "none"
+      display: this.props.show ? 'block' : 'none'
     }}
     >
       <div ref={(ref) => this.tooltipContainer = ref} className="tooltipContainer" style={{
-        position: "absolute",
+        position: 'absolute',
         //he actual height with jquery.
         // This is used to posit height must start out undefined, not null, so that
         // we can measure tion the tooltip with top: -100%
@@ -160,15 +160,15 @@ export default class Tooltip extends Component {
         <div className={this.props.className}
           ref={(ref) => this.tooltipContent = ref}
           style={{
-            position: "relative",
-            top: settings["top"],
+            position: 'relative',
+            top: settings['top'],
             left: settings.tooltipLeft,
-            border: "1px solid " + this.props.borderColor,
-            WebkitBoxShadow: "0 1px 3px " +
+            border: '1px solid ' + this.props.borderColor,
+            WebkitBoxShadow: '0 1px 3px ' +
                     this.props.borderColor,
-            MozBoxShadow: "0 1px 3px " +
+            MozBoxShadow: '0 1px 3px ' +
                     this.props.borderColor,
-            boxShadow: "0 1px 3px " +
+            boxShadow: '0 1px 3px ' +
                     this.props.borderColor,
             zIndex: zIndex - 1
           }}
