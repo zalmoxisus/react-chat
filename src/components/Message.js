@@ -179,7 +179,7 @@ export default class Message extends Component {
           <div className={styles.firstCell}>
             <div
               ref={(ref) => this.message = ref}
-              className={message.msg.length < 8 ?
+              className={message.msg.length < 16 ?
                     styles.bigContent :
                     styles.smallContent}
             >
