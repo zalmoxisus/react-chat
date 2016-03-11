@@ -84,7 +84,7 @@ class Container extends Component {
 
   render() {
     return (
-      <Chat me={this.props.me} messages={this.props.messages} onMessage={this.handleSendMessage} />
+      <Chat me={this.props.me} messages={this.props.messages} onSend={this.handleSendMessage} />
     );
   }
 }
