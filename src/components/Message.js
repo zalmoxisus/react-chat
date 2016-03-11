@@ -214,8 +214,8 @@ export default class Message extends Component {
                 </div> : null
             }
             <ToolTip className={styles.translateTooltip}
-              horizontalPosition={isMine(message.sender) ? "left" : "right"}
-              horizontalAlign={isMine(message.sender) ? "left" : "right"}
+              horizontalPosition={isMine(message.sender) ? 'left' : 'right'}
+              horizontalAlign={isMine(message.sender) ? 'left' : 'right'}
               verticalPosition="bottom"
               arrowSize={7}
               borderColor="#7F7E7E"

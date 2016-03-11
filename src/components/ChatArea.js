@@ -44,13 +44,13 @@ export default class ChatArea extends Component {
   componentDidMount() {
     setTimeout(this.updateScrollTop, 500);
   }
-  componentDidUpdate = () => {
+  componentDidUpdate() {
     const msg = this.messages.message.childNodes[1];
     if (msg && msg.style.backgroundImage === 'url("//cdnjs.cloudflare.com/ajax/libs/emojione/1.5.2/assets/sprites/emojione.sprites.png")') { // eslint-disable-line max-len
       msg.style.fontSize = '34px';
     }
     this.updateScrollTop();
-  };
+  }
   updateScrollTop = () => {
     let node = document.getElementById('container');
     if (!node) {
