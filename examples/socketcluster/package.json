@@ -1,0 +1,41 @@
+{
+  "name": "react-chat-simple-example",
+  "version": "0.0.0",
+  "description": "React chat simple example",
+  "scripts": {
+    "start": "node server.js",
+    "test": "NODE_ENV=test mocha --recursive --compilers js:babel-core/register",
+    "test:watch": "npm test -- --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zalmoxisus/react-chat.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zalmoxisus/react-chat/issues"
+  },
+  "homepage": "https://github.com/zalmoxisus/react-chat",
+  "dependencies": {
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
+  },
+  "devDependencies": {
+    "babel-core": "^5.6.18",
+    "babel-loader": "^5.1.4",
+    "babel-plugin-react-transform": "^1.1.0",
+    "css-loader": "^0.21.0",
+    "expect": "^1.6.0",
+    "extract-text-webpack-plugin": "^0.8.1",
+    "jsdom": "^5.6.1",
+    "mocha": "^2.2.5",
+    "mocha-jsdom": "^1.0.0",
+    "node-libs-browser": "^0.5.2",
+    "react-transform-hmr": "^1.0.0",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.9.11",
+    "webpack-dev-middleware": "^1.2.0",
+    "webpack-dev-server": "^1.8.2",
+    "webpack-hot-middleware": "^2.2.0"
+  }
+}
