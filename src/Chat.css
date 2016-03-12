@@ -75,7 +75,7 @@ body {
 }
 
 .firstCell {
-  padding: 5px 5px 2px 5px;
+  padding: 6px 5px 2px 5px;
 }
 .uMsg .firstCell {
   margin-right: 4px;
@@ -162,7 +162,7 @@ body {
   font-weight: 400;
   min-width: 120px;
   word-break: break-all;
-  min-height: 40px;
+  min-height: 35px;
 }
 .bigContent {
   composes: contentMsg;

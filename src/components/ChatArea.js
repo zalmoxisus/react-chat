@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import styles from '../Chat.css';
 import Messages from './Message';
 
-let msgCount = 0;
 export default class ChatArea extends Component {
   static propTypes = {
     messages: PropTypes.array,
@@ -26,16 +25,14 @@ export default class ChatArea extends Component {
   };
 
   componentWillMount() {
-    const that = this;
     if (window.speechSynthesis) {
-      window.speechSynthesis.onvoiceschanged = function (e) {
+      window.speechSynthesis.onvoiceschanged = (e) => {
         const voices = window.speechSynthesis.getVoices();
-        let voicesByLang = [];
         for (let i = 0; i < voices.length; i++) {
           let option = voices[i];
-          if (option.lang.indexOf(that.props.lang) > -1) {
-            that.state.add(option);
-            that.setState(that.state);
+          if (option.lang.indexOf(this.props.lang) > -1) {
+            this.state.add(option);
+            this.setState(this.state);
           }
         }
       };
@@ -45,10 +42,6 @@ export default class ChatArea extends Component {
     setTimeout(this.updateScrollTop, 500);
   }
   componentDidUpdate() {
-    const msg = this.messages.message.childNodes[1];
-    if (msg && msg.style.backgroundImage === 'url("//cdnjs.cloudflare.com/ajax/libs/emojione/1.5.2/assets/sprites/emojione.sprites.png")') { // eslint-disable-line max-len
-      msg.style.fontSize = '34px';
-    }
     this.updateScrollTop();
   }
   updateScrollTop = () => {

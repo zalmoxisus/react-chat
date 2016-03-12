@@ -30,20 +30,19 @@ export default class SpeechSynthesis extends Component {
   };
   play = (message, id) => {
     const msg = new SpeechSynthesisUtterance(this.prepareForTranslation(message));
-    const that = this;
     this.toggleIcons(this.playSpan.childNodes[0], this.playSpan.childNodes[1]);
-    msg.onstart = function (event) {
-      if (that.state.isPlayTooltipActive) {
-        that.showPlayTooltip();
+    msg.onstart = (event) => {
+      if (this.state.isPlayTooltipActive) {
+        this.showPlayTooltip();
       }
     };
     const playBtn = this.playSpan.childNodes[0];
     const stopBtn = this.playSpan.childNodes[1];
-    msg.onend = function (event) {
-      that.toggleIcons(stopBtn, playBtn);
+    msg.onend = (event) => {
+      this.toggleIcons(stopBtn, playBtn);
     };
-    msg.onerror = function (event) {
-      that.toggleIcons(stopBtn, playBtn);
+    msg.onerror = (event) => {
+      this.toggleIcons(stopBtn, playBtn);
     };
     const voices = window.speechSynthesis.getVoices();
     msg.voice = voices.filter(function (voice) { return voice.name === voiceName; })[0];

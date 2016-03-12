@@ -65,8 +65,7 @@ export default class Message extends Component {
     }
   };
   selectLang = (msg, e) => {
-    const that = this;
-    nativeLng = that.langSelect.languageSelect.value;
+    nativeLng = this.langSelect.languageSelect.value;
     this.insertTranslation(nativeLng, msg, e);
     this.showTooltip(e);
   };

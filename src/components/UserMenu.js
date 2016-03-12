@@ -53,9 +53,8 @@ export default class UserMenu extends Component {
       const input = e.target;
       const txt = e.target.value;
       if ((txt === '') || (txt === ' ')) return;
-      const that = this;
-      this.props.onSend({ txt }, function success() {
-        that.handleClose(e);
+      this.props.onSend({ txt }, () => {
+        this.handleClose(e);
       });
     } else if (e.nativeEvent.keyCode === 27) {
       this.handleClose(e);
@@ -81,14 +80,13 @@ export default class UserMenu extends Component {
     switch (opt) {
       case 0: {
         this.setState({ micShow: true });
-        const that = this;
         if (SpeechRecognition) {
           recognition = new SpeechRecognition();
           recognition.continuous = true;
           recognition.interimResults = true;
-          recognition.lang = that.props.lang;
+          recognition.lang = this.props.lang;
           recognition.start();
-          recognition.onresult = function (event) {
+          recognition.onresult = (event) => {
             let interimTranscript = '';
             let finalTranscript = '';
             for (let i = event.resultIndex; i < event.results.length; ++i) {
@@ -98,22 +96,21 @@ export default class UserMenu extends Component {
                 interimTranscript += event.results[i][0].transcript;
               }
             }
-            if (finalTranscript !== '') that.props.addTranslation(finalTranscript);
+            if (finalTranscript !== '') this.props.addTranslation(finalTranscript);
           };
-          recognition.onerror = function (event) {
-            that.hideIndicator(e);
+          recognition.onerror = (event) => {
+            this.hideIndicator(e);
           };
-          recognition.onend = function () {
-            that.hideIndicator();
+          recognition.onend = () => {
+            this.hideIndicator();
           };
         }
         break;
       }
       case 1: {
         this.setState({ submenuShow: true });
-        const that = this;
-        setTimeout(function () {
-          that.translateInp.focus();
+        setTimeout(() => {
+          this.translateInp.focus();
         }, 0);
         this.videoInp.style.display = 'none';
         this.translateInp.style.display = 'block';
@@ -121,9 +118,8 @@ export default class UserMenu extends Component {
       }
       case 2: {
         this.setState({ submenuShow: true });
-        const that = this;
-        setTimeout(function () {
-          that.videoInp.focus();
+        setTimeout(() => {
+          this.videoInp.focus();
         }, 0);
         this.translateInp.style.display = 'none';
         this.videoInp.style.display = 'block';

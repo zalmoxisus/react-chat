@@ -30,10 +30,9 @@ export default class ChatInput extends Component {
     this.setState({ menuShow: !this.state.menuShow });
     if (this.state.menuShow === false) {
       let menuTimer = 0;
-      const that = this;
-      e.currentTarget.addEventListener('mouseleave', function () {
-        menuTimer = setTimeout(function () {
-          that.setState({ menuShow: false });
+      e.currentTarget.addEventListener('mouseleave', () => {
+        menuTimer = setTimeout(() => {
+          this.setState({ menuShow: false });
         }, 1000);
       });
       e.currentTarget.addEventListener('mouseenter', function () {
@@ -47,12 +46,11 @@ export default class ChatInput extends Component {
     if (this.state.emoticonShow === false) {
       this.setState({ emoticonShow: !this.state.emoticonShow });
       let menuTimer = 0;
-      const that = this;
       emoticonBtn.style.transform = 'rotate(180deg)';
-      e.currentTarget.addEventListener('mouseleave', function () {
-        menuTimer = setTimeout(function () {
+      e.currentTarget.addEventListener('mouseleave', () => {
+        menuTimer = setTimeout(() => {
           emoticonBtn.style.transform = 'rotate(0deg)';
-          that.setState({ emoticonShow: false });
+          this.setState({ emoticonShow: false });
         }, 1000);
       });
       e.currentTarget.addEventListener('mouseenter', function () {

@@ -17,7 +17,8 @@ export default function convertMedia(html, height, onlyvideo, autoplay, isAct, s
   } else if (pattern2.test(html)) {
     replacement = '<iframe ' + (isAct ? 'id="act_player"' : '') +
       ' width="100%" height="' + (height || 320) +
-      '" src="//www.youtube.com/embed/$1?autohide=1&controls=2&modestbranding=1&rel=0&showinfo=1&playsinline=1&autoplay=' + // eslint-disable-line max-len
+      '" src="//www.youtube.com/embed/$1?autohide=1&controls=' +
+      '2&modestbranding=1&rel=0&showinfo=1&playsinline=1&autoplay=' +
       (autoplay || '0') + (start ? '&start=' + start : '') + (isAct ? '&enablejsapi=1' : '') +
       '" frameBorder="0" allowFullScreen></iframe>';
     htmlReplace = html.replace(pattern2, replacement);
