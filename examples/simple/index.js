@@ -13,13 +13,12 @@ const nativeLng = 'en';
 const withPhoto = true;
 
 class Container extends Component {
-  state = {
-    messages: testMessages,
-
-    add(message) {
-      this.messages.push(message);
-    }
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      messages: testMessages
+    };
+  }
 
   handleSend = (msg, success) => {
     const message = {
@@ -31,8 +30,9 @@ class Container extends Component {
       sender: '1'
     };
 
-    this.state.add(message);
-    this.setState(this.state);
+    const messages = this.state.messages;
+    messages.push(message);
+    this.setState({ messages });
     success();
   };
 
