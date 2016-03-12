@@ -1,9 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Chat from 'react-chat';
+import socketCluster from 'socketcluster-client';
+
+const randomId = Math.floor((Math.random() * 100)).toString();
 const me = {
-  id: '1',
-  name: 'Leo',
+  id: randomId,
+  name: `User ${randomId}`,
   avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg'
 };
 
@@ -23,6 +26,27 @@ class Container extends Component {
     };
   }
 
+  componentDidMount() {
+    this.socket = socketCluster.connect();
+
+    this.socket.on('error', function (err) {
+      console.error('Socket error - ' + err);
+    });
+    this.socket.on('connect', function () {
+      console.log('Connected to server');
+    });
+
+    const channel = this.socket.subscribe('some-chat-room');
+    channel.on('subscribeFail', function (err) {
+      console.log('Failed to subscribe to muc channel due to error: ' + err);
+    });
+    channel.watch(message => {
+      const messages = this.state.messages;
+      messages.push(message);
+      this.setState({ messages });
+    });
+  }
+
   handleSend = (msg, success) => {
     const message = {
       id: (Date.now() / 1000 | 0),
@@ -30,13 +54,10 @@ class Container extends Component {
       avatar: me.avatar,
       msg: msg.txt,
       time: Date.now() / 1000 | 0,
-      sender: '1'
+      sender: me.id
     };
 
-    const messages = this.state.messages;
-    messages.push(message);
-    this.setState({ messages });
-    console.log(this.state.messages);
+    this.socket.emit('some-chat-room', message);
     success();
   };
 
@@ -47,6 +68,7 @@ class Container extends Component {
         me={me}
         messages={this.state.messages}
         onSend={this.handleSend}
+        withPhoto
       />
     );
   }
