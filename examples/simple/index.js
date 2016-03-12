@@ -63,7 +63,7 @@ class Container extends Component {
         lang={lang}
         messages={testMessages}
         onSend={this.handleSend}
-        onTranslate={this.handleTranslate}
+        /*onTranslate={this.handleTranslate}*/
         onDelete={this.handleDelete}
         onRestore={this.handleRestore}
         onBan={this.handleBan}

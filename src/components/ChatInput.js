@@ -33,7 +33,7 @@ export default class ChatInput extends Component {
       e.currentTarget.addEventListener('mouseleave', () => {
         menuTimer = setTimeout(() => {
           this.setState({ menuShow: false });
-        }, 1000);
+        }, 100000);
       });
       e.currentTarget.addEventListener('mouseenter', function () {
         clearTimeout(menuTimer);

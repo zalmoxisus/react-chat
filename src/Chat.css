@@ -330,6 +330,7 @@ body {
   position: absolute;
   left: 0;
   z-index: 2;
+  bottom: 0;
 }
 
 .userContainer input {

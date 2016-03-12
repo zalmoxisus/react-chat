@@ -35,8 +35,10 @@ export default class UserMenu extends Component {
   componentDidMount() {
     if (!SpeechRecognition && (!this.props.onTranslate || !this.props.translateLanguages)) {
       this.usermenu.style.marginTop = '-31px';
+      this.btnContainer.style.bottom = '-31px';
     } else if (!SpeechRecognition || !this.props.onTranslate || !this.props.translateLanguages) {
       this.usermenu.style.marginTop = '-61px';
+      this.btnContainer.style.bottom = '-31px';
     }
   }
   changeVideoInp = (e) => {
@@ -178,7 +180,10 @@ export default class UserMenu extends Component {
               onKeyUp={this.insertTranslation}
             />
           </div>
-          <div className={styles.btnContainer} onClick={this.handleClose}>
+          <div className={styles.btnContainer}
+            onClick={this.handleClose}
+            ref={(ref) => this.btnContainer = ref}
+          >
             <MdClose className={styles.iconClear} />
           </div>
         </ToggleDisplay>
