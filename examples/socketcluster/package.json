@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "React chat simple example",
   "scripts": {
-    "start": "node server.js",
+    "start": "node bin/server.js",
     "test": "NODE_ENV=test mocha --recursive --compilers js:babel-core/register",
     "test:watch": "npm test -- --watch"
   },
@@ -17,8 +17,12 @@
   },
   "homepage": "https://github.com/zalmoxisus/react-chat",
   "dependencies": {
+    "express": "^4.13.4",
+    "minimist": "^1.2.0",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "react-dom": "^0.14.3",
+    "socketcluster": "^4.3.2",
+    "socketcluster-client": "^4.3.8"
   },
   "devDependencies": {
     "babel-core": "^5.6.18",
@@ -35,7 +39,6 @@
     "style-loader": "^0.13.0",
     "webpack": "^1.9.11",
     "webpack-dev-middleware": "^1.2.0",
-    "webpack-dev-server": "^1.8.2",
     "webpack-hot-middleware": "^2.2.0"
   }
 }
