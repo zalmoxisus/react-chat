@@ -35,10 +35,8 @@ export default class UserMenu extends Component {
   componentDidMount() {
     if (!SpeechRecognition && (!this.props.onTranslate || !this.props.translateLanguages)) {
       this.usermenu.style.marginTop = '-31px';
-      this.btnContainer.style.bottom = '-31px';
     } else if (!SpeechRecognition || !this.props.onTranslate || !this.props.translateLanguages) {
       this.usermenu.style.marginTop = '-61px';
-      this.btnContainer.style.bottom = '-31px';
     }
   }
   changeVideoInp = (e) => {
@@ -187,7 +185,7 @@ export default class UserMenu extends Component {
             <MdClose className={styles.iconClear} />
           </div>
         </ToggleDisplay>
-        <ToggleDisplay show={this.state.micShow} className={styles.btnContainer}>
+        <ToggleDisplay show={this.state.micShow} className={styles.micShow}>
           <MdMic className={styles.iconMic} onClick={this.hideIndicator} />
         </ToggleDisplay>
       </div>
