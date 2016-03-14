@@ -97,6 +97,7 @@ body {
 }
 .optionsLeft{
   composes: options;
+  width: 80px;
 }
 .options svg{
   padding: 3px 4px 3px 4px;
@@ -119,10 +120,47 @@ body {
   margin-top: 33px;
   padding-bottom: 1px;
 }
-
+.editContainer{
+  display: none;
+  position: absolute;
+  background: #22262A;
+  right: 0;
+  left: 60px;
+  height: 60px;
+}
+.editInput{
+  border-radius: 6px;
+  border: 0;
+  height: 22px;
+  margin: 16px 10px 4px 10px;
+  padding: 4px;
+  width: 50%;
+}
+.username{
+  width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width: 400px) {
+  .username{
+    width: 200px;
+  }
+}
+@media (max-width: 300px) {
+  .username{
+    width: 100px;
+  }
+}
 @media (max-width: 200px) {
   .img{
     max-width: 25px;
     max-height: 25px;
+  }
+  .editContainer{
+    left: 30px;
+  }
+  .editInput{
+    margin-top: 5px;
   }
 }

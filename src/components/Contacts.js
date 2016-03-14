@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../ContactList.css';
-import ToolTip from 'react-portal-tooltip';
-import EditName from './EditName';
 import MdKeyboardArrowDown from 'react-icons/lib/md/keyboard-arrow-down';
 import MdInfo from 'react-icons/lib/md/info';
 import MdMessage from 'react-icons/lib/md/message';
@@ -20,12 +18,30 @@ export default class ContactList extends Component {
   };
 
   state = {
-    isTooltipActive: false,
     username: this.props.contactItem.name
   };
 
-  showTooltip = () => {
-    this.setState({ isTooltipActive: !this.state.isTooltipActive });
+  showEdit = () => {
+    const editName = this.editNameInp;
+    const editInput = editName.children[0];
+    editName.style.display = 'block';
+    editInput.value = this.state.username;
+    editInput.focus();
+  };
+
+  changeName = (e) => {
+    if (e.nativeEvent.keyCode === 13) {
+      const name = e.currentTarget.value;
+      const id = this.props.contactItem.id;
+      this.props.onChangeName(id, name, () => {
+        this.setState({ username: name });
+      });
+      const editName = this.editNameInp;
+      editName.style.display = 'none';
+    } else if (e.nativeEvent.keyCode === 27) {
+      const editName = this.editNameInp;
+      editName.style.display = 'none';
+    }
   };
 
   toggleInfo = (e) => {
@@ -62,11 +78,6 @@ export default class ContactList extends Component {
     this.props.onCall(id);
   };
 
-  editName = (name) => {
-    this.showTooltip();
-    this.setState({ username: name });
-  };
-
   deleteContact = (id, name) => {
     let deleted = confirm('You are about to remove ' + name +
       '. All related chats will be closed.');
@@ -78,7 +89,7 @@ export default class ContactList extends Component {
   };
 
   render() {
-    const { contactItem, onChangeName } = this.props;
+    const { contactItem } = this.props;
     return (
       <li ref={(ref) => this.avatar = ref}>
         {
@@ -87,7 +98,7 @@ export default class ContactList extends Component {
             <span className={styles.txt}>{this.state.username[0]}</span>
         }
         <span>
-          <span>{this.state.username}</span>
+          <div className={styles.username}>{this.state.username}</div>
           <div ref={(ref) => this.optionsLeft = ref} className={styles.optionsLeft}>
             <MdInfo onClick={this.showInfo.bind(this, contactItem.id)}/>
             <MdMessage onClick={this.sendMessage.bind(this, contactItem.id)}/>
@@ -100,23 +111,14 @@ export default class ContactList extends Component {
           </div>
           <div ref={(ref) => this.optionsRight = ref} className={styles.optionsRight}>
             <span id={'a' + contactItem.id} style={{ lineHeight: '0.7' }}>
-              <MdEdit onClick={this.showTooltip}/>
+              <MdEdit onClick={this.showEdit}/>
             </span>
-            <ToolTip
-              active={this.state.isTooltipActive}
-              position="left" arrow="center"
-              parent={'#a' + contactItem.id}
-            >
-              <EditName
-                id={contactItem.id}
-                name={this.state.username}
-                onChangeName={onChangeName}
-                editName={this.editName}
-              />
-            </ToolTip>
             <MdClose onClick={this.deleteContact.bind(this, contactItem.id, contactItem.name)}/>
           </div>
         </span>
+        <div ref={(ref) => this.editNameInp = ref} className={styles.editContainer}>
+          <input onKeyDown={this.changeName} className={styles.editInput} maxLength="45"/>
+        </div>
       </li>
     );
   }
