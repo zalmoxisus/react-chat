@@ -127,7 +127,7 @@ body {
 
 .msg {
   margin-right: -1px;
-  max-width: 90%;
+  max-width: 85%;
   word-wrap: break-word;
   white-space: pre-wrap;
   margin-left: -1px;
@@ -517,7 +517,14 @@ body {
   position: relative;
   margin: auto;
   height: 100%;
-  left: 7px;
+}
+.playContainer svg:nth-child(2){
+  left: 0;
+}
+.playContainer svg:nth-child(2){
+  position: absolute;
+  top: 0;
+  left: 10px;
 }
 /*.showMenu {
   -moz-transition-duration: 0.2s;
@@ -569,12 +576,12 @@ body {
 }
 @media (max-width: 610px) {
   .msg {
-    max-width: 85%;
+    max-width: 80%;
   }
 }
 @media (max-width: 420px) {
   .msg {
-    max-width: 80%;
+    max-width: 75%;
   }
   .contentMsg{
     font-size: 14px;
