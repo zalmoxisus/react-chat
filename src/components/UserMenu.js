@@ -5,6 +5,7 @@ import convertMedia from '../utils/convertMedia';
 import MdMic from 'react-icons/lib/md/mic';
 import MdMessage from 'react-icons/lib/md/message';
 import MdOndemandVideo from 'react-icons/lib/md/ondemand-video';
+import MdImage from 'react-icons/lib/md/image';
 import MdClose from 'react-icons/lib/md/close';
 
 let SpeechRecognition;
@@ -34,9 +35,9 @@ export default class UserMenu extends Component {
   }
   componentDidMount() {
     if (!SpeechRecognition && (!this.props.onTranslate || !this.props.translateLanguages)) {
-      this.usermenu.style.marginTop = '-31px';
+      this.usermenu.style.marginTop = '-60px';
     } else if (!SpeechRecognition || !this.props.onTranslate || !this.props.translateLanguages) {
-      this.usermenu.style.marginTop = '-61px';
+      this.usermenu.style.marginTop = '-90px';
     }
   }
   changeVideoInp = (e) => {
@@ -45,8 +46,8 @@ export default class UserMenu extends Component {
     let mediaContainer = document.createElement('span');
 
     mediaContainer.innerHTML = media;
-    if (videoContainer.children.length === 2) videoContainer.appendChild(mediaContainer);
-    else videoContainer.replaceChild(mediaContainer, videoContainer.children[2]);
+    if (videoContainer.children.length === 3) videoContainer.appendChild(mediaContainer);
+    else videoContainer.replaceChild(mediaContainer, videoContainer.children[3]);
 
 
     if (e.nativeEvent.keyCode === 13) {
@@ -112,8 +113,7 @@ export default class UserMenu extends Component {
         setTimeout(() => {
           this.translateInp.focus();
         }, 0);
-        this.videoInp.style.display = 'none';
-        this.translateInp.style.display = 'block';
+        this.translateInp.style.zIndex = 1;
         break;
       }
       case 2: {
@@ -121,8 +121,15 @@ export default class UserMenu extends Component {
         setTimeout(() => {
           this.videoInp.focus();
         }, 0);
-        this.translateInp.style.display = 'none';
-        this.videoInp.style.display = 'block';
+        this.videoInp.style.zIndex = 1;
+        break;
+      }
+      case 3: {
+        this.setState({ submenuShow: true });
+        setTimeout(() => {
+          this.imgInp.focus();
+        }, 0);
+        this.imgInp.style.zIndex = 1;
         break;
       }
       default:
@@ -137,9 +144,13 @@ export default class UserMenu extends Component {
     this.setState({ submenuShow: false });
     this.videoInp.value = '';
     this.translateInp.value = '';
-    if (this.videoInpContainer.childNodes.length > 2) {
-      this.videoInpContainer.removeChild(this.videoInpContainer.childNodes[2]);
+    this.imgInp.value = '';
+    if (this.videoInpContainer.childNodes.length > 3) {
+      this.videoInpContainer.removeChild(this.videoInpContainer.childNodes[3]);
     }
+    this.translateInp.style.zIndex = 0;
+    this.videoInp.style.zIndex = 0;
+    this.imgInp.style.zIndex = 0;
   };
 
   render() {
@@ -164,6 +175,9 @@ export default class UserMenu extends Component {
           <li className={styles.liVideo} onClick={this.handleClick.bind(this, 2)}>
             <MdOndemandVideo /><a href="#">Insert video</a>
           </li>
+          <li className={styles.liImage} onClick={this.handleClick.bind(this, 3)}>
+            <MdImage /><a href="#">Insert image</a>
+          </li>
         </ul>
         <ToggleDisplay show={this.state.submenuShow}>
           <div ref={(ref) => this.videoInpContainer = ref} className={styles.videoInpContainer}>
@@ -171,11 +185,19 @@ export default class UserMenu extends Component {
               ref={(ref) => this.videoInp = ref}
               placeholder="Video url (youtube, vimeo)"
               onKeyUp={this.changeVideoInp}
+              style={{ position: 'relative' }}
             />
             <input
               ref={(ref) => this.translateInp = ref}
               placeholder="Tape a phrase to be translated"
               onKeyUp={this.insertTranslation}
+              style={{ position: 'absolute', top: '15px', width: '88%' }}
+            />
+            <input
+              ref={(ref) => this.imgInp = ref}
+              placeholder="Image url"
+              onKeyUp={this.changeVideoInp}
+              style={{ position: 'absolute', top: '15px', width: '88%' }}
             />
           </div>
           <div className={styles.btnContainer}
