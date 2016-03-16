@@ -40,7 +40,7 @@ export default class TooltipArrow extends Component {
         "top": this.props["top"],
         width: this.props.width + 2,
         height: this.props.height + 1,
-        marginTop: -5,
+        marginTop: -4,
         marginBottom: -2,
         zIndex: 100
       }}

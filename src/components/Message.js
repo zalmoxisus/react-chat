@@ -208,38 +208,40 @@ export default class Message extends Component {
           <div className={styles.secondCell}>
             {
               (onTranslate && translateLanguages && !this.isVideo(message.msg)) ?
-                <div
-                  id={'a' + message.id}
-                  onClick={this.translate.bind(this, message.id, message.msg)}
-                  className={styles.btn}
-                >
-                  <MdTranslate/>
+                <div>
+                  <div
+                    id={'a' + message.id}
+                    onClick={this.translate.bind(this, message.id, message.msg)}
+                    className={styles.btn}
+                  >
+                    <MdTranslate/>
+                  </div>
+                  <ToolTip className={styles.translateTooltip}
+                    horizontalPosition={isMine(message.sender) ? 'left' : 'right'}
+                    horizontalAlign={isMine(message.sender) ? 'left' : 'right'}
+                    verticalPosition="bottom"
+                    arrowSize={7}
+                    borderColor="#7F7E7E"
+                    show={this.state.isTooltipActive}
+                  >
+                    <div></div>
+                    <div className={styles.tooltip}>
+                      <div className={styles.titleTooltip}>Translate it to</div>
+                      <div style={{ display: 'flex' }}>
+                        <LangSelect
+                          translateLanguages={translateLanguages}
+                          ref={(ref) => this.langSelect = ref}
+                        />
+                        <MdCheck
+                          className={styles.btn}
+                          onClick={this.selectLang.bind(this, message.msg)}
+                        />
+                        <MdClose className={styles.btn} onClick={this.showTooltip}/>
+                      </div>
+                    </div>
+                  </ToolTip>
                 </div> : null
             }
-            <ToolTip className={styles.translateTooltip}
-              horizontalPosition={isMine(message.sender) ? 'left' : 'right'}
-              horizontalAlign={isMine(message.sender) ? 'left' : 'right'}
-              verticalPosition="bottom"
-              arrowSize={7}
-              borderColor="#7F7E7E"
-              show={this.state.isTooltipActive}
-            >
-              <div></div>
-              <div className={styles.tooltip}>
-                <div className={styles.titleTooltip}>Translate it to</div>
-                <div style={{ display: 'flex' }}>
-                  <LangSelect
-                    translateLanguages={translateLanguages}
-                    ref={(ref) => this.langSelect = ref}
-                  />
-                  <MdCheck
-                    className={styles.btn}
-                    onClick={this.selectLang.bind(this, message.msg)}
-                  />
-                  <MdClose className={styles.btn} onClick={this.showTooltip}/>
-                </div>
-              </div>
-            </ToolTip>
             {
               (!this.isVideo(message.msg) &&
               window.SpeechSynthesisUtterance &&
