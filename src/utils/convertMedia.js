@@ -1,4 +1,5 @@
 import Autolink from 'autolinker';
+import styles from '../Chat.css';
 
 export default function convertMedia(html, height, onlyvideo, autoplay, isAct, start) {
   let replacement;
@@ -7,6 +8,7 @@ export default function convertMedia(html, height, onlyvideo, autoplay, isAct, s
   let pattern2 = /(?:https?:\/\/)?(?:www\.)?youtu(?:be\.com\/watch\??[\w\-\_=&;]*?v=|\.be\/)([\w\-\_]*)?([\w\?‌​=&;#]*)?/; // eslint-disable-line max-len
   let pattern3 = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/;
   let pattern4 = /(?:https?:\/\/)?(?:www\.)?(?:prezi\.com)\/?([^/]+)\/?(.+)/;
+  let pattern5 = /(https?:\/\/.*\.(?:png|jpg))/;
 
   if (pattern1.test(html)) {
     replacement = '<iframe width="100%" height="' + (height || 320) +
@@ -32,6 +34,8 @@ export default function convertMedia(html, height, onlyvideo, autoplay, isAct, s
       htmlReplace = '<img class="mimg" src="' + encodeURI(html) + '" />';
     }
     else htmlReplace = Autolink.link(html);
+  } else if (pattern5.test(html)) {
+    htmlReplace = '<img class=' + styles.msgImg + ' src="' + encodeURI(html) + '" />';
   }
   else htmlReplace = Autolink.link(html);
 

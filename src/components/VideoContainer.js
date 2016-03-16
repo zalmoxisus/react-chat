@@ -11,16 +11,20 @@ export default class VideoContainer extends Component {
   };
 
   componentWillMount() {
-    this.setState({ emojiSrc: this.props.src.replace(/<([^>]+?)([^>]*?)>(.*?)<\/\1>/ig, '') });
+    this.setState({
+      emojiSrc: this.props.src.replace(/<img[^>]+>(<\/img>)?|<iframe.+?<\/iframe>/ig, '')
+    });
   }
   componentDidMount() {
-    this.contentMsg.innerHTML = this.props.src.match(/<([^>]+?)([^>]*?)>(.*?)<\/\1>/ig);
+    this.contentMsg.innerHTML = this.props.src.match(/<img[^>]+>(<\/img>)?|<iframe.+?<\/iframe>/ig);
   }
   componentWillReceiveProps() {
-    this.setState({ emojiSrc: this.props.src.replace(/<([^>]+?)([^>]*?)>(.*?)<\/\1>/ig, '') });
+    this.setState({
+      emojiSrc: this.props.src.replace(/<img[^>]+>(<\/img>)?|<iframe.+?<\/iframe>/ig, '')
+    });
   }
   componentDidUpdate() {
-    this.contentMsg.innerHTML = this.props.src.match(/<([^>]+?)([^>]*?)>(.*?)<\/\1>/ig);
+    this.contentMsg.innerHTML = this.props.src.match(/<img[^>]+>(<\/img>)?|<iframe.+?<\/iframe>/ig);
     return true;
   }
   render() {

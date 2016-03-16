@@ -574,6 +574,10 @@ body {
   /*composes: showEmoticons;*/
   composes: show;
 }
+.msgImg{
+  max-height: 250px;
+  max-width: 200px;
+}
 @media (max-width: 610px) {
   .msg {
     max-width: 80%;
