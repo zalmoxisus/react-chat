@@ -14,7 +14,7 @@ module.exports.run = function(worker) {
     console.log('User connected');
 
     socket.on('some-chat-room', function (data) {
-      scServer.global.publish('some-chat-room', data);
+      scServer.exchange.publish('some-chat-room', data);
       console.log('Message:', data);
     });
 
