@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../Chat.css';
+import styles from '../chat.scss';
 import MdClose from 'react-icons/lib/md/close';
 import MdPlayArrow from 'react-icons/lib/md/play-arrow';
 import MdStop from 'react-icons/lib/md/stop';

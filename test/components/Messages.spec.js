@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import expect from 'expect';
 import { describeWithDOM, mount } from 'enzyme';
 import hook from 'css-modules-require-hook';
-import styles from '../../src/Chat.css';
+import styles from '../../src/chat.scss';
 import Message from '../../src/components/Message';
 
 const props = {

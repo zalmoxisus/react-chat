@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../Chat.css';
+import styles from '../chat.scss';
 import Infotip from '../utils/Infotip';
 
 export default class Avatar extends Component {

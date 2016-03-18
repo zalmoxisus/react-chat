@@ -54,10 +54,12 @@
     "isparta": "^3.0.3",
     "legit-tests": "^0.6.3",
     "mocha": "^2.2.5",
+    "node-sass": "^3.4.2",
     "postcss-loader": "^0.7.0",
     "rimraf": "^2.3.4",
+    "sass-loader": "^3.2.0",
     "style-loader": "^0.13.0",
-    "webpack": "^1.9.6"
+    "webpack": "^1.12.14"
   },
   "npmName": "react-chat",
   "npmFileMap": [

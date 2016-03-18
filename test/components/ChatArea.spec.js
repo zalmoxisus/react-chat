@@ -3,7 +3,7 @@ import expect from 'expect';
 import { describeWithDOM, mount } from 'enzyme';
 import hook from 'css-modules-require-hook';
 import ChatArea from '../../src/components/ChatArea';
-import styles from '../../src/Chat.css';
+import styles from '../../src/chat.scss';
 
 const props = {
   messages: [

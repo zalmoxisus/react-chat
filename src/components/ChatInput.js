@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../Chat.css';
+import styles from '../chat.scss';
 import TextareaAutosize from 'react-textarea-autosize';
 import UserMenu from './UserMenu';
 import ToggleDisplay from '../utils/ToggleDisplay';
