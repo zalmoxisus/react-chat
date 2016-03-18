@@ -1,13 +1,3 @@
-html {
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
-}
-
-body {
-  font-size: 13px;
-  line-height: 20px;
-  margin: 0;
-  overflow: hidden;
-}
 .base {
   background: #dcdcdc;
   color: #424242;
