@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Chat from 'react-chat';
 import socketCluster from 'socketcluster-client';
+import './style.scss';
 
 const randomId = Math.floor((Math.random() * 100)).toString();
 const me = {

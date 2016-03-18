@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Chat from 'react-chat';
+import style from './style.scss';
 
 const hash = window.location.hash ? window.location.hash.substr(1) : '1';
 const data = {
