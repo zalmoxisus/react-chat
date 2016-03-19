@@ -22,6 +22,9 @@ export default class SpeechSynthesis extends Component {
   componentDidMount() {
     voiceName = this.props.voicesArr[0].name;
   }
+  mapRef = (node) => {
+    this.playSpan = node;
+  };
   showPlayTooltip = () => {
     this.setState({ isPlayTooltipActive: !this.state.isPlayTooltipActive });
   };
@@ -83,7 +86,7 @@ export default class SpeechSynthesis extends Component {
         <div
           className={styles.playContainer}
           onClick={this.speak.bind(this, message.msg, message.id)}
-          ref={(ref) => this.playSpan = ref}
+          ref={this.mapRef}
           id={'play' + message.id}
         >
           <MdPlayArrow className={styles.playBtn}/>
