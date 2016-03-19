@@ -10,9 +10,12 @@ import SpeechSelect from './SpeechSelect';
 let lastSpoken = '';
 let voiceName = '';
 export default class SpeechSynthesis extends Component {
-  state = {
-    isPlayTooltipActive: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      isPlayTooltipActive: false
+    };
+  }
   componentDidMount() {
     voiceName = this.props.voicesArr[0].name;
   }
