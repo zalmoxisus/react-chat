@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import expect from 'expect';
-import { describeWithDOM, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import hook from 'css-modules-require-hook';
 import ChatArea from '../../src/components/ChatArea';
 import styles from '../../src/chat.scss';
@@ -44,7 +44,7 @@ const props = {
   isMine: id => props.me.id === id
 };
 
-describeWithDOM('ChatArea', () => {
+describe('ChatArea', () => {
   it('should render correctly', () => {
     const wrapper = mount(<ChatArea {...props} />).find('#container');
     expect(wrapper).toExist();

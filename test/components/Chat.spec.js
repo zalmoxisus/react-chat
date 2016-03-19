@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import expect from 'expect';
-import { describeWithDOM, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import hook from 'css-modules-require-hook';
 import Chat from '../../src/Chat';
 
@@ -39,7 +39,7 @@ const props = {
   me: { id: '2', name: 'Leo' }
 };
 
-describeWithDOM('Chat', () => {
+describe('Chat', () => {
   it('should add message', () => {
     const wrapper = mount(<Chat {...props} />)
       .find('textarea')

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import expect from 'expect';
-import { describeWithDOM, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import hook from 'css-modules-require-hook';
 import ChatInput from '../../src/components/ChatInput';
 import styles from '../../src/chat.scss';
@@ -11,7 +11,7 @@ const props = {
 };
 
 
-describeWithDOM('ChatInput.', () => {
+describe('ChatInput.', () => {
   it('should render correctly', () => {
     const wrapper = mount(<ChatInput />).find('textarea');
     expect(wrapper.type()).toBe('textarea');
