@@ -106,7 +106,7 @@ export default class SpeechSynthesis extends Component {
               />
               <MdCheck
                 className={styles.btn}
-                onClick={this.speakFromTooltip.bind(this, message.msg, message.id)}
+                onClick={this.speakFromTooltip(message.msg, message.id)}
               />
               <MdClose className={styles.btn} onClick={this.showPlayTooltip}/>
             </div>
