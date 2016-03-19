@@ -1,21 +1,40 @@
 import React, { Component, PropTypes } from 'react';
+import MdCheck from 'react-icons/lib/md/check';
+import styles from '../chat.scss';
 
 export default class SpeechSelect extends Component {
-  static propTypes = {
-    lang: PropTypes.string
-  };
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+    this.state = { value: this.props.value };
     this.options = window.speechSynthesis.getVoices()
       .filter(voice => voice.lang.indexOf(this.props.lang) > -1)
       .map(voice => (
         <option key={voice.name} value={voice.name}>{voice.name.replace('Google', '')}</option>
       ));
   }
+  handleSelect = (e) => {
+    this.setState({ value: e.target.value });
+  };
+  handleCheck = () => {
+    this.props.onChange(this.state.value);
+  };
   render() {
     return (
-      <select defaultValue={this.props.value}>
-        {this.options}
-      </select>
+      <div style={{ whiteSpace: 'nowrap' }}>
+        <select value={this.state.value} onChange={this.handleSelect}>
+          {this.options}
+        </select>
+        <MdCheck
+          className={styles.btn}
+          onClick={this.handleCheck}
+        />
+      </div>
     );
   }
 }
+
+SpeechSelect.propTypes = {
+  value: PropTypes.string,
+  lang: PropTypes.string,
+  onChange: PropTypes.func.isRequired
+};

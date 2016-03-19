@@ -3,7 +3,6 @@ import styles from '../chat.scss';
 import MdClose from 'react-icons/lib/md/close';
 import MdPlayArrow from 'react-icons/lib/md/play-arrow';
 import MdStop from 'react-icons/lib/md/stop';
-import MdCheck from 'react-icons/lib/md/check';
 import ToolTip from '../utils/Tooltip';
 import SpeechSelect from './SpeechSelect';
 
@@ -23,11 +22,11 @@ export default class SpeechSynthesis extends Component {
   showPlayTooltip = () => {
     this.setState({ isPlayTooltipActive: !this.state.isPlayTooltipActive });
   };
-  prepareForTranslation = (message) => {
-    return message.replace(/(<([^>]+)>)/ig, '').replace(/\+/g, '');
-  };
-  play = (message, id) => {
-    const msg = new SpeechSynthesisUtterance(this.prepareForTranslation(message));
+  getSanitizedMsg() {
+    return this.props.message.msg.replace(/(<([^>]+)>)/ig, '').replace(/\+/g, '');
+  }
+  play = () => {
+    const msg = new SpeechSynthesisUtterance(this.getSanitizedMsg());
     this.toggleIcons(this.playSpan.childNodes[0], this.playSpan.childNodes[1]);
     msg.onstart = (event) => {
       if (this.state.isPlayTooltipActive) {
@@ -47,26 +46,23 @@ export default class SpeechSynthesis extends Component {
     window.speechSynthesis.speak(msg);
   };
 
-  speak = (message, id, e) => {
-    const node = e.currentTarget;
+  speak = () => {
+    const { id } = this.props.message;
     if (this.playSpan.childNodes[1].style.visibility === 'hidden') {
       if (this.lastSpoken === id && this.props.voicesArr.length > 1) {
-        if (this.speech) {
-          this.speech.speechSelect.value = this.voiceName;
-        }
         this.showPlayTooltip();
       } else {
         this.lastSpoken = id;
-        this.play(message, id);
+        this.play();
       }
     } else {
       this.toggleIcons(this.playSpan.childNodes[1], this.playSpan.childNodes[0]);
       window.speechSynthesis.cancel();
     }
   };
-  speakFromTooltip = (message, id) => {
-    this.voiceName = this.speech.speechSelect.value;
-    this.play(message, id);
+  speakFromTooltip = (value) => {
+    this.voiceName = value;
+    this.play();
   };
   toggleIcons = (n1, n2) => {
     const node1 = n1;
@@ -80,7 +76,7 @@ export default class SpeechSynthesis extends Component {
       <div>
         <div
           className={styles.playContainer}
-          onClick={this.speak.bind(this, message.msg, message.id)}
+          onClick={this.speak}
           ref={this.mapRef}
           id={'play' + message.id}
         >
@@ -101,11 +97,8 @@ export default class SpeechSynthesis extends Component {
             <div style={{ display: 'flex' }}>
               <SpeechSelect
                 lang={lang}
-                ref={(ref) => this.speech = ref}
-              />
-              <MdCheck
-                className={styles.btn}
-                onClick={this.speakFromTooltip(message.msg, message.id)}
+                value={this.voiceName}
+                onChange={this.speakFromTooltip}
               />
               <MdClose className={styles.btn} onClick={this.showPlayTooltip}/>
             </div>
