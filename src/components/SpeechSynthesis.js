@@ -10,12 +10,6 @@ import SpeechSelect from './SpeechSelect';
 let lastSpoken = '';
 let voiceName = '';
 export default class SpeechSynthesis extends Component {
-  static propTypes = {
-    message: PropTypes.object,
-    lang: PropTypes.string,
-    voicesArr: PropTypes.array,
-    isMine: PropTypes.bool
-  };
   state = {
     isPlayTooltipActive: false
   };
@@ -121,3 +115,10 @@ export default class SpeechSynthesis extends Component {
     );
   }
 }
+
+SpeechSynthesis.propTypes = {
+  message: PropTypes.object,
+  lang: PropTypes.string,
+  voicesArr: PropTypes.array,
+  isMine: PropTypes.bool
+};
