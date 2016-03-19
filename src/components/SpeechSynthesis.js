@@ -100,7 +100,6 @@ export default class SpeechSynthesis extends Component {
             <div className={styles.titleTooltip}>Read it as</div>
             <div style={{ display: 'flex' }}>
               <SpeechSelect
-                voices={window.speechSynthesis.getVoices()}
                 lang={lang}
                 ref={(ref) => this.speech = ref}
               />

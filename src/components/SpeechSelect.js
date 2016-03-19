@@ -2,23 +2,20 @@ import React, { Component, PropTypes } from 'react';
 
 export default class SpeechSelect extends Component {
   static propTypes = {
-    voices: PropTypes.array,
     lang: PropTypes.string
   };
-  componentDidMount() {
-    let voicesByLang = [];
-    for (let i = 0, l = this.props.voices.length; i < l; i++) {
-      let option = this.props.voices[i];
-      if (option.lang.indexOf(this.props.lang) > -1) voicesByLang.push(option);
-    }
-    for (let i = 0, l = voicesByLang.length; i < l; i++) {
-      let option = voicesByLang[i];
-      this.speechSelect.options.add(new Option(option.name.replace('Google', ''), option.name));
-    }
+  componentWillMount() {
+    this.options = window.speechSynthesis.getVoices()
+      .filter(voice => voice.lang.indexOf(this.props.lang) > -1)
+      .map(voice => (
+        <option key={voice.name} value={voice.name}>{voice.name.replace('Google', '')}</option>
+      ));
   }
   render() {
     return (
-      <select ref={(ref) => this.speechSelect = ref}/>
+      <select defaultValue={this.props.value}>
+        {this.options}
+      </select>
     );
   }
 }
