@@ -7,8 +7,6 @@ import MdCheck from 'react-icons/lib/md/check';
 import ToolTip from '../utils/Tooltip';
 import SpeechSelect from './SpeechSelect';
 
-let lastSpoken = '';
-let voiceName = '';
 export default class SpeechSynthesis extends Component {
   constructor(props) {
     super(props);
@@ -17,7 +15,7 @@ export default class SpeechSynthesis extends Component {
     };
   }
   componentDidMount() {
-    voiceName = this.props.voicesArr[0].name;
+    this.voiceName = this.props.voicesArr[0].name;
   }
   mapRef = (node) => {
     this.playSpan = node;
@@ -45,20 +43,20 @@ export default class SpeechSynthesis extends Component {
       this.toggleIcons(stopBtn, playBtn);
     };
     const voices = window.speechSynthesis.getVoices();
-    msg.voice = voices.filter(function (voice) { return voice.name === voiceName; })[0];
+    msg.voice = voices.filter(voice => voice.name === this.voiceName)[0];
     window.speechSynthesis.speak(msg);
   };
 
   speak = (message, id, e) => {
     const node = e.currentTarget;
     if (this.playSpan.childNodes[1].style.visibility === 'hidden') {
-      if (lastSpoken === id && this.props.voicesArr.length > 1) {
+      if (this.lastSpoken === id && this.props.voicesArr.length > 1) {
         if (this.speech) {
-          this.speech.speechSelect.value = voiceName;
+          this.speech.speechSelect.value = this.voiceName;
         }
         this.showPlayTooltip();
       } else {
-        lastSpoken = id;
+        this.lastSpoken = id;
         this.play(message, id);
       }
     } else {
@@ -67,7 +65,7 @@ export default class SpeechSynthesis extends Component {
     }
   };
   speakFromTooltip = (message, id) => {
-    voiceName = this.speech.speechSelect.value;
+    this.voiceName = this.speech.speechSelect.value;
     this.play(message, id);
   };
   toggleIcons = (n1, n2) => {
