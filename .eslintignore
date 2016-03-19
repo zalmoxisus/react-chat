@@ -3,3 +3,6 @@ lib/*
 **/node_modules/*
 **/server.js
 **/webpack.config*.js
+test/setup.js
+examples/socketcluster/bin/
+examples/xmpp/
