@@ -9,9 +9,9 @@ export default class Avatar extends Component {
     name: PropTypes.string
   };
   render() {
-    const { id, src, name } = this.props;
+    const { id, src, name, ...rest } = this.props;
     return (
-      <div>
+      <div {...rest}>
         <div className={styles.avatar}>
           {
             src ?
