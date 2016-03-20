@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import styles from './Infotip.css';
+import styles from './infotip.scss';
 
 export default class Infotip extends Component {
   static propTypes = {

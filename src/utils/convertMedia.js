@@ -1,5 +1,5 @@
 import Autolink from 'autolinker';
-import styles from '../Chat.css';
+import styles from '../chat.scss';
 
 export default function convertMedia(html, height, onlyvideo, autoplay, isAct, start) {
   let replacement;

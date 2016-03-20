@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import expect from 'expect';
-import { describeWithDOM, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import hook from 'css-modules-require-hook';
-import styles from '../../src/Chat.css';
+import styles from '../../src/chat.scss';
 import Message from '../../src/components/Message';
 
 const props = {
@@ -52,7 +52,7 @@ const props = {
   }
 };
 
-describeWithDOM('Message', () => {
+describe('Message', () => {
   it('should delete message', () => {
     const wrapper = mount(<Message {...props} />);
     expect(props.messages.length).toBe(2);

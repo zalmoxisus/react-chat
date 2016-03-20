@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import expect from 'expect';
-import { describeWithDOM, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import hook from 'css-modules-require-hook';
 import ContactList from '../../src/ContactList';
 import styles from '../../src/contactlist.css';
@@ -30,7 +30,7 @@ const props = {
   ]
 };
 
-describeWithDOM('ContactList', () => {
+describe('ContactList', () => {
   it('should render correctly', () => {
     const wrapper = mount(<ContactList {...props} />).find('ul');
     expect(wrapper.children().length).toBe(props.listContacts.length);

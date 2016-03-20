@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../Chat.css';
+import styles from '../chat.scss';
 import Avatar from './Avatar';
 import getTimeStamp from '../utils/getTimeStamp.js';
 import emojify from '../utils/emojify';

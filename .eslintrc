@@ -26,7 +26,8 @@
     "id-length": 0,
     "new-cap": 0,
     "react/jsx-no-bind": 0,
-    "indent": [2, 2, {"SwitchCase": 1}]
+    "indent": [2, 2, {"SwitchCase": 1}],
+    "prefer-template": 0
   },
   "plugins": [
     "react"

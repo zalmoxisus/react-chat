@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ChatArea from './components/ChatArea';
 import ChatInput from './components/ChatInput';
-import styles from './Chat.css';
+import styles from './chat.scss';
 
 export default class Chat extends Component {
   static propTypes = {

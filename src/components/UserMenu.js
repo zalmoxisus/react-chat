@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../Chat.css';
+import styles from '../chat.scss';
 import ToggleDisplay from '../utils/ToggleDisplay';
 import convertMedia from '../utils/convertMedia';
 import MdMic from 'react-icons/lib/md/mic';

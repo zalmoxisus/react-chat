@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import expect from 'expect';
-import { describeWithDOM, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import hook from 'css-modules-require-hook';
 import Contacts from '../../src/components/Contacts';
 import styles from '../../src/contactlist.css';
@@ -13,7 +13,7 @@ const props = {
   }
 };
 
-describeWithDOM('Contacts', () => {
+describe('Contacts', () => {
   it('should open edit name tooltip', () => {
     const wrapper = mount(<Contacts {...props} />);
     const editBtn = wrapper.find('#a' + props.contactItem.id);
@@ -21,9 +21,7 @@ describeWithDOM('Contacts', () => {
     editBtn.find('svg').simulate('click');
     expect(wrapper.node.state.isTooltipActive).toBe(true);
   });
-});
 
-describeWithDOM('Contacts', () => {
   it('should change name', () => {
     const wrapper = mount(<Contacts {...props} />);
     expect(wrapper.node.state.username).toBe('John');

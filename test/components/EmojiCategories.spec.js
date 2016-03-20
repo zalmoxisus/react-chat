@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import expect from 'expect';
-import { describeWithDOM, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import hook from 'css-modules-require-hook';
-import styles from '../../src/Chat.css';
+import styles from '../../src/chat.scss';
 import shortnames from 'emoji-shortnames';
 import EmojiCategories from '../../src/components/EmojiCategories';
 import ChatInput from '../../src/components/ChatInput';
@@ -16,7 +16,7 @@ const props = {
   }
 };
 
-describeWithDOM('EmojiCategories.', () => {
+describe('EmojiCategories.', () => {
   it('should add emoticon in textarea', () => {
     const emojiWrapper = mount(<EmojiCategories {...props} />).find('.' + styles.emoticonCategory);
     usermsgWrapper = mount(<ChatInput />).find('textarea');

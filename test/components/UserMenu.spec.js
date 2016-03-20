@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import expect from 'expect';
-import { describeWithDOM, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import hook from 'css-modules-require-hook';
-import styles from '../../src/Chat.css';
+import styles from '../../src/chat.scss';
 import UserMenu from '../../src/components/UserMenu';
 import ChatInput from '../../src/components/ChatInput';
 
@@ -50,7 +50,7 @@ const props = {
   ]
 };
 
-describeWithDOM('UserMenu.', () => {
+describe('UserMenu.', () => {
   it('should render correctly', () => {
     const wrapper = mount(<UserMenu />).find('ul');
     expect(wrapper.type()).toBe('ul');
