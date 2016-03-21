@@ -44,7 +44,7 @@ export default class Message extends Component {
     },
 
     delete(trLang) {
-      this.trLangs.forEach(function (item, index, object) {
+      this.trLangs.forEach((item, index, object) => {
         if (item.id === trLang) {
           object.splice(index, 1);
         }
@@ -71,7 +71,7 @@ export default class Message extends Component {
   };
   insertTranslation = (lng, msg, e) => {
     let isLng = false;
-    this.state.trLangs.forEach(function (item, index, object) {
+    this.state.trLangs.forEach((item, index, object) => {
       if (item.lang === nativeLng) {
         isLng = true;
       }
@@ -124,11 +124,11 @@ export default class Message extends Component {
   };
   isVideo = (msg) => {
     const media = convertMedia(msg, 150, true);
-    if (media.indexOf('<iframe') > -1) return true;
+    return (media.indexOf('<iframe') > -1);
   };
   deleteMsg = (message) => {
     const msg = this.msg;
-    this.props.onDelete(message, function success() {
+    this.props.onDelete(message, () => {
       msg.children[0].style.display = 'none';
       msg.children[1].style.display = 'none';
       msg.children[2].style.display = 'block';
@@ -136,7 +136,7 @@ export default class Message extends Component {
   };
   restoreMsg = (message) => {
     const msg = this.msg;
-    this.props.onRestore(message, function success() {
+    this.props.onRestore(message, () => {
       msg.children[0].style.display = 'block';
       msg.children[1].style.display = 'block';
       msg.children[2].style.display = 'none';
@@ -145,7 +145,7 @@ export default class Message extends Component {
   ban = (name, id, e) => {
     let banned = confirm(name + ' will be banned for this discussion');
     if (banned === true) {
-      this.props.onBan(id, function success() {
+      this.props.onBan(id, () => {
         const node = e.currentTarget;
         node.innerHTML = 'Banned';
         node.style.color = '#bbb';
@@ -187,9 +187,9 @@ export default class Message extends Component {
                     styles.smallContent}
             >
               {this.isLink(message.msg) ?
-                <VideoContainer src={this.isLink(message.msg)}/> :
+                <VideoContainer src={this.isLink(message.msg)} /> :
                 emojify(message.msg)}
-              <TranslateBox trLangs={this.state.trLangs} onDelete={this.deleteBox}/>
+              <TranslateBox trLangs={this.state.trLangs} onDelete={this.deleteBox} />
             </div>
             <div className={styles.footerMsg}>
               {
@@ -214,7 +214,7 @@ export default class Message extends Component {
                     onClick={this.translate.bind(this, message.id, message.msg)}
                     className={styles.btn}
                   >
-                    <MdTranslate/>
+                    <MdTranslate />
                   </div>
                   <ToolTip className={styles.translateTooltip}
                     horizontalPosition={isMine(message.sender) ? 'left' : 'right'}
@@ -236,7 +236,7 @@ export default class Message extends Component {
                           className={styles.btn}
                           onClick={this.selectLang.bind(this, message.msg)}
                         />
-                        <MdClose className={styles.btn} onClick={this.showTooltip}/>
+                        <MdClose className={styles.btn} onClick={this.showTooltip} />
                       </div>
                     </div>
                   </ToolTip>
@@ -257,17 +257,17 @@ export default class Message extends Component {
             {
               (onDelete) ?
                 <div onClick={this.deleteMsg.bind(this, message.id)} className={styles.btn}>
-                  <MdClose/>
+                  <MdClose />
                 </div> : null
             }
           </div>
           <div className={styles.restoreMsg}>
             <div>
-              <MdClose/>
+              <MdClose />
               <span>Message deleted</span>
             </div>
             <span onClick={this.restoreMsg}>
-              <MdReplay/>
+              <MdReplay />
               <span>Restore the message</span>
             </span>
             {isMine(message.sender) ?
@@ -275,7 +275,7 @@ export default class Message extends Component {
               <span>
                 <span style={{ color: '#bbb' }}> | </span>
                 <span onClick={this.ban.bind(this, message.name, message.id)}>
-                  <MdBlock/>
+                  <MdBlock />
                   <span>Ban for an hour</span>
                 </span>
               </span>

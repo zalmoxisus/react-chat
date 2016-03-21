@@ -6,41 +6,41 @@ export default class TooltipArrow extends Component {
     position: React.PropTypes.string,
     visibility: React.PropTypes.string,
     left: React.PropTypes.number,
-    "top": React.PropTypes.number,
+    top: React.PropTypes.number,
     color: React.PropTypes.string.isRequired,  // a css color
     border: React.PropTypes.string.isRequired,  // a css color
     width: React.PropTypes.number.isRequired,
     height: React.PropTypes.number.isRequired,
     horizontalDirection: React.PropTypes.oneOf(
-      ["left", "right"]
+      ['left', 'right']
     ).isRequired,
     verticalDirection: React.PropTypes.oneOf(
-      ["top", "bottom"]
+      ['top', 'bottom']
     ).isRequired
   };
   static defaultProps = {
     position: 'relative',
     visibility: 'visible',
     left: 0,
-    "top": 0
+    top: 0
   };
 
   render() {
     //var isRight = (this.props.horizontalDirection === "right");
-    let isTop = (this.props.verticalDirection === "top");
+    let isTop = (this.props.verticalDirection === 'top');
 
     let frontTopOffset = isTop ? 0 : 1;
     let borderTopOffset = isTop ? 0 : -1;
     return (
       <div style={{
-        display: "block",
+        display: 'block',
         position: this.props.position,
         visibility: this.props.visibility,
         left: this.props.left,
-        "top": this.props["top"],
+        top: this.props['top'],
         width: this.props.width + 2,
         height: this.props.height + 1,
-        marginTop: -4,
+        marginTop: -5,
         marginBottom: -2,
         zIndex: 100
       }}

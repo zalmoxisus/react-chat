@@ -35,7 +35,7 @@ export default class ChatInput extends Component {
           this.setState({ menuShow: false });
         }, 1000);
       });
-      e.currentTarget.addEventListener('mouseenter', function () {
+      e.currentTarget.addEventListener('mouseenter', () => {
         clearTimeout(menuTimer);
       });
     }
@@ -53,7 +53,7 @@ export default class ChatInput extends Component {
           this.setState({ emoticonShow: false });
         }, 1000);
       });
-      e.currentTarget.addEventListener('mouseenter', function () {
+      e.currentTarget.addEventListener('mouseenter', () => {
         clearTimeout(menuTimer);
       });
     } else if ((e.target.parentNode.className !== styles.categoryBtns) &&
@@ -110,7 +110,7 @@ export default class ChatInput extends Component {
                 this.usermsg.value = '';
                 return;
               }
-              onSend({ txt }, function success() {
+              onSend({ txt }, () => {
                 input.value = '';
               });
             }
@@ -124,7 +124,7 @@ export default class ChatInput extends Component {
           >
             {emojify(' :) ')}
           </div>
-          <EmojiCategories addEmoticon={this.addStr} emoticonShow={this.state.emoticonShow}/>
+          <EmojiCategories addEmoticon={this.addStr} emoticonShow={this.state.emoticonShow} />
         </div>
       </div>
     );

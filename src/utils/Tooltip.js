@@ -5,11 +5,11 @@ let _ = require('underscore');
 let zIndex = 10;
 
 let VERTICAL_CORNERS = {
-  "top": {
-    "top": '-100%'
+  top: {
+    top: '-100%'
   },
   bottom: {
-    "top": 0
+    top: 0
   }
 };
 

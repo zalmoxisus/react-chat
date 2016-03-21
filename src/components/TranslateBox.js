@@ -15,20 +15,18 @@ export default class TranslateBox extends Component {
     return (
       <div>
         {
-          this.props.trLangs.map(trLang => {
-            return (
-              <div key={trLang.id} className={styles.trBox}>
-                <span onClick={this.removeBox.bind(this, trLang.id)} className={styles.trSpan}>
-                  <span>
-                    <MdTranslate/>
-                    <MdClose/>
-                  </span>
-                  <span>{trLang.lang.toUpperCase()}</span>
+          this.props.trLangs.map(trLang =>
+            <div key={trLang.id} className={styles.trBox}>
+              <span onClick={this.removeBox.bind(this, trLang.id)} className={styles.trSpan}>
+                <span>
+                  <MdTranslate />
+                  <MdClose />
                 </span>
-                <span className={styles.trText}>{trLang.txt}</span>
-              </div>
-            );
-          })
+                <span>{trLang.lang.toUpperCase()}</span>
+              </span>
+              <span className={styles.trText}>{trLang.txt}</span>
+            </div>
+          )
         }
       </div>
     );

@@ -25,7 +25,7 @@ export default class Avatar extends Component {
               <div className={styles.avtrTooltip}>
                 <div className={styles.avtrName}>{name}</div>
                 {
-                  src ? <img src={src}/> : null
+                  src ? <img src={src} /> : null
                 }
               </div>
             </Infotip> : null

@@ -32,12 +32,10 @@ export default function convertMedia(html, height, onlyvideo, autoplay, isAct, s
       htmlReplace = html.replace(pattern4, replacement);
     } else if (pattern3.test(html)) {
       htmlReplace = '<img class="mimg" src="' + encodeURI(html) + '" />';
-    }
-    else htmlReplace = Autolink.link(html);
+    } else htmlReplace = Autolink.link(html);
   } else if (pattern5.test(html)) {
     htmlReplace = '<img class=' + styles.msgImg + ' src="' + encodeURI(html) + '" />';
-  }
-  else htmlReplace = Autolink.link(html);
+  } else htmlReplace = Autolink.link(html);
 
   return htmlReplace;
 }

@@ -17,23 +17,21 @@ export default class ContactList extends Component {
     return (
       <div className={styles.contactlist}>
         <div className={styles.headerlist}>
-          <MdPeople/>
+          <MdPeople />
           <span>CONTACT LIST</span>
         </div>
         <ul>
           {
-            listContacts.map(contact => {
-              return (
-                <Contacts key={contact.id}
-                  contactItem={contact}
-                  onInfo={onInfo}
-                  onMessage={onMessage}
-                  onCall={onCall}
-                  onChangeName={onChangeName}
-                  onDelete={onDelete}
-                />
-              );
-            })
+            listContacts.map(contact =>
+              <Contacts key={contact.id}
+                contactItem={contact}
+                onInfo={onInfo}
+                onMessage={onMessage}
+                onCall={onCall}
+                onChangeName={onChangeName}
+                onDelete={onDelete}
+              />
+            )
           }
         </ul>
       </div>

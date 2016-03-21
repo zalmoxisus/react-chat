@@ -16,15 +16,15 @@ export default class SpeechSynthesis extends Component {
   componentDidMount() {
     this.voiceName = this.props.voicesArr[0].name;
   }
+  getSanitizedMsg() {
+    return this.props.message.msg.replace(/(<([^>]+)>)/ig, '').replace(/\+/g, '');
+  }
   mapRef = (node) => {
     this.playSpan = node;
   };
   showPlayTooltip = () => {
     this.setState({ isPlayTooltipActive: !this.state.isPlayTooltipActive });
   };
-  getSanitizedMsg() {
-    return this.props.message.msg.replace(/(<([^>]+)>)/ig, '').replace(/\+/g, '');
-  }
   play = () => {
     const msg = new SpeechSynthesisUtterance(this.getSanitizedMsg());
     this.toggleIcons(this.playSpan.childNodes[0], this.playSpan.childNodes[1]);
@@ -80,8 +80,8 @@ export default class SpeechSynthesis extends Component {
           ref={this.mapRef}
           id={'play' + message.id}
         >
-          <MdPlayArrow className={styles.playBtn}/>
-          <MdStop style={{ visibility: 'hidden' }}/>
+          <MdPlayArrow className={styles.playBtn} />
+          <MdStop style={{ visibility: 'hidden' }} />
         </div>
         <ToolTip
           horizontalPosition={(isMine && message.msg.length > 15) ? 'left' : 'right'}
@@ -100,7 +100,7 @@ export default class SpeechSynthesis extends Component {
                 value={this.voiceName}
                 onChange={this.speakFromTooltip}
               />
-              <MdClose className={styles.btn} onClick={this.showPlayTooltip}/>
+              <MdClose className={styles.btn} onClick={this.showPlayTooltip} />
             </div>
           </div>
         </ToolTip>

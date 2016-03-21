@@ -7,14 +7,14 @@ import Message from '../../src/components/Message';
 
 const props = {
   message:
-    {
-      id: 1,
-      name: 'John',
-      avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/oagra/128.jpg',
-      msg: 'Hello, Marry!',
-      time: 1444428192,
-      sender: 1
-    },
+  {
+    id: 1,
+    name: 'John',
+    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/oagra/128.jpg',
+    msg: 'Hello, Marry!',
+    time: 1444428192,
+    sender: 1
+  },
   messages: [
     {
       id: 0,
@@ -43,7 +43,7 @@ const props = {
     { c: 'ar', l: 'Arabic' }
   ],
   onDelete: (message, success) => {
-    props.messages.forEach(function (item, index, object) {
+    props.messages.forEach((item, index, object) => {
       if (item.id === message) {
         object.splice(index, 1);
       }

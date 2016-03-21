@@ -4,7 +4,7 @@ export default class Triangle extends Component {
   static propTypes = {
     color: React.PropTypes.string.isRequired,
     left: React.PropTypes.number.isRequired,
-    "top": React.PropTypes.number.isRequired,
+    top: React.PropTypes.number.isRequired,
     width: React.PropTypes.number.isRequired,
     height: React.PropTypes.number.isRequired,
     horizontalDirection: React.PropTypes.oneOf(
@@ -22,7 +22,7 @@ export default class Triangle extends Component {
     let borderBottom;
 
     let hBorder = `${this.props.width}px solid transparent`;
-    if (this.props.horizontalDirection === "right") {
+    if (this.props.horizontalDirection === 'right') {
       borderLeft = hBorder;
     } else {
       borderRight = hBorder;
@@ -36,17 +36,18 @@ export default class Triangle extends Component {
     }
     return (
       <div style={{
-        display: "block",
+        display: 'block',
         height: 0,
         width: 0,
-        position: "absolute",
+        position: 'absolute',
         left: this.props.left,
-        "top": this.props["top"],
-        borderLeft: borderLeft,
-        borderRight: borderRight,
-        borderTop: borderTop,
-        borderBottom: borderBottom
-      }}></div>
+        top: this.props['top'],
+        borderLeft,
+        borderRight,
+        borderTop,
+        borderBottom
+      }}
+      ></div>
     );
   }
 }

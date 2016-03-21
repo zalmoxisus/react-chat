@@ -13,7 +13,7 @@ export default class LangSelect extends Component {
   }
   render() {
     return (
-      <select ref={(ref) => this.languageSelect = ref}/>
+      <select ref={(ref) => this.languageSelect = ref} />
     );
   }
 }

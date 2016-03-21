@@ -14,7 +14,7 @@ class Container extends Component {
     contacts: testContacts,
 
     delete(contact) {
-      this.contacts.forEach(function (item, index, object) {
+      this.contacts.forEach((item, index, object) => {
         if (item.id === contact) {
           object.splice(index, 1);
         }
@@ -62,4 +62,4 @@ class Container extends Component {
   }
 }
 
-ReactDOM.render(<Container/>, document.getElementById('root'));
+ReactDOM.render(<Container />, document.getElementById('root'));

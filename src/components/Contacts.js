@@ -82,7 +82,7 @@ export default class ContactList extends Component {
     let deleted = confirm('You are about to remove ' + name +
       '. All related chats will be closed.');
     if (deleted === true) {
-      this.props.onDelete(id, function success() {
+      this.props.onDelete(id, () => {
         console.log('onDelete success');
       });
     }
@@ -94,30 +94,30 @@ export default class ContactList extends Component {
       <li ref={(ref) => this.avatar = ref}>
         {
           contactItem.avatar ?
-            <img className={styles.img} src={contactItem.avatar}/> :
+            <img className={styles.img} src={contactItem.avatar} /> :
             <span className={styles.txt}>{this.state.username[0]}</span>
         }
         <span>
           <div className={styles.username}>{this.state.username}</div>
           <div ref={(ref) => this.optionsLeft = ref} className={styles.optionsLeft}>
-            <MdInfo onClick={this.showInfo.bind(this, contactItem.id)}/>
-            <MdMessage onClick={this.sendMessage.bind(this, contactItem.id)}/>
-            <MdVideocam onClick={this.videoCall.bind(this, contactItem.id)}/>
+            <MdInfo onClick={this.showInfo.bind(this, contactItem.id)} />
+            <MdMessage onClick={this.sendMessage.bind(this, contactItem.id)} />
+            <MdVideocam onClick={this.videoCall.bind(this, contactItem.id)} />
           </div>
         </span>
         <span className={styles.right}>
           <div className={styles.arrow} onClick={this.toggleInfo}>
-            <MdKeyboardArrowDown/>
+            <MdKeyboardArrowDown />
           </div>
           <div ref={(ref) => this.optionsRight = ref} className={styles.optionsRight}>
             <span id={'a' + contactItem.id} style={{ lineHeight: '0.7' }}>
-              <MdEdit onClick={this.showEdit}/>
+              <MdEdit onClick={this.showEdit} />
             </span>
-            <MdClose onClick={this.deleteContact.bind(this, contactItem.id, contactItem.name)}/>
+            <MdClose onClick={this.deleteContact.bind(this, contactItem.id, contactItem.name)} />
           </div>
         </span>
         <div ref={(ref) => this.editNameInp = ref} className={styles.editContainer}>
-          <input onKeyDown={this.changeName} className={styles.editInput} maxLength="45"/>
+          <input onKeyDown={this.changeName} className={styles.editInput} maxLength="45" />
         </div>
       </li>
     );

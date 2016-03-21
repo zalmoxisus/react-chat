@@ -69,8 +69,7 @@ export default class ChatArea extends Component {
     return (
       <div id="container" className={styles.container}>
         {
-          messages.map(message => {
-            return (
+          messages.map(message =>
               <Messages key={message.id}
                 message={message}
                 replay={replay}
@@ -86,8 +85,7 @@ export default class ChatArea extends Component {
                 withPhoto={withPhoto}
                 ref={(ref) => this.messages = ref}
               />
-            );
-          })
+          )
         }
       </div>
     );

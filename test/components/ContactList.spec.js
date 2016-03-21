@@ -34,7 +34,7 @@ describe('ContactList', () => {
   it('should render correctly', () => {
     const wrapper = mount(<ContactList {...props} />).find('ul');
     expect(wrapper.children().length).toBe(props.listContacts.length);
-    wrapper.children().forEach(function (node, i) {
+    wrapper.children().forEach((node, i) => {
       expect(node.node.props.contactItem.avatar).toBe(props.listContacts[i].avatar);
     });
   });

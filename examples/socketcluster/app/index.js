@@ -30,15 +30,15 @@ class Container extends Component {
   componentDidMount() {
     this.socket = socketCluster.connect();
 
-    this.socket.on('error', function (err) {
+    this.socket.on('error', (err) => {
       console.error('Socket error - ' + err);
     });
-    this.socket.on('connect', function () {
+    this.socket.on('connect', () => {
       console.log('Connected to server');
     });
 
     const channel = this.socket.subscribe('some-chat-room');
-    channel.on('subscribeFail', function (err) {
+    channel.on('subscribeFail', (err) => {
       console.log('Failed to subscribe to muc channel due to error: ' + err);
     });
     channel.watch(message => {
@@ -75,4 +75,4 @@ class Container extends Component {
   }
 }
 
-ReactDOM.render(<Container/>, document.getElementById('root'));
+ReactDOM.render(<Container />, document.getElementById('root'));
