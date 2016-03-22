@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 
 function isDefined(val) { return val !== null; }
 export default class ToggleDisplay extends Component {

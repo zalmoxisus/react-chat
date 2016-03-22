@@ -1,9 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import expect from 'expect';
 import { mount } from 'enzyme';
-import hook from 'css-modules-require-hook';
 import ContactList from '../../src/ContactList';
-import styles from '../../src/contactlist.css';
 
 const props = {
   listContacts: [

@@ -8,7 +8,7 @@ export default class TranslateBox extends Component {
     trLangs: PropTypes.array,
     onDelete: PropTypes.func
   };
-  removeBox = (trLang, e) => {
+  removeBox = (trLang) => {
     this.props.onDelete(trLang);
   };
   render() {

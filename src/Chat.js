@@ -36,7 +36,7 @@ export default class Chat extends Component {
 
   render() {
     const {
-      messages, me, lang, onSend, onTranslate, withPhoto,
+      messages, lang, onSend, onTranslate, withPhoto,
       onDelete, translateLanguages, nativeLng, onRestore, onBan } = this.props;
     return (<div>
         <div className={styles.base}>

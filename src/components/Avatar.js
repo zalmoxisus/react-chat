@@ -4,12 +4,11 @@ import Infotip from '../utils/Infotip';
 
 export default class Avatar extends Component {
   static propTypes = {
-    id: PropTypes.number,
     src: PropTypes.string,
     name: PropTypes.string
   };
   render() {
-    const { id, src, name, ...rest } = this.props;
+    const { src, name, ...rest } = this.props;
     return (
       <div {...rest}>
         <div className={styles.avatar}>

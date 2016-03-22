@@ -21,6 +21,13 @@ export default class ChatInput extends Component {
     menuShow: false
   };
 
+  mapRefTextarea = (node) => {
+    this.usermsg = node;
+  };
+  mapRefBtn = (node) => {
+    this.emoticonsBtn = node;
+  };
+
   hideMenu = (e) => {
     if ((e.target.parentNode.className === styles.btnContainer) ||
       ((e.target.tagName === 'INPUT'))) {
@@ -98,7 +105,7 @@ export default class ChatInput extends Component {
           </ToggleDisplay>
         </div>
         <TextareaAutosize
-          ref={(ref) => this.usermsg = ref} className={styles.usermsg} autoFocus onKeyPress={
+          ref={this.mapRefTextarea} className={styles.usermsg} autoFocus onKeyPress={
             (e) => {
               if (e.nativeEvent.keyCode !== 13 || e.shiftKey) return;
               e.preventDefault();
@@ -118,7 +125,7 @@ export default class ChatInput extends Component {
         />
         <div className={styles.emoticonsContainer} onClick={this.hideEmoticons}>
           <div
-            ref={(ref) => this.emoticonsBtn = ref}
+            ref={this.mapRefBtn}
             className={styles.emoticonsBtn}
             onMouseOver={this.btnHovered}
           >

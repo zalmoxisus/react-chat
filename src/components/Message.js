@@ -71,7 +71,7 @@ export default class Message extends Component {
   };
   insertTranslation = (lng, msg, e) => {
     let isLng = false;
-    this.state.trLangs.forEach((item, index, object) => {
+    this.state.trLangs.forEach((item) => {
       if (item.lang === nativeLng) {
         isLng = true;
       }
@@ -166,7 +166,7 @@ export default class Message extends Component {
           withPhoto &&
           !isMine(message.sender) &&
           ((typeof message.showAvatars === 'undefined') ? true : message.showAvatars) &&
-          <Avatar style={styles.avatar}
+          <Avatar className={styles.avatar}
             id={message.id}
             src={message.avatar}
             name={message.name}

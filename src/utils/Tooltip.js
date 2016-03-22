@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import TooltipArrow from './tooltipUtils/TooltipArrow';
 let _ = require('underscore');
 
@@ -26,7 +26,7 @@ let HORIZONTAL_CORNERS = {
 let HORIZONTAL_ALIGNMNENTS = {
   left: {
     tooltipLeft: 0,
-    arrowLeft: (arrowSize) => 0
+    arrowLeft: () => 0
   },
   right: {
     tooltipLeft: '-100%',

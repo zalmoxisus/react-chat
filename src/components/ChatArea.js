@@ -26,7 +26,7 @@ export default class ChatArea extends Component {
 
   componentWillMount() {
     if (window.speechSynthesis) {
-      window.speechSynthesis.onvoiceschanged = (e) => {
+      window.speechSynthesis.onvoiceschanged = () => {
         const voices = window.speechSynthesis.getVoices();
         for (let i = 0; i < voices.length; i++) {
           let option = voices[i];
@@ -83,7 +83,6 @@ export default class ChatArea extends Component {
                 voicesArr={this.state.voicesArr}
                 nativeLng={nativeLng}
                 withPhoto={withPhoto}
-                ref={(ref) => this.messages = ref}
               />
           )
         }

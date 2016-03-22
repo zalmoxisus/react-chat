@@ -1,7 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import expect from 'expect';
 import { mount } from 'enzyme';
-import hook from 'css-modules-require-hook';
 import ChatArea from '../../src/components/ChatArea';
 import styles from '../../src/chat.scss';
 

@@ -51,7 +51,6 @@ export default class UserMenu extends Component {
 
 
     if (e.nativeEvent.keyCode === 13) {
-      const input = e.target;
       const txt = e.target.value;
       if ((txt === '') || (txt === ' ')) return;
       this.props.onSend({ txt }, () => {
@@ -99,7 +98,7 @@ export default class UserMenu extends Component {
             }
             if (finalTranscript !== '') this.props.addTranslation(finalTranscript);
           };
-          recognition.onerror = (event) => {
+          recognition.onerror = () => {
             this.hideIndicator(e);
           };
           recognition.onend = () => {
@@ -135,11 +134,11 @@ export default class UserMenu extends Component {
       default:
     }
   };
-  hideIndicator = (e) => {
+  hideIndicator = () => {
     recognition.stop();
     this.setState({ micShow: false });
   };
-  handleClose = (e) => {
+  handleClose = () => {
     this.submenuShow = false;
     this.setState({ submenuShow: false });
     this.videoInp.value = '';

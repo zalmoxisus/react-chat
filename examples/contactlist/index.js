@@ -1,13 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ContactList from 'react-chat/ContactList';
 import testContacts from './testContacts';
-
-const me = {
-  id: '2',
-  name: 'Leo',
-  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg'
-};
 
 class Container extends Component {
   state = {
@@ -21,17 +15,17 @@ class Container extends Component {
       });
     }
   };
-  handleInfo = (id) => {
+  handleInfo = () => {
     // Add here info method
     console.log('info method');
   };
 
-  handleMessage = (id) => {
+  handleMessage = () => {
     // Add here message method
     console.log('message method');
   };
 
-  handleCall = (id) => {
+  handleCall = () => {
     // Add here call method
     console.log('call method');
   };

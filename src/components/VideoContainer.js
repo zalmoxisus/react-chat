@@ -27,13 +27,16 @@ export default class VideoContainer extends Component {
     this.contentMsg.innerHTML = this.props.src.match(/<img[^>]+>(<\/img>)?|<iframe.+?<\/iframe>/ig);
     return true;
   }
+  mapRef = (node) => {
+    this.contentMsg = node;
+  };
   render() {
     return (
       <span>
         <span>
           { emojify(this.state.emojiSrc) }
         </span>
-        <span ref={(ref) => this.contentMsg = ref} className={styles.videoContainer}>
+        <span ref={this.mapRef} className={styles.videoContainer}>
         </span>
       </span>
     );

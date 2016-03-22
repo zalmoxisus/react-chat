@@ -1,7 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import expect from 'expect';
 import { mount } from 'enzyme';
-import hook from 'css-modules-require-hook';
 import styles from '../../src/chat.scss';
 import UserMenu from '../../src/components/UserMenu';
 import ChatInput from '../../src/components/ChatInput';
@@ -90,7 +89,6 @@ describe('UserMenu.', () => {
   });
   it('should add translation', () => {
     const wrapper = mount(<UserMenu {...props} />);
-    const container = wrapper.find('.' + styles.videoInpContainer);
     const translationInput = wrapper.find('input').at(1);
     usermsgWrapper = mount(<ChatInput />).find('textarea');
     expect(usermsgWrapper.value).toBe(undefined);

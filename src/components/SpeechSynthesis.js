@@ -28,17 +28,17 @@ export default class SpeechSynthesis extends Component {
   play = () => {
     const msg = new SpeechSynthesisUtterance(this.getSanitizedMsg());
     this.toggleIcons(this.playSpan.childNodes[0], this.playSpan.childNodes[1]);
-    msg.onstart = (event) => {
+    msg.onstart = () => {
       if (this.state.isPlayTooltipActive) {
         this.showPlayTooltip();
       }
     };
     const playBtn = this.playSpan.childNodes[0];
     const stopBtn = this.playSpan.childNodes[1];
-    msg.onend = (event) => {
+    msg.onend = () => {
       this.toggleIcons(stopBtn, playBtn);
     };
-    msg.onerror = (event) => {
+    msg.onerror = () => {
       this.toggleIcons(stopBtn, playBtn);
     };
     const voices = window.speechSynthesis.getVoices();
