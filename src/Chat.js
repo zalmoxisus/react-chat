@@ -4,28 +4,6 @@ import ChatInput from './components/ChatInput';
 import styles from './chat.scss';
 
 export default class Chat extends Component {
-  static propTypes = {
-    messages: PropTypes.array,
-    onSend: PropTypes.func.isRequired,
-    me: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      avatar: PropTypes.string
-    }).isRequired,
-    lang: PropTypes.string,
-    onTranslate: PropTypes.func,
-    onDelete: PropTypes.func,
-    onRestore: PropTypes.func,
-    onBan: PropTypes.func,
-    translateLanguages: PropTypes.array,
-    nativeLng: PropTypes.string,
-    withPhoto: PropTypes.bool
-  };
-
-  static defaultProps = {
-    messages: []
-  };
-
   replay = (e) => {
     const name = e.currentTarget.textContent;
     const node = this.input.usermsg;
@@ -64,3 +42,25 @@ export default class Chat extends Component {
     );
   }
 }
+
+Chat.propTypes = {
+  messages: PropTypes.array,
+  onSend: PropTypes.func.isRequired,
+  me: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    avatar: PropTypes.string
+  }).isRequired,
+  lang: PropTypes.string,
+  onTranslate: PropTypes.func,
+  onDelete: PropTypes.func,
+  onRestore: PropTypes.func,
+  onBan: PropTypes.func,
+  translateLanguages: PropTypes.array,
+  nativeLng: PropTypes.string,
+  withPhoto: PropTypes.bool
+};
+
+Chat.defaultProps = {
+  messages: []
+};

@@ -3,10 +3,6 @@ import styles from '../chat.scss';
 import Infotip from '../utils/Infotip';
 
 export default class Avatar extends Component {
-  static propTypes = {
-    src: PropTypes.string,
-    name: PropTypes.string
-  };
   render() {
     const { src, name, ...rest } = this.props;
     return (
@@ -33,3 +29,8 @@ export default class Avatar extends Component {
     );
   }
 }
+
+Avatar.propTypes = {
+  src: PropTypes.string,
+  name: PropTypes.string
+};

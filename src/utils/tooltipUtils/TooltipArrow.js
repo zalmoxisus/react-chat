@@ -2,29 +2,6 @@ import React, { Component } from 'react';
 import Triangle from './Triangle';
 
 export default class TooltipArrow extends Component {
-  static propTypes = {
-    position: React.PropTypes.string,
-    visibility: React.PropTypes.string,
-    left: React.PropTypes.number,
-    top: React.PropTypes.number,
-    color: React.PropTypes.string.isRequired,  // a css color
-    border: React.PropTypes.string.isRequired,  // a css color
-    width: React.PropTypes.number.isRequired,
-    height: React.PropTypes.number.isRequired,
-    horizontalDirection: React.PropTypes.oneOf(
-      ['left', 'right']
-    ).isRequired,
-    verticalDirection: React.PropTypes.oneOf(
-      ['top', 'bottom']
-    ).isRequired
-  };
-  static defaultProps = {
-    position: 'relative',
-    visibility: 'visible',
-    left: 0,
-    top: 0
-  };
-
   render() {
     //var isRight = (this.props.horizontalDirection === "right");
     let isTop = (this.props.verticalDirection === 'top');
@@ -71,3 +48,26 @@ export default class TooltipArrow extends Component {
     );
   }
 }
+
+TooltipArrow.propTypes = {
+  position: React.PropTypes.string,
+  visibility: React.PropTypes.string,
+  left: React.PropTypes.number,
+  top: React.PropTypes.number,
+  color: React.PropTypes.string.isRequired,  // a css color
+  border: React.PropTypes.string.isRequired,  // a css color
+  width: React.PropTypes.number.isRequired,
+  height: React.PropTypes.number.isRequired,
+  horizontalDirection: React.PropTypes.oneOf(
+    ['left', 'right']
+  ).isRequired,
+  verticalDirection: React.PropTypes.oneOf(
+    ['top', 'bottom']
+  ).isRequired
+};
+TooltipArrow.defaultProps = {
+  position: 'relative',
+  visibility: 'visible',
+  left: 0,
+  top: 0
+};

@@ -7,16 +7,7 @@ import MdVideocam from 'react-icons/lib/md/videocam';
 import MdEdit from 'react-icons/lib/md/edit';
 import MdClose from 'react-icons/lib/md/close';
 
-export default class ContactList extends Component {
-  static propTypes = {
-    contactItem: PropTypes.object,
-    onInfo: PropTypes.func,
-    onMessage: PropTypes.func,
-    onCall: PropTypes.func,
-    onChangeName: PropTypes.func,
-    onDelete: PropTypes.func
-  };
-
+export default class Contacts extends Component {
   state = {
     username: this.props.contactItem.name
   };
@@ -136,3 +127,12 @@ export default class ContactList extends Component {
     );
   }
 }
+
+Contacts.propTypes = {
+  contactItem: PropTypes.object,
+  onInfo: PropTypes.func,
+  onMessage: PropTypes.func,
+  onCall: PropTypes.func,
+  onChangeName: PropTypes.func,
+  onDelete: PropTypes.func
+};

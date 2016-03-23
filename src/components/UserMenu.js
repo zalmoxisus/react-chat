@@ -12,17 +12,6 @@ let SpeechRecognition;
 let recognition;
 let optsCount;
 export default class UserMenu extends Component {
-  static propTypes = {
-    menuShow: PropTypes.bool,
-    onSend: PropTypes.func,
-    addTranslation: PropTypes.func,
-    lang: PropTypes.string,
-    onTranslate: PropTypes.func,
-    translateLanguages: PropTypes.array
-  };
-  static defaultProps = {
-    lang: 'en'
-  };
   state = {
     micShow: false,
     submenuShow: false
@@ -227,3 +216,14 @@ export default class UserMenu extends Component {
     );
   }
 }
+UserMenu.propTypes = {
+  menuShow: PropTypes.bool,
+  onSend: PropTypes.func,
+  addTranslation: PropTypes.func,
+  lang: PropTypes.string,
+  onTranslate: PropTypes.func,
+  translateLanguages: PropTypes.array
+};
+UserMenu.defaultProps = {
+  lang: 'en'
+};

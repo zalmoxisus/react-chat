@@ -9,13 +9,6 @@ import MdKeyboardArrowDown from 'react-icons/lib/md/keyboard-arrow-down';
 import MdKeyboardArrowUp from 'react-icons/lib/md/keyboard-arrow-up';
 
 export default class ChatInput extends Component {
-  static propTypes = {
-    onSend: PropTypes.func,
-    submenuShow: PropTypes.bool,
-    lang: PropTypes.string,
-    onTranslate: PropTypes.func,
-    translateLanguages: PropTypes.array
-  };
   state = {
     emoticonShow: false,
     menuShow: false
@@ -137,3 +130,11 @@ export default class ChatInput extends Component {
     );
   }
 }
+
+ChatInput.propTypes = {
+  onSend: PropTypes.func,
+  submenuShow: PropTypes.bool,
+  lang: PropTypes.string,
+  onTranslate: PropTypes.func,
+  translateLanguages: PropTypes.array
+};

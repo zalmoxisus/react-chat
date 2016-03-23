@@ -1,20 +1,6 @@
 import React, { Component } from 'react';
 
 export default class Triangle extends Component {
-  static propTypes = {
-    color: React.PropTypes.string.isRequired,
-    left: React.PropTypes.number.isRequired,
-    top: React.PropTypes.number.isRequired,
-    width: React.PropTypes.number.isRequired,
-    height: React.PropTypes.number.isRequired,
-    horizontalDirection: React.PropTypes.oneOf(
-      ['left', 'right']
-    ).isRequired,
-    verticalDirection: React.PropTypes.oneOf(
-      ['top', 'bottom']
-    ).isRequired
-  };
-
   render() {
     let borderLeft;
     let borderRight;
@@ -51,3 +37,17 @@ export default class Triangle extends Component {
     );
   }
 }
+
+Triangle.propTypes = {
+  color: React.PropTypes.string.isRequired,
+  left: React.PropTypes.number.isRequired,
+  top: React.PropTypes.number.isRequired,
+  width: React.PropTypes.number.isRequired,
+  height: React.PropTypes.number.isRequired,
+  horizontalDirection: React.PropTypes.oneOf(
+    ['left', 'right']
+  ).isRequired,
+  verticalDirection: React.PropTypes.oneOf(
+    ['top', 'bottom']
+  ).isRequired
+};

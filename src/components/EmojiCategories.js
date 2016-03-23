@@ -8,14 +8,6 @@ const categories = Object.keys(shortnames).map((category, i) =>
 );
 
 export default class EmojiCategories extends Component {
-  static propTypes = {
-    text: PropTypes.string,
-    emoticonShow: PropTypes.bool,
-    addEmoticon: PropTypes.func
-  };
-  static defaultProps = {
-    text: shortnames['people'].join('')
-  };
   state = {
     text: this.props.text
   };
@@ -50,3 +42,12 @@ export default class EmojiCategories extends Component {
     );
   }
 }
+
+EmojiCategories.propTypes = {
+  text: PropTypes.string,
+  emoticonShow: PropTypes.bool,
+  addEmoticon: PropTypes.func
+};
+EmojiCategories.defaultProps = {
+  text: shortnames['people'].join('')
+};

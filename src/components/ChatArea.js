@@ -3,20 +3,6 @@ import styles from '../chat.scss';
 import Messages from './Message';
 
 export default class ChatArea extends Component {
-  static propTypes = {
-    messages: PropTypes.array,
-    replay: PropTypes.func,
-    isMine: PropTypes.func,
-    onTranslate: PropTypes.func,
-    onDelete: PropTypes.func,
-    onRestore: PropTypes.func,
-    onBan: PropTypes.func,
-    translateLanguages: PropTypes.array,
-    lang: PropTypes.string,
-    nativeLng: PropTypes.string,
-    withPhoto: PropTypes.bool
-  };
-
   state = {
     voicesArr: [],
     add(voice) {
@@ -90,3 +76,17 @@ export default class ChatArea extends Component {
     );
   }
 }
+
+ChatArea.propTypes = {
+  messages: PropTypes.array,
+  replay: PropTypes.func,
+  isMine: PropTypes.func,
+  onTranslate: PropTypes.func,
+  onDelete: PropTypes.func,
+  onRestore: PropTypes.func,
+  onBan: PropTypes.func,
+  translateLanguages: PropTypes.array,
+  lang: PropTypes.string,
+  nativeLng: PropTypes.string,
+  withPhoto: PropTypes.bool
+};

@@ -4,10 +4,6 @@ import MdClose from 'react-icons/lib/md/close';
 import MdTranslate from 'react-icons/lib/md/translate';
 
 export default class TranslateBox extends Component {
-  static propTypes = {
-    trLangs: PropTypes.array,
-    onDelete: PropTypes.func
-  };
   removeBox = (trLang) => {
     this.props.onDelete(trLang);
   };
@@ -32,3 +28,8 @@ export default class TranslateBox extends Component {
     );
   }
 }
+
+TranslateBox.propTypes = {
+  trLangs: PropTypes.array,
+  onDelete: PropTypes.func
+};

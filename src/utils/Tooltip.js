@@ -35,32 +35,6 @@ let HORIZONTAL_ALIGNMNENTS = {
 };
 
 export default class Tooltip extends Component {
-  static propTypes = {
-    show: React.PropTypes.bool.isRequired,
-    className: React.PropTypes.string,
-    arrowSize: React.PropTypes.number,
-    borderColor: React.PropTypes.string,
-    verticalPosition: React.PropTypes.oneOf(
-      _.keys(VERTICAL_CORNERS)
-    ),
-    horizontalPosition: React.PropTypes.oneOf(
-      _.keys(HORIZONTAL_CORNERS)
-    ),
-    horizontalAlign: React.PropTypes.oneOf(
-      _.keys(HORIZONTAL_ALIGNMNENTS)
-    ),
-    children: React.PropTypes.arrayOf(
-      React.PropTypes.element
-    ).isRequired
-  };
-  static defaultProps = {
-    className: '',
-    arrowSize: 10,
-    borderColor: '#ccc',
-    verticalPosition: 'bottom',
-    horizontalPosition: 'left',
-    horizontalAlign: 'left'
-  };
   state = {
     height: null
   };
@@ -199,3 +173,30 @@ export default class Tooltip extends Component {
     );
   }
 }
+
+Tooltip.propTypes = {
+  show: React.PropTypes.bool.isRequired,
+  className: React.PropTypes.string,
+  arrowSize: React.PropTypes.number,
+  borderColor: React.PropTypes.string,
+  verticalPosition: React.PropTypes.oneOf(
+    _.keys(VERTICAL_CORNERS)
+  ),
+  horizontalPosition: React.PropTypes.oneOf(
+    _.keys(HORIZONTAL_CORNERS)
+  ),
+  horizontalAlign: React.PropTypes.oneOf(
+    _.keys(HORIZONTAL_ALIGNMNENTS)
+  ),
+  children: React.PropTypes.arrayOf(
+    React.PropTypes.element
+  ).isRequired
+};
+Tooltip.defaultProps = {
+  className: '',
+  arrowSize: 10,
+  borderColor: '#ccc',
+  verticalPosition: 'bottom',
+  horizontalPosition: 'left',
+  horizontalAlign: 'left'
+};

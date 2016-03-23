@@ -3,9 +3,6 @@ import styles from '../chat.scss';
 import emojify from '../utils/emojify';
 
 export default class VideoContainer extends Component {
-  static propTypes = {
-    src: PropTypes.string
-  };
   state = {
     emojiSrc: ''
   };
@@ -42,3 +39,7 @@ export default class VideoContainer extends Component {
     );
   }
 }
+
+VideoContainer.propTypes = {
+  src: PropTypes.string
+};

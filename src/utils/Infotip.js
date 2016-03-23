@@ -2,9 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import styles from './infotip.scss';
 
 export default class Infotip extends Component {
-  static propTypes = {
-    src: PropTypes.string
-  };
   state = {
     hover: false
   };
@@ -34,3 +31,7 @@ export default class Infotip extends Component {
     </div>);
   }
 }
+
+Infotip.propTypes = {
+  src: PropTypes.string
+};

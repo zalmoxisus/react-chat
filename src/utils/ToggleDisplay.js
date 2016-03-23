@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 
 function isDefined(val) { return val !== null; }
 export default class ToggleDisplay extends Component {
-  static propTypes = {
-    hide: React.PropTypes.bool,
-    show: React.PropTypes.bool
-  };
   shouldHide = () => {
     let shouldHide;
     if (isDefined(this.props.show)) {
@@ -27,3 +23,8 @@ export default class ToggleDisplay extends Component {
     );
   }
 }
+
+ToggleDisplay.propTypes = {
+  hide: React.PropTypes.bool,
+  show: React.PropTypes.bool
+};

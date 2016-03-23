@@ -19,20 +19,6 @@ import TranslateBox from './TranslateBox';
 let lastTranslate = '';
 let nativeLng;
 export default class Message extends Component {
-  static propTypes = {
-    message: PropTypes.object,
-    isMine: PropTypes.func,
-    replay: PropTypes.func,
-    onTranslate: PropTypes.func,
-    onDelete: PropTypes.func,
-    onRestore: PropTypes.func,
-    onBan: PropTypes.func,
-    translateLanguages: PropTypes.array,
-    lang: PropTypes.string,
-    voicesArr: PropTypes.array,
-    nativeLng: PropTypes.string,
-    withPhoto: PropTypes.bool
-  };
   state = {
     isTooltipActive: false,
     trLangs: [],
@@ -275,3 +261,18 @@ export default class Message extends Component {
     );
   }
 }
+
+Message.propTypes = {
+  message: PropTypes.object,
+  isMine: PropTypes.func,
+  replay: PropTypes.func,
+  onTranslate: PropTypes.func,
+  onDelete: PropTypes.func,
+  onRestore: PropTypes.func,
+  onBan: PropTypes.func,
+  translateLanguages: PropTypes.array,
+  lang: PropTypes.string,
+  voicesArr: PropTypes.array,
+  nativeLng: PropTypes.string,
+  withPhoto: PropTypes.bool
+};

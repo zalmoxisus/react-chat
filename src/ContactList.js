@@ -4,14 +4,6 @@ import MdPeople from 'react-icons/lib/md/people';
 import Contacts from './components/Contacts';
 
 export default class ContactList extends Component {
-  static propTypes = {
-    listContacts: PropTypes.array,
-    onInfo: PropTypes.func,
-    onMessage: PropTypes.func,
-    onCall: PropTypes.func,
-    onChangeName: PropTypes.func,
-    onDelete: PropTypes.func
-  };
   render() {
     const { listContacts, onInfo, onMessage, onCall, onChangeName, onDelete } = this.props;
     return (
@@ -38,3 +30,12 @@ export default class ContactList extends Component {
     );
   }
 }
+
+ContactList.propTypes = {
+  listContacts: PropTypes.array,
+  onInfo: PropTypes.func,
+  onMessage: PropTypes.func,
+  onCall: PropTypes.func,
+  onChangeName: PropTypes.func,
+  onDelete: PropTypes.func
+};
