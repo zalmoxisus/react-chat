@@ -21,6 +21,19 @@ export default class ContactList extends Component {
     username: this.props.contactItem.name
   };
 
+  mapRefAvatar = (node) => {
+    this.avatar = node;
+  };
+  mapRefLeft = (node) => {
+    this.optionsLeft = node;
+  };
+  mapRefRight = (node) => {
+    this.optionsRight = node;
+  };
+  mapRefName = (node) => {
+    this.editNameInp = node;
+  };
+
   showEdit = () => {
     const editName = this.editNameInp;
     const editInput = editName.children[0];
@@ -91,7 +104,7 @@ export default class ContactList extends Component {
   render() {
     const { contactItem } = this.props;
     return (
-      <li ref={(ref) => this.avatar = ref}>
+      <li ref={this.mapRefAvatar}>
         {
           contactItem.avatar ?
             <img className={styles.img} src={contactItem.avatar} /> :
@@ -99,7 +112,7 @@ export default class ContactList extends Component {
         }
         <span>
           <div className={styles.username}>{this.state.username}</div>
-          <div ref={(ref) => this.optionsLeft = ref} className={styles.optionsLeft}>
+          <div ref={this.mapRefLeft} className={styles.optionsLeft}>
             <MdInfo onClick={this.showInfo.bind(this, contactItem.id)} />
             <MdMessage onClick={this.sendMessage.bind(this, contactItem.id)} />
             <MdVideocam onClick={this.videoCall.bind(this, contactItem.id)} />
@@ -109,14 +122,14 @@ export default class ContactList extends Component {
           <div className={styles.arrow} onClick={this.toggleInfo}>
             <MdKeyboardArrowDown />
           </div>
-          <div ref={(ref) => this.optionsRight = ref} className={styles.optionsRight}>
+          <div ref={this.mapRefRight} className={styles.optionsRight}>
             <span id={'a' + contactItem.id} style={{ lineHeight: '0.7' }}>
               <MdEdit onClick={this.showEdit} />
             </span>
             <MdClose onClick={this.deleteContact.bind(this, contactItem.id, contactItem.name)} />
           </div>
         </span>
-        <div ref={(ref) => this.editNameInp = ref} className={styles.editContainer}>
+        <div ref={this.mapRefName} className={styles.editContainer}>
           <input onKeyDown={this.changeName} className={styles.editInput} maxLength="45" />
         </div>
       </li>

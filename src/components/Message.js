@@ -9,7 +9,6 @@ import MdAccessTime from 'react-icons/lib/md/access-time';
 import MdReply from 'react-icons/lib/md/reply';
 import MdClose from 'react-icons/lib/md/close';
 import MdTranslate from 'react-icons/lib/md/translate';
-import MdCheck from 'react-icons/lib/md/check';
 import MdReplay from 'react-icons/lib/md/replay';
 import MdBlock from 'react-icons/lib/md/block';
 import ToolTip from '../utils/Tooltip';
@@ -17,7 +16,6 @@ import LangSelect from './LangSelect';
 import SpeechSynthesis from './SpeechSynthesis';
 import TranslateBox from './TranslateBox';
 
-let currId = '';
 let lastTranslate = '';
 let nativeLng;
 export default class Message extends Component {
@@ -56,6 +54,12 @@ export default class Message extends Component {
       nativeLng = this.props.nativeLng;
     }
   }
+  mapRefMsg = (node) => {
+    this.msg = node;
+  };
+  mapRefSelect = (node) => {
+    this.langSelect = node;
+  };
   translate = (id, msg, e) => {
     if (lastTranslate === id || !nativeLng) {
       this.showTooltip(e);
@@ -64,8 +68,8 @@ export default class Message extends Component {
       this.insertTranslation(nativeLng, msg, e);
     }
   };
-  selectLang = (msg, e) => {
-    nativeLng = this.langSelect.languageSelect.value;
+  selectLang = (val, msg, e) => {
+    nativeLng = val;
     this.insertTranslation(nativeLng, msg, e);
     this.showTooltip(e);
   };
@@ -98,20 +102,8 @@ export default class Message extends Component {
     this.state.delete(trLang);
     this.setState(this.state);
   };
-  showTooltip = (e) => {
-    let currState;
-    if (!e.currentTarget.id) currState = false;
-    else {
-      currState = !(currId === e.currentTarget.id && this.state.isTooltipActive === true);
-      currId = e.currentTarget.id;
-    }
-    if (this.SpeechSynthesis.state.isPlayTooltipActive) {
-      this.SpeechSynthesis.state.isPlayTooltipActive = false;
-      currId = e.currentTarget.id;
-      currState = false;
-      this.forceUpdate();
-    }
-    this.setState({ isTooltipActive: currState });
+  showTooltip = () => {
+    this.setState({ isTooltipActive: !this.state.isTooltipActive });
   };
   isLink = (msg) => {
     const media = convertMedia(msg, 150, true);
@@ -175,13 +167,12 @@ export default class Message extends Component {
         <div className={isMine(message.sender) ? styles.arrowRight : styles.arrowLeft}>
         </div>
         <div
-          ref={(ref) => this.msg = ref}
+          ref={this.mapRefMsg}
           key={message.msg}
           className={isMine(message.sender) ? styles.myMsg : styles.uMsg}
         >
           <div className={styles.firstCell}>
             <div
-              ref={(ref) => this.message = ref}
               className={message.msg.length < 16 ?
                     styles.bigContent :
                     styles.smallContent}
@@ -230,11 +221,10 @@ export default class Message extends Component {
                       <div style={{ display: 'flex' }}>
                         <LangSelect
                           translateLanguages={translateLanguages}
-                          ref={(ref) => this.langSelect = ref}
-                        />
-                        <MdCheck
-                          className={styles.btn}
-                          onClick={this.selectLang.bind(this, message.msg)}
+                          lang={lang}
+                          msg={message.msg}
+                          onChange={this.selectLang}
+                          ref={this.mapRefSelect}
                         />
                         <MdClose className={styles.btn} onClick={this.showTooltip} />
                       </div>
@@ -251,7 +241,6 @@ export default class Message extends Component {
                   lang={lang}
                   voicesArr={voicesArr}
                   isMine={isMine(message.sender)}
-                  ref={(ref) => this.SpeechSynthesis = ref}
                 /> : null
             }
             {

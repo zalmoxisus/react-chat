@@ -10,6 +10,7 @@ import MdClose from 'react-icons/lib/md/close';
 
 let SpeechRecognition;
 let recognition;
+let optsCount;
 export default class UserMenu extends Component {
   static propTypes = {
     menuShow: PropTypes.bool,
@@ -35,11 +36,25 @@ export default class UserMenu extends Component {
   }
   componentDidMount() {
     if (!SpeechRecognition && (!this.props.onTranslate || !this.props.translateLanguages)) {
-      this.usermenu.style.marginTop = '-60px';
+      optsCount = '-60px';
     } else if (!SpeechRecognition || !this.props.onTranslate || !this.props.translateLanguages) {
-      this.usermenu.style.marginTop = '-90px';
-    }
+      optsCount = '-90px';
+    } else optsCount = '-121px';
   }
+
+  mapRefVideo = (node) => {
+    this.videoInp = node;
+  };
+  mapRefTranslate = (node) => {
+    this.translateInp = node;
+  };
+  mapRefImage = (node) => {
+    this.imgInp = node;
+  };
+  mapRefContainer = (node) => {
+    this.videoInpContainer = node;
+  };
+
   changeVideoInp = (e) => {
     let media = convertMedia(e.target.value, 150, true);
     let videoContainer = this.videoInpContainer;
@@ -156,8 +171,8 @@ export default class UserMenu extends Component {
     const { menuShow, onTranslate, translateLanguages } = this.props;
     return (<div className={styles.userContainer}>
         <ul
+          style={{ marginTop: optsCount }}
           className={menuShow ? styles.showUmenu : styles.hideUmenu}
-          ref={(ref) => this.usermenu = ref}
         >
           {
             SpeechRecognition ?
@@ -179,21 +194,21 @@ export default class UserMenu extends Component {
           </li>
         </ul>
         <ToggleDisplay show={this.state.submenuShow}>
-          <div ref={(ref) => this.videoInpContainer = ref} className={styles.videoInpContainer}>
+          <div ref={this.mapRefContainer} className={styles.videoInpContainer}>
             <input
-              ref={(ref) => this.videoInp = ref}
+              ref={this.mapRefVideo}
               placeholder="Video url (youtube, vimeo)"
               onKeyUp={this.changeVideoInp}
               style={{ position: 'relative' }}
             />
             <input
-              ref={(ref) => this.translateInp = ref}
+              ref={this.mapRefTranslate}
               placeholder="Tape a phrase to be translated"
               onKeyUp={this.insertTranslation}
               style={{ position: 'absolute', top: '15px', width: '88%' }}
             />
             <input
-              ref={(ref) => this.imgInp = ref}
+              ref={this.mapRefImage}
               placeholder="Image url"
               onKeyUp={this.changeVideoInp}
               style={{ position: 'absolute', top: '15px', width: '88%' }}
@@ -201,7 +216,6 @@ export default class UserMenu extends Component {
           </div>
           <div className={styles.btnContainer}
             onClick={this.handleClose}
-            ref={(ref) => this.btnContainer = ref}
           >
             <MdClose className={styles.iconClear} />
           </div>
