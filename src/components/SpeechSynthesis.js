@@ -60,7 +60,7 @@ export default class SpeechSynthesis extends Component {
       window.speechSynthesis.cancel();
     }
   };
-  speakFromTooltip = (value) => {
+  speakFromTooltip = (value = this.props.voicesArr[0].name) => {
     this.voiceName = value;
     this.play();
   };

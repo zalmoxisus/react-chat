@@ -186,12 +186,11 @@ export default class Message extends Component {
           <div className={styles.secondCell}>
             {
               (onTranslate && translateLanguages && !this.isVideo(message.msg)) ?
-                <div>
-                  <div
-                    id={'a' + message.id}
-                    onClick={this.translate.bind(this, message.id, message.msg)}
-                    className={styles.btn}
-                  >
+                <div id={'a' + message.id}
+                  onClick={this.translate.bind(this, message.id, message.msg)}
+                  className={styles.btn}
+                >
+                  <div>
                     <MdTranslate />
                   </div>
                   <ToolTip className={styles.translateTooltip}
