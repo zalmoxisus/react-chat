@@ -9,10 +9,13 @@ import MdKeyboardArrowDown from 'react-icons/lib/md/keyboard-arrow-down';
 import MdKeyboardArrowUp from 'react-icons/lib/md/keyboard-arrow-up';
 
 export default class ChatInput extends Component {
-  state = {
-    emoticonShow: false,
-    menuShow: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      emoticonShow: false,
+      menuShow: false
+    };
+  }
 
   mapRefTextarea = (node) => {
     this.usermsg = node;

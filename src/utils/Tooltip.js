@@ -35,9 +35,12 @@ let HORIZONTAL_ALIGNMNENTS = {
 };
 
 export default class Tooltip extends Component {
-  state = {
-    height: null
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      height: null
+    };
+  }
   componentWillReceiveProps() {
     // If the contents have changed, reset our measure of the height
     this.setState({ height: null });

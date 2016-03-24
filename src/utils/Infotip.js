@@ -2,9 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import styles from './infotip.scss';
 
 export default class Infotip extends Component {
-  state = {
-    hover: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      hover: false
+    };
+  }
   handleMouseEnter = () => {
     this.setState({ hover: true });
   };

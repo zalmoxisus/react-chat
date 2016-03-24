@@ -4,17 +4,20 @@ import ContactList from 'react-chat/ContactList';
 import testContacts from './testContacts';
 
 class Container extends Component {
-  state = {
-    contacts: testContacts,
+  constructor(props) {
+    super(props);
+    this.state = {
+      contacts: testContacts,
 
-    delete(contact) {
-      this.contacts.forEach((item, index, object) => {
-        if (item.id === contact) {
-          object.splice(index, 1);
-        }
-      });
-    }
-  };
+      delete(contact) {
+        this.contacts.forEach((item, index, object) => {
+          if (item.id === contact) {
+            object.splice(index, 1);
+          }
+        });
+      }
+    };
+  }
   handleInfo = () => {
     // Add here info method
     console.log('info method');

@@ -19,22 +19,25 @@ import TranslateBox from './TranslateBox';
 let lastTranslate = '';
 let nativeLng;
 export default class Message extends Component {
-  state = {
-    isTooltipActive: false,
-    trLangs: [],
+  constructor(props) {
+    super(props);
+    this.state = {
+      isTooltipActive: false,
+      trLangs: [],
 
-    add(trLang) {
-      this.trLangs.push(trLang);
-    },
+      add(trLang) {
+        this.trLangs.push(trLang);
+      },
 
-    delete(trLang) {
-      this.trLangs.forEach((item, index, object) => {
-        if (item.id === trLang) {
-          object.splice(index, 1);
-        }
-      });
-    }
-  };
+      delete(trLang) {
+        this.trLangs.forEach((item, index, object) => {
+          if (item.id === trLang) {
+            object.splice(index, 1);
+          }
+        });
+      }
+    };
+  }
   componentDidMount() {
     if (this.props.nativeLng) {
       nativeLng = this.props.nativeLng;

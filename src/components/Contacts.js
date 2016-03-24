@@ -8,9 +8,12 @@ import MdEdit from 'react-icons/lib/md/edit';
 import MdClose from 'react-icons/lib/md/close';
 
 export default class Contacts extends Component {
-  state = {
-    username: this.props.contactItem.name
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: this.props.contactItem.name
+    };
+  }
 
   mapRefAvatar = (node) => {
     this.avatar = node;

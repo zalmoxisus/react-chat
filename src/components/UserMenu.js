@@ -12,10 +12,13 @@ let SpeechRecognition;
 let recognition;
 let optsCount;
 export default class UserMenu extends Component {
-  state = {
-    micShow: false,
-    submenuShow: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      micShow: false,
+      submenuShow: false
+    };
+  }
   componentWillMount() {
     SpeechRecognition = window.SpeechRecognition ||
       window.webkitSpeechRecognition ||

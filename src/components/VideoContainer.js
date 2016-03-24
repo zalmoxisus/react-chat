@@ -3,9 +3,12 @@ import styles from '../chat.scss';
 import emojify from '../utils/emojify';
 
 export default class VideoContainer extends Component {
-  state = {
-    emojiSrc: ''
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      emojiSrc: ''
+    };
+  }
 
   componentWillMount() {
     this.setState({

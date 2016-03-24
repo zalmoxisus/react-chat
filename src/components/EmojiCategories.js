@@ -8,9 +8,12 @@ const categories = Object.keys(shortnames).map((category, i) =>
 );
 
 export default class EmojiCategories extends Component {
-  state = {
-    text: this.props.text
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: this.props.text
+    };
+  }
   setActive = (node) => {
     let children = (node.target.tagName === 'LI') ?
       node.target.parentNode.childNodes :

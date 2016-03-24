@@ -3,12 +3,15 @@ import styles from '../chat.scss';
 import Messages from './Message';
 
 export default class ChatArea extends Component {
-  state = {
-    voicesArr: [],
-    add(voice) {
-      this.voicesArr.push(voice);
-    }
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      voicesArr: [],
+      add(voice) {
+        this.voicesArr.push(voice);
+      }
+    };
+  }
 
   componentWillMount() {
     if (window.speechSynthesis) {
