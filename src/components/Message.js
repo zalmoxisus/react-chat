@@ -16,8 +16,6 @@ import LangSelect from './LangSelect';
 import SpeechSynthesis from './SpeechSynthesis';
 import TranslateBox from './TranslateBox';
 
-let lastTranslate = '';
-let nativeLng;
 export default class Message extends Component {
   constructor(props) {
     super(props);
@@ -40,7 +38,7 @@ export default class Message extends Component {
   }
   componentDidMount() {
     if (this.props.nativeLng) {
-      nativeLng = this.props.nativeLng;
+      this.nativeLng = this.props.nativeLng;
     }
   }
   mapRefMsg = (node) => {
@@ -50,22 +48,22 @@ export default class Message extends Component {
     this.langSelect = node;
   };
   translate = (id, msg, e) => {
-    if (lastTranslate === id || !nativeLng) {
+    if (this.lastTranslate === id || !this.nativeLng) {
       this.showTooltip(e);
     } else {
-      lastTranslate = id;
-      this.insertTranslation(nativeLng, msg, e);
+      this.lastTranslate = id;
+      this.insertTranslation(this.nativeLng, msg, e);
     }
   };
   selectLang = (val, msg, e) => {
-    nativeLng = val;
-    this.insertTranslation(nativeLng, msg, e);
+    this.nativeLng = val;
+    this.insertTranslation(this.nativeLng, msg, e);
     this.showTooltip(e);
   };
   insertTranslation = (lng, msg, e) => {
     let isLng = false;
     this.state.trLangs.forEach((item) => {
-      if (item.lang === nativeLng) {
+      if (item.lang === this.nativeLng) {
         isLng = true;
       }
     });

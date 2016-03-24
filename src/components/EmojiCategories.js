@@ -3,16 +3,15 @@ import styles from '../chat.scss';
 import emojify from '../utils/emojify';
 import shortnames from 'emoji-shortnames';
 
-const categories = Object.keys(shortnames).map((category, i) =>
-  <li className={styles.categoryBtn} key={i}>{emojify(shortnames[category][0])}</li>
-);
-
 export default class EmojiCategories extends Component {
   constructor(props) {
     super(props);
     this.state = {
       text: this.props.text
     };
+    this.categories = Object.keys(shortnames).map((category, i) =>
+      <li className={styles.categoryBtn} key={i}>{emojify(shortnames[category][0])}</li>
+    );
   }
   setActive = (node) => {
     let children = (node.target.tagName === 'LI') ?
@@ -39,7 +38,7 @@ export default class EmojiCategories extends Component {
           {emojify(this.state.text)}
         </div>
         <ul className={styles.categoryBtns} onClick={this.setActive}>
-          {categories}
+          {this.categories}
         </ul>
       </div>
     );

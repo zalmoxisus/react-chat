@@ -8,9 +8,6 @@ import MdOndemandVideo from 'react-icons/lib/md/ondemand-video';
 import MdImage from 'react-icons/lib/md/image';
 import MdClose from 'react-icons/lib/md/close';
 
-let SpeechRecognition;
-let recognition;
-let optsCount;
 export default class UserMenu extends Component {
   constructor(props) {
     super(props);
@@ -20,18 +17,22 @@ export default class UserMenu extends Component {
     };
   }
   componentWillMount() {
-    SpeechRecognition = window.SpeechRecognition ||
+    this.SpeechRecognition = window.SpeechRecognition ||
       window.webkitSpeechRecognition ||
       window.mozSpeechRecognition ||
       window.msSpeechRecognition ||
       window.oSpeechRecognition;
   }
   componentDidMount() {
-    if (!SpeechRecognition && (!this.props.onTranslate || !this.props.translateLanguages)) {
-      optsCount = '-60px';
-    } else if (!SpeechRecognition || !this.props.onTranslate || !this.props.translateLanguages) {
-      optsCount = '-90px';
-    } else optsCount = '-121px';
+    if (!this.SpeechRecognition &&
+      (!this.props.onTranslate ||
+      !this.props.translateLanguages)) {
+      this.optsCount = '-60px';
+    } else if (!this.SpeechRecognition ||
+      !this.props.onTranslate ||
+      !this.props.translateLanguages) {
+      this.optsCount = '-90px';
+    } else this.optsCount = '-121px';
   }
 
   mapRefVideo = (node) => {
@@ -87,6 +88,8 @@ export default class UserMenu extends Component {
     switch (opt) {
       case 0: {
         this.setState({ micShow: true });
+        const SpeechRecognition = this.SpeechRecognition;
+        let recognition = this.recognition;
         if (SpeechRecognition) {
           recognition = new SpeechRecognition();
           recognition.continuous = true;
@@ -142,7 +145,7 @@ export default class UserMenu extends Component {
     }
   };
   hideIndicator = () => {
-    recognition.stop();
+    this.recognition.stop();
     this.setState({ micShow: false });
   };
   handleClose = () => {
@@ -163,11 +166,11 @@ export default class UserMenu extends Component {
     const { menuShow, onTranslate, translateLanguages } = this.props;
     return (<div className={styles.userContainer}>
         <ul
-          style={{ marginTop: optsCount }}
+          style={{ marginTop: this.optsCount }}
           className={menuShow ? styles.showUmenu : styles.hideUmenu}
         >
           {
-            SpeechRecognition ?
+            this.SpeechRecognition ?
             <li onClick={this.handleClick.bind(this, 0)}>
               <MdMic /><a href="#">Dictate text</a>
             </li> : null
