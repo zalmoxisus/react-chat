@@ -108,11 +108,7 @@ export default class ChatInput extends Component {
               const input = e.target;
               let txt = input.value;
               txt = txt.trim();
-              if ((txt === '') || (txt === ' ') || (txt === '\n')) {
-                this.usermsg._rootDOMNode.style.height = '26px';
-                this.usermsg.value = '';
-                return;
-              }
+              if (txt === '') return;
               onSend({ txt }, () => {
                 input.value = '';
               });

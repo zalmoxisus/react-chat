@@ -239,9 +239,9 @@
 
 .usermsg {
   width: 100%;
-  min-height: 30px !important;
+  min-height: 30px;
+  max-height: 100px;
   padding: 7px 40px 3px 40px;
-  max-height:100px;
   border: 0 none;
   background: #fff;
   font-size: 10pt;
