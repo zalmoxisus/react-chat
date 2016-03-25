@@ -16,28 +16,27 @@ export default class Chat extends Component {
     const {
       messages, lang, onSend, onTranslate, withPhoto,
       onDelete, translateLanguages, nativeLng, onRestore, onBan } = this.props;
-    return (<div>
-        <div className={styles.base}>
-          <ChatArea messages={messages}
-            replay={this.replay}
-            isMine={this.isMine}
-            onTranslate={onTranslate}
-            onDelete={onDelete}
-            onRestore={onRestore}
-            onBan={onBan}
-            lang={lang}
-            translateLanguages={translateLanguages}
-            nativeLng={nativeLng}
-            withPhoto={withPhoto}
-          />
-          <ChatInput
-            onSend={onSend}
-            lang={lang}
-            onTranslate={onTranslate}
-            translateLanguages={translateLanguages}
-            ref={node => {this.input = node;}}
-          />
-        </div>
+    return (
+      <div className={styles.base}>
+        <ChatArea messages={messages}
+          replay={this.replay}
+          isMine={this.isMine}
+          onTranslate={onTranslate}
+          onDelete={onDelete}
+          onRestore={onRestore}
+          onBan={onBan}
+          lang={lang}
+          translateLanguages={translateLanguages}
+          nativeLng={nativeLng}
+          withPhoto={withPhoto}
+        />
+        <ChatInput
+          onSend={onSend}
+          lang={lang}
+          onTranslate={onTranslate}
+          translateLanguages={translateLanguages}
+          ref={node => {this.input = node;}}
+        />
       </div>
     );
   }
