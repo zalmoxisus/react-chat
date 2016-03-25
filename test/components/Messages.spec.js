@@ -2,7 +2,7 @@ import React from 'react';
 import expect from 'expect';
 import { mount } from 'enzyme';
 import styles from '../../src/chat.scss';
-import Message from '../../src/components/Message';
+import Message from '../../src/components/messages/Message';
 
 const props = {
   message:
