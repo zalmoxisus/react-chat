@@ -2,10 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import styles from '../chat.scss';
 import TextareaAutosize from 'react-textarea-autosize';
 import UserMenu from './UserMenu';
-import ToggleDisplay from '../utils/ToggleDisplay';
 import emojify from '../utils/emojify';
 import EmojiCategories from './EmojiCategories';
-import MdKeyboardArrowDown from 'react-icons/lib/md/keyboard-arrow-down';
 import MdKeyboardArrowUp from 'react-icons/lib/md/keyboard-arrow-up';
 
 export default class ChatInput extends Component {
@@ -20,50 +18,54 @@ export default class ChatInput extends Component {
   mapRefTextarea = (node) => {
     this.usermsg = node;
   };
-  mapRefBtn = (node) => {
-    this.emoticonsBtn = node;
+
+  toggleMenu = (e, menu) => {
+    let menuTimer = 0;
+    e.currentTarget.addEventListener('mouseleave', () => {
+      menuTimer = setTimeout(() => {
+        if (menu === 1) {
+          this.setState({ menuShow: false });
+        } else {
+          this.setState({ emoticonShow: false });
+        }
+      }, 1000);
+    });
+    e.currentTarget.addEventListener('mouseenter', () => {
+      clearTimeout(menuTimer);
+    });
   };
 
-  hideMenu = (e) => {
+  toggleUmenu = (e) => {
     if ((e.target.parentNode.className === styles.btnContainer) ||
       ((e.target.tagName === 'INPUT'))) {
       this.setState({ menuShow: false });
       return;
     }
     this.setState({ menuShow: !this.state.menuShow });
-    if (this.state.menuShow === false) {
-      let menuTimer = 0;
-      e.currentTarget.addEventListener('mouseleave', () => {
-        menuTimer = setTimeout(() => {
-          this.setState({ menuShow: false });
-        }, 1000);
-      });
-      e.currentTarget.addEventListener('mouseenter', () => {
-        clearTimeout(menuTimer);
-      });
+    if (!this.state.menuShow) {
+      this.toggleMenu(e, 1);
+    }
+  };
+  toggleEmoticons = (e) => {
+    if ((e.target.parentNode.className !== styles.categoryBtns) &&
+      (e.target.parentNode.className !== styles.categoryBtn)) {
+      this.setState({ emoticonShow: !this.state.emoticonShow });
+      if (!this.state.emoticonShow) {
+        this.toggleMenu(e, 2);
+      }
     }
   };
 
-  hideEmoticons = (e) => {
-    let emoticonBtn = this.emoticonsBtn;
-    if (this.state.emoticonShow === false) {
-      this.setState({ emoticonShow: !this.state.emoticonShow });
-      let menuTimer = 0;
-      emoticonBtn.style.transform = 'rotate(180deg)';
-      e.currentTarget.addEventListener('mouseleave', () => {
-        menuTimer = setTimeout(() => {
-          emoticonBtn.style.transform = 'rotate(0deg)';
-          this.setState({ emoticonShow: false });
-        }, 1000);
-      });
-      e.currentTarget.addEventListener('mouseenter', () => {
-        clearTimeout(menuTimer);
-      });
-    } else if ((e.target.parentNode.className !== styles.categoryBtns) &&
-      (e.target.parentNode.className !== styles.categoryBtn)) {
-      this.setState({ emoticonShow: !this.state.emoticonShow });
-      emoticonBtn.style.transform = 'rotate(0deg)';
-    }
+  sendMsg = (e) => {
+    if (e.nativeEvent.keyCode !== 13 || e.shiftKey) return;
+    e.preventDefault();
+    const input = e.target;
+    let txt = input.value;
+    txt = txt.trim();
+    if (txt === '') return;
+    this.props.onSend({ txt }, () => {
+      input.value = '';
+    });
   };
 
   addTranslation = (e) => {
@@ -83,7 +85,7 @@ export default class ChatInput extends Component {
   render() {
     const { onSend, onTranslate, translateLanguages, submenuShow, lang } = this.props;
     return (<div className={styles.chatInpContainer}>
-        <div className={styles.chatOptions} onClick={this.hideMenu}>
+        <div className={styles.chatOptions} onClick={this.toggleUmenu}>
           <UserMenu
             menuShow={this.state.menuShow}
             submenuShow={submenuShow}
@@ -93,32 +95,18 @@ export default class ChatInput extends Component {
             onTranslate={onTranslate}
             translateLanguages={translateLanguages}
           />
-          <ToggleDisplay show={!this.state.menuShow}>
-            <MdKeyboardArrowDown className={styles.arrowDown} />
-          </ToggleDisplay>
-          <ToggleDisplay show={this.state.menuShow}>
-            <MdKeyboardArrowUp className={styles.arrowUp} />
-          </ToggleDisplay>
+          <MdKeyboardArrowUp
+            className={(this.state.menuShow) ? styles.arrowUp : styles.arrowUpRotate}
+          />
         </div>
-        <TextareaAutosize
-          ref={this.mapRefTextarea} className={styles.usermsg} autoFocus onKeyPress={
-            (e) => {
-              if (e.nativeEvent.keyCode !== 13 || e.shiftKey) return;
-              e.preventDefault();
-              const input = e.target;
-              let txt = input.value;
-              txt = txt.trim();
-              if (txt === '') return;
-              onSend({ txt }, () => {
-                input.value = '';
-              });
-            }
-          }
+        <TextareaAutosize autoFocus
+          ref={this.mapRefTextarea}
+          className={styles.usermsg}
+          onKeyPress={this.sendMsg}
         />
-        <div className={styles.emoticonsContainer} onClick={this.hideEmoticons}>
+        <div className={styles.emoticonsContainer} onClick={this.toggleEmoticons}>
           <div
-            ref={this.mapRefBtn}
-            className={styles.emoticonsBtn}
+            className={(!this.state.emoticonShow) ? styles.emoticonsBtn : styles.emoticonsRotate}
             onMouseOver={this.btnHovered}
           >
             {emojify(' :) ')}

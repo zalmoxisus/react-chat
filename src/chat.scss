@@ -286,6 +286,11 @@
   cursor: pointer;
 }
 
+.arrowUpRotate {
+  composes: arrowUp;
+  transform: rotate(180deg);
+}
+
 .iconClear {
   position: relative;
 }
@@ -383,6 +388,12 @@
 }
 .emoticonsBtn span:hover{
   opacity: 1;
+}
+.emoticonsRotate{
+  composes: emoticonsBtn;
+}
+.emoticonsRotate span{
+  transform: rotate(180deg);
 }
 .emoticonsContainer:hover{
   cursor: pointer;

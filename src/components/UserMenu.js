@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../chat.scss';
-import ToggleDisplay from '../utils/ToggleDisplay';
 import convertMedia from '../utils/convertMedia';
 import MdMic from 'react-icons/lib/md/mic';
 import MdMessage from 'react-icons/lib/md/message';
@@ -89,14 +88,13 @@ export default class UserMenu extends Component {
       case 0: {
         this.setState({ micShow: true });
         const SpeechRecognition = this.SpeechRecognition;
-        let recognition = this.recognition;
         if (SpeechRecognition) {
-          recognition = new SpeechRecognition();
-          recognition.continuous = true;
-          recognition.interimResults = true;
-          recognition.lang = this.props.lang;
-          recognition.start();
-          recognition.onresult = (event) => {
+          this.recognition = new SpeechRecognition();
+          this.recognition.continuous = true;
+          this.recognition.interimResults = true;
+          this.recognition.lang = this.props.lang;
+          this.recognition.start();
+          this.recognition.onresult = (event) => {
             let interimTranscript = '';
             let finalTranscript = '';
             for (let i = event.resultIndex; i < event.results.length; ++i) {
@@ -108,10 +106,10 @@ export default class UserMenu extends Component {
             }
             if (finalTranscript !== '') this.props.addTranslation(finalTranscript);
           };
-          recognition.onerror = () => {
+          this.recognition.onerror = () => {
             this.hideIndicator(e);
           };
-          recognition.onend = () => {
+          this.recognition.onend = () => {
             this.hideIndicator();
           };
         }
@@ -188,36 +186,42 @@ export default class UserMenu extends Component {
             <MdImage /><a href="#">Insert image</a>
           </li>
         </ul>
-        <ToggleDisplay show={this.state.submenuShow}>
-          <div ref={this.mapRefContainer} className={styles.videoInpContainer}>
-            <input
-              ref={this.mapRefVideo}
-              placeholder="Video url (youtube, vimeo)"
-              onKeyUp={this.changeVideoInp}
-              style={{ position: 'relative' }}
-            />
-            <input
-              ref={this.mapRefTranslate}
-              placeholder="Tape a phrase to be translated"
-              onKeyUp={this.insertTranslation}
-              style={{ position: 'absolute', top: '15px', width: '88%' }}
-            />
-            <input
-              ref={this.mapRefImage}
-              placeholder="Image url"
-              onKeyUp={this.changeVideoInp}
-              style={{ position: 'absolute', top: '15px', width: '88%' }}
-            />
-          </div>
-          <div className={styles.btnContainer}
-            onClick={this.handleClose}
-          >
-            <MdClose className={styles.iconClear} />
-          </div>
-        </ToggleDisplay>
-        <ToggleDisplay show={this.state.micShow} className={styles.micShow}>
-          <MdMic className={styles.iconMic} onClick={this.hideIndicator} />
-        </ToggleDisplay>
+        {
+          (this.state.submenuShow) ?
+           <div>
+             <div ref={this.mapRefContainer} className={styles.videoInpContainer}>
+               <input
+                 ref={this.mapRefVideo}
+                 placeholder="Video url (youtube, vimeo)"
+                 onKeyUp={this.changeVideoInp}
+                 style={{ position: 'relative' }}
+               />
+               <input
+                 ref={this.mapRefTranslate}
+                 placeholder="Tape a phrase to be translated"
+                 onKeyUp={this.insertTranslation}
+                 style={{ position: 'absolute', top: '15px', width: '88%' }}
+               />
+               <input
+                 ref={this.mapRefImage}
+                 placeholder="Image url"
+                 onKeyUp={this.changeVideoInp}
+                 style={{ position: 'absolute', top: '15px', width: '88%' }}
+               />
+             </div>
+             <div className={styles.btnContainer}
+               onClick={this.handleClose}
+             >
+               <MdClose className={styles.iconClear} />
+             </div>
+           </div> : null
+        }
+        {
+          (this.state.micShow) ?
+           <div className={styles.micShow}>
+             <MdMic className={styles.iconMic} onClick={this.hideIndicator} />
+           </div> : null
+        }
       </div>
     );
   }
