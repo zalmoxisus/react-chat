@@ -86,6 +86,9 @@ export default class ChatInput extends Component {
     const { onSend, onTranslate, translateLanguages, submenuShow, lang } = this.props;
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.toggleUmenu}>
+          <MdKeyboardArrowUp
+            className={(this.state.menuShow) ? styles.arrowUp : styles.arrowUpRotate}
+          />
           <UserMenu
             menuShow={this.state.menuShow}
             submenuShow={submenuShow}
@@ -94,9 +97,6 @@ export default class ChatInput extends Component {
             lang={lang}
             onTranslate={onTranslate}
             translateLanguages={translateLanguages}
-          />
-          <MdKeyboardArrowUp
-            className={(this.state.menuShow) ? styles.arrowUp : styles.arrowUpRotate}
           />
         </div>
         <TextareaAutosize autoFocus

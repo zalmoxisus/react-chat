@@ -14,35 +14,12 @@ export default class UserMenu extends Component {
       micShow: false,
       submenuShow: false
     };
-  }
-  componentWillMount() {
     this.SpeechRecognition = window.SpeechRecognition ||
       window.webkitSpeechRecognition ||
       window.mozSpeechRecognition ||
       window.msSpeechRecognition ||
       window.oSpeechRecognition;
   }
-  componentDidMount() {
-    if (!this.SpeechRecognition &&
-      (!this.props.onTranslate ||
-      !this.props.translateLanguages)) {
-      this.optsCount = '-60px';
-    } else if (!this.SpeechRecognition ||
-      !this.props.onTranslate ||
-      !this.props.translateLanguages) {
-      this.optsCount = '-90px';
-    } else this.optsCount = '-121px';
-  }
-
-  mapRefVideo = (node) => {
-    this.videoInp = node;
-  };
-  mapRefTranslate = (node) => {
-    this.translateInp = node;
-  };
-  mapRefImage = (node) => {
-    this.imgInp = node;
-  };
   mapRefContainer = (node) => {
     this.videoInpContainer = node;
   };
@@ -53,8 +30,8 @@ export default class UserMenu extends Component {
     let mediaContainer = document.createElement('span');
 
     mediaContainer.innerHTML = media;
-    if (videoContainer.children.length === 3) videoContainer.appendChild(mediaContainer);
-    else videoContainer.replaceChild(mediaContainer, videoContainer.children[3]);
+    if (videoContainer.children.length === 1) videoContainer.appendChild(mediaContainer);
+    else videoContainer.replaceChild(mediaContainer, videoContainer.children[1]);
 
 
     if (e.nativeEvent.keyCode === 13) {
@@ -83,65 +60,60 @@ export default class UserMenu extends Component {
     }
   };
 
-  handleClick = (opt, e) => {
-    switch (opt) {
-      case 0: {
-        this.setState({ micShow: true });
-        const SpeechRecognition = this.SpeechRecognition;
-        if (SpeechRecognition) {
-          this.recognition = new SpeechRecognition();
-          this.recognition.continuous = true;
-          this.recognition.interimResults = true;
-          this.recognition.lang = this.props.lang;
-          this.recognition.start();
-          this.recognition.onresult = (event) => {
-            let interimTranscript = '';
-            let finalTranscript = '';
-            for (let i = event.resultIndex; i < event.results.length; ++i) {
-              if (event.results[i].isFinal) {
-                finalTranscript += event.results[i][0].transcript;
-              } else {
-                interimTranscript += event.results[i][0].transcript;
-              }
-            }
-            if (finalTranscript !== '') this.props.addTranslation(finalTranscript);
-          };
-          this.recognition.onerror = () => {
-            this.hideIndicator(e);
-          };
-          this.recognition.onend = () => {
-            this.hideIndicator();
-          };
+  handleSpeech = (e) => {
+    this.setState({ micShow: true });
+    const SpeechRecognition = this.SpeechRecognition;
+    if (SpeechRecognition) {
+      this.recognition = new SpeechRecognition();
+      this.recognition.continuous = true;
+      this.recognition.interimResults = true;
+      this.recognition.lang = this.props.lang;
+      this.recognition.start();
+      this.recognition.onresult = (event) => {
+        let interimTranscript = '';
+        let finalTranscript = '';
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            finalTranscript += event.results[i][0].transcript;
+          } else {
+            interimTranscript += event.results[i][0].transcript;
+          }
         }
-        break;
-      }
-      case 1: {
-        this.setState({ submenuShow: true });
-        setTimeout(() => {
-          this.translateInp.focus();
-        }, 0);
-        this.translateInp.style.zIndex = 1;
-        break;
-      }
-      case 2: {
-        this.setState({ submenuShow: true });
-        setTimeout(() => {
-          this.videoInp.focus();
-        }, 0);
-        this.videoInp.style.zIndex = 1;
-        break;
-      }
-      case 3: {
-        this.setState({ submenuShow: true });
-        setTimeout(() => {
-          this.imgInp.focus();
-        }, 0);
-        this.imgInp.style.zIndex = 1;
-        break;
-      }
-      default:
+        if (finalTranscript !== '') this.props.addTranslation(finalTranscript);
+      };
+      this.recognition.onerror = () => {
+        this.hideIndicator(e);
+      };
+      this.recognition.onend = () => {
+        this.hideIndicator();
+      };
     }
   };
+
+  handleTranslate = () => {
+    this.setState({ submenuShow: true });
+    this.submenu = (<input autoFocus
+      placeholder="Tape a phrase to be translated"
+      onKeyUp={this.insertTranslation}
+    />);
+  };
+
+  handleVideo = () => {
+    this.setState({ submenuShow: true });
+    this.submenu = (<input autoFocus
+      placeholder="Video url (youtube, vimeo)"
+      onKeyUp={this.changeVideoInp}
+    />);
+  };
+
+  handleImage = () => {
+    this.setState({ submenuShow: true });
+    this.submenu = (<input autoFocus
+      placeholder="Image url"
+      onKeyUp={this.changeVideoInp}
+    />);
+  };
+
   hideIndicator = () => {
     this.recognition.stop();
     this.setState({ micShow: false });
@@ -149,69 +121,40 @@ export default class UserMenu extends Component {
   handleClose = () => {
     this.submenuShow = false;
     this.setState({ submenuShow: false });
-    this.videoInp.value = '';
-    this.translateInp.value = '';
-    this.imgInp.value = '';
-    if (this.videoInpContainer.childNodes.length > 3) {
-      this.videoInpContainer.removeChild(this.videoInpContainer.childNodes[3]);
-    }
-    this.translateInp.style.zIndex = 0;
-    this.videoInp.style.zIndex = 0;
-    this.imgInp.style.zIndex = 0;
   };
 
   render() {
     const { menuShow, onTranslate, translateLanguages } = this.props;
     return (<div className={styles.userContainer}>
         <ul
-          style={{ marginTop: this.optsCount }}
           className={menuShow ? styles.showUmenu : styles.hideUmenu}
         >
           {
             this.SpeechRecognition ?
-            <li onClick={this.handleClick.bind(this, 0)}>
-              <MdMic /><a href="#">Dictate text</a>
+            <li onClick={this.handleSpeech}>
+              <MdMic /><span>Dictate text</span>
             </li> : null
           }
           {
             (onTranslate && translateLanguages) ?
-            <li className={styles.liTranslate} onClick={this.handleClick.bind(this, 1)}>
-              <MdMessage /><a href="#">Translate a phrase</a>
+            <li className={styles.liTranslate} onClick={this.handleTranslate}>
+              <MdMessage /><span>Translate a phrase</span>
             </li> : null
           }
-          <li className={styles.liVideo} onClick={this.handleClick.bind(this, 2)}>
-            <MdOndemandVideo /><a href="#">Insert video</a>
+          <li className={styles.liVideo} onClick={this.handleVideo}>
+            <MdOndemandVideo /><span>Insert video</span>
           </li>
-          <li className={styles.liImage} onClick={this.handleClick.bind(this, 3)}>
-            <MdImage /><a href="#">Insert image</a>
+          <li className={styles.liImage} onClick={this.handleImage}>
+            <MdImage /><span>Insert image</span>
           </li>
         </ul>
         {
           (this.state.submenuShow) ?
            <div>
              <div ref={this.mapRefContainer} className={styles.videoInpContainer}>
-               <input
-                 ref={this.mapRefVideo}
-                 placeholder="Video url (youtube, vimeo)"
-                 onKeyUp={this.changeVideoInp}
-                 style={{ position: 'relative' }}
-               />
-               <input
-                 ref={this.mapRefTranslate}
-                 placeholder="Tape a phrase to be translated"
-                 onKeyUp={this.insertTranslation}
-                 style={{ position: 'absolute', top: '15px', width: '88%' }}
-               />
-               <input
-                 ref={this.mapRefImage}
-                 placeholder="Image url"
-                 onKeyUp={this.changeVideoInp}
-                 style={{ position: 'absolute', top: '15px', width: '88%' }}
-               />
+               {this.submenu}
              </div>
-             <div className={styles.btnContainer}
-               onClick={this.handleClose}
-             >
+             <div className={styles.btnContainer} onClick={this.handleClose}>
                <MdClose className={styles.iconClear} />
              </div>
            </div> : null
