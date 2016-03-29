@@ -5,18 +5,20 @@ import MdClose from 'react-icons/lib/md/close';
 import MdReplay from 'react-icons/lib/md/replay';
 
 export default class Ban extends Component {
-  ban = (e) => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      banned: (<span onClick={this.ban}><MdBlock /><span>Ban for an hour</span></span>)
+    };
+  }
+  ban = () => {
     const message = this.props.message;
     let banned = confirm(message.name + ' will be banned for this discussion');
     if (banned === true) {
       this.props.onBan(message.id, () => {
-        const node = e.currentTarget;
-        node.innerHTML = 'Banned';
-        node.style.color = '#bbb';
-        node.style.cursor = 'default';
-        node.onclick = function (event) {
-          event.stopPropagation();
-        };
+        this.setState({
+          banned: (<span style={{ color: '#bbb', cursor: 'default' }}>Banned</span>)
+        });
       });
     }
   };
@@ -36,10 +38,7 @@ export default class Ban extends Component {
         null :
         <span>
           <span style={{ color: '#bbb' }}> | </span>
-          <span onClick={this.ban}>
-            <MdBlock />
-            <span>Ban for an hour</span>
-          </span>
+          {this.state.banned}
         </span>
       }
     </div>
