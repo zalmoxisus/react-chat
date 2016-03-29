@@ -38,12 +38,10 @@ body {
 .contactlist li{
   margin: 0 5px;
   border-bottom: 1px solid #555;
-  line-height: 2.3;
+  line-height: 1.8;
   display: flex;
 }
 .img{
-  width: 25px;
-  height: 25px;
   border-radius: 2px;
   vertical-align:middle;
   margin: 4px 5px 4px 0;
@@ -53,12 +51,33 @@ body {
   border-radius: 4px;
   color: #ddd;
   background: #90a4ae;
-  width: 25px;
   text-align: center;
   height: 25px;
   float: left;
   margin: 4px 5px 4px 0;
   font-size: 12px;
+}
+.smallImg{
+  composes: img;
+  width: 25px;
+  height: 25px;
+}
+.bigImg{
+  composes: img;
+  width: 54px;
+  height: 54px;
+}
+.smallTxt{
+  composes: txt;
+  width: 25px;
+  height: 25px;
+  font-size: 12px;
+}
+.bigTxt{
+  composes: txt;
+  width: 54px;
+  height: 54px;
+  font-size: 25px;
 }
 .arrow{
   background: #484A4E;
@@ -92,8 +111,7 @@ body {
   font-size: 15px;
   color: #939393;
   border-radius: 2px;
-  margin: 4px 0 4px 0;
-  display: none;
+  margin: 7px 0 4px 0;
 }
 .optionsLeft{
   composes: options;
@@ -117,11 +135,9 @@ body {
 }
 .optionsRight{
   composes: options;
-  margin-top: 33px;
-  padding-bottom: 1px;
+  margin-top: 31px;
 }
 .editContainer{
-  display: none;
   position: absolute;
   background: #22262A;
   right: 0;
