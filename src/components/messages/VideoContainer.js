@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../chat.scss';
-import emojify from '../utils/emojify';
+import styles from '../../chat.scss';
+import emojify from '../../utils/emojify';
 
 export default class VideoContainer extends Component {
   constructor(props) {

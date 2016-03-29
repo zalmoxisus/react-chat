@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../chat.scss';
+import styles from '../../chat.scss';
 import MdClose from 'react-icons/lib/md/close';
 import MdTranslate from 'react-icons/lib/md/translate';
 

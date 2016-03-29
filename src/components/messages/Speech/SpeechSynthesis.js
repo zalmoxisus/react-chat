@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../chat.scss';
+import styles from '../../../chat.scss';
 import MdClose from 'react-icons/lib/md/close';
 import MdPlayArrow from 'react-icons/lib/md/play-arrow';
 import MdStop from 'react-icons/lib/md/stop';
-import ToolTip from '../utils/Tooltip';
+import ToolTip from '../../../utils/Tooltip';
 import SpeechSelect from './SpeechSelect';
 
 export default class SpeechSynthesis extends Component {

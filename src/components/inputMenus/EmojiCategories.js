@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../chat.scss';
-import emojify from '../utils/emojify';
+import styles from '../../chat.scss';
+import emojify from '../../utils/emojify';
 import shortnames from 'emoji-shortnames';
 
 export default class EmojiCategories extends Component {

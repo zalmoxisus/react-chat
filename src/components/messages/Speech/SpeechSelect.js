@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import MdCheck from 'react-icons/lib/md/check';
-import styles from '../chat.scss';
+import styles from '../../../chat.scss';
 
 export default class SpeechSelect extends Component {
   constructor(props) {

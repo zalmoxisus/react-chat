@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../chat.scss';
-import convertMedia from '../utils/convertMedia';
+import styles from '../../chat.scss';
+import convertMedia from '../../utils/convertMedia';
 import MdMic from 'react-icons/lib/md/mic';
 import MdMessage from 'react-icons/lib/md/message';
 import MdOndemandVideo from 'react-icons/lib/md/ondemand-video';

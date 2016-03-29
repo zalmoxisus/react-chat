@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../../chat.scss';
 import emojify from '../../utils/emojify';
-import VideoContainer from './../VideoContainer';
-import TranslateBox from './../TranslateBox';
+import VideoContainer from './VideoContainer';
+import TranslateBox from './TranslateBox';
 import MessageFooter from './MessageFooter';
 import convertMedia from '../../utils/convertMedia';
 

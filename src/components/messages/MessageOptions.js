@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../../chat.scss';
 import ToolTip from '../../utils/Tooltip';
-import LangSelect from './../LangSelect';
-import SpeechSynthesis from './../SpeechSynthesis';
+import LangSelect from './LangSelect';
+import SpeechSynthesis from './Speech/SpeechSynthesis';
 import convertMedia from '../../utils/convertMedia';
 import MdTranslate from 'react-icons/lib/md/translate';
 import MdClose from 'react-icons/lib/md/close';

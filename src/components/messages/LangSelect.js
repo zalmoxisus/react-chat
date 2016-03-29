@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../chat.scss';
+import styles from '../../chat.scss';
 import MdCheck from 'react-icons/lib/md/check';
 
 export default class LangSelect extends Component {
