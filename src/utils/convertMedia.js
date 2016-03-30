@@ -5,7 +5,9 @@ export default function convertMedia(html, height, onlyvideo, autoplay, isAct, s
   let replacement;
   let htmlReplace;
   let pattern1 = /(?:https?:\/\/)?(?:www\.)?(?:vimeo\.com)(?:[\w\-\_\/]*)?\/([0-9]+)/;
-  let pattern2 = /(?:https?:\/\/)?(?:www\.)?youtu(?:be\.com\/watch\??[\w\-\_=&;]*?v=|\.be\/)([\w\-\_]*)?([\w\?‌​=&;#]*)?/; // eslint-disable-line max-len
+  /*eslint-disable max-len,  no-irregular-whitespace */
+  let pattern2 = /(?:https?:\/\/)?(?:www\.)?youtu(?:be\.com\/watch\??[\w\-\_=&;]*?v=|\.be\/)([\w\-\_]*)?([\w\?‌​=&;#]*)?/;
+  /*eslint-enable max-len,  no-irregular-whitespace */
   let pattern3 = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/;
   let pattern4 = /(?:https?:\/\/)?(?:www\.)?(?:prezi\.com)\/?([^/]+)\/?(.+)/;
   let pattern5 = /(https?:\/\/.*\.(?:png|jpg))/;

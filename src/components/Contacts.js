@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../contactlist.scss';
 import MdKeyboardArrowDown from 'react-icons/lib/md/keyboard-arrow-down';
-import MenuLeft from './Contacts/MenuLeft';
-import MenuRight from './Contacts/MenuRight';
-import EditName from './Contacts/EditName';
+import MenuLeft from './contacts/MenuLeft';
+import MenuRight from './contacts/MenuRight';
+import EditName from './contacts/EditName';
 
 export default class Contacts extends Component {
   constructor(props) {
