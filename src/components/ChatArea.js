@@ -11,9 +11,6 @@ export default class ChatArea extends Component {
         this.voicesArr.push(voice);
       }
     };
-  }
-
-  componentWillMount() {
     if (window.speechSynthesis) {
       window.speechSynthesis.onvoiceschanged = () => {
         const voices = window.speechSynthesis.getVoices();
@@ -26,10 +23,9 @@ export default class ChatArea extends Component {
         }
       };
     }
-  }
-  componentDidMount() {
     setTimeout(this.updateScrollTop, 500);
   }
+
   componentDidUpdate() {
     this.updateScrollTop();
   }
@@ -43,18 +39,8 @@ export default class ChatArea extends Component {
 
   render() {
     const {
-      messages,
-      replay,
-      isMine,
-      onTranslate,
-      onDelete,
-      onRestore,
-      onBan,
-      translateLanguages,
-      lang,
-      nativeLng,
-      withPhoto
-    } = this.props;
+      messages, replay, isMine, onTranslate, onDelete, onRestore,
+      onBan, translateLanguages, lang, nativeLng, withPhoto } = this.props;
     return (
       <div id="container" className={styles.container}>
         {

@@ -42,7 +42,7 @@ export default class MessageOptions extends Component {
     const { message, onTranslate, translateLanguages,
       lang, voicesArr, onDelete, isMine, deleteMsg } = this.props;
     return (
-      <div className={styles.secondCell}>
+      <div className={styles.msgOptions}>
         {
           (onTranslate && translateLanguages && !this.isVideo(message.msg)) ?
             <div>
