@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import styles from './ContactList.css';
+import styles from './contactlist.scss';
 import MdPeople from 'react-icons/lib/md/people';
 import Contacts from './components/Contacts';
 

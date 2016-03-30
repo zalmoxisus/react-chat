@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../ContactList.css';
+import styles from '../contactlist.scss';
 import MdKeyboardArrowDown from 'react-icons/lib/md/keyboard-arrow-down';
 import MenuLeft from './Contacts/MenuLeft';
 import MenuRight from './Contacts/MenuRight';

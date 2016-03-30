@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../../ContactList.css';
+import styles from '../../contactlist.scss';
 
 export default class EditName extends Component {
   render() {
