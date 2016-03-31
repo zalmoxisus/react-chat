@@ -31,9 +31,9 @@ describe('ChatInput.', () => {
   it('should open menu popup', () => {
     let wrapper = mount(<ChatInput {...props} />);
     expect(wrapper.node.state.menuShow).toBe(false);
-    wrapper.find('.' + styles.arrowDown).simulate('click');
+    wrapper.find('.' + styles.arrowUp).simulate('click');
     expect(wrapper.node.state.menuShow).toBe(true);
-    wrapper.find('.' + styles.arrowDown).simulate('click');
+    wrapper.find('.' + styles.arrowUp).simulate('click');
     expect(wrapper.node.state.menuShow).toBe(false);
   });
   it('should open emoticons popup', () => {

@@ -12,18 +12,10 @@ const props = {
 };
 
 describe('Contacts', () => {
-  it('should open edit name tooltip', () => {
+  it('should open edit name box', () => {
     const wrapper = mount(<Contacts {...props} />);
-    const editBtn = wrapper.find('#a' + props.contactItem.id);
-    expect(wrapper.node.state.isTooltipActive).toBe(false);
-    editBtn.find('svg').simulate('click');
-    expect(wrapper.node.state.isTooltipActive).toBe(true);
-  });
-
-  it('should change name', () => {
-    const wrapper = mount(<Contacts {...props} />);
-    expect(wrapper.node.state.username).toBe('John');
-    wrapper.node.editName('Johnny');
-    expect(wrapper.node.state.username).toBe('Johnny');
+    expect(wrapper.node.state.showInpName).toBe(false);
+    wrapper.node.showEdit();
+    expect(wrapper.node.state.showInpName).toBe(true);
   });
 });

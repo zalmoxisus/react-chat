@@ -30,8 +30,10 @@ export default class UserMenu extends Component {
     let mediaContainer = document.createElement('span');
 
     mediaContainer.innerHTML = media;
-    if (videoContainer.children.length === 1) videoContainer.appendChild(mediaContainer);
-    else videoContainer.replaceChild(mediaContainer, videoContainer.children[1]);
+    if (videoContainer) {
+      if (videoContainer.children.length === 1) videoContainer.appendChild(mediaContainer);
+      else videoContainer.replaceChild(mediaContainer, videoContainer.children[1]);
+    }
 
 
     if (e.nativeEvent.keyCode === 13) {
@@ -137,14 +139,14 @@ export default class UserMenu extends Component {
           }
           {
             (onTranslate && translateLanguages) ?
-            <li className={styles.liTranslate} onClick={this.handleTranslate}>
+            <li onClick={this.handleTranslate}>
               <MdMessage /><span>Translate a phrase</span>
             </li> : null
           }
-          <li className={styles.liVideo} onClick={this.handleVideo}>
+          <li onClick={this.handleVideo}>
             <MdOndemandVideo /><span>Insert video</span>
           </li>
-          <li className={styles.liImage} onClick={this.handleImage}>
+          <li onClick={this.handleImage}>
             <MdImage /><span>Insert image</span>
           </li>
         </ul>

@@ -3,7 +3,7 @@ import expect from 'expect';
 import { mount } from 'enzyme';
 import styles from '../../src/chat.scss';
 import shortnames from 'emoji-shortnames';
-import EmojiCategories from '../../src/components/EmojiCategories';
+import EmojiCategories from '../../src/components/InputMenus/EmojiCategories';
 import ChatInput from '../../src/components/ChatInput';
 
 let usermsgWrapper;

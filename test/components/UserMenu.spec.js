@@ -1,8 +1,8 @@
 import React from 'react';
 import expect from 'expect';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import styles from '../../src/chat.scss';
-import UserMenu from '../../src/components/UserMenu';
+import UserMenu from '../../src/components/inputMenus/UserMenu';
 import ChatInput from '../../src/components/ChatInput';
 
 let usermsgWrapper;
@@ -46,7 +46,10 @@ const props = {
   translateLanguages: [
     { c: 'sq', l: 'Albanian' },
     { c: 'ar', l: 'Arabic' }
-  ]
+  ],
+  mapRefContainer: (node) => {
+    this.videoInpContainer = node;
+  }
 };
 
 describe('UserMenu.', () => {
@@ -55,41 +58,35 @@ describe('UserMenu.', () => {
     expect(wrapper.type()).toBe('ul');
   });
   it('should open video popup', () => {
-    const wrapper = mount(<UserMenu />);
-    wrapper.find('.' + styles.liVideo).simulate('click');
+    const wrapper = mount(<UserMenu {...props} />);
+    wrapper.find('li').at(2).simulate('click');
     expect(wrapper.node.state.submenuShow).toBe(true);
   });
   it('should add message', () => {
     const wrapper = mount(<UserMenu {...props} />);
-    const container = wrapper.find('.' + styles.videoInpContainer);
-    const videoInput = wrapper.find('input').at(0);
-    expect(container.node.children.length).toBe(2);
-    videoInput.simulate('keyUp');
-    expect(container.node.children.length).toBe(3);
-
+    const videoInput = shallow(
+        <input autoFocus
+          placeholder="Video url (youtube, vimeo)"
+          onKeyUp={wrapper.node.changeVideoInp}
+        />);
     expect(props.messages.length).toBe(1);
     videoInput.simulate('keyUp', { nativeEvent: { keyCode: 13 }, target: { value: props.text } });
     expect(props.messages.length).toBe(2);
     expect(props.messages[1].msg).toBe(props.text);
-  });
-  it('should convert link to iframe', () => {
-    const wrapper = mount(<UserMenu {...props} />);
-    const container = wrapper.find('.' + styles.videoInpContainer);
-    const videoInput = wrapper.find('input').at(0);
-    videoInput.simulate('keyUp', { target: { value: props.text } });
-    expect(container.node.children[2].innerHTML)
-      .toBe('<iframe width="100%" height="150" ' +
-        'src="//www.youtube.com/embed/kuRn2S7iPNU?autohide=1&amp;controls=2&amp;modestbranding=1&amp;rel=0&amp;showinfo=1&amp;playsinline=1&amp;autoplay=0" ' + // eslint-disable-line max-len
-        'frameborder="0" allowfullscreen=""></iframe>');
+
   });
   it('should open translate popup', () => {
     const wrapper = mount(<UserMenu {...props} />);
-    wrapper.find('.' + styles.liTranslate).simulate('click');
+    wrapper.find('li').at(1).simulate('click');
     expect(wrapper.node.state.submenuShow).toBe(true);
   });
   it('should add translation', () => {
     const wrapper = mount(<UserMenu {...props} />);
-    const translationInput = wrapper.find('input').at(1);
+    const translationInput = shallow(
+      <input autoFocus
+        placeholder="Tape a phrase to be translated"
+        onKeyUp={wrapper.node.insertTranslation}
+      />);
     usermsgWrapper = mount(<ChatInput />).find('textarea');
     expect(usermsgWrapper.value).toBe(undefined);
     translationInput.simulate('keyUp', { nativeEvent: { keyCode: 13 }, target: { value: 'hi' } });
