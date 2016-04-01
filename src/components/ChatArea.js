@@ -44,6 +44,7 @@ export default class ChatArea extends Component {
     return (
       <div id="container" className={styles.container}>
         {
+          (messages && messages.length > 0) &&
           messages.map(message =>
               <Messages key={message.id}
                 message={message}

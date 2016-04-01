@@ -43,7 +43,7 @@ export default class Chat extends Component {
 }
 
 Chat.propTypes = {
-  messages: PropTypes.array,
+  messages: PropTypes.array.isRequired,
   onSend: PropTypes.func.isRequired,
   me: PropTypes.shape({
     id: PropTypes.string.isRequired,
