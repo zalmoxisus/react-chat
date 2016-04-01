@@ -1,7 +1,6 @@
 import React from 'react';
 import expect from 'expect';
 import { mount, shallow } from 'enzyme';
-import styles from '../../src/chat.scss';
 import UserMenu from '../../src/components/inputMenus/UserMenu';
 import ChatInput from '../../src/components/ChatInput';
 
