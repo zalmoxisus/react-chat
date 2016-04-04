@@ -16,7 +16,10 @@ const props = {
   },
   me: { id: 2 },
   isMine: id => props.me.id === id,
-  withPhoto: true
+  withPhoto: true,
+  onDelete: (message, success) => {
+    success();
+  }
 };
 
 describe('Message', () => {
@@ -26,5 +29,14 @@ describe('Message', () => {
     const parentDiv = wrapper.find('.' + styles.msgBox).children();
     expect(parentDiv.length).toBe(3);
     expect(wrapper.find('.' + styles.msgBox).childAt(0).prop('className')).toBe(styles.avatar);
+  });
+});
+
+describe('Message', () => {
+  it('should delete message', () => {
+    const wrapper = mount(<Message {...props} />);
+    expect(wrapper.node.state.deleted).toBe(false);
+    wrapper.find('.' + styles.msgOptions).childAt(0).simulate('click');
+    expect(wrapper.node.state.deleted).toBe(true);
   });
 });
