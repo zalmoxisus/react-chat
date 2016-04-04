@@ -21,7 +21,7 @@ export default class Contacts extends Component {
 
   changeName = (e) => {
     if (e.nativeEvent.keyCode === 13) {
-      const name = e.currentTarget.value;
+      const name = e.target.value;
       const id = this.props.contactItem.id;
       this.props.onChangeName(id, name, () => {
         this.setState({ username: name });
