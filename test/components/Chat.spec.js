@@ -22,7 +22,6 @@ const props = {
       sender: '2'
     }
   ],
-  text: 'Hello',
   onSend: (msg, success) => {
     const message = {
       id: (Date.now() / 1000 | 0) + Math.random(),
@@ -39,10 +38,20 @@ const props = {
 };
 
 describe('Chat', () => {
+  it('should add required parameters', () => {
+    const wrapper = mount(<Chat {...props} />);
+    expect(wrapper.node.props.messages).toExist();
+    expect(wrapper.node.props.me).toExist();
+    expect(wrapper.node.props.me.id).toExist();
+    expect(wrapper.node.props.me.name).toExist();
+  });
+});
+
+describe('Chat', () => {
   it('should add message', () => {
     const wrapper = mount(<Chat {...props} />)
       .find('textarea')
-      .simulate('keyPress', { nativeEvent: { keyCode: 13 }, target: { value: props.text } });
+      .simulate('keyPress', { nativeEvent: { keyCode: 13 }, target: { value: 'hi' } });
     expect(props.messages.length).toBe(3);
     expect(props.messages[2].msg).toBe(props.text);
     expect(wrapper.text()).toEqual('');
