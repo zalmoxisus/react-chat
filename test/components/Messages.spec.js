@@ -19,6 +19,10 @@ const props = {
   withPhoto: true,
   onDelete: (message, success) => {
     success();
+  },
+  onTranslate: (txt, to, cb) => {
+    // Add here your translation method
+    cb(txt);
   }
 };
 
@@ -38,5 +42,11 @@ describe('Message', () => {
     expect(wrapper.node.state.deleted).toBe(false);
     wrapper.find('.' + styles.msgOptions).childAt(0).simulate('click');
     expect(wrapper.node.state.deleted).toBe(true);
+  });
+  it('should translate message', () => {
+    const wrapper = mount(<Message {...props} />);
+    wrapper.node.insertTranslation('en', 'hi');
+    expect(wrapper.node.state.trLangs[0].lang).toBe('en');
+    expect(wrapper.node.state.trLangs[0].txt).toBe('hi');
   });
 });

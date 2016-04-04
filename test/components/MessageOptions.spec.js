@@ -21,7 +21,11 @@ const props = {
   translateLanguages: [
     { c: 'sq', l: 'Albanian' },
     { c: 'ar', l: 'Arabic' }
-  ]
+  ],
+  nativeLng: null,
+  insertTranslation: () => {
+    //translate function
+  }
 };
 
 describe('Message', () => {
@@ -32,5 +36,10 @@ describe('Message', () => {
     expect(wrapper.node.state.isTooltipActive).toBe(true);
     wrapper.find('#a' + props.message.id).simulate('click');
     expect(wrapper.node.state.isTooltipActive).toBe(false);
+  });
+  it('should translate message', () => {
+    props.nativeLng = 'en';
+    const wrapper = mount(<MessageOptions {...props} />);
+    wrapper.find('#a' + props.message.id).simulate('click');
   });
 });
