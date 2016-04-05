@@ -52,3 +52,16 @@ describe('Contacts', () => {
     expect(wrapper.find(MenuRight).length).toBe(1);
   });
 });
+
+describe('Contacts', () => {
+  it('should display first letter of name if avatar is null', () => {
+    const wrapper = mount(<Contacts {...props} />);
+    expect(wrapper.find('img').length).toBe(1);
+    expect(wrapper.find('span').length).toBe(2);
+    props.contactItem.avatar = '';
+    wrapper.update();
+    expect(wrapper.find('img').length).toBe(0);
+    expect(wrapper.find('span').length).toBe(3);
+    expect(wrapper.find('span').first().text()).toBe(props.contactItem.name[0]);
+  });
+});
