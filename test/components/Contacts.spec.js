@@ -2,6 +2,9 @@ import React from 'react';
 import expect from 'expect';
 import { mount } from 'enzyme';
 import Contacts from '../../src/components/Contacts';
+import MenuLeft from '../../src/components/contacts/MenuLeft';
+import MenuRight from '../../src/components/contacts/MenuRight';
+import styles from '../../src/contactlist.scss';
 
 const props = {
   contactItem: {
@@ -32,5 +35,20 @@ describe('Contacts', () => {
     wrapper.find('input')
       .simulate('keyDown', { nativeEvent: { keyCode: 13 }, target: { value: 'Johnny' } });
     expect(wrapper.node.state.username).toBe('Johnny');
+  });
+});
+
+describe('Contacts', () => {
+  it('should toggle contact menus', () => {
+    const wrapper = mount(<Contacts {...props} />);
+    expect(wrapper.node.state.showMenu).toBe(false);
+    expect(wrapper.find('img').hasClass(styles.smallImg)).toBe(true);
+    expect(wrapper.find(MenuLeft).length).toBe(0);
+    expect(wrapper.find(MenuRight).length).toBe(0);
+    wrapper.find('.' + styles.arrow).simulate('click');
+    expect(wrapper.node.state.showMenu).toBe(true);
+    expect(wrapper.find('img').hasClass(styles.bigImg)).toBe(true);
+    expect(wrapper.find(MenuLeft).length).toBe(1);
+    expect(wrapper.find(MenuRight).length).toBe(1);
   });
 });
