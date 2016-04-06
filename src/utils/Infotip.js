@@ -15,13 +15,14 @@ export default class Infotip extends Component {
     this.setState({ hover: false });
   };
   render() {
-    return (<div className={styles.infoTip}>
+    return (<div className={styles.infoTip}
+      onMouseEnter={this.handleMouseEnter}
+      onMouseLeave={this.handleMouseLeave}
+    >
       <img width={25}
         height={25}
         className={styles.img}
         src={this.props.src}
-        onMouseEnter={this.handleMouseEnter}
-        onMouseLeave={this.handleMouseLeave}
       />
       <div className={styles.infoTipContainer}
         style={{ display: this.state.hover ? 'block' : 'none' }}
@@ -36,5 +37,6 @@ export default class Infotip extends Component {
 }
 
 Infotip.propTypes = {
-  src: PropTypes.string
+  src: PropTypes.string,
+  children: React.PropTypes.element.isRequired
 };

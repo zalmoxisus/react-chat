@@ -58,8 +58,8 @@ export default class Message extends Component {
   };
   render() {
     const {
-      message, isMine, replay, onTranslate, withPhoto, onBan,
-      onDelete, translateLanguages, lang, voicesArr, nativeLng, openModal, closeModal } = this.props;
+      message, isMine, replay, onTranslate, withPhoto, onBan, onDelete,
+      translateLanguages, lang, voicesArr, nativeLng, openModal, closeModal } = this.props;
     return (
       <div className={styles.msgBox}>
         {

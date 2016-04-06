@@ -76,7 +76,7 @@ class Container extends Component {
       <div>
         {this.state.modal}
         <Chat
-          me={me}
+          userId={me.id}
           lang={lang}
           messages={testMessages}
           onSend={this.handleSend}

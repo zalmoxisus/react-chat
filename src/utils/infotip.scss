@@ -3,10 +3,6 @@
   width: 25px;
   height: 25px;
   left: 0;
-  cursor: pointer;
-}
-.infoTipI {
-  cursor: pointer;
 }
 .infoTipContainer {
   position: absolute;
@@ -61,5 +57,6 @@
   border-bottom: 1px solid #aaa;
 }
 .img {
-  border-radius: 4px
+  border-radius: 4px;
+  cursor: pointer;
 }

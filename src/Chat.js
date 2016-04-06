@@ -10,7 +10,7 @@ export default class Chat extends Component {
     node.value = name + ', ' + node.value;
     node.focus();
   };
-  isMine = id => this.props.me.id === id;
+  isMine = id => this.props.userId === id;
 
   render() {
     const {
@@ -47,11 +47,7 @@ export default class Chat extends Component {
 Chat.propTypes = {
   messages: PropTypes.array.isRequired,
   onSend: PropTypes.func.isRequired,
-  me: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    avatar: PropTypes.string
-  }).isRequired,
+  userId: PropTypes.string.isRequired,
   lang: PropTypes.string,
   onTranslate: PropTypes.func,
   onDelete: PropTypes.func,
