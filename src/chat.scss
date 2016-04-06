@@ -453,23 +453,25 @@
 }
 .tooltip {
   background: #eee;
-  padding: 0 4px 4px 4px;
+  padding: 20px;
 }
 .titleTooltip {
-  padding: 2px;
-  font-size: 14px;
+  padding-bottom: 7px;
+  font-size: 16px;
   color: #1F1F1F;
 }
 .tooltip select{
-  height: 22px;
-  font-size: 12px;
+  height: 28px;
+  font-size: 14px;
+  vertical-align: middle;
 }
 .tooltip .btn {
   padding: 3px;
-  margin: 0 1px 0 1px;
+  margin: 0 2px 0 2px;
   border: 1px solid #fff;
   background: #e8e3de;
   color: #1F1F1F;
+  font-size: 20px;
 }
 .msgOptions > div > .btn{
   width: 100%;

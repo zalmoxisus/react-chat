@@ -66,7 +66,7 @@ class Container extends Component {
   openModal = (modalContent, success) => {
     this.setState({ modal: <ModalExample
       modalContent={modalContent}
-      onClose={this.handleClose}
+      onClose={this.closeModal}
       success={success}
     /> });
   };
