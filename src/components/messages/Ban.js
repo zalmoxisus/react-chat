@@ -3,7 +3,6 @@ import styles from '../../chat.scss';
 import MdBlock from 'react-icons/lib/md/block';
 import MdClose from 'react-icons/lib/md/close';
 import MdReplay from 'react-icons/lib/md/replay';
-import { ModalContainer, ModalDialog } from 'react-modal-dialog';
 
 export default class Ban extends Component {
   constructor(props) {
@@ -14,7 +13,17 @@ export default class Ban extends Component {
     };
   }
   ban = () => {
-    this.setState({ willBan: true });
+    //this.setState({ willBan: true });
+    const modalContent = (
+      <div className={styles.confirmText}>
+        {this.props.message.name} will be banned for this discussion
+      </div>
+    );
+    this.props.openModal(
+      modalContent,
+      success => {
+        console.log(success);
+      });
   };
   handleClose = () => {
     this.setState({ willBan: false });
@@ -51,20 +60,6 @@ export default class Ban extends Component {
           {this.state.banned}
         </span>
       }
-      {
-        (this.state.willBan) ?
-          <ModalContainer onClose={this.handleClose}>
-            <ModalDialog onClose={this.handleClose}>
-              <div className={styles.confirmText}>
-                {message.name} will be banned for this discussion
-              </div>
-              <div className={styles.confirmBtns}>
-                <span onClick={this.handleClose}>Cancel</span>
-                <span onClick={this.handleConfirm}>Confirm</span>
-              </div>
-            </ModalDialog>
-          </ModalContainer> : null
-      }
     </div>
     );
   }
@@ -75,5 +70,6 @@ Ban.propTypes = {
   onBan: PropTypes.func,
   isMine: PropTypes.func,
   onRestore: PropTypes.func,
-  deleted: PropTypes.bool
+  deleted: PropTypes.bool,
+  openModal: PropTypes.func
 };

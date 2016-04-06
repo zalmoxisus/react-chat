@@ -28,15 +28,7 @@ const props = {
   }
 };
 
-describe('Message', () => {
-  it('should show translate tooltip', () => {
-    const wrapper = mount(<MessageOptions {...props} />);
-    expect(wrapper.node.state.isTooltipActive).toBe(false);
-    wrapper.find('#a' + props.message.id).simulate('click');
-    expect(wrapper.node.state.isTooltipActive).toBe(true);
-    wrapper.find('#a' + props.message.id).simulate('click');
-    expect(wrapper.node.state.isTooltipActive).toBe(false);
-  });
+describe('MessageOptions', () => {
   it('should translate message', () => {
     props.nativeLng = 'en';
     const wrapper = mount(<MessageOptions {...props} />);

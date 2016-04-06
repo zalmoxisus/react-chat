@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import styles from '../../contactlist.scss';
 import MdEdit from 'react-icons/lib/md/edit';
 import MdClose from 'react-icons/lib/md/close';
-import { ModalContainer, ModalDialog } from 'react-modal-dialog';
 
 export default class MenuRight extends Component {
   constructor(props) {
@@ -31,7 +30,7 @@ export default class MenuRight extends Component {
         </span>
         <MdClose onClick={this.deleteContact} />
         {
-          (this.state.willDelete) ?
+          /*(this.state.willDelete) ?
             <ModalContainer onClose={this.handleClose}>
               <ModalDialog onClose={this.handleClose}>
                 <div className={styles.confirmText}>
@@ -43,7 +42,7 @@ export default class MenuRight extends Component {
                   <span onClick={this.handleConfirm}>Confirm</span>
                 </div>
               </ModalDialog>
-            </ModalContainer> : null
+            </ModalContainer> : null*/
         }
       </div>
     );

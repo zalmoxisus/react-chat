@@ -4,6 +4,7 @@ import Chat from 'react-chat';
 import './style.scss';
 import testMessages from './testMessages';
 import translateLanguages from './translateLanguages';
+import ModalExample from './ModalExample';
 const me = {
   id: '2',
   name: 'Leo',
@@ -17,7 +18,8 @@ class Container extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: testMessages
+      messages: testMessages,
+      modal: null
     };
   }
 
@@ -57,21 +59,36 @@ class Container extends Component {
     success();
   };
 
+  handleClose = () => {
+    this.setState({ modal: null });
+  };
+
+  handleModal = (modalContent, success) => {
+    this.setState({ modal: <ModalExample
+      modalContent={modalContent}
+      onClose={this.handleClose}
+    /> });
+  };
+
   render() {
     return (
-      <Chat
-        me={me}
-        lang={lang}
-        messages={testMessages}
-        onSend={this.handleSend}
-        onTranslate={this.handleTranslate}
-        onDelete={this.handleDelete}
-        onRestore={this.handleRestore}
-        onBan={this.handleBan}
-        translateLanguages={translateLanguages}
-        nativeLng={nativeLng}
-        withPhoto={withPhoto}
-      />
+      <div>
+        {this.state.modal}
+        <Chat
+          me={me}
+          lang={lang}
+          messages={testMessages}
+          onSend={this.handleSend}
+          onTranslate={this.handleTranslate}
+          onDelete={this.handleDelete}
+          onRestore={this.handleRestore}
+          onBan={this.handleBan}
+          translateLanguages={translateLanguages}
+          nativeLng={nativeLng}
+          withPhoto={withPhoto}
+          openModal={this.handleModal}
+        />
+      </div>
     );
   }
 }

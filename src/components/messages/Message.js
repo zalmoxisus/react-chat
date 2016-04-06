@@ -59,7 +59,7 @@ export default class Message extends Component {
   render() {
     const {
       message, isMine, replay, onTranslate, withPhoto, onBan,
-      onDelete, translateLanguages, lang, voicesArr, nativeLng } = this.props;
+      onDelete, translateLanguages, lang, voicesArr, nativeLng, openModal } = this.props;
     return (
       <div className={styles.msgBox}>
         {
@@ -102,6 +102,7 @@ export default class Message extends Component {
                 nativeLng={nativeLng}
                 insertTranslation={this.insertTranslation}
                 deleteMsg={this.deleteMsg}
+                openModal={openModal}
               /> : null
           }
           {
@@ -112,6 +113,7 @@ export default class Message extends Component {
                 isMine={isMine}
                 onRestore={this.restoreMsg}
                 deleted={this.state.deleted}
+                openModal={openModal}
               /> : null
           }
         </div>
@@ -132,5 +134,6 @@ Message.propTypes = {
   lang: PropTypes.string,
   voicesArr: PropTypes.array,
   nativeLng: PropTypes.string,
-  withPhoto: PropTypes.bool
+  withPhoto: PropTypes.bool,
+  openModal: PropTypes.func
 };
