@@ -8,15 +8,19 @@ export default class Ban extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      banned: false,
-      willBan: false
+      banned: false
     };
   }
   ban = () => {
-    //this.setState({ willBan: true });
     const modalContent = (
-      <div className={styles.confirmText}>
-        {this.props.message.name} will be banned for this discussion
+      <div>
+        <div className={styles.confirmText}>
+          {this.props.message.name} will be banned for this discussion
+        </div>
+        <div className={styles.confirmBtns}>
+          <span onClick={this.handleClose}>Cancel</span>
+          <span onClick={this.handleConfirm}>Confirm</span>
+        </div>
       </div>
     );
     this.props.openModal(
@@ -26,14 +30,14 @@ export default class Ban extends Component {
       });
   };
   handleClose = () => {
-    this.setState({ willBan: false });
+    this.props.closeModal();
   };
   handleConfirm = () => {
     this.props.onBan(this.props.message.id, () => {
       this.setState({
         banned: true
       });
-      this.setState({ willBan: false });
+      this.props.closeModal();
     });
   };
   render() {
@@ -71,5 +75,6 @@ Ban.propTypes = {
   isMine: PropTypes.func,
   onRestore: PropTypes.func,
   deleted: PropTypes.bool,
-  openModal: PropTypes.func
+  openModal: PropTypes.func,
+  closeModal: PropTypes.func
 };

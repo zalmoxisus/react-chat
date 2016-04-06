@@ -40,7 +40,7 @@ export default class ChatArea extends Component {
   render() {
     const {
       messages, replay, isMine, onTranslate, onDelete, onRestore,
-      onBan, translateLanguages, lang, nativeLng, withPhoto, openModal } = this.props;
+      onBan, translateLanguages, lang, nativeLng, withPhoto, openModal, closeModal } = this.props;
     return (
       <div id="container" className={styles.container}>
         {
@@ -60,6 +60,7 @@ export default class ChatArea extends Component {
                 nativeLng={nativeLng}
                 withPhoto={withPhoto}
                 openModal={openModal}
+                closeModal={closeModal}
               />
           )
         }
@@ -80,5 +81,6 @@ ChatArea.propTypes = {
   lang: PropTypes.string,
   nativeLng: PropTypes.string,
   withPhoto: PropTypes.bool,
-  openModal: PropTypes.func
+  openModal: PropTypes.func,
+  closeModal: PropTypes.func
 };

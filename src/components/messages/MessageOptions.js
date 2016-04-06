@@ -16,6 +16,7 @@ export default class MessageOptions extends Component {
   selectLang = (val, msg) => {
     this.nativeLng = val;
     this.props.insertTranslation(this.nativeLng, msg);
+    this.props.closeModal();
   };
   isVideo = (msg) => {
     const media = convertMedia(msg, 150, true);
@@ -34,15 +35,11 @@ export default class MessageOptions extends Component {
               msg={message.msg}
               onChange={this.selectLang}
             />
-            <MdClose className={styles.btn} />
+            <MdClose className={styles.btn} onClick={this.props.closeModal} />
           </div>
         </div>
       );
-      this.props.openModal(
-        modalContent,
-        success => {
-          console.log(success);
-        });
+      this.props.openModal(modalContent);
     } else {
       this.lastTranslate = message.id;
       this.props.insertTranslation(this.nativeLng, message.msg);
@@ -50,7 +47,7 @@ export default class MessageOptions extends Component {
   };
   render() {
     const { message, onTranslate, translateLanguages,
-      lang, voicesArr, onDelete, isMine, deleteMsg, openModal } = this.props;
+      lang, voicesArr, onDelete, isMine, deleteMsg, openModal, closeModal } = this.props;
     return (
       <div className={styles.msgOptions}>
         {
@@ -74,6 +71,7 @@ export default class MessageOptions extends Component {
               voicesArr={voicesArr}
               isMine={isMine(message.sender)}
               openModal={openModal}
+              closeModal={closeModal}
             /> : null
         }
         {
@@ -97,5 +95,6 @@ MessageOptions.propTypes = {
   nativeLng: PropTypes.string,
   insertTranslation: PropTypes.func,
   deleteMsg: PropTypes.func,
-  openModal: PropTypes.func
+  openModal: PropTypes.func,
+  closeModal: PropTypes.func
 };

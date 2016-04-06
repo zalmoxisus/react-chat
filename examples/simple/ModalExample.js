@@ -3,6 +3,10 @@ import './style.scss';
 import { ModalContainer, ModalDialog } from 'react-modal-dialog';
 
 export default class ModalExample extends Component {
+  handleConfirm = () => {
+    this.props.success();
+    this.props.onClose();
+  };
   render() {
     const { modalContent, onClose } = this.props;
     return (
@@ -11,10 +15,6 @@ export default class ModalExample extends Component {
           <div>
             {modalContent}
           </div>
-          <div>
-            <span onClick={onClose}>Cancel</span>
-            <span onClick={this.handleConfirm}>Confirm</span>
-          </div>
         </ModalDialog>
       </ModalContainer>
     );
@@ -22,5 +22,6 @@ export default class ModalExample extends Component {
 }
 ModalExample.propTypes = {
   modalContent: PropTypes.object,
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
+  success: PropTypes.func
 };

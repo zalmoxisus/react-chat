@@ -59,14 +59,15 @@ class Container extends Component {
     success();
   };
 
-  handleClose = () => {
+  closeModal = () => {
     this.setState({ modal: null });
   };
 
-  handleModal = (modalContent, success) => {
+  openModal = (modalContent, success) => {
     this.setState({ modal: <ModalExample
       modalContent={modalContent}
       onClose={this.handleClose}
+      success={success}
     /> });
   };
 
@@ -86,7 +87,8 @@ class Container extends Component {
           translateLanguages={translateLanguages}
           nativeLng={nativeLng}
           withPhoto={withPhoto}
-          openModal={this.handleModal}
+          openModal={this.openModal}
+          closeModal={this.closeModal}
         />
       </div>
     );

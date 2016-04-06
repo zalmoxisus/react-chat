@@ -44,15 +44,11 @@ export default class SpeechSynthesis extends Component {
                 value={this.voiceName}
                 onChange={this.speakFromTooltip}
               />
-              <MdClose className={styles.btn} />
+              <MdClose className={styles.btn} onClick={this.props.closeModal} />
             </div>
           </div>
         );
-        this.props.openModal(
-          modalContent,
-          success => {
-            console.log(success);
-          });
+        this.props.openModal(modalContent);
       } else {
         this.lastSpoken = id;
         this.play();
@@ -65,6 +61,7 @@ export default class SpeechSynthesis extends Component {
   speakFromTooltip = (value = this.props.voicesArr[0].name) => {
     this.voiceName = value;
     this.play();
+    this.props.closeModal();
   };
   toggleIcons = (n1, n2) => {
     const node1 = n1;
@@ -93,5 +90,6 @@ SpeechSynthesis.propTypes = {
   lang: PropTypes.string,
   voicesArr: PropTypes.array,
   isMine: PropTypes.bool,
-  openModal: PropTypes.func
+  openModal: PropTypes.func,
+  closeModal: PropTypes.func
 };
