@@ -26,8 +26,8 @@ export default class MessageOptions extends Component {
     const message = this.props.message;
     if (this.lastTranslate === message.id || !this.nativeLng) {
       const modalContent = (
-        <div className={styles.tooltip}>
-          <div className={styles.titleTooltip}>Translate it to</div>
+        <div className={styles.modal}>
+          <div className={styles.titleModal}>Translate it to</div>
           <div style={{ display: 'flex' }}>
             <LangSelect
               translateLanguages={this.props.translateLanguages}

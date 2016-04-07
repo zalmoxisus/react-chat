@@ -36,13 +36,13 @@ export default class SpeechSynthesis extends Component {
     if (this.playSpan.childNodes[1].style.visibility === 'hidden') {
       if (this.lastSpoken === id && this.props.voicesArr.length > 1) {
         const modalContent = (
-          <div className={styles.tooltip}>
-            <div className={styles.titleTooltip}>Read it as</div>
+          <div className={styles.modal}>
+            <div className={styles.titleModal}>Read it as</div>
             <div style={{ display: 'flex' }}>
               <SpeechSelect
                 lang={this.props.lang}
                 value={this.voiceName}
-                onChange={this.speakFromTooltip}
+                onChange={this.speakFromModal}
               />
               <MdClose className={styles.btn} onClick={this.props.closeModal} />
             </div>
@@ -58,7 +58,7 @@ export default class SpeechSynthesis extends Component {
       window.speechSynthesis.cancel();
     }
   };
-  speakFromTooltip = (value = this.props.voicesArr[0].name) => {
+  speakFromModal = (value = this.props.voicesArr[0].name) => {
     this.voiceName = value;
     this.play();
     this.props.closeModal();

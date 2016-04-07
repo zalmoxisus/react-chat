@@ -38,6 +38,7 @@
   margin: 10px 4px 10px 4px;
   line-height: 1.4;
   float: left;
+  min-width: 240px;
 }
 
 .msgName {
@@ -447,27 +448,28 @@
 .categoryBtn:first-child{
   background: #ffffff;
 }
-.tooltip {
+.modal {
   background: #eee;
   padding: 20px;
 }
-.titleTooltip {
+.titleModal {
   padding-bottom: 7px;
-  font-size: 16px;
+  font-size: 20px;
   color: #1F1F1F;
 }
-.tooltip select{
-  height: 28px;
-  font-size: 14px;
+.modal select{
+  height: 30px;
+  width: 140px;
+  font-size: 16px;
   vertical-align: middle;
 }
-.tooltip .btn {
+.modal .btn {
   padding: 3px;
   margin: 0 2px 0 2px;
   border: 1px solid #fff;
-  background: #e8e3de;
+  background: #DED8D2;
   color: #1F1F1F;
-  font-size: 20px;
+  font-size: 22px;
 }
 .msgOptions > div > .btn{
   width: 100%;
@@ -476,7 +478,7 @@
   align-items: center;
   justify-content: center;
 }
-.tooltip .btn:hover {
+.modal .btn:hover {
   border: 1px solid #A24E06;
 }
 .btn:hover, .playContainer:hover {
@@ -582,8 +584,10 @@
   cursor: pointer;
 }
 .confirmText{
-  font-size: 14px;
-  margin-bottom: 15px;
+  font-size: 20px;
+  text-align: center;
+  background: #eee;
+  padding: 30px 20px 30px 20px;
 }
 @media (max-width: 610px) {
   .msg {
@@ -617,6 +621,9 @@
 @media (max-width: 320px) {
   .msg {
     max-width: 70%;
+  }
+  .modal select{
+    width: 80px;
   }
 }
 @media (max-width: 250px) {
