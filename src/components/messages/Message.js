@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../../chat.scss';
-import Avatar from './Avatar';
+import Avatar from '../Avatar';
 import MessageOptions from './MessageOptions';
 import Ban from './Ban';
 import MessageContent from './MessageContent';
@@ -59,7 +59,8 @@ export default class Message extends Component {
   render() {
     const {
       message, isMine, replay, onTranslate, withPhoto, onBan, onDelete,
-      translateLanguages, lang, voicesArr, nativeLng, openModal, closeModal } = this.props;
+      translateLanguages, lang, voicesArr, nativeLng, openModal, closeModal,
+      toolTipPosition } = this.props;
     return (
       <div className={styles.msgBox}>
         {
@@ -70,6 +71,7 @@ export default class Message extends Component {
             id={message.id}
             src={message.avatar}
             name={message.name}
+            toolTipPosition={toolTipPosition}
           />
         }
         <div className={isMine(message.sender) ? styles.arrowRight : styles.arrowLeft}>
@@ -138,5 +140,6 @@ Message.propTypes = {
   nativeLng: PropTypes.string,
   withPhoto: PropTypes.bool,
   openModal: PropTypes.func,
-  closeModal: PropTypes.func
+  closeModal: PropTypes.func,
+  toolTipPosition: PropTypes.string
 };

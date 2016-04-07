@@ -79,7 +79,7 @@ export default class ChatInput extends Component {
   };
 
   btnHovered = (e) => {
-    e.currentTarget.querySelectorAll('span')[2].removeAttribute('title');
+    e.currentTarget.querySelectorAll('span')[1].removeAttribute('title');
   };
 
   render() {

@@ -15,7 +15,8 @@ export default class Chat extends Component {
   render() {
     const {
       messages, lang, onSend, onTranslate, withPhoto, openModal, closeModal,
-      onDelete, translateLanguages, nativeLng, onRestore, onBan } = this.props;
+      onDelete, translateLanguages, nativeLng, onRestore, onBan,
+      toolTipPosition } = this.props;
     return (
       <div className={styles.base}>
         <ChatArea messages={messages}
@@ -31,6 +32,7 @@ export default class Chat extends Component {
           withPhoto={withPhoto}
           openModal={openModal}
           closeModal={closeModal}
+          toolTipPosition={toolTipPosition}
         />
         <ChatInput
           onSend={onSend}
@@ -57,7 +59,8 @@ Chat.propTypes = {
   nativeLng: PropTypes.string,
   withPhoto: PropTypes.bool,
   openModal: PropTypes.func,
-  closeModal: PropTypes.func
+  closeModal: PropTypes.func,
+  toolTipPosition: PropTypes.string
 };
 
 Chat.defaultProps = {

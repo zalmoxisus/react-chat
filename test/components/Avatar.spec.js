@@ -1,7 +1,7 @@
 import React from 'react';
 import expect from 'expect';
 import { shallow } from 'enzyme';
-import Avatar from '../../src/components/messages/Avatar';
+import Avatar from '../../src/components/Avatar';
 
 const props = {
   message:

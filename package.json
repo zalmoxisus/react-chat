@@ -86,6 +86,7 @@
     "react": "^0.14.3",
     "react-emojione": "^1.0.3",
     "react-icons": "^1.0.3",
+    "react-portal-tooltip": "^1.0.5",
     "react-textarea-autosize": "^3.1.0"
   }
 }

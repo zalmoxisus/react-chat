@@ -13,6 +13,7 @@ const me = {
 const lang = 'en';
 const nativeLng = 'en';
 const withPhoto = true;
+const toolTipPosition = 'right';
 
 class Container extends Component {
   constructor(props) {
@@ -89,6 +90,7 @@ class Container extends Component {
           withPhoto={withPhoto}
           openModal={this.openModal}
           closeModal={this.closeModal}
+          toolTipPosition={toolTipPosition}
         />
       </div>
     );

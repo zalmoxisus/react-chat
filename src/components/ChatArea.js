@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../chat.scss';
-import Messages from './messages/Message';
+import Message from './messages/Message';
 
 export default class ChatArea extends Component {
   constructor(props) {
@@ -40,13 +40,14 @@ export default class ChatArea extends Component {
   render() {
     const {
       messages, replay, isMine, onTranslate, onDelete, onRestore,
-      onBan, translateLanguages, lang, nativeLng, withPhoto, openModal, closeModal } = this.props;
+      onBan, translateLanguages, lang, nativeLng, withPhoto, openModal,
+      closeModal, toolTipPosition } = this.props;
     return (
       <div id="container" className={styles.container}>
         {
           (messages && messages.length > 0) &&
           messages.map(message =>
-              <Messages key={message.id}
+              <Message key={message.id}
                 message={message}
                 replay={replay}
                 isMine={isMine}
@@ -61,6 +62,7 @@ export default class ChatArea extends Component {
                 withPhoto={withPhoto}
                 openModal={openModal}
                 closeModal={closeModal}
+                toolTipPosition={toolTipPosition}
               />
           )
         }
@@ -82,5 +84,6 @@ ChatArea.propTypes = {
   nativeLng: PropTypes.string,
   withPhoto: PropTypes.bool,
   openModal: PropTypes.func,
-  closeModal: PropTypes.func
+  closeModal: PropTypes.func,
+  toolTipPosition: PropTypes.string
 };
