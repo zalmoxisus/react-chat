@@ -1,6 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../chat.scss';
 import ToolTip from 'react-portal-tooltip';
+import initials from 'initials';
+
+const colors = [
+  '#8e44ad', // wisteria
+  '#1abc9c', // turquoise
+  '#3498db', // peter river
+  '#27ae60', // nephritis
+  '#2980b9', // belize hole
+  '#e67e22', // carrot
+  '#16a085', // green sea
+  '#e74c3c', // alizarin
+  '#d35400', // pumpkin
+  '#c0392b' // pomegranate
+];
 
 export default class Avatar extends Component {
   constructor(props) {
@@ -16,21 +30,63 @@ export default class Avatar extends Component {
     this.setState({ showTooltip: false });
   };
   render() {
-    const { src, name, toolTipPosition, ...rest } = this.props;
+    const {
+      src,
+      name,
+      toolTipPosition,
+      borderRadius = '20%',
+      color,
+      size = 40,
+      ...rest
+      } = this.props;
+
+    const abbr = initials(this.props.name);
+
+    const imageStyle = {
+      display: 'block',
+      borderRadius
+    };
+
+    const innerStyle = {
+      display: 'table-cell',
+      textAlign: 'center',
+      verticalAlign: 'middle',
+      color: '#fff',
+      fontSize: '16px',
+      lineHeight: '2.4',
+      borderRadius
+    };
+    if (size) {
+      imageStyle.width = innerStyle.width = innerStyle.minWidth = size;
+      imageStyle.height = innerStyle.height = innerStyle.minHeight = size;
+    }
+
+    let inner;
+    if (src) {
+      inner = <img style={imageStyle} src={src} alt={name} />;
+    } else {
+      let background;
+      if (color) {
+        background = color;
+      } else {
+        // pick a deterministic color from the list
+        let i = (name.charCodeAt(0) * name.length) % colors.length;
+        background = colors[i];
+      }
+
+      innerStyle.backgroundColor = background;
+
+      inner = abbr;
+    }
     return (
-      <div {...rest}>
-        <div>
-          {
-            src ?
-              <img src={src}
-                className={styles.avatar}
-                onMouseEnter={this.handleMouseEnter}
-                onMouseLeave={this.handleMouseLeave}
-                id={'a' + this.props.id}
-              /> :
-              <div className={styles.txt}>{name[0]}</div>
-          }
-        </div>
+      <div
+        style={innerStyle}
+        {...rest}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+        id={'a' + this.props.id}
+      >
+        {inner}
         {
           toolTipPosition &&
           <ToolTip
@@ -54,6 +110,9 @@ export default class Avatar extends Component {
 Avatar.propTypes = {
   id: PropTypes.number,
   src: PropTypes.string,
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  borderRadius: PropTypes.string,
+  color: PropTypes.string,
+  size: PropTypes.number,
   toolTipPosition: PropTypes.string
 };

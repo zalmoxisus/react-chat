@@ -207,18 +207,19 @@
 .avtrTooltip {
   background: #f5f5f5;
   opacity: 0.9;
+  min-width: 100px;
 }
 
 .avtrTooltip img {
   padding: 7px 12px 7px 12px;
   max-width: 150px;
+  border-top: 1px solid #bbb;
+  margin-top: 5px;
 }
 
 .avtrName {
   font-size: 15px;
   padding: 9px;
-  border-bottom: 1px solid #bbb;
-  margin-bottom: 5px;
   width: auto;
   background: #eee;
 }
