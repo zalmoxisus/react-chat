@@ -16,29 +16,20 @@ const customStyles = {
   }
 };
 export default class ModalExample extends Component {
-  constructor(props) {
-    super(props);
-    this.isOpen = true;
-  }
-  handleConfirm = () => {
-    this.props.success();
-    this.props.onClose();
-  };
   render() {
-    const { modalContent, onClose } = this.props;
+    const { content, onClose } = this.props;
     return (
       <Modal
-        isOpen={this.isOpen}
+        isOpen={(content !== null)}
         onRequestClose={onClose}
         style={customStyles}
       >
-        {modalContent}
+        {content}
       </Modal>
     );
   }
 }
 ModalExample.propTypes = {
-  modalContent: PropTypes.object,
-  onClose: PropTypes.func,
-  success: PropTypes.func
+  content: PropTypes.object,
+  onClose: PropTypes.func
 };

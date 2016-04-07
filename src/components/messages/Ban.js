@@ -23,11 +23,7 @@ export default class Ban extends Component {
         </div>
       </div>
     );
-    this.props.openModal(
-      modalContent,
-      success => {
-        console.log(success);
-      });
+    this.props.openModal(modalContent);
   };
   handleClose = () => {
     this.props.closeModal();

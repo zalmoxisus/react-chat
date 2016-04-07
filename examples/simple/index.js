@@ -63,18 +63,18 @@ class Container extends Component {
     this.setState({ modal: null });
   };
 
-  openModal = (modalContent, success) => {
-    this.setState({ modal: <ModalExample
-      modalContent={modalContent}
-      onClose={this.closeModal}
-      success={success}
-    /> });
+  openModal = (modalContent) => {
+    this.setState({ modal: modalContent });
   };
 
   render() {
     return (
       <div>
         {this.state.modal}
+        <ModalExample
+          content={this.state.modal}
+          onClose={this.closeModal}
+        />
         <Chat
           userId={me.id}
           lang={lang}
