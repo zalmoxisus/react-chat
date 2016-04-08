@@ -11,14 +11,26 @@ export default class MenuRight extends Component {
     };
   }
   deleteContact = () => {
-    this.setState({ willDelete: true });
+    const modalContent = (
+      <div className={styles.modal}>
+        <div className={styles.confirmText}>
+          You are about to remove {this.props.contactItem.name}.
+          <br />All related chats will be closed.
+        </div>
+        <div className={styles.confirmBtns}>
+          <span onClick={this.handleClose}>Cancel</span>
+          <span onClick={this.handleConfirm}>Confirm</span>
+        </div>
+      </div>
+    );
+    this.props.openModal(modalContent);
   };
   handleClose = () => {
-    this.setState({ willDelete: false });
+    this.props.closeModal();
   };
   handleConfirm = () => {
     this.props.onDelete(this.props.contactItem.id, () => {
-      console.log('onDelete success');
+      this.props.closeModal();
     });
   };
   render() {
@@ -29,21 +41,6 @@ export default class MenuRight extends Component {
           <MdEdit onClick={onEdit} />
         </span>
         <MdClose onClick={this.deleteContact} />
-        {
-          /*(this.state.willDelete) ?
-            <ModalContainer onClose={this.handleClose}>
-              <ModalDialog onClose={this.handleClose}>
-                <div className={styles.confirmText}>
-                  You are about to remove {contactItem.name}.
-                  <br />All related chats will be closed.
-                </div>
-                <div className={styles.confirmBtns}>
-                  <span onClick={this.handleClose}>Cancel</span>
-                  <span onClick={this.handleConfirm}>Confirm</span>
-                </div>
-              </ModalDialog>
-            </ModalContainer> : null*/
-        }
       </div>
     );
   }
@@ -52,5 +49,7 @@ export default class MenuRight extends Component {
 MenuRight.propTypes = {
   contactItem: PropTypes.object,
   onEdit: PropTypes.func,
-  onDelete: PropTypes.func
+  onDelete: PropTypes.func,
+  openModal: PropTypes.func,
+  closeModal: PropTypes.func
 };

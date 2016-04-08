@@ -71,7 +71,6 @@ class Container extends Component {
   render() {
     return (
       <div>
-        {this.state.modal}
         <ModalExample
           content={this.state.modal}
           onClose={this.closeModal}

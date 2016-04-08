@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './style.scss';
 import ContactList from 'react-chat/ContactList';
 import testContacts from './testContacts';
+import ModalExample from './ModalExample';
 
 const toolTipPosition = 'right';
 
@@ -18,7 +19,19 @@ class Container extends Component {
             object.splice(index, 1);
           }
         });
-      }
+      },
+
+      changeName(contact, name) {
+        this.contacts.forEach((item) => {
+          if (item.id === contact) {
+            Object.assign(item, {
+              name
+            });
+          }
+        });
+      },
+
+      modal: null
     };
   }
   handleInfo = () => {
@@ -36,8 +49,10 @@ class Container extends Component {
     console.log('call method');
   };
 
-  handleChangeName = (id, name, success) => {
+  handleChangeName = (contact, name, success) => {
     // Add here edit name method
+    this.state.changeName(contact, name);
+    this.setState(this.state);
     success();
   };
 
@@ -48,17 +63,33 @@ class Container extends Component {
     success();
   };
 
+  closeModal = () => {
+    this.setState({ modal: null });
+  };
+
+  openModal = (modalContent) => {
+    this.setState({ modal: modalContent });
+  };
+
   render() {
     return (
-      <ContactList
-        listContacts={testContacts}
-        onInfo={this.handleInfo}
-        onMessage={this.handleMessage}
-        onCall={this.handleCall}
-        onChangeName={this.handleChangeName}
-        onDelete={this.handleDelete}
-        toolTipPosition={toolTipPosition}
-      />
+      <div>
+        <ModalExample
+          content={this.state.modal}
+          onClose={this.closeModal}
+        />
+        <ContactList
+          listContacts={testContacts}
+          onInfo={this.handleInfo}
+          onMessage={this.handleMessage}
+          onCall={this.handleCall}
+          onChangeName={this.handleChangeName}
+          onDelete={this.handleDelete}
+          toolTipPosition={toolTipPosition}
+          openModal={this.openModal}
+          closeModal={this.closeModal}
+        />
+      </div>
     );
   }
 }

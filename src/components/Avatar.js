@@ -100,6 +100,10 @@ export default class Avatar extends Component {
                 src ? <img src={src} /> : null
               }
             </div>
+            {
+              (this.props.buttons) &&
+                <div>{this.props.children}</div>
+            }
           </ToolTip>
         }
       </div>
@@ -114,5 +118,6 @@ Avatar.propTypes = {
   borderRadius: PropTypes.string,
   color: PropTypes.string,
   size: PropTypes.number,
-  toolTipPosition: PropTypes.string
+  toolTipPosition: PropTypes.string,
+  buttons: PropTypes.bool
 };

@@ -127,10 +127,7 @@
   margin-top: 31px;
 }
 .editContainer{
-  position: absolute;
-  background: #22262A;
-  right: 0;
-  left: 60px;
+  background: #ccc;
   height: 60px;
 }
 .editInput{
@@ -139,7 +136,7 @@
   height: 22px;
   margin: 16px 10px 4px 10px;
   padding: 4px;
-  width: 50%;
+  width: 150px;
 }
 .username{
   width: 300px;
@@ -159,6 +156,9 @@
 .confirmText{
   font-size: 14px;
   margin-bottom: 15px;
+}
+.avatar{
+  cursor: pointer;
 }
 @media (max-width: 400px) {
   .username{

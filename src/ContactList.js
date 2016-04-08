@@ -6,7 +6,7 @@ import Contacts from './components/Contacts';
 export default class ContactList extends Component {
   render() {
     const { listContacts, onInfo, onMessage, onCall, onChangeName, onDelete,
-      toolTipPosition } = this.props;
+      toolTipPosition, openModal, closeModal } = this.props;
     return (
       <div className={styles.contactlist}>
         <div className={styles.headerlist}>
@@ -24,6 +24,8 @@ export default class ContactList extends Component {
                 onChangeName={onChangeName}
                 onDelete={onDelete}
                 toolTipPosition={toolTipPosition}
+                openModal={openModal}
+                closeModal={closeModal}
               />
             )
           }
@@ -40,5 +42,7 @@ ContactList.propTypes = {
   onCall: PropTypes.func,
   onChangeName: PropTypes.func,
   onDelete: PropTypes.func,
-  toolTipPosition: PropTypes.string
+  toolTipPosition: PropTypes.string,
+  openModal: PropTypes.func,
+  closeModal: PropTypes.func
 };
