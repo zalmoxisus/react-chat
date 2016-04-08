@@ -4,6 +4,8 @@ import './style.scss';
 import ContactList from 'react-chat/ContactList';
 import testContacts from './testContacts';
 
+const toolTipPosition = 'right';
+
 class Container extends Component {
   constructor(props) {
     super(props);
@@ -55,6 +57,7 @@ class Container extends Component {
         onCall={this.handleCall}
         onChangeName={this.handleChangeName}
         onDelete={this.handleDelete}
+        toolTipPosition={toolTipPosition}
       />
     );
   }

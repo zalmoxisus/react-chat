@@ -5,7 +5,8 @@ import Contacts from './components/Contacts';
 
 export default class ContactList extends Component {
   render() {
-    const { listContacts, onInfo, onMessage, onCall, onChangeName, onDelete } = this.props;
+    const { listContacts, onInfo, onMessage, onCall, onChangeName, onDelete,
+      toolTipPosition } = this.props;
     return (
       <div className={styles.contactlist}>
         <div className={styles.headerlist}>
@@ -22,6 +23,7 @@ export default class ContactList extends Component {
                 onCall={onCall}
                 onChangeName={onChangeName}
                 onDelete={onDelete}
+                toolTipPosition={toolTipPosition}
               />
             )
           }
@@ -37,5 +39,6 @@ ContactList.propTypes = {
   onMessage: PropTypes.func,
   onCall: PropTypes.func,
   onChangeName: PropTypes.func,
-  onDelete: PropTypes.func
+  onDelete: PropTypes.func,
+  toolTipPosition: PropTypes.string
 };
