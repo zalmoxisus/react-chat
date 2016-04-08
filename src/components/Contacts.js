@@ -55,20 +55,20 @@ export default class Contacts extends Component {
           borderRadius="0"
           buttons
         >
-          <MenuLeft
-            contactItem={contactItem.id}
-            onInfo={onInfo}
-            onMessage={onMessage}
-            onCall={onCall}
-          />
-          <MenuRight
-            contactItem={contactItem}
-            onEdit={this.showEdit}
-            onDelete={onDelete}
-            openModal={openModal}
-            closeModal={closeModal}
-          />
-          </Avatar>
+        <MenuLeft
+          contactItem={contactItem.id}
+          onInfo={onInfo}
+          onMessage={onMessage}
+          onCall={onCall}
+        />
+        <MenuRight
+          contactItem={contactItem}
+          onEdit={this.showEdit}
+          onDelete={onDelete}
+          openModal={openModal}
+          closeModal={closeModal}
+        />
+        </Avatar>
       </li>
     );
   }

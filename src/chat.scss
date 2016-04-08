@@ -207,7 +207,7 @@
 .avtrTooltip {
   background: #f5f5f5;
   opacity: 0.9;
-  min-width: 100px;
+  min-width: 160px;
 }
 
 .avtrTooltip img {
@@ -222,6 +222,13 @@
   padding: 9px;
   width: auto;
   background: #eee;
+}
+
+.avtrName div{
+  max-width: 95px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .txt {

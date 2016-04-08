@@ -96,27 +96,34 @@
   transform: rotate(90deg);
 }
 .options{
-  background: #5E6063;
-  font-size: 15px;
-  color: #939393;
+  color: #626161;
   border-radius: 2px;
   margin: 7px 0 4px 0;
 }
 .optionsLeft{
   composes: options;
-  width: 80px;
+  width: 95px;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+.optionsLeft svg{
+  font-size: 20px;
+}
+.optionsRight svg{
+  font-size: 16px;
 }
 .options svg{
   padding: 3px 4px 3px 4px;
-  font-size: 17px;
+  border: 1px solid #eee;
 }
 .optionsLeft svg:nth-child(3){
-  font-size: 20px;
+  font-size: 24px;
   padding-top: 1px;
 }
 .options svg:hover{
   cursor: pointer;
-  color: #FFFFFF;
+  color: #7B7A7A;
+  border: 1px solid #fff;
 }
 .right{
   position: absolute;
@@ -124,7 +131,11 @@
 }
 .optionsRight{
   composes: options;
-  margin-top: 31px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  padding-right: 3px;
+  font-size: 16px;
 }
 .editContainer{
   background: #ccc;

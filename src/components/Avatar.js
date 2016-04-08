@@ -95,7 +95,9 @@ export default class Avatar extends Component {
             parent={'#a' + this.props.id}
           >
             <div className={styles.avtrTooltip}>
-              <div className={styles.avtrName}>{name}</div>
+              <div className={styles.avtrName}>
+                <div> {name} </div>
+              </div>
               {
                 src ? <img src={src} /> : null
               }
