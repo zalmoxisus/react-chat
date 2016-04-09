@@ -24,7 +24,7 @@ export default class Avatar extends Component {
     };
   }
   handleMouseEnter = () => {
-    this.setState({ showTooltip: true });
+    setTimeout(() => { this.setState({ showTooltip: true }); }, 0);
   };
   handleMouseLeave = () => {
     this.setState({ showTooltip: false });
