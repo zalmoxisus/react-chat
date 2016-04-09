@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './style.scss';
 import ContactList from 'react-chat/ContactList';
 import testContacts from './testContacts';
-import ModalExample from './ModalExample';
+import ModalDialog from './ModalDialog';
 
 const toolTipPosition = 'right';
 
@@ -56,7 +56,7 @@ class Container extends Component {
   render() {
     return (
       <div>
-        <ModalExample
+        <ModalDialog
           content={this.state.modal}
           onClose={this.closeModal}
         />

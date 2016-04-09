@@ -15,7 +15,7 @@ const customStyles = {
     backgroundColor: 'rgba(238, 238, 238, 0.75)'
   }
 };
-export default class ModalExample extends Component {
+export default class ModalDialog extends Component {
   render() {
     const { content, onClose } = this.props;
     return (
@@ -29,7 +29,7 @@ export default class ModalExample extends Component {
     );
   }
 }
-ModalExample.propTypes = {
+ModalDialog.propTypes = {
   content: PropTypes.object,
   onClose: PropTypes.func
 };

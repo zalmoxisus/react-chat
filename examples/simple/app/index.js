@@ -4,7 +4,7 @@ import Chat from 'react-chat';
 import './style.scss';
 import testMessages from './testMessages';
 import translateLanguages from './translateLanguages';
-import ModalExample from './ModalExample';
+import ModalDialog from './ModalDialog';
 const me = {
   id: '2',
   name: 'Leo',
@@ -71,7 +71,7 @@ class Container extends Component {
   render() {
     return (
       <div>
-        <ModalExample
+        <ModalDialog
           content={this.state.modal}
           onClose={this.closeModal}
         />
