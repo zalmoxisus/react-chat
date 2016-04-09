@@ -20,17 +20,6 @@ class Container extends Component {
           }
         });
       },
-
-      changeName(contact, name) {
-        this.contacts.forEach((item) => {
-          if (item.id === contact) {
-            Object.assign(item, {
-              name
-            });
-          }
-        });
-      },
-
       modal: null
     };
   }
@@ -47,13 +36,6 @@ class Container extends Component {
   handleCall = () => {
     // Add here call method
     console.log('call method');
-  };
-
-  handleChangeName = (contact, name, success) => {
-    // Add here edit name method
-    this.state.changeName(contact, name);
-    this.setState(this.state);
-    success();
   };
 
   handleDelete = (contact, success) => {
@@ -83,7 +65,6 @@ class Container extends Component {
           onInfo={this.handleInfo}
           onMessage={this.handleMessage}
           onCall={this.handleCall}
-          onChangeName={this.handleChangeName}
           onDelete={this.handleDelete}
           toolTipPosition={toolTipPosition}
           openModal={this.openModal}

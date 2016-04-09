@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../../contactlist.scss';
-import MdEdit from 'react-icons/lib/md/edit';
 import MdClose from 'react-icons/lib/md/close';
 
 export default class MenuRight extends Component {
@@ -34,12 +33,8 @@ export default class MenuRight extends Component {
     });
   };
   render() {
-    const { contactItem, onEdit } = this.props;
     return (
       <div className={styles.optionsRight}>
-        <span id={'a' + contactItem.id}>
-          <MdEdit onClick={onEdit} />
-        </span>
         <MdClose onClick={this.deleteContact} />
       </div>
     );
@@ -48,7 +43,6 @@ export default class MenuRight extends Component {
 
 MenuRight.propTypes = {
   contactItem: PropTypes.object,
-  onEdit: PropTypes.func,
   onDelete: PropTypes.func,
   openModal: PropTypes.func,
   closeModal: PropTypes.func
