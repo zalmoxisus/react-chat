@@ -1,14 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../../contactlist.scss';
+import MdInfo from 'react-icons/lib/md/info';
+import MdMessage from 'react-icons/lib/md/message';
+import MdVideocam from 'react-icons/lib/md/videocam';
 import MdClose from 'react-icons/lib/md/close';
 
-export default class MenuRight extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      willDelete: false
-    };
-  }
+export default class MenuLeft extends Component {
   deleteContact = () => {
     const modalContent = (
       <div className={styles.modal}>
@@ -28,21 +25,37 @@ export default class MenuRight extends Component {
     this.props.closeModal();
   };
   handleConfirm = () => {
-    this.props.onDelete(this.props.contactItem.id, () => {
+    this.props.onDelete(this.props.contactItem, () => {
       this.props.closeModal();
     });
   };
+  showInfo = () => {
+    this.props.onInfo(this.props.contactItem);
+  };
+  sendMessage = () => {
+    this.props.onMessage(this.props.contactItem);
+  };
+  videoCall = () => {
+    this.props.onCall(this.props.contactItem);
+  };
+
   render() {
     return (
-      <div className={styles.optionsRight}>
+      <div className={styles.optionsLeft}>
+        <MdInfo onClick={this.showInfo} />
+        <MdMessage onClick={this.sendMessage} />
+        <MdVideocam onClick={this.videoCall} />
         <MdClose onClick={this.deleteContact} />
       </div>
     );
   }
 }
 
-MenuRight.propTypes = {
-  contactItem: PropTypes.object,
+MenuLeft.propTypes = {
+  contactItem: PropTypes.number,
+  onInfo: PropTypes.func,
+  onMessage: PropTypes.func,
+  onCall: PropTypes.func,
   onDelete: PropTypes.func,
   openModal: PropTypes.func,
   closeModal: PropTypes.func

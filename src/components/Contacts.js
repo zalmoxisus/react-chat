@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../contactlist.scss';
 import Avatar from './Avatar';
-import MenuLeft from './contacts/MenuLeft';
-import MenuRight from './contacts/MenuRight';
+import ContactMenu from './contacts/ContactMenu';
 
 export default class Contacts extends Component {
   render() {
@@ -18,14 +17,11 @@ export default class Contacts extends Component {
           borderRadius="0"
           buttons
         >
-        <MenuLeft
+        <ContactMenu
           contactItem={contactItem.id}
           onInfo={onInfo}
           onMessage={onMessage}
           onCall={onCall}
-        />
-        <MenuRight
-          contactItem={contactItem}
           onDelete={onDelete}
           openModal={openModal}
           closeModal={closeModal}

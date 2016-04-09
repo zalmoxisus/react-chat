@@ -102,7 +102,7 @@
 }
 .optionsLeft{
   composes: options;
-  width: 95px;
+  width: 125px;
   margin: 0 auto;
   padding-top: 10px;
 }
@@ -115,10 +115,6 @@
 .options svg{
   padding: 3px 4px 3px 4px;
   border: 1px solid #eee;
-}
-.optionsLeft svg:nth-child(3){
-  font-size: 24px;
-  padding-top: 1px;
 }
 .options svg:hover{
   cursor: pointer;
