@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './contactlist.scss';
-import MdPeople from 'react-icons/lib/md/people';
 import Contacts from './components/Contacts';
 
 export default class ContactList extends Component {
@@ -9,10 +8,6 @@ export default class ContactList extends Component {
       toolTipPosition, openModal, closeModal } = this.props;
     return (
       <div className={styles.contactlist}>
-        <div className={styles.headerlist}>
-          <MdPeople />
-          <span>CONTACT LIST</span>
-        </div>
         <ul>
           {
             listContacts.map(contact =>

@@ -8,7 +8,7 @@ import MdClose from 'react-icons/lib/md/close';
 export default class ContactMenu extends Component {
   deleteContact = () => {
     const modalContent = (
-      <div className={styles.modal}>
+      <div>
         <div className={styles.confirmText}>
           You are about to remove {this.props.contactItem.name}.
           <br />All related chats will be closed.
@@ -41,7 +41,7 @@ export default class ContactMenu extends Component {
 
   render() {
     return (
-      <div className={styles.optionsLeft}>
+      <div className={styles.menuBtns}>
         <MdInfo onClick={this.showInfo} />
         <MdMessage onClick={this.sendMessage} />
         <MdVideocam onClick={this.videoCall} />

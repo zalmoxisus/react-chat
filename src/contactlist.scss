@@ -6,19 +6,6 @@
   background: #22262A;
   overflow-y: auto;
 }
-.headerlist{
-  background: #333c44;
-  color: #cbcfd5;
-  padding: 5px;
-  border-bottom: 2px solid #676767;
-}
-.headerlist span{
-  vertical-align: middle;
-}
-.headerlist svg{
-  padding: 2px;
-  font-size: 18px;
-}
 .contactlist ul{
   list-style-type: none;
   padding: 0;
@@ -30,126 +17,22 @@
   line-height: 1.8;
   display: flex;
 }
-.img{
-  border-radius: 2px;
-  vertical-align:middle;
-  margin: 4px 5px 4px 0;
-}
-.txt {
-  line-height: 2.2;
-  border-radius: 4px;
-  color: #ddd;
-  background: #90a4ae;
-  text-align: center;
-  height: 25px;
-  float: left;
-  margin: 4px 5px 4px 0;
-  font-size: 12px;
-}
-.smallImg{
-  composes: img;
-  width: 25px;
-  height: 25px;
-}
-.bigImg{
-  composes: img;
-  width: 54px;
-  height: 54px;
-}
-.smallTxt{
-  composes: txt;
-  width: 25px;
-  height: 25px;
-  font-size: 12px;
-}
-.bigTxt{
-  composes: txt;
-  width: 54px;
-  height: 54px;
-  font-size: 25px;
-}
-.arrow{
-  background: #484A4E;
-  border-radius: 8px;
-  color: #c1c1c1;
-  width: 18px;
-  height: 18px;
-  position: absolute;
-  right: 3px;
-  margin-top: 8px;
-}
-.arrow svg{
-  position: absolute;
-  padding: 1px;
-  font-size: 16px;
-}
-.arrow:hover{
-  background: #5E6062;
-  color: #fff;
-  cursor: pointer;
-}
-.rotateSvg{
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  transform: rotate(90deg);
-}
-.options{
+.menuBtns{
   color: #626161;
   border-radius: 2px;
-  margin: 7px 0 4px 0;
-}
-.optionsLeft{
-  composes: options;
   width: 125px;
   margin: 0 auto;
   padding-top: 10px;
 }
-.optionsLeft svg{
-  font-size: 20px;
-}
-.optionsRight svg{
-  font-size: 16px;
-}
-.options svg{
+.menuBtns svg{
   padding: 3px 4px 3px 4px;
   border: 1px solid #eee;
+  font-size: 20px;
 }
-.options svg:hover{
+.menuBtns svg:hover{
   cursor: pointer;
   color: #7B7A7A;
   border: 1px solid #fff;
-}
-.right{
-  position: absolute;
-  right: 7px;
-}
-.optionsRight{
-  composes: options;
-  position: absolute;
-  right: 5px;
-  top: 5px;
-  padding-right: 3px;
-  font-size: 16px;
-}
-.editContainer{
-  background: #ccc;
-  height: 60px;
-}
-.editInput{
-  border-radius: 6px;
-  border: 0;
-  height: 22px;
-  margin: 16px 10px 4px 10px;
-  padding: 4px;
-  width: 150px;
-}
-.username{
-  width: 300px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .confirmBtns{
   float: right;
@@ -166,26 +49,4 @@
 }
 .avatar{
   cursor: pointer;
-}
-@media (max-width: 400px) {
-  .username{
-    width: 200px;
-  }
-}
-@media (max-width: 300px) {
-  .username{
-    width: 100px;
-  }
-}
-@media (max-width: 200px) {
-  .img{
-    max-width: 25px;
-    max-height: 25px;
-  }
-  .editContainer{
-    left: 30px;
-  }
-  .editInput{
-    margin-top: 5px;
-  }
 }
