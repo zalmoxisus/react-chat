@@ -1,4 +1,17 @@
 {
-  "presets": [ "es2015", "stage-0", "react" ],
-  "plugins": [ "add-module-exports", "transform-decorators-legacy" ]
+  "presets": ["es2015", "stage-0", "react"],
+  "plugins": ["add-module-exports", "transform-decorators-legacy"],
+  "env": {
+    "commonjs": {
+      "plugins": [
+        [
+          "webpack-loaders",
+          {
+            "config": "${CONFIG}",
+            "verbose": false
+          }
+        ]
+      ]
+    }
+  }
 }
