@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../chat.scss';
 import TextareaAutosize from 'react-textarea-autosize';
-import UserMenu from './inputMenus/UserMenu';
+import MessageMenu from './inputMenus/MessageMenu';
 import emojify from '../utils/emojify';
 import EmojiCategories from './inputMenus/EmojiCategories';
 import MdKeyboardArrowUp from 'react-icons/lib/md/keyboard-arrow-up';
@@ -89,7 +89,7 @@ export default class ChatInput extends Component {
           <MdKeyboardArrowUp
             className={(this.state.menuShow) ? styles.arrowUp : styles.arrowUpRotate}
           />
-          <UserMenu
+          <MessageMenu
             menuShow={this.state.menuShow}
             submenuShow={submenuShow}
             addTranslation={this.addTranslation}

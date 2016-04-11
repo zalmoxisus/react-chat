@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './contactlist.scss';
 import Avatar from 'react-chat/components/Avatar';
-import ContactMenu from './ContactMenu';
+import UserMenu from './UserMenu';
 
 export default class Contact extends Component {
   render() {
@@ -17,7 +17,7 @@ export default class Contact extends Component {
           borderRadius="0"
           buttons
         >
-          <ContactMenu
+          <UserMenu
             contactItem={contactItem.id}
             onInfo={onInfo}
             onMessage={onMessage}

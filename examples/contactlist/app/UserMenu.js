@@ -5,7 +5,7 @@ import MdMessage from 'react-icons/lib/md/message';
 import MdVideocam from 'react-icons/lib/md/videocam';
 import MdClose from 'react-icons/lib/md/close';
 
-export default class ContactMenu extends Component {
+export default class UserMenu extends Component {
   deleteContact = () => {
     const modalContent = (
       <div>
@@ -51,7 +51,7 @@ export default class ContactMenu extends Component {
   }
 }
 
-ContactMenu.propTypes = {
+UserMenu.propTypes = {
   contactItem: PropTypes.number,
   onInfo: PropTypes.func,
   onMessage: PropTypes.func,

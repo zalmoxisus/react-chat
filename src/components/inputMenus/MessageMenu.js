@@ -7,7 +7,7 @@ import MdOndemandVideo from 'react-icons/lib/md/ondemand-video';
 import MdImage from 'react-icons/lib/md/image';
 import MdClose from 'react-icons/lib/md/close';
 
-export default class UserMenu extends Component {
+export default class MessageMenu extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -171,7 +171,7 @@ export default class UserMenu extends Component {
     );
   }
 }
-UserMenu.propTypes = {
+MessageMenu.propTypes = {
   menuShow: PropTypes.bool,
   onSend: PropTypes.func,
   addTranslation: PropTypes.func,
@@ -179,6 +179,6 @@ UserMenu.propTypes = {
   onTranslate: PropTypes.func,
   translateLanguages: PropTypes.array
 };
-UserMenu.defaultProps = {
+MessageMenu.defaultProps = {
   lang: 'en'
 };
