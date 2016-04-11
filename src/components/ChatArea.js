@@ -41,7 +41,7 @@ export default class ChatArea extends Component {
     const {
       messages, replay, isMine, onTranslate, onDelete, onRestore,
       onBan, translateLanguages, lang, nativeLng, withPhoto, openModal,
-      closeModal, toolTipPosition } = this.props;
+      closeModal, toolTipPosition, userMenu } = this.props;
     return (
       <div id="container" className={styles.container}>
         {
@@ -63,6 +63,7 @@ export default class ChatArea extends Component {
                 openModal={openModal}
                 closeModal={closeModal}
                 toolTipPosition={toolTipPosition}
+                userMenu={userMenu}
               />
           )
         }
@@ -85,5 +86,6 @@ ChatArea.propTypes = {
   withPhoto: PropTypes.bool,
   openModal: PropTypes.func,
   closeModal: PropTypes.func,
-  toolTipPosition: PropTypes.string
+  toolTipPosition: PropTypes.string,
+  userMenu: PropTypes.node
 };

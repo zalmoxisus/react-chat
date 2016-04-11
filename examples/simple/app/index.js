@@ -5,6 +5,8 @@ import './style.scss';
 import testMessages from './testMessages';
 import translateLanguages from './translateLanguages';
 import ModalDialog from './ModalDialog';
+import UserMenu from './UserMenu';
+
 const me = {
   id: '2',
   name: 'Leo',
@@ -68,6 +70,32 @@ class Container extends Component {
     this.setState({ modal: modalContent });
   };
 
+  handleInfo = () => {
+    // Add here info method
+    console.log('info method');
+  };
+
+  handleMessage = () => {
+    // Add here message method
+    console.log('message method');
+  };
+
+  handleCall = () => {
+    // Add here call method
+    console.log('call method');
+  };
+
+  userMenu = (
+    <UserMenu
+      onInfo={this.handleInfo}
+      onMessage={this.handleMessage}
+      onCall={this.handleCall}
+      onDelete={this.handleDelete}
+      openModal={this.openModal}
+      closeModal={this.closeModal}
+    />
+  );
+
   render() {
     return (
       <div>
@@ -90,6 +118,7 @@ class Container extends Component {
           openModal={this.openModal}
           closeModal={this.closeModal}
           toolTipPosition={toolTipPosition}
+          userMenu={this.userMenu}
         />
       </div>
     );

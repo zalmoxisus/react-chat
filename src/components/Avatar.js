@@ -102,10 +102,7 @@ export default class Avatar extends Component {
                 src ? <img src={src} /> : null
               }
             </div>
-            {
-              (this.props.buttons) &&
-                <div>{this.props.children}</div>
-            }
+            <div>{this.props.children}</div>
           </ToolTip>
         }
       </div>

@@ -60,7 +60,7 @@ export default class Message extends Component {
     const {
       message, isMine, replay, onTranslate, withPhoto, onBan, onDelete,
       translateLanguages, lang, voicesArr, nativeLng, openModal, closeModal,
-      toolTipPosition } = this.props;
+      toolTipPosition, userMenu } = this.props;
     return (
       <div className={styles.msgBox}>
         {
@@ -72,7 +72,9 @@ export default class Message extends Component {
             src={message.avatar}
             name={message.name}
             toolTipPosition={toolTipPosition}
-          />
+          >
+            {(userMenu) && React.cloneElement(userMenu, { message })}
+          </Avatar>
         }
         <div className={isMine(message.sender) ? styles.arrowRight : styles.arrowLeft}>
         </div>
@@ -141,5 +143,6 @@ Message.propTypes = {
   withPhoto: PropTypes.bool,
   openModal: PropTypes.func,
   closeModal: PropTypes.func,
-  toolTipPosition: PropTypes.string
+  toolTipPosition: PropTypes.string,
+  userMenu: PropTypes.node
 };
