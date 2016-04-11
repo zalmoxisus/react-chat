@@ -19,7 +19,7 @@ export default class MessageContent extends Component {
   render() {
     const { message, isMine, replay, trLangs, deleteBox } = this.props;
     return (
-      <div className={styles.firstCell}>
+      <div className={styles.msgContent}>
         <div
           className={message.msg.length < 16 ?
                     styles.bigContent :

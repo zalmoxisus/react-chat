@@ -65,13 +65,13 @@
   padding: 2px 1px;
 }
 
-.firstCell {
+.msgContent {
   padding: 6px 5px 2px 5px;
 }
-.uMsg .firstCell {
+.uMsg .msgContent {
   margin-right: 4px;
 }
-.myMsg .firstCell {
+.myMsg .msgContent {
   margin-left: 4px;
 }
 .msgOptions {
@@ -204,19 +204,6 @@
   cursor: pointer;
 }
 
-.avtrTooltip {
-  background: #f5f5f5;
-  opacity: 0.9;
-  min-width: 160px;
-}
-
-.avtrTooltip img {
-  padding: 7px 12px 7px 12px;
-  max-width: 150px;
-  border-top: 1px solid #bbb;
-  margin-top: 5px;
-}
-
 .avtrName {
   font-size: 15px;
   padding: 9px;
@@ -225,21 +212,10 @@
 }
 
 .avtrName div{
-  max-width: 95px;
+  max-width: 105px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.txt {
-  line-height: 1.8;
-  border: 1px solid #90a4ae;
-  border-radius: 4px;
-  color: #ddd;
-  font-weight: 600;
-  background: #90a4ae;
-  width: 95%;
-  height: 100%;
 }
 
 .usermsg {
