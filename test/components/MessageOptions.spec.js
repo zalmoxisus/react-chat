@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import MessageOptions from '../../src/components/messages/MessageOptions';
+import MessageOptions from '../../src/components/message/MessageOptions';
 
 const props = {
   message:

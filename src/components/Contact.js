@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../contactlist.scss';
 import Avatar from './Avatar';
-import ContactMenu from './contacts/ContactMenu';
+import ContactMenu from './contact/ContactMenu';
 
-export default class Contacts extends Component {
+export default class Contact extends Component {
   render() {
     const { contactItem, onInfo, onMessage, onCall, onDelete, toolTipPosition,
       openModal, closeModal } = this.props;
@@ -17,22 +17,22 @@ export default class Contacts extends Component {
           borderRadius="0"
           buttons
         >
-        <ContactMenu
-          contactItem={contactItem.id}
-          onInfo={onInfo}
-          onMessage={onMessage}
-          onCall={onCall}
-          onDelete={onDelete}
-          openModal={openModal}
-          closeModal={closeModal}
-        />
+          <ContactMenu
+            contactItem={contactItem.id}
+            onInfo={onInfo}
+            onMessage={onMessage}
+            onCall={onCall}
+            onDelete={onDelete}
+            openModal={openModal}
+            closeModal={closeModal}
+          />
         </Avatar>
       </li>
     );
   }
 }
 
-Contacts.propTypes = {
+Contact.propTypes = {
   contactItem: PropTypes.object,
   onInfo: PropTypes.func,
   onMessage: PropTypes.func,

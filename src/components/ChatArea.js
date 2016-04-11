@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../chat.scss';
-import Message from './messages/Message';
+import Message from './message/Message';
 
 export default class ChatArea extends Component {
   constructor(props) {
