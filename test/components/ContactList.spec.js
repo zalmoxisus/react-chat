@@ -29,6 +29,13 @@ const props = {
 };
 
 describe('ContactList', () => {
+  it('should add required parameters', () => {
+    const wrapper = mount(<ContactList {...props} />);
+    expect(wrapper.node.props.listContacts).toExist();
+  });
+});
+
+describe('ContactList', () => {
   it('should render correctly', () => {
     const wrapper = mount(<ContactList {...props} />).find('ul');
     expect(wrapper.children().length).toBe(props.listContacts.length);
