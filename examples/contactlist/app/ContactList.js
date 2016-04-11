@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './contactlist.scss';
-import Contacts from './components/Contact';
+import Contacts from './Contact';
 
 export default class ContactList extends Component {
   render() {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import './style.scss';
-import ContactList from 'react-chat/ContactList';
+import ContactList from './ContactList';
 import testContacts from './testContacts';
 import ModalDialog from './ModalDialog';
 

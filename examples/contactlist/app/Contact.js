@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../contactlist.scss';
-import Avatar from './Avatar';
-import ContactMenu from './contact/ContactMenu';
+import styles from './contactlist.scss';
+import Avatar from 'react-chat/components/Avatar';
+import ContactMenu from './ContactMenu';
 
 export default class Contact extends Component {
   render() {
