@@ -1,7 +1,7 @@
 import React from 'react';
 import expect from 'expect';
 import { mount, shallow } from 'enzyme';
-import UserMenu from '../../src/components/inputMenus/UserMenu';
+import MessageMenu from '../../src/components/inputMenus/MessageMenu';
 import ChatInput from '../../src/components/ChatInput';
 
 let usermsgWrapper;
@@ -51,18 +51,18 @@ const props = {
   }
 };
 
-describe('UserMenu.', () => {
+describe('MessageMenu.', () => {
   it('should render correctly', () => {
-    const wrapper = mount(<UserMenu />).find('ul');
+    const wrapper = mount(<MessageMenu />).find('ul');
     expect(wrapper.type()).toBe('ul');
   });
   it('should open video popup', () => {
-    const wrapper = mount(<UserMenu {...props} />);
+    const wrapper = mount(<MessageMenu {...props} />);
     wrapper.find('li').at(2).simulate('click');
     expect(wrapper.node.state.submenuShow).toBe(true);
   });
   it('should add message', () => {
-    const wrapper = mount(<UserMenu {...props} />);
+    const wrapper = mount(<MessageMenu {...props} />);
     const videoInput = shallow(
         <input autoFocus
           placeholder="Video url (youtube, vimeo)"
@@ -75,12 +75,12 @@ describe('UserMenu.', () => {
 
   });
   it('should open translate popup', () => {
-    const wrapper = mount(<UserMenu {...props} />);
+    const wrapper = mount(<MessageMenu {...props} />);
     wrapper.find('li').at(1).simulate('click');
     expect(wrapper.node.state.submenuShow).toBe(true);
   });
   it('should add translation', () => {
-    const wrapper = mount(<UserMenu {...props} />);
+    const wrapper = mount(<MessageMenu {...props} />);
     const translationInput = shallow(
       <input autoFocus
         placeholder="Tape a phrase to be translated"
