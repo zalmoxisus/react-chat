@@ -118,5 +118,6 @@ Avatar.propTypes = {
   color: PropTypes.string,
   size: PropTypes.number,
   toolTipPosition: PropTypes.string,
-  buttons: PropTypes.bool
+  buttons: PropTypes.bool,
+  children: React.PropTypes.element
 };
