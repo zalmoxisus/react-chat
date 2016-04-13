@@ -71,7 +71,7 @@ export default class Avatar extends Component {
         background = color;
       } else {
         // pick a deterministic color from the list
-        let i = (name.charCodeAt(0) * name.length) % colors.length;
+        const i = (name.charCodeAt(0) * name.length) % colors.length;
         background = colors[i];
       }
 
