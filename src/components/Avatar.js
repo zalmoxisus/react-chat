@@ -39,9 +39,7 @@ export default class Avatar extends Component {
       color,
       size = 40,
       ...rest
-      } = this.props;
-
-    const abbr = initials(this.props.name);
+     } = this.props;
 
     const imageStyle = {
       display: 'block',
@@ -77,7 +75,7 @@ export default class Avatar extends Component {
 
       innerStyle.backgroundColor = background;
 
-      inner = abbr;
+      inner = initials(this.props.name);
     }
     return (
       <div
@@ -99,9 +97,7 @@ export default class Avatar extends Component {
               <div className={styles.avtrName}>
                 <div> {name} </div>
               </div>
-              {
-                src ? <img src={src} /> : null
-              }
+              { src && <img src={src} /> }
             </div>
             <div>{this.props.children}</div>
           </ToolTip>
