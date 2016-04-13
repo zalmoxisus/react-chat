@@ -1,3 +1,2 @@
-import Chat from './Chat';
-
-export default Chat;
+export Avatar from './components/Avatar';
+export default from './Chat';
