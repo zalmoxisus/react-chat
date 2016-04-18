@@ -12,7 +12,7 @@
     "test:cov": "babel-node $(npm bin)/isparta cover $(npm bin)/_mocha -- --recursive",
     "test:examples": "babel-node examples/testAll.js",
     "check": "npm run lint && npm run test",
-    "build:lib": "cross-env BABEL_ENV=commonjs BABEL_DISABLE_CACHE=1 CONFIG=$(pwd)/webpack.config.base.js babel src --out-dir lib",
+    "build:lib": "cross-env BABEL_ENV=commonjs BABEL_DISABLE_CACHE=1 CONFIG=webpack.config.base.js babel src --out-dir lib",
     "build:umd": "webpack src/index.js dist/react-chat.js --config webpack.config.development.js",
     "build:umd:min": "webpack src/index.js dist/react-chat.min.js --config webpack.config.production.js",
     "build:examples": "babel-node examples/buildAll.js",

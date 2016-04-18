@@ -251,6 +251,10 @@
   height: 100%;
 }
 
+.chatOptions svg {
+  box-sizing: content-box;
+}
+
 .arrowDown, .arrowUp, .iconClear, .iconMic {
   color: #ffffff;
   background: #bbbbbb;
@@ -307,7 +311,7 @@
   position: absolute;
   left: 0;
   z-index: 2;
-  bottom: -31px;
+  bottom: -35px;
 }
 .micShow {
   position: absolute;
@@ -364,8 +368,8 @@
 
 .emoticonsContainer{
   position: absolute;
-  right: 1px;
-  top: 2px;
+  right: 5px;
+  top: 8px;
   width: 28px;
   background: #ffffff;
 }
@@ -387,9 +391,9 @@
 }
 .emoticons{
   composes: inpMenus;
-  width: 340px;
-  right: 0;
-  bottom: 28px;
+  width: 308px;
+  right: -5px;
+  bottom: 34px;
 }
 
 .emoticons span{
@@ -400,6 +404,7 @@
   overflow-y: scroll;
   height: 220px;
   padding-top: 10px;
+  box-sizing: content-box;
 }
 .emoticons span:not([title]){
   margin: 0 !important;
@@ -411,7 +416,7 @@
 .categoryBtn{
   border-right: 1px solid #ffffff;
   background: #D2DCEA;
-  padding: 4px 6px 0 7px;
+  padding: 4px 4px 0 5px;
   opacity: 0.8;
   list-style: none;
   display: inline-block;
