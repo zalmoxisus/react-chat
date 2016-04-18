@@ -36,7 +36,6 @@
   width: 99%;
   position: relative;
   margin: 10px 4px 10px 4px;
-  line-height: 1.4;
   float: left;
   min-width: 240px;
 }
@@ -57,7 +56,7 @@
 }
 
 .msgName:hover .replyIcon {
-  opacity: 0.9;
+  opacity: 0.999;
 }
 
 .timeIcon {
@@ -190,7 +189,7 @@
 .footerMsg{
   display: flex;
   font-weight: 100;
-  font-size: 10px;
+  font-size: 14px;
   color: #a4a4a4;
 }
 
