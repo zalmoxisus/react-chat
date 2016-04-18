@@ -19,7 +19,7 @@ export default class LangSelect extends Component {
   };
   render() {
     return (
-      <div style={{ whiteSpace: 'nowrap' }}>
+      <div style={{ whiteSpace: 'nowrap', display: 'flex' }}>
         <select value={this.state.value} onChange={this.handleSelect}>
           {this.options}
         </select>

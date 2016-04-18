@@ -9,6 +9,11 @@
   position: absolute;
 }
 
+.base svg{
+  width: 25px;
+  height: 25px;
+}
+
 .arrow{
   content: '';
   border-style: solid;
@@ -38,6 +43,11 @@
   margin: 10px 4px 10px 4px;
   float: left;
   min-width: 240px;
+}
+
+.msgBox svg {
+  width: 20px;
+  height: 20px;
 }
 
 .msgName {
@@ -79,6 +89,9 @@
   position: absolute;
   height: 101%;
 }
+.msgOptions svg {
+  padding: 3px;
+}
 .uMsg .msgOptions {
   right: -33px;
   background: rgba(249, 252, 255, 1);
@@ -101,7 +114,6 @@
   flex-grow: 1;
   align-items: center;
   justify-content: center;
-  height: 32%;
 }
 .msgOptions > div:before {
   display: inline-block;
@@ -176,7 +188,7 @@
 .restoreMsg > span{
   cursor: pointer;
   color: blue;
-  font-size: 10px;
+  font-size: 14px;
 }
 .restoreMsg > div{
   color: #bbb;
@@ -333,7 +345,7 @@
 .usermenu {
   composes: inpMenus;
   line-height: 2;
-  min-width: 150px;
+  min-width: 160px;
   left: 0;
   bottom: 0;
   border: 1px solid #cccccc;
@@ -451,14 +463,14 @@
   width: 140px;
   font-size: 16px;
   vertical-align: middle;
+  padding: 2px 2px 2px 7px !important;
 }
 .modal .btn {
-  padding: 3px;
   margin: 0 2px 0 2px;
-  border: 1px solid #fff;
-  background: #DED8D2;
+  border: 1px solid rgba(0, 0, 0, 0.15);
   color: #1F1F1F;
-  font-size: 22px;
+  width: 30px;
+  height: 30px;
 }
 .msgOptions > div > .btn{
   width: 100%;
@@ -485,10 +497,14 @@
 .trSpan{
   background: #eee;
   margin-left: 5px;
-  font-size: 10px;
-  padding: 2px 3px;
+  padding-right: 4px;
+  font-size: 16px;
   float: right;
-  width: 25px;
+  width: 48px;
+}
+.trSpan > span svg {
+  width: 22px;
+  height: 22px;
 }
 .trText{
   padding: 3px;
@@ -508,7 +524,7 @@
   cursor: pointer;
 }
 .trSpan:hover svg:nth-child(2) {
-  opacity: 0.9;
+  opacity: 0.999;
 }
 .playContainer {
   width: 100%;
@@ -525,8 +541,7 @@
 }
 .playContainer svg:nth-child(2){
   position: absolute;
-  top: 0;
-  left: 10px;
+  left: 4px;
 }
 .show {
   max-height: 1000px;
