@@ -450,11 +450,10 @@
   background: #ffffff;
 }
 .modal {
-  background: #eee;
   padding: 20px;
 }
 .titleModal {
-  padding-bottom: 7px;
+  padding-bottom: 15px;
   font-size: 20px;
   color: #1F1F1F;
 }
@@ -581,18 +580,17 @@
 }
 .confirmBtns{
   float: right;
+  margin-bottom: 10px;
 }
 .confirmBtns span{
-  margin-left: 10px;
-  font-size: 16px;
+  margin-left: 10px ;
+  font-size: 18px;
   color: #41B1E0;
   cursor: pointer;
 }
 .confirmText{
-  font-size: 20px;
-  text-align: center;
-  background: #eee;
-  padding: 30px 20px 30px 20px;
+  font-size: 18px;
+  padding: 20px 5px 20px 5px;
 }
 @media (max-width: 610px) {
   .msg {
