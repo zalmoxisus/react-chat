@@ -253,7 +253,7 @@
   bottom: 0;
   position: absolute;
   line-height: 0;
-  z-index: 2;
+  z-index: 1;
 }
 
 .chatOptions {
@@ -263,7 +263,7 @@
 }
 
 .chatOptions svg {
-  box-sizing: content-box;
+  /*box-sizing: content-box;*/
 }
 
 .arrowDown, .arrowUp, .iconClear, .iconMic {
@@ -345,7 +345,7 @@
 .usermenu {
   composes: inpMenus;
   line-height: 2;
-  min-width: 160px;
+  min-width: 165px;
   left: 0;
   bottom: 0;
   border: 1px solid #cccccc;
@@ -415,7 +415,7 @@
   overflow-y: scroll;
   height: 220px;
   padding-top: 10px;
-  box-sizing: content-box;
+  /*box-sizing: content-box;*/
 }
 .emoticons span:not([title]){
   margin: 0 !important;

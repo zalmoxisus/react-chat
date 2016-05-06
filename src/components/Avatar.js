@@ -47,12 +47,13 @@ export default class Avatar extends Component {
     };
 
     const innerStyle = {
-      display: 'table-cell',
+      display: 'flex',
       textAlign: 'center',
       verticalAlign: 'middle',
       color: '#fff',
       fontSize: '16px',
-      lineHeight: '2.4',
+      alignItems: 'center',
+      justifyContent: 'center',
       borderRadius
     };
     if (size) {
