@@ -269,10 +269,7 @@
 .arrowDown, .arrowUp, .iconClear, .iconMic {
   color: #ffffff;
   background: #bbbbbb;
-  font-size: 22px;
   font-weight: 500;
-  padding: 5px 4px 5px 5px;
-  width: 24px;
   cursor: pointer;
   position: absolute;
   box-shadow: 0 -1px 1px rgba(5, 5, 5, 0.3);
@@ -322,7 +319,6 @@
   position: absolute;
   left: 0;
   z-index: 2;
-  bottom: -35px;
 }
 .micShow {
   position: absolute;
@@ -380,7 +376,8 @@
 .emoticonsContainer{
   position: absolute;
   right: 5px;
-  top: 8px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 28px;
   background: #ffffff;
 }
