@@ -341,7 +341,7 @@
 .usermenu {
   composes: inpMenus;
   line-height: 2;
-  min-width: 165px;
+  min-width: 170px;
   left: 0;
   bottom: 0;
   border: 1px solid #cccccc;
@@ -376,8 +376,7 @@
 .emoticonsContainer{
   position: absolute;
   right: 5px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 2px;
   width: 28px;
   background: #ffffff;
 }

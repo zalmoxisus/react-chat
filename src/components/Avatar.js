@@ -20,12 +20,14 @@ export default class Avatar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showTooltip: false
+      showTooltip: false,
+      mouseTop: true
     };
   }
   handleMouseEnter = (e) => {
-    this.mouseTop = e.pageY < (document.body.scrollHeight - 200);
+    const mouseTop = e.pageY < (document.body.scrollHeight - 200);
     setTimeout(() => { this.setState({ showTooltip: true }); }, 0);
+    setTimeout(() => { this.setState({ mouseTop }); }, 0);
   };
   handleMouseLeave = () => {
     this.setState({ showTooltip: false });
@@ -91,10 +93,10 @@ export default class Avatar extends Component {
           toolTipPosition &&
           <ToolTip
             active={this.state.showTooltip}
-            position={toolTipPosition} arrow={ (this.mouseTop) ? 'top' : 'bottom' }
+            position={toolTipPosition} arrow={ (this.state.mouseTop) ? 'top' : 'bottom' }
             parent={'#a' + this.props.id}
           >
-            <div className={styles.avtrTooltip}>
+            <div>
               <div className={styles.avtrName}>
                 <div> {name} </div>
               </div>
