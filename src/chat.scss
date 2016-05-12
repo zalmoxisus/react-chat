@@ -5,8 +5,15 @@
   min-width: 175px;
   bottom:0;
   top: 0;
-  padding-bottom: 30px;
+  padding-bottom: 45px;
   position: absolute;
+  box-sizing: border-box;
+  line-height: 24px;
+  font-family: "Metric", Arial, sans-serif;
+}
+
+.base * {
+  box-sizing: inherit;
 }
 
 .base svg{
@@ -45,11 +52,6 @@
   min-width: 240px;
 }
 
-.msgBox svg {
-  width: 20px;
-  height: 20px;
-}
-
 .msgName {
   float: left;
 }
@@ -72,6 +74,7 @@
 .timeIcon {
   position: absolute;
   padding: 2px 1px;
+  margin-top: 2px;
 }
 
 .msgContent {
@@ -196,13 +199,19 @@
   margin-bottom: 7px;
 }
 .restoreMsg svg{
-  font-size: 12px;
+  width: 20px;
+  height: 20px;
 }
 .footerMsg{
   display: flex;
   font-weight: 100;
   font-size: 14px;
   color: #a4a4a4;
+}
+
+.footerMsg svg {
+  width: 20px;
+  height: 20px;
 }
 
 .avatar {
@@ -231,12 +240,12 @@
 
 .usermsg {
   width: 100%;
-  min-height: 40px;
+  min-height: 42px;
   max-height: 100px;
-  padding: 7px 40px 3px 40px;
+  background-color: #ffffff;
+  padding: 10px 45px;
+  font-size: 18px;
   border: 0 none;
-  background: #fff;
-  font-size: 10pt;
   resize: none;
   border-top: 1px solid #999999;
   box-sizing: border-box;
@@ -263,7 +272,13 @@
 }
 
 .chatOptions svg {
-  /*box-sizing: content-box;*/
+  width: 40px;
+  height: 40px;
+}
+
+.chatOptions li > svg {
+  width: 25px;
+  height: 25px;
 }
 
 .arrowDown, .arrowUp, .iconClear, .iconMic {
@@ -379,6 +394,7 @@
   top: 2px;
   width: 28px;
   background: #ffffff;
+  margin: 7px 10px;
 }
 .emoticonsBtn span{
   margin: 6px 4px 1px 4px !important;
@@ -399,8 +415,8 @@
 .emoticons{
   composes: inpMenus;
   width: 308px;
-  right: -5px;
-  bottom: 34px;
+  right: -15px;
+  bottom: 36px;
 }
 
 .emoticons span{
