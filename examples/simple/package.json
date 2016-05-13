@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/zalmoxisus/react-chat",
   "dependencies": {
-    "react": "^0.14.3",
-    "react-dom": "^0.14.3",
-    "react-modal": "^0.6.1"
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2",
+    "react-modal": "^1.2.1"
   },
   "devDependencies": {
     "babel-core": "^6.7.2",

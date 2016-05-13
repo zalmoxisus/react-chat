@@ -114,7 +114,7 @@ Avatar.propTypes = {
   id: PropTypes.number,
   src: PropTypes.string,
   name: PropTypes.string.isRequired,
-  borderRadius: PropTypes.string,
+  borderRadius: PropTypes.number,
   color: PropTypes.string,
   size: PropTypes.number,
   toolTipPosition: PropTypes.string,

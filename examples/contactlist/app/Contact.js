@@ -14,7 +14,7 @@ export default class Contact extends Component {
           src={contactItem.avatar}
           name={contactItem.name}
           toolTipPosition={toolTipPosition}
-          borderRadius="0"
+          borderRadius={0}
         >
           <UserMenu
             contactItem={contactItem.id}

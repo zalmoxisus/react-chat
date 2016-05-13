@@ -80,16 +80,16 @@
     }
   ],
   "dependencies": {
-    "autolinker": "^0.22.0",
-    "css-modules-require-hook": "^2.0.2",
+    "autolinker": "^0.26.0",
+    "css-modules-require-hook": "^4.0.0",
     "emoji-shortnames": "^1.0.1",
     "initials": "^2.1.5",
-    "node-sass": "^3.4.2",
-    "postcss": "^5.0.12",
-    "react": "^0.14.3",
-    "react-emojione": "^1.0.3",
-    "react-icons": "^1.0.3",
-    "react-portal-tooltip": "^1.0.5",
-    "react-textarea-autosize": "^3.1.0"
+    "node-sass": "^3.7.0",
+    "postcss": "^5.0.21",
+    "react": "^15.0.2",
+    "react-emojione": "^1.1.1",
+    "react-icons": "^2.0.1",
+    "react-portal-tooltip": "^1.0.6",
+    "react-textarea-autosize": "^4.0.1"
   }
 }

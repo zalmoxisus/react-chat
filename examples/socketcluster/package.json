@@ -19,10 +19,10 @@
   "dependencies": {
     "express": "^4.13.4",
     "minimist": "^1.2.0",
-    "react": "^0.14.3",
-    "react-dom": "^0.14.3",
-    "socketcluster": "^4.3.2",
-    "socketcluster-client": "^4.3.8"
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2",
+    "socketcluster": "^4.6.1",
+    "socketcluster-client": "^4.3.17"
   },
   "devDependencies": {
     "babel-core": "^6.7.2",
