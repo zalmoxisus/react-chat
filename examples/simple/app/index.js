@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { useStrict } from 'mobx';
+import { Provider, observer } from 'mobx-react';
+import ChatStore from './store/ChatStore';
 import Chat from 'react-chat';
 import './style.scss';
-import testMessages from './testMessages';
 import translateLanguages from './translateLanguages';
 import ModalDialog from './ModalDialog';
 import UserMenu from './UserMenu';
+
+useStrict(true);
 
 const me = {
   id: '2',
@@ -17,11 +21,12 @@ const nativeLng = 'en';
 const withPhoto = true;
 const toolTipPosition = 'right';
 
+const chatStore = new ChatStore();
+
 class Container extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: testMessages,
       modal: null
     };
   }
@@ -103,23 +108,24 @@ class Container extends Component {
           content={this.state.modal}
           onClose={this.closeModal}
         />
-        <Chat
-          userId={me.id}
-          lang={lang}
-          messages={testMessages}
-          onSend={this.handleSend}
-          onTranslate={this.handleTranslate}
-          onDelete={this.handleDelete}
-          onRestore={this.handleRestore}
-          onBan={this.handleBan}
-          translateLanguages={translateLanguages}
-          nativeLng={nativeLng}
-          withPhoto={withPhoto}
-          openModal={this.openModal}
-          closeModal={this.closeModal}
-          toolTipPosition={toolTipPosition}
-          userMenu={this.userMenu}
-        />
+        <Provider chatStore={chatStore}>
+          <Chat
+            userId={me.id}
+            lang={lang}
+            onSend={this.handleSend}
+            onTranslate={this.handleTranslate}
+            onDelete={this.handleDelete}
+            onRestore={this.handleRestore}
+            onBan={this.handleBan}
+            translateLanguages={translateLanguages}
+            nativeLng={nativeLng}
+            withPhoto={withPhoto}
+            openModal={this.openModal}
+            closeModal={this.closeModal}
+            toolTipPosition={toolTipPosition}
+            userMenu={this.userMenu}
+          />
+        </Provider>
       </div>
     );
   }
