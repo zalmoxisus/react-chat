@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import styles from '../chat.scss';
+import { observer, inject } from 'mobx-react';
 import Message from './message/Message';
 
+@inject('chatStore')
 export default class ChatArea extends Component {
   constructor(props) {
     super(props);
@@ -39,14 +41,14 @@ export default class ChatArea extends Component {
 
   render() {
     const {
-      messages, replay, isMine, onTranslate, onDelete, onRestore,
+      chatStore, replay, isMine, onTranslate, onDelete, onRestore,
       onBan, translateLanguages, lang, nativeLng, withPhoto, openModal,
       closeModal, toolTipPosition, userMenu } = this.props;
     return (
       <div id="container" className={styles.container}>
         {
-          (messages && messages.length > 0) &&
-          messages.map(message =>
+          (chatStore.messages && chatStore.messages.length > 0) &&
+          chatStore.messages.map(message =>
               <Message key={message.id}
                 message={message}
                 replay={replay}
@@ -73,7 +75,7 @@ export default class ChatArea extends Component {
 }
 
 ChatArea.propTypes = {
-  messages: PropTypes.array,
+  chatStore: PropTypes.object,
   replay: PropTypes.func,
   isMine: PropTypes.func,
   onTranslate: PropTypes.func,
