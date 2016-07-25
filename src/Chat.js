@@ -14,7 +14,7 @@ export default class Chat extends Component {
 
   render() {
     const {
-      lang, onSend, onTranslate, withPhoto, openModal, closeModal,
+      lang, onTranslate, withPhoto, openModal, closeModal,
       onDelete, translateLanguages, nativeLng, onRestore, onBan, userMenu,
       toolTipPosition } = this.props;
     return (
@@ -36,7 +36,6 @@ export default class Chat extends Component {
           userMenu={userMenu}
         />
         <ChatInput
-          onSend={onSend}
           lang={lang}
           onTranslate={onTranslate}
           translateLanguages={translateLanguages}
@@ -48,7 +47,6 @@ export default class Chat extends Component {
 }
 
 Chat.propTypes = {
-  onSend: PropTypes.func.isRequired,
   userId: PropTypes.string.isRequired,
   lang: PropTypes.string,
   onTranslate: PropTypes.func,

@@ -3,7 +3,7 @@ import styles from '../chat.scss';
 import { observer, inject } from 'mobx-react';
 import Message from './message/Message';
 
-@inject('chatStore')
+@inject('chatStore') @observer
 export default class ChatArea extends Component {
   constructor(props) {
     super(props);

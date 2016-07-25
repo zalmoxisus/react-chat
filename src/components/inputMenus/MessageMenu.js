@@ -173,7 +173,6 @@ export default class MessageMenu extends Component {
 }
 MessageMenu.propTypes = {
   menuShow: PropTypes.bool,
-  onSend: PropTypes.func,
   addTranslation: PropTypes.func,
   lang: PropTypes.string,
   onTranslate: PropTypes.func,

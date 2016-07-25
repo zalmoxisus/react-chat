@@ -11,11 +11,6 @@ import UserMenu from './UserMenu';
 
 useStrict(true);
 
-const me = {
-  id: '2',
-  name: 'Leo',
-  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg'
-};
 const lang = 'en';
 const nativeLng = 'en';
 const withPhoto = true;
@@ -30,22 +25,6 @@ class Container extends Component {
       modal: null
     };
   }
-
-  handleSend = (msg, success) => {
-    const message = {
-      id: (Date.now() / 1000 | 0),
-      name: me.name,
-      avatar: me.avatar,
-      msg: msg.txt,
-      time: Date.now() / 1000 | 0,
-      sender: '1'
-    };
-
-    const messages = this.state.messages;
-    messages.push(message);
-    this.setState({ messages });
-    success();
-  };
 
   handleTranslate = (txt, to, cb) => {
     // Add here your translation method
@@ -110,9 +89,8 @@ class Container extends Component {
         />
         <Provider chatStore={chatStore}>
           <Chat
-            userId={me.id}
+            userId={chatStore.me.id}
             lang={lang}
-            onSend={this.handleSend}
             onTranslate={this.handleTranslate}
             onDelete={this.handleDelete}
             onRestore={this.handleRestore}

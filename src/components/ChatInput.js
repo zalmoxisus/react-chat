@@ -5,7 +5,9 @@ import MessageMenu from './inputMenus/MessageMenu';
 import emojify from '../utils/emojify';
 import EmojiCategories from './inputMenus/EmojiCategories';
 import MdKeyboardArrowUp from 'react-icons/lib/md/keyboard-arrow-up';
+import { observer, inject } from 'mobx-react';
 
+@inject('chatStore') @observer
 export default class ChatInput extends Component {
   constructor(props) {
     super(props);
@@ -63,7 +65,7 @@ export default class ChatInput extends Component {
     let txt = input.value;
     txt = txt.trim();
     if (txt === '') return;
-    this.props.onSend({ txt }, () => {
+    this.props.chatStore.send({ txt }, () => {
       input.value = '';
     });
   };
@@ -83,7 +85,7 @@ export default class ChatInput extends Component {
   };
 
   render() {
-    const { onSend, onTranslate, translateLanguages, submenuShow, lang } = this.props;
+    const { onTranslate, translateLanguages, submenuShow, lang } = this.props;
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.toggleUmenu}>
           <MdKeyboardArrowUp
@@ -93,7 +95,6 @@ export default class ChatInput extends Component {
             menuShow={this.state.menuShow}
             submenuShow={submenuShow}
             addTranslation={this.addTranslation}
-            onSend={onSend}
             lang={lang}
             onTranslate={onTranslate}
             translateLanguages={translateLanguages}
@@ -119,7 +120,7 @@ export default class ChatInput extends Component {
 }
 
 ChatInput.propTypes = {
-  onSend: PropTypes.func,
+  chatStore: PropTypes.object,
   submenuShow: PropTypes.bool,
   lang: PropTypes.string,
   onTranslate: PropTypes.func,
