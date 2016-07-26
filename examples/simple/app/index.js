@@ -31,11 +31,6 @@ class Container extends Component {
     cb(txt);
   };
 
-  handleDelete = (message, success) => {
-    // Add here delete method
-    success();
-  };
-
   handleRestore = (message, success) => {
     // Add here restore method
     success();
@@ -71,10 +66,10 @@ class Container extends Component {
 
   userMenu = (
     <UserMenu
+      chatStore={chatStore}
       onInfo={this.handleInfo}
       onMessage={this.handleMessage}
       onCall={this.handleCall}
-      onDelete={this.handleDelete}
       openModal={this.openModal}
       closeModal={this.closeModal}
     />
@@ -92,7 +87,6 @@ class Container extends Component {
             userId={chatStore.me.id}
             lang={lang}
             onTranslate={this.handleTranslate}
-            onDelete={this.handleDelete}
             onRestore={this.handleRestore}
             onBan={this.handleBan}
             translateLanguages={translateLanguages}

@@ -8,7 +8,6 @@ export default class ChatStore {
     avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg'
   };
   @observable messages = testMessages;
-  @action remove;
 
   @action send = (msg, success) => {
     const message = {
@@ -21,6 +20,11 @@ export default class ChatStore {
     };
 
     this.messages.push(message);
+    success();
+  };
+
+  @action remove = (message, success) => {
+    // Add here delete method
     success();
   };
 }

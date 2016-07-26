@@ -5,7 +5,9 @@ import SpeechSynthesis from './Speech/SpeechSynthesis';
 import convertMedia from '../../utils/convertMedia';
 import MdTranslate from 'react-icons/lib/md/translate';
 import MdClose from 'react-icons/lib/md/close';
+import { observer, inject } from 'mobx-react';
 
+@inject('chatStore') @observer
 export default class MessageOptions extends Component {
   constructor(props) {
     super(props);
@@ -47,7 +49,7 @@ export default class MessageOptions extends Component {
   };
   render() {
     const { message, onTranslate, translateLanguages,
-      lang, voicesArr, onDelete, isMine, deleteMsg, openModal, closeModal } = this.props;
+      lang, voicesArr, chatStore, isMine, deleteMsg, openModal, closeModal } = this.props;
     return (
       <div className={styles.msgOptions}>
         {
@@ -75,7 +77,7 @@ export default class MessageOptions extends Component {
             /> : null
         }
         {
-          (onDelete) ?
+          (chatStore.remove) ?
             <div onClick={deleteMsg} className={styles.btn}>
               <MdClose />
             </div> : null
@@ -85,12 +87,12 @@ export default class MessageOptions extends Component {
   }
 }
 MessageOptions.propTypes = {
+  chatStore: PropTypes.object,
   message: PropTypes.object,
   onTranslate: PropTypes.func,
   translateLanguages: PropTypes.array,
   lang: PropTypes.string,
   voicesArr: PropTypes.array,
-  onDelete: PropTypes.func,
   isMine: PropTypes.func,
   nativeLng: PropTypes.string,
   insertTranslation: PropTypes.func,

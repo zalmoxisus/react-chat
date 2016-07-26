@@ -25,7 +25,7 @@ export default class UserMenu extends Component {
     this.props.closeModal();
   };
   handleConfirm = () => {
-    this.props.onDelete(this.props.message.id, () => {
+    this.props.chatStore.remove(this.props.message.id, () => {
       this.props.closeModal();
     });
   };
@@ -52,11 +52,11 @@ export default class UserMenu extends Component {
 }
 
 UserMenu.propTypes = {
+  chatStore: PropTypes.object,
   message: PropTypes.object,
   onInfo: PropTypes.func,
   onMessage: PropTypes.func,
   onCall: PropTypes.func,
-  onDelete: PropTypes.func,
   openModal: PropTypes.func,
   closeModal: PropTypes.func
 };
