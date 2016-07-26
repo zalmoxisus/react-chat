@@ -85,7 +85,7 @@ export default class ChatInput extends Component {
   };
 
   render() {
-    const { onTranslate, translateLanguages, submenuShow, lang } = this.props;
+    const { translateLanguages, submenuShow, lang } = this.props;
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.toggleUmenu}>
           <MdKeyboardArrowUp
@@ -96,7 +96,6 @@ export default class ChatInput extends Component {
             submenuShow={submenuShow}
             addTranslation={this.addTranslation}
             lang={lang}
-            onTranslate={onTranslate}
             translateLanguages={translateLanguages}
           />
         </div>
@@ -123,6 +122,5 @@ ChatInput.propTypes = {
   chatStore: PropTypes.object,
   submenuShow: PropTypes.bool,
   lang: PropTypes.string,
-  onTranslate: PropTypes.func,
   translateLanguages: PropTypes.array
 };

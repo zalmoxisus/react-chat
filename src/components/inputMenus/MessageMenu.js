@@ -6,7 +6,9 @@ import MdMessage from 'react-icons/lib/md/message';
 import MdOndemandVideo from 'react-icons/lib/md/ondemand-video';
 import MdImage from 'react-icons/lib/md/image';
 import MdClose from 'react-icons/lib/md/close';
+import { observer, inject } from 'mobx-react';
 
+@inject('chatViewStore') @observer
 export default class MessageMenu extends Component {
   constructor(props) {
     super(props);
@@ -49,7 +51,7 @@ export default class MessageMenu extends Component {
 
   insertTranslation = (e) => {
     if (e.nativeEvent.keyCode === 13) {
-      this.props.onTranslate(
+      this.props.chatViewStore.translate(
         e.target.value,
         this.props.lang,
         txt => {
@@ -126,7 +128,7 @@ export default class MessageMenu extends Component {
   };
 
   render() {
-    const { menuShow, onTranslate, translateLanguages } = this.props;
+    const { chatViewStore, menuShow, translateLanguages } = this.props;
     return (<div className={styles.userContainer}>
         <ul
           className={menuShow ? styles.showUmenu : styles.hideUmenu}
@@ -138,7 +140,7 @@ export default class MessageMenu extends Component {
             </li> : null
           }
           {
-            (onTranslate && translateLanguages) ?
+            (chatViewStore.translate && translateLanguages) ?
             <li onClick={this.handleTranslate}>
               <MdMessage /><span>Translate a phrase</span>
             </li> : null
@@ -172,10 +174,10 @@ export default class MessageMenu extends Component {
   }
 }
 MessageMenu.propTypes = {
+  chatViewStore: PropTypes.object,
   menuShow: PropTypes.bool,
   addTranslation: PropTypes.func,
   lang: PropTypes.string,
-  onTranslate: PropTypes.func,
   translateLanguages: PropTypes.array
 };
 MessageMenu.defaultProps = {

@@ -7,7 +7,7 @@ import MdTranslate from 'react-icons/lib/md/translate';
 import MdClose from 'react-icons/lib/md/close';
 import { observer, inject } from 'mobx-react';
 
-@inject('chatStore') @observer
+@inject('chatStore', 'chatViewStore') @observer
 export default class MessageOptions extends Component {
   constructor(props) {
     super(props);
@@ -48,12 +48,12 @@ export default class MessageOptions extends Component {
     }
   };
   render() {
-    const { message, onTranslate, translateLanguages,
+    const { chatViewStore, message, translateLanguages,
       lang, voicesArr, chatStore, isMine, deleteMsg, openModal, closeModal } = this.props;
     return (
       <div className={styles.msgOptions}>
         {
-          (onTranslate && translateLanguages && !this.isVideo(message.msg)) ?
+          (chatViewStore.translate && translateLanguages && !this.isVideo(message.msg)) ?
             <div>
               <div id={'a' + message.id}
                 onClick={this.translate}
@@ -88,8 +88,8 @@ export default class MessageOptions extends Component {
 }
 MessageOptions.propTypes = {
   chatStore: PropTypes.object,
+  chatViewStore: PropTypes.object,
   message: PropTypes.object,
-  onTranslate: PropTypes.func,
   translateLanguages: PropTypes.array,
   lang: PropTypes.string,
   voicesArr: PropTypes.array,

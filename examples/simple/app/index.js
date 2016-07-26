@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { useStrict } from 'mobx';
 import { Provider, observer } from 'mobx-react';
 import ChatStore from './store/ChatStore';
+import ChatViewStore from './store/ChatViewStore';
 import Chat from 'react-chat';
 import './style.scss';
 import translateLanguages from './translateLanguages';
@@ -17,6 +18,7 @@ const withPhoto = true;
 const toolTipPosition = 'right';
 
 const chatStore = new ChatStore();
+const chatViewStore = new ChatViewStore();
 
 class Container extends Component {
   constructor(props) {
@@ -25,11 +27,6 @@ class Container extends Component {
       modal: null
     };
   }
-
-  handleTranslate = (txt, to, cb) => {
-    // Add here your translation method
-    cb(txt);
-  };
 
   handleRestore = (message, success) => {
     // Add here restore method
@@ -82,11 +79,10 @@ class Container extends Component {
           content={this.state.modal}
           onClose={this.closeModal}
         />
-        <Provider chatStore={chatStore}>
+        <Provider chatStore={chatStore} chatViewStore={chatViewStore}>
           <Chat
             userId={chatStore.me.id}
             lang={lang}
-            onTranslate={this.handleTranslate}
             onRestore={this.handleRestore}
             onBan={this.handleBan}
             translateLanguages={translateLanguages}

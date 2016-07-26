@@ -4,7 +4,9 @@ import Avatar from '../Avatar';
 import MessageOptions from './MessageOptions';
 import Ban from './Ban';
 import MessageContent from './MessageContent';
+import { observer, inject } from 'mobx-react';
 
+@inject('chatViewStore') @observer
 export default class Message extends Component {
   constructor(props) {
     super(props);
@@ -33,7 +35,7 @@ export default class Message extends Component {
       }
     });
     if (!isLng) {
-      this.props.onTranslate(
+      this.props.chatViewStore.translate(
         msg, lng, txt => {
           const trLang = {
             id: 'tr' + (Date.now() / 1000 | 0),
@@ -58,7 +60,7 @@ export default class Message extends Component {
   };
   render() {
     const {
-      message, isMine, replay, onTranslate, withPhoto, onBan, onDelete,
+      message, isMine, replay, withPhoto, onBan,
       translateLanguages, lang, voicesArr, nativeLng, openModal, closeModal,
       toolTipPosition, userMenu } = this.props;
     return (
@@ -96,12 +98,10 @@ export default class Message extends Component {
           {
             (!this.state.deleted) ?
               <MessageOptions
-                onTranslate={onTranslate}
                 translateLanguages={translateLanguages}
                 message={message}
                 lang={lang}
                 voicesArr={voicesArr}
-                onDelete={onDelete}
                 isMine={isMine}
                 nativeLng={nativeLng}
                 insertTranslation={this.insertTranslation}
@@ -129,11 +129,10 @@ export default class Message extends Component {
 }
 
 Message.propTypes = {
+  chatViewStore: PropTypes.object,
   message: PropTypes.object,
   isMine: PropTypes.func,
   replay: PropTypes.func,
-  onTranslate: PropTypes.func,
-  onDelete: PropTypes.func,
   onRestore: PropTypes.func,
   onBan: PropTypes.func,
   translateLanguages: PropTypes.array,

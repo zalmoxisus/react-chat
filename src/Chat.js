@@ -14,7 +14,7 @@ export default class Chat extends Component {
 
   render() {
     const {
-      lang, onTranslate, withPhoto, openModal, closeModal,
+      lang, withPhoto, openModal, closeModal,
       onDelete, translateLanguages, nativeLng, onRestore, onBan, userMenu,
       toolTipPosition } = this.props;
     return (
@@ -22,7 +22,6 @@ export default class Chat extends Component {
         <ChatArea
           replay={this.replay}
           isMine={this.isMine}
-          onTranslate={onTranslate}
           onDelete={onDelete}
           onRestore={onRestore}
           onBan={onBan}
@@ -37,7 +36,6 @@ export default class Chat extends Component {
         />
         <ChatInput
           lang={lang}
-          onTranslate={onTranslate}
           translateLanguages={translateLanguages}
           ref={node => {this.input = node;}}
         />
@@ -49,7 +47,6 @@ export default class Chat extends Component {
 Chat.propTypes = {
   userId: PropTypes.string.isRequired,
   lang: PropTypes.string,
-  onTranslate: PropTypes.func,
   onDelete: PropTypes.func,
   onRestore: PropTypes.func,
   onBan: PropTypes.func,

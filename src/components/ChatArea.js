@@ -41,7 +41,7 @@ export default class ChatArea extends Component {
 
   render() {
     const {
-      chatStore, replay, isMine, onTranslate, onDelete, onRestore,
+      chatStore, replay, isMine, onDelete, onRestore,
       onBan, translateLanguages, lang, nativeLng, withPhoto, openModal,
       closeModal, toolTipPosition, userMenu } = this.props;
     return (
@@ -53,8 +53,6 @@ export default class ChatArea extends Component {
                 message={message}
                 replay={replay}
                 isMine={isMine}
-                onTranslate={onTranslate}
-                onDelete={onDelete}
                 onRestore={onRestore}
                 onBan={onBan}
                 translateLanguages={translateLanguages}
@@ -78,8 +76,6 @@ ChatArea.propTypes = {
   chatStore: PropTypes.object,
   replay: PropTypes.func,
   isMine: PropTypes.func,
-  onTranslate: PropTypes.func,
-  onDelete: PropTypes.func,
   onRestore: PropTypes.func,
   onBan: PropTypes.func,
   translateLanguages: PropTypes.array,
