@@ -8,7 +8,7 @@ import MdImage from 'react-icons/lib/md/image';
 import MdClose from 'react-icons/lib/md/close';
 import { observer, inject } from 'mobx-react';
 
-@inject('chatViewStore') @observer
+@inject('chatStore', 'chatViewStore') @observer
 export default class MessageMenu extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +41,7 @@ export default class MessageMenu extends Component {
     if (e.nativeEvent.keyCode === 13) {
       const txt = e.target.value;
       if ((txt === '') || (txt === ' ')) return;
-      this.props.onSend({ txt }, () => {
+      this.props.chatStore.send({ txt }, () => {
         this.handleClose(e);
       });
     } else if (e.nativeEvent.keyCode === 27) {
@@ -174,6 +174,7 @@ export default class MessageMenu extends Component {
   }
 }
 MessageMenu.propTypes = {
+  chatStore: PropTypes.object,
   chatViewStore: PropTypes.object,
   menuShow: PropTypes.bool,
   addTranslation: PropTypes.func,

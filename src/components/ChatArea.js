@@ -41,7 +41,7 @@ export default class ChatArea extends Component {
 
   render() {
     const {
-      chatStore, replay, isMine, onDelete, onRestore,
+      chatStore, replay, isMine, onRestore,
       onBan, translateLanguages, lang, nativeLng, withPhoto, openModal,
       closeModal, toolTipPosition, userMenu } = this.props;
     return (
