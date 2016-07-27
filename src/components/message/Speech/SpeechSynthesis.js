@@ -4,10 +4,12 @@ import MdClose from 'react-icons/lib/md/close';
 import MdPlayArrow from 'react-icons/lib/md/play-arrow';
 import MdStop from 'react-icons/lib/md/stop';
 import SpeechSelect from './SpeechSelect';
+import { observer, inject } from 'mobx-react';
 
+@inject('chatViewStore') @observer
 export default class SpeechSynthesis extends Component {
   componentDidMount() {
-    this.voiceName = this.props.voicesArr[0].name;
+    this.voiceName = this.props.chatViewStore.voicesArr[0].name;
   }
   getSanitizedMsg() {
     return this.props.message.msg.replace(/(<([^>]+)>)/ig, '').replace(/\+/g, '');
@@ -34,7 +36,7 @@ export default class SpeechSynthesis extends Component {
   speak = () => {
     const { id } = this.props.message;
     if (this.playSpan.childNodes[1].style.visibility === 'hidden') {
-      if (this.lastSpoken === id && this.props.voicesArr.length > 1) {
+      if (this.lastSpoken === id && this.props.chatViewStore.voicesArr.length > 1) {
         const modalContent = (
           <div className={styles.modal}>
             <div className={styles.titleModal}>Read it as</div>
@@ -58,7 +60,7 @@ export default class SpeechSynthesis extends Component {
       window.speechSynthesis.cancel();
     }
   };
-  speakFromModal = (value = this.props.voicesArr[0].name) => {
+  speakFromModal = (value = this.props.chatViewStore.voicesArr[0].name) => {
     this.voiceName = value;
     this.play();
     this.props.closeModal();
@@ -86,9 +88,9 @@ export default class SpeechSynthesis extends Component {
 }
 
 SpeechSynthesis.propTypes = {
+  chatViewStore: PropTypes.object,
   message: PropTypes.object,
   lang: PropTypes.string,
-  voicesArr: PropTypes.array,
   isMine: PropTypes.bool,
   openModal: PropTypes.func,
   closeModal: PropTypes.func

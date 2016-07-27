@@ -3,24 +3,16 @@ import styles from '../chat.scss';
 import { observer, inject } from 'mobx-react';
 import Message from './message/Message';
 
-@inject('chatStore') @observer
+@inject('chatStore', 'chatViewStore') @observer
 export default class ChatArea extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      voicesArr: [],
-      add(voice) {
-        this.voicesArr.push(voice);
-      }
-    };
+  componentDidMount() {
     if (window.speechSynthesis) {
       window.speechSynthesis.onvoiceschanged = () => {
         const voices = window.speechSynthesis.getVoices();
         for (let i = 0; i < voices.length; i++) {
           let option = voices[i];
           if (option.lang.indexOf(this.props.lang) > -1) {
-            this.state.add(option);
-            this.setState(this.state);
+            this.props.chatViewStore.addVoice(option);
           }
         }
       };
@@ -57,7 +49,6 @@ export default class ChatArea extends Component {
                 onBan={onBan}
                 translateLanguages={translateLanguages}
                 lang={lang}
-                voicesArr={this.state.voicesArr}
                 nativeLng={nativeLng}
                 withPhoto={withPhoto}
                 openModal={openModal}
@@ -74,6 +65,7 @@ export default class ChatArea extends Component {
 
 ChatArea.propTypes = {
   chatStore: PropTypes.object,
+  chatViewStore: PropTypes.object,
   replay: PropTypes.func,
   isMine: PropTypes.func,
   onRestore: PropTypes.func,

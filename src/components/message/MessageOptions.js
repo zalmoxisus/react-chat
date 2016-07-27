@@ -49,7 +49,7 @@ export default class MessageOptions extends Component {
   };
   render() {
     const { chatViewStore, message, translateLanguages,
-      lang, voicesArr, chatStore, isMine, deleteMsg, openModal, closeModal } = this.props;
+      lang, chatStore, isMine, deleteMsg, openModal, closeModal } = this.props;
     return (
       <div className={styles.msgOptions}>
         {
@@ -66,11 +66,10 @@ export default class MessageOptions extends Component {
         {
           (!this.isVideo(message.msg) &&
           window.SpeechSynthesisUtterance &&
-          voicesArr.length > 0) ?
+          this.props.chatViewStore.voicesArr.length > 0) ?
             <SpeechSynthesis
               message={message}
               lang={lang}
-              voicesArr={voicesArr}
               isMine={isMine(message.sender)}
               openModal={openModal}
               closeModal={closeModal}
@@ -92,7 +91,6 @@ MessageOptions.propTypes = {
   message: PropTypes.object,
   translateLanguages: PropTypes.array,
   lang: PropTypes.string,
-  voicesArr: PropTypes.array,
   isMine: PropTypes.func,
   nativeLng: PropTypes.string,
   insertTranslation: PropTypes.func,
