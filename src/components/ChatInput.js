@@ -9,13 +9,6 @@ import { observer, inject } from 'mobx-react';
 
 @inject('chatStore', 'chatViewStore') @observer
 export default class ChatInput extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      emoticonShow: false
-    };
-  }
-
   mapRefTextarea = (node) => {
     this.usermsg = node;
   };
@@ -27,7 +20,7 @@ export default class ChatInput extends Component {
         if (menu === 1) {
           this.props.chatViewStore.menu(false);
         } else {
-          this.setState({ emoticonShow: false });
+          this.props.chatViewStore.emoticon(false);
         }
       }, 1000);
     });
@@ -50,8 +43,8 @@ export default class ChatInput extends Component {
   toggleEmoticons = (e) => {
     if ((e.target.parentNode.className !== styles.categoryBtns) &&
       (e.target.parentNode.className !== styles.categoryBtn)) {
-      this.setState({ emoticonShow: !this.state.emoticonShow });
-      if (!this.state.emoticonShow) {
+      this.props.chatViewStore.emoticon(!this.props.chatViewStore.emoticonShow);
+      if (this.props.chatViewStore.emoticonShow) {
         this.toggleMenu(e, 2);
       }
     }
@@ -104,12 +97,13 @@ export default class ChatInput extends Component {
         />
         <div className={styles.emoticonsContainer} onClick={this.toggleEmoticons}>
           <div
-            className={(!this.state.emoticonShow) ? styles.emoticonsBtn : styles.emoticonsRotate}
+            className={(!this.props.chatViewStore.emoticonShow) ?
+             styles.emoticonsBtn : styles.emoticonsRotate}
             onMouseOver={this.btnHovered}
           >
             {emojify(' :) ')}
           </div>
-          <EmojiCategories addEmoticon={this.addStr} emoticonShow={this.state.emoticonShow} />
+          <EmojiCategories addEmoticon={this.addStr} />
         </div>
       </div>
     );

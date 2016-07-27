@@ -2,7 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import styles from '../../chat.scss';
 import emojify from '../../utils/emojify';
 import shortnames from 'emoji-shortnames';
+import { inject } from 'mobx-react';
 
+@inject('chatViewStore')
 export default class EmojiCategories extends Component {
   constructor(props) {
     super(props);
@@ -33,7 +35,7 @@ export default class EmojiCategories extends Component {
   };
   render() {
     return (
-      <div className={this.props.emoticonShow ? styles.showEmoticons : styles.hideEmoticons}>
+      <div className={this.props.chatViewStore.emoticonShow ? styles.showEmoticons : styles.hideEmoticons}>
         <div className={styles.emoticonCategory} onClick={this.addEmoticon}>
           {emojify(this.state.text)}
         </div>
@@ -46,8 +48,8 @@ export default class EmojiCategories extends Component {
 }
 
 EmojiCategories.propTypes = {
+  chatViewStore: PropTypes.func,
   text: PropTypes.string,
-  emoticonShow: PropTypes.bool,
   addEmoticon: PropTypes.func
 };
 EmojiCategories.defaultProps = {
