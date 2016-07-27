@@ -7,13 +7,12 @@ import EmojiCategories from './inputMenus/EmojiCategories';
 import MdKeyboardArrowUp from 'react-icons/lib/md/keyboard-arrow-up';
 import { observer, inject } from 'mobx-react';
 
-@inject('chatStore') @observer
+@inject('chatStore', 'chatViewStore') @observer
 export default class ChatInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      emoticonShow: false,
-      menuShow: false
+      emoticonShow: false
     };
   }
 
@@ -26,7 +25,7 @@ export default class ChatInput extends Component {
     e.currentTarget.addEventListener('mouseleave', () => {
       menuTimer = setTimeout(() => {
         if (menu === 1) {
-          this.setState({ menuShow: false });
+          this.props.chatViewStore.menu(false);
         } else {
           this.setState({ emoticonShow: false });
         }
@@ -40,11 +39,11 @@ export default class ChatInput extends Component {
   toggleUmenu = (e) => {
     if ((e.target.parentNode.className === styles.btnContainer) ||
       ((e.target.tagName === 'INPUT'))) {
-      this.setState({ menuShow: false });
+      this.props.chatViewStore.menu(false);
       return;
     }
-    this.setState({ menuShow: !this.state.menuShow });
-    if (!this.state.menuShow) {
+    this.props.chatViewStore.menu(!this.props.chatViewStore.menuShow);
+    if (!this.props.chatViewStore.menuShow) {
       this.toggleMenu(e, 1);
     }
   };
@@ -72,7 +71,7 @@ export default class ChatInput extends Component {
 
   addTranslation = (e) => {
     this.addStr(e);
-    this.setState({ menuShow: false });
+    this.props.chatViewStore.menu(false);
   };
   addStr = (e) => {
     let node = this.usermsg;
@@ -89,10 +88,9 @@ export default class ChatInput extends Component {
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.toggleUmenu}>
           <MdKeyboardArrowUp
-            className={(this.state.menuShow) ? styles.arrowUp : styles.arrowUpRotate}
+            className={(this.props.chatViewStore.menuShow) ? styles.arrowUp : styles.arrowUpRotate}
           />
           <MessageMenu
-            menuShow={this.state.menuShow}
             submenuShow={submenuShow}
             addTranslation={this.addTranslation}
             lang={lang}
@@ -120,6 +118,7 @@ export default class ChatInput extends Component {
 
 ChatInput.propTypes = {
   chatStore: PropTypes.object,
+  chatViewStore: PropTypes.object,
   submenuShow: PropTypes.bool,
   lang: PropTypes.string,
   translateLanguages: PropTypes.array

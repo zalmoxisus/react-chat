@@ -128,10 +128,10 @@ export default class MessageMenu extends Component {
   };
 
   render() {
-    const { chatViewStore, menuShow, translateLanguages } = this.props;
+    const { chatViewStore, translateLanguages } = this.props;
     return (<div className={styles.userContainer}>
         <ul
-          className={menuShow ? styles.showUmenu : styles.hideUmenu}
+          className={this.props.chatViewStore.menuShow ? styles.showUmenu : styles.hideUmenu}
         >
           {
             this.SpeechRecognition ?
@@ -176,7 +176,6 @@ export default class MessageMenu extends Component {
 MessageMenu.propTypes = {
   chatStore: PropTypes.object,
   chatViewStore: PropTypes.object,
-  menuShow: PropTypes.bool,
   addTranslation: PropTypes.func,
   lang: PropTypes.string,
   translateLanguages: PropTypes.array
