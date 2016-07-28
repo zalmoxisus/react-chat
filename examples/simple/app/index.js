@@ -27,11 +27,6 @@ class Container extends Component {
     };
   }
 
-  handleRestore = (message, success) => {
-    // Add here restore method
-    success();
-  };
-
   handleBan = (id, success) => {
     // Add here ban method
     success();
@@ -81,7 +76,6 @@ class Container extends Component {
         <Provider chatStore={chatStore} chatViewStore={chatViewStore}>
           <Chat
             lang={lang}
-            onRestore={this.handleRestore}
             onBan={this.handleBan}
             nativeLng={nativeLng}
             withPhoto={withPhoto}

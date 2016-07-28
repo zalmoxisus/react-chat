@@ -10,6 +10,10 @@ export default class ChatViewStore {
     // Add here your translation method
     cb(txt);
   };
+  @action restore = (message, success) => {
+    // Add here restore method
+    success();
+  };
   @action menu = (val) => {
     this.menuShow = val;
   };

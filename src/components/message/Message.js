@@ -57,6 +57,8 @@ export default class Message extends Component {
   };
   restoreMsg = () => {
     this.setState({ deleted: false });
+    this.props.chatViewStore.restore(this.props.message, () => {
+    });
   };
   render() {
     const {
@@ -131,7 +133,6 @@ Message.propTypes = {
   message: PropTypes.object,
   isMine: PropTypes.func,
   replay: PropTypes.func,
-  onRestore: PropTypes.func,
   onBan: PropTypes.func,
   lang: PropTypes.string,
   nativeLng: PropTypes.string,

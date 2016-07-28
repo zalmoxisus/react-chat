@@ -17,15 +17,13 @@ export default class Chat extends Component {
   render() {
     const {
       lang, withPhoto, openModal, closeModal,
-      onDelete, nativeLng, onRestore, onBan, userMenu,
+      onDelete, nativeLng, onBan, userMenu,
       toolTipPosition } = this.props;
     return (
       <div className={styles.base}>
         <ChatArea
           replay={this.replay}
           isMine={this.isMine}
-          onDelete={onDelete}
-          onRestore={onRestore}
           onBan={onBan}
           lang={lang}
           nativeLng={nativeLng}
@@ -48,7 +46,6 @@ Chat.propTypes = {
   chatStore: PropTypes.object,
   lang: PropTypes.string,
   onDelete: PropTypes.func,
-  onRestore: PropTypes.func,
   onBan: PropTypes.func,
   nativeLng: PropTypes.string,
   withPhoto: PropTypes.bool,
