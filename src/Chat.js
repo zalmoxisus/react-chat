@@ -15,7 +15,7 @@ export default class Chat extends Component {
   render() {
     const {
       lang, withPhoto, openModal, closeModal,
-      onDelete, translateLanguages, nativeLng, onRestore, onBan, userMenu,
+      onDelete, nativeLng, onRestore, onBan, userMenu,
       toolTipPosition } = this.props;
     return (
       <div className={styles.base}>
@@ -26,7 +26,6 @@ export default class Chat extends Component {
           onRestore={onRestore}
           onBan={onBan}
           lang={lang}
-          translateLanguages={translateLanguages}
           nativeLng={nativeLng}
           withPhoto={withPhoto}
           openModal={openModal}
@@ -36,7 +35,6 @@ export default class Chat extends Component {
         />
         <ChatInput
           lang={lang}
-          translateLanguages={translateLanguages}
           ref={node => {this.input = node;}}
         />
       </div>
@@ -50,7 +48,6 @@ Chat.propTypes = {
   onDelete: PropTypes.func,
   onRestore: PropTypes.func,
   onBan: PropTypes.func,
-  translateLanguages: PropTypes.array,
   nativeLng: PropTypes.string,
   withPhoto: PropTypes.bool,
   openModal: PropTypes.func,

@@ -6,7 +6,7 @@ export default class LangSelect extends Component {
   constructor(props) {
     super(props);
     this.state = { value: this.props.lang };
-    this.options = this.props.translateLanguages
+    this.options = this.props.chatViewStore.translateLanguages
       .map(lang => (
         <option key={lang.l} value={lang.c}>{lang.l}</option>
       ));
@@ -33,7 +33,7 @@ export default class LangSelect extends Component {
 }
 
 LangSelect.propTypes = {
-  translateLanguages: PropTypes.array,
+  chatViewStore: PropTypes.object,
   lang: PropTypes.string,
   msg: PropTypes.string,
   onChange: PropTypes.func.isRequired

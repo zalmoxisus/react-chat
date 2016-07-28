@@ -77,7 +77,7 @@ export default class ChatInput extends Component {
   };
 
   render() {
-    const { translateLanguages, submenuShow, lang } = this.props;
+    const { submenuShow, lang } = this.props;
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.toggleUmenu}>
           <MdKeyboardArrowUp
@@ -87,7 +87,6 @@ export default class ChatInput extends Component {
             submenuShow={submenuShow}
             addTranslation={this.addTranslation}
             lang={lang}
-            translateLanguages={translateLanguages}
           />
         </div>
         <TextareaAutosize autoFocus
@@ -114,6 +113,5 @@ ChatInput.propTypes = {
   chatStore: PropTypes.object,
   chatViewStore: PropTypes.object,
   submenuShow: PropTypes.bool,
-  lang: PropTypes.string,
-  translateLanguages: PropTypes.array
+  lang: PropTypes.string
 };

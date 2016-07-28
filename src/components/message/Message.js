@@ -61,7 +61,7 @@ export default class Message extends Component {
   render() {
     const {
       message, isMine, replay, withPhoto, onBan,
-      translateLanguages, lang, nativeLng, openModal, closeModal,
+      lang, nativeLng, openModal, closeModal,
       toolTipPosition, userMenu } = this.props;
     return (
       <div className={styles.msgBox}>
@@ -98,7 +98,6 @@ export default class Message extends Component {
           {
             (!this.state.deleted) ?
               <MessageOptions
-                translateLanguages={translateLanguages}
                 message={message}
                 lang={lang}
                 isMine={isMine}
@@ -134,7 +133,6 @@ Message.propTypes = {
   replay: PropTypes.func,
   onRestore: PropTypes.func,
   onBan: PropTypes.func,
-  translateLanguages: PropTypes.array,
   lang: PropTypes.string,
   nativeLng: PropTypes.string,
   withPhoto: PropTypes.bool,

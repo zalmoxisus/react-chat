@@ -32,10 +32,10 @@ export default class MessageOptions extends Component {
           <div className={styles.titleModal}>Translate it to</div>
           <div style={{ display: 'flex' }}>
             <LangSelect
-              translateLanguages={this.props.translateLanguages}
               lang={this.props.lang}
               msg={message.msg}
               onChange={this.selectLang}
+              chatViewStore={this.props.chatViewStore}
             />
             <MdClose className={styles.btn} onClick={this.props.closeModal} />
           </div>
@@ -48,12 +48,14 @@ export default class MessageOptions extends Component {
     }
   };
   render() {
-    const { chatViewStore, message, translateLanguages,
+    const { chatViewStore, message,
       lang, chatStore, isMine, deleteMsg, openModal, closeModal } = this.props;
     return (
       <div className={styles.msgOptions}>
         {
-          (chatViewStore.translate && translateLanguages && !this.isVideo(message.msg)) ?
+          (chatViewStore.translate &&
+          chatViewStore.translateLanguages &&
+          !this.isVideo(message.msg)) ?
             <div>
               <div id={'a' + message.id}
                 onClick={this.translate}
@@ -89,7 +91,6 @@ MessageOptions.propTypes = {
   chatStore: PropTypes.object,
   chatViewStore: PropTypes.object,
   message: PropTypes.object,
-  translateLanguages: PropTypes.array,
   lang: PropTypes.string,
   isMine: PropTypes.func,
   nativeLng: PropTypes.string,

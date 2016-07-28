@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { useStrict } from 'mobx';
-import { Provider, observer } from 'mobx-react';
+import { Provider } from 'mobx-react';
 import ChatStore from './store/ChatStore';
 import ChatViewStore from './store/ChatViewStore';
 import Chat from 'react-chat';
 import './style.scss';
-import translateLanguages from './translateLanguages';
 import ModalDialog from './ModalDialog';
 import UserMenu from './UserMenu';
 
@@ -85,7 +84,6 @@ class Container extends Component {
             lang={lang}
             onRestore={this.handleRestore}
             onBan={this.handleBan}
-            translateLanguages={translateLanguages}
             nativeLng={nativeLng}
             withPhoto={withPhoto}
             openModal={this.openModal}
