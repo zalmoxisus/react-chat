@@ -3,7 +3,9 @@ import styles from '../../chat.scss';
 import MdBlock from 'react-icons/lib/md/block';
 import MdClose from 'react-icons/lib/md/close';
 import MdReplay from 'react-icons/lib/md/replay';
+import { inject } from 'mobx-react';
 
+@inject('chatViewStore')
 export default class Ban extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +31,7 @@ export default class Ban extends Component {
     this.props.closeModal();
   };
   handleConfirm = () => {
-    this.props.onBan(this.props.message.id, () => {
+    this.props.chatViewStore.ban(this.props.message.id, () => {
       this.setState({
         banned: true
       });
@@ -67,7 +69,6 @@ export default class Ban extends Component {
 
 Ban.propTypes = {
   message: PropTypes.object,
-  onBan: PropTypes.func,
   isMine: PropTypes.func,
   onRestore: PropTypes.func,
   deleted: PropTypes.bool,

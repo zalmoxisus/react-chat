@@ -62,7 +62,7 @@ export default class Message extends Component {
   };
   render() {
     const {
-      message, isMine, replay, withPhoto, onBan,
+      message, isMine, replay, withPhoto,
       lang, nativeLng, openModal, closeModal,
       toolTipPosition, userMenu } = this.props;
     return (
@@ -114,7 +114,6 @@ export default class Message extends Component {
             (this.state.deleted) ?
               <Ban
                 message={message}
-                onBan={onBan}
                 isMine={isMine}
                 onRestore={this.restoreMsg}
                 deleted={this.state.deleted}
@@ -133,7 +132,6 @@ Message.propTypes = {
   message: PropTypes.object,
   isMine: PropTypes.func,
   replay: PropTypes.func,
-  onBan: PropTypes.func,
   lang: PropTypes.string,
   nativeLng: PropTypes.string,
   withPhoto: PropTypes.bool,

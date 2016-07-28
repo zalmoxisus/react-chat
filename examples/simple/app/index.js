@@ -27,11 +27,6 @@ class Container extends Component {
     };
   }
 
-  handleBan = (id, success) => {
-    // Add here ban method
-    success();
-  };
-
   closeModal = () => {
     this.setState({ modal: null });
   };
@@ -76,7 +71,6 @@ class Container extends Component {
         <Provider chatStore={chatStore} chatViewStore={chatViewStore}>
           <Chat
             lang={lang}
-            onBan={this.handleBan}
             nativeLng={nativeLng}
             withPhoto={withPhoto}
             openModal={this.openModal}

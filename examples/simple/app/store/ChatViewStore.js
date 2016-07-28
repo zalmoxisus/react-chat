@@ -14,6 +14,10 @@ export default class ChatViewStore {
     // Add here restore method
     success();
   };
+  @action ban = (id, success) => {
+    // Add here ban method
+    success();
+  };
   @action menu = (val) => {
     this.menuShow = val;
   };
