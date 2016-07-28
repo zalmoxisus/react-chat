@@ -80,7 +80,6 @@ class Container extends Component {
         />
         <Provider chatStore={chatStore} chatViewStore={chatViewStore}>
           <Chat
-            userId={chatStore.me.id}
             lang={lang}
             onRestore={this.handleRestore}
             onBan={this.handleBan}
