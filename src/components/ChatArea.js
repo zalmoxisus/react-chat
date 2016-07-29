@@ -33,8 +33,7 @@ export default class ChatArea extends Component {
 
   render() {
     const {
-      chatStore, replay, isMine,
-      nativeLng, withPhoto, openModal,
+      chatStore, replay, isMine, withPhoto, openModal,
       closeModal, toolTipPosition, userMenu } = this.props;
     return (
       <div id="container" className={styles.container}>
@@ -45,7 +44,6 @@ export default class ChatArea extends Component {
                 message={message}
                 replay={replay}
                 isMine={isMine}
-                nativeLng={nativeLng}
                 withPhoto={withPhoto}
                 openModal={openModal}
                 closeModal={closeModal}
@@ -64,7 +62,6 @@ ChatArea.propTypes = {
   chatViewStore: PropTypes.object,
   replay: PropTypes.func,
   isMine: PropTypes.func,
-  nativeLng: PropTypes.string,
   withPhoto: PropTypes.bool,
   openModal: PropTypes.func,
   closeModal: PropTypes.func,

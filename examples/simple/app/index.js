@@ -11,7 +11,6 @@ import UserMenu from './UserMenu';
 
 useStrict(true);
 
-const nativeLng = 'en';
 const withPhoto = true;
 const toolTipPosition = 'right';
 
@@ -69,7 +68,6 @@ class Container extends Component {
         />
         <Provider chatStore={chatStore} chatViewStore={chatViewStore}>
           <Chat
-            nativeLng={nativeLng}
             withPhoto={withPhoto}
             openModal={this.openModal}
             closeModal={this.closeModal}

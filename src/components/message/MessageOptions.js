@@ -11,8 +11,8 @@ import { observer, inject } from 'mobx-react';
 export default class MessageOptions extends Component {
   constructor(props) {
     super(props);
-    if (this.props.nativeLng) {
-      this.nativeLng = this.props.nativeLng;
+    if (this.props.chatViewStore.nativeLng) {
+      this.nativeLng = this.props.chatViewStore.nativeLng;
     }
   }
   selectLang = (val, msg) => {
@@ -90,7 +90,6 @@ MessageOptions.propTypes = {
   chatViewStore: PropTypes.object,
   message: PropTypes.object,
   isMine: PropTypes.func,
-  nativeLng: PropTypes.string,
   insertTranslation: PropTypes.func,
   deleteMsg: PropTypes.func,
   openModal: PropTypes.func,

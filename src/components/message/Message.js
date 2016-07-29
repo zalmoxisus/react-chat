@@ -62,8 +62,7 @@ export default class Message extends Component {
   };
   render() {
     const {
-      message, isMine, replay, withPhoto,
-      nativeLng, openModal, closeModal,
+      message, isMine, replay, withPhoto, openModal, closeModal,
       toolTipPosition, userMenu } = this.props;
     return (
       <div className={styles.msgBox}>
@@ -102,7 +101,6 @@ export default class Message extends Component {
               <MessageOptions
                 message={message}
                 isMine={isMine}
-                nativeLng={nativeLng}
                 insertTranslation={this.insertTranslation}
                 deleteMsg={this.deleteMsg}
                 openModal={openModal}
@@ -131,7 +129,6 @@ Message.propTypes = {
   message: PropTypes.object,
   isMine: PropTypes.func,
   replay: PropTypes.func,
-  nativeLng: PropTypes.string,
   withPhoto: PropTypes.bool,
   openModal: PropTypes.func,
   closeModal: PropTypes.func,
