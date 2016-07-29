@@ -62,12 +62,12 @@ export default class Message extends Component {
   };
   render() {
     const {
-      message, isMine, replay, withPhoto, openModal, closeModal,
-      toolTipPosition, userMenu } = this.props;
+      message, isMine, replay, openModal, closeModal,
+      toolTipPosition, userMenu, chatViewStore } = this.props;
     return (
       <div className={styles.msgBox}>
         {
-          withPhoto &&
+          chatViewStore.withPhoto &&
           !isMine(message.sender) &&
           ((typeof message.showAvatars === 'undefined') ? true : message.showAvatars) &&
           <Avatar className={styles.avatar}
@@ -129,7 +129,6 @@ Message.propTypes = {
   message: PropTypes.object,
   isMine: PropTypes.func,
   replay: PropTypes.func,
-  withPhoto: PropTypes.bool,
   openModal: PropTypes.func,
   closeModal: PropTypes.func,
   toolTipPosition: PropTypes.string,
