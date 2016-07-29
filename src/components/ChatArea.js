@@ -11,7 +11,8 @@ export default class ChatArea extends Component {
         const voices = window.speechSynthesis.getVoices();
         for (let i = 0; i < voices.length; i++) {
           let option = voices[i];
-          if (option.lang.indexOf(this.props.chatViewStore.lang) > -1) {
+          if (option.lang.indexOf(this.props.chatViewStore.lang) > -1 &&
+            this.props.chatViewStore.addVoice) {
             this.props.chatViewStore.addVoice(option);
           }
         }

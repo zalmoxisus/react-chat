@@ -3,6 +3,15 @@ import ReactDOM from 'react-dom';
 import Chat from 'react-chat';
 import socketCluster from 'socketcluster-client';
 import './style.scss';
+import { useStrict } from 'mobx';
+import { Provider } from 'mobx-react';
+import ChatStore from './store/ChatStore';
+import ChatViewStore from './store/ChatViewStore';
+
+useStrict(true);
+
+const chatStore = new ChatStore();
+const chatViewStore = new ChatViewStore();
 
 const randomId = Math.floor((Math.random() * 100)).toString();
 const me = {
@@ -65,12 +74,14 @@ class Container extends Component {
 
   render() {
     return (
-      <Chat
-        me={me}
-        messages={this.state.messages}
-        onSend={this.handleSend}
-        withPhoto
-      />
+      <Provider chatStore={chatStore} chatViewStore={chatViewStore}>
+        <Chat
+          me={me}
+          messages={this.state.messages}
+          onSend={this.handleSend}
+          withPhoto
+        />
+      </Provider>
     );
   }
 }
