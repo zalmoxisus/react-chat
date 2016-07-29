@@ -2,6 +2,7 @@ import translateLanguages from '../translateLanguages';
 import { observable, action } from 'mobx';
 
 export default class ChatViewStore {
+  @observable lang = 'en';
   @observable translateLanguages = translateLanguages;
   @observable menuShow = false;
   @observable emoticonShow = false;

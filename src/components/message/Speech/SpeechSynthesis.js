@@ -42,9 +42,9 @@ export default class SpeechSynthesis extends Component {
             <div className={styles.titleModal}>Read it as</div>
             <div style={{ display: 'flex' }}>
               <SpeechSelect
-                lang={this.props.lang}
                 value={this.voiceName}
                 onChange={this.speakFromModal}
+                chatViewStore={this.props.chatViewStore}
               />
               <MdClose className={styles.btn} onClick={this.props.closeModal} />
             </div>
@@ -90,7 +90,6 @@ export default class SpeechSynthesis extends Component {
 SpeechSynthesis.propTypes = {
   chatViewStore: PropTypes.object,
   message: PropTypes.object,
-  lang: PropTypes.string,
   isMine: PropTypes.bool,
   openModal: PropTypes.func,
   closeModal: PropTypes.func

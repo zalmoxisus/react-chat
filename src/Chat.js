@@ -16,14 +16,13 @@ export default class Chat extends Component {
 
   render() {
     const {
-      lang, withPhoto, openModal, closeModal,
+      withPhoto, openModal, closeModal,
       nativeLng, userMenu, toolTipPosition } = this.props;
     return (
       <div className={styles.base}>
         <ChatArea
           replay={this.replay}
           isMine={this.isMine}
-          lang={lang}
           nativeLng={nativeLng}
           withPhoto={withPhoto}
           openModal={openModal}
@@ -32,7 +31,6 @@ export default class Chat extends Component {
           userMenu={userMenu}
         />
         <ChatInput
-          lang={lang}
           ref={node => {this.input = node;}}
         />
       </div>
@@ -42,8 +40,6 @@ export default class Chat extends Component {
 
 Chat.propTypes = {
   chatStore: PropTypes.object,
-  lang: PropTypes.string,
-  onDelete: PropTypes.func,
   nativeLng: PropTypes.string,
   withPhoto: PropTypes.bool,
   openModal: PropTypes.func,

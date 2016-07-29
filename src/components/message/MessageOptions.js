@@ -32,7 +32,6 @@ export default class MessageOptions extends Component {
           <div className={styles.titleModal}>Translate it to</div>
           <div style={{ display: 'flex' }}>
             <LangSelect
-              lang={this.props.lang}
               msg={message.msg}
               onChange={this.selectLang}
               chatViewStore={this.props.chatViewStore}
@@ -49,7 +48,7 @@ export default class MessageOptions extends Component {
   };
   render() {
     const { chatViewStore, message,
-      lang, chatStore, isMine, deleteMsg, openModal, closeModal } = this.props;
+      chatStore, isMine, deleteMsg, openModal, closeModal } = this.props;
     return (
       <div className={styles.msgOptions}>
         {
@@ -71,7 +70,6 @@ export default class MessageOptions extends Component {
           this.props.chatViewStore.voicesArr.length > 0) ?
             <SpeechSynthesis
               message={message}
-              lang={lang}
               isMine={isMine(message.sender)}
               openModal={openModal}
               closeModal={closeModal}
@@ -91,7 +89,6 @@ MessageOptions.propTypes = {
   chatStore: PropTypes.object,
   chatViewStore: PropTypes.object,
   message: PropTypes.object,
-  lang: PropTypes.string,
   isMine: PropTypes.func,
   nativeLng: PropTypes.string,
   insertTranslation: PropTypes.func,

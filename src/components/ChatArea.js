@@ -11,7 +11,7 @@ export default class ChatArea extends Component {
         const voices = window.speechSynthesis.getVoices();
         for (let i = 0; i < voices.length; i++) {
           let option = voices[i];
-          if (option.lang.indexOf(this.props.lang) > -1) {
+          if (option.lang.indexOf(this.props.chatViewStore.lang) > -1) {
             this.props.chatViewStore.addVoice(option);
           }
         }
@@ -34,7 +34,7 @@ export default class ChatArea extends Component {
   render() {
     const {
       chatStore, replay, isMine,
-      lang, nativeLng, withPhoto, openModal,
+      nativeLng, withPhoto, openModal,
       closeModal, toolTipPosition, userMenu } = this.props;
     return (
       <div id="container" className={styles.container}>
@@ -45,7 +45,6 @@ export default class ChatArea extends Component {
                 message={message}
                 replay={replay}
                 isMine={isMine}
-                lang={lang}
                 nativeLng={nativeLng}
                 withPhoto={withPhoto}
                 openModal={openModal}
@@ -65,7 +64,6 @@ ChatArea.propTypes = {
   chatViewStore: PropTypes.object,
   replay: PropTypes.func,
   isMine: PropTypes.func,
-  lang: PropTypes.string,
   nativeLng: PropTypes.string,
   withPhoto: PropTypes.bool,
   openModal: PropTypes.func,

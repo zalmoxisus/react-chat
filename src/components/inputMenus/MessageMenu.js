@@ -53,7 +53,7 @@ export default class MessageMenu extends Component {
     if (e.nativeEvent.keyCode === 13) {
       this.props.chatViewStore.translate(
         e.target.value,
-        this.props.lang,
+        this.props.chatViewStore.lang,
         txt => {
           this.props.addTranslation(txt);
           this.handleClose();
@@ -71,7 +71,7 @@ export default class MessageMenu extends Component {
       this.recognition = new SpeechRecognition();
       this.recognition.continuous = true;
       this.recognition.interimResults = true;
-      this.recognition.lang = this.props.lang;
+      this.recognition.lang = this.props.chatViewStore.lang;
       this.recognition.start();
       this.recognition.onresult = (event) => {
         let interimTranscript = '';
@@ -176,9 +176,6 @@ export default class MessageMenu extends Component {
 MessageMenu.propTypes = {
   chatStore: PropTypes.object,
   chatViewStore: PropTypes.object,
-  addTranslation: PropTypes.func,
-  lang: PropTypes.string
+  addTranslation: PropTypes.func
 };
-MessageMenu.defaultProps = {
-  lang: 'en'
-};
+

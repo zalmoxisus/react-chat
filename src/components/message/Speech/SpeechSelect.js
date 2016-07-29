@@ -7,7 +7,7 @@ export default class SpeechSelect extends Component {
     super(props);
     this.state = { value: this.props.value };
     this.options = window.speechSynthesis.getVoices()
-      .filter(voice => voice.lang.indexOf(this.props.lang) > -1)
+      .filter(voice => voice.lang.indexOf(this.props.chatViewStore.lang) > -1)
       .map(voice => (
         <option key={voice.name} value={voice.name}>{voice.name.replace('Google', '')}</option>
       ));
@@ -34,7 +34,7 @@ export default class SpeechSelect extends Component {
 }
 
 SpeechSelect.propTypes = {
+  chatViewStore: PropTypes.object,
   value: PropTypes.string,
-  lang: PropTypes.string,
   onChange: PropTypes.func.isRequired
 };
