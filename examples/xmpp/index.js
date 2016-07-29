@@ -2,6 +2,15 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Chat from 'react-chat';
 import style from './style.scss';
+import { useStrict } from 'mobx';
+import { Provider, observer } from 'mobx-react';
+import ChatStore from './store/ChatStore';
+import ChatViewStore from './store/ChatViewStore';
+
+useStrict(true);
+
+const chatStore = new ChatStore();
+const chatViewStore = new ChatViewStore();
 
 const hash = window.location.hash ? window.location.hash.substr(1) : '1';
 const data = {
@@ -14,6 +23,7 @@ const data = {
 const me = { id: data.name, name: data.name };
 let conn;
 
+@observer
 class Container extends Component {
   static propTypes = {
     messages: PropTypes.array,
@@ -40,6 +50,8 @@ class Container extends Component {
      */
     conn.addHandler(this.onMessage, null, 'message', null, null, null);
     conn.addHandler(this.onMessage, null, 'iq', 'set', null, null);
+    console.log(chatStore.me);
+    chatStore.setMe(data.name, data.name);
   }
 
   state = {
@@ -85,7 +97,9 @@ class Container extends Component {
 
   render() {
     return (
-      <Chat userId={this.props.me.id} me={this.props.me} messages={this.props.messages} onSend={this.handleSendMessage} />
+      <Provider chatStore={chatStore} chatViewStore={chatViewStore}>
+        <Chat userId={this.props.me.id} me={this.props.me} messages={this.props.messages} onSend={this.handleSendMessage} />
+      </Provider>
     );
   }
 }
