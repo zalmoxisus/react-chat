@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import styles from '../chat.scss';
 import ToolTip from 'react-portal-tooltip';
 import initials from 'initials';
+import { inject } from 'mobx-react';
 
 const colors = [
   '#8e44ad', // wisteria
@@ -16,6 +17,7 @@ const colors = [
   '#c0392b' // pomegranate
 ];
 
+@inject('chatViewStore')
 export default class Avatar extends Component {
   constructor(props) {
     super(props);
@@ -36,7 +38,7 @@ export default class Avatar extends Component {
     const {
       src,
       name,
-      toolTipPosition,
+      chatViewStore,
       borderRadius = '20%',
       color,
       size = 40,
@@ -90,10 +92,11 @@ export default class Avatar extends Component {
       >
         {inner}
         {
-          toolTipPosition &&
+          chatViewStore.toolTipPosition &&
           <ToolTip
             active={this.state.showTooltip}
-            position={toolTipPosition} arrow={ (this.state.mouseTop) ? 'top' : 'bottom' }
+            position={chatViewStore.toolTipPosition}
+            arrow={ (this.state.mouseTop) ? 'top' : 'bottom' }
             parent={'#a' + this.props.id}
           >
             <div>
@@ -111,13 +114,13 @@ export default class Avatar extends Component {
 }
 
 Avatar.propTypes = {
+  chatViewStore: PropTypes.object,
   id: PropTypes.number,
   src: PropTypes.string,
   name: PropTypes.string.isRequired,
   borderRadius: PropTypes.number,
   color: PropTypes.string,
   size: PropTypes.number,
-  toolTipPosition: PropTypes.string,
   buttons: PropTypes.bool,
   children: React.PropTypes.any
 };

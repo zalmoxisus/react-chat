@@ -63,7 +63,7 @@ export default class Message extends Component {
   render() {
     const {
       message, isMine, replay, openModal, closeModal,
-      toolTipPosition, userMenu, chatViewStore } = this.props;
+      userMenu, chatViewStore } = this.props;
     return (
       <div className={styles.msgBox}>
         {
@@ -74,7 +74,6 @@ export default class Message extends Component {
             id={message.id}
             src={message.avatar}
             name={message.name}
-            toolTipPosition={toolTipPosition}
           >
             {(userMenu) && React.cloneElement(userMenu, { message })}
           </Avatar>
@@ -131,6 +130,5 @@ Message.propTypes = {
   replay: PropTypes.func,
   openModal: PropTypes.func,
   closeModal: PropTypes.func,
-  toolTipPosition: PropTypes.string,
   userMenu: PropTypes.node
 };

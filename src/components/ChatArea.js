@@ -34,7 +34,7 @@ export default class ChatArea extends Component {
   render() {
     const {
       chatStore, replay, isMine, openModal,
-      closeModal, toolTipPosition, userMenu } = this.props;
+      closeModal, userMenu } = this.props;
     return (
       <div id="container" className={styles.container}>
         {
@@ -46,7 +46,6 @@ export default class ChatArea extends Component {
                 isMine={isMine}
                 openModal={openModal}
                 closeModal={closeModal}
-                toolTipPosition={toolTipPosition}
                 userMenu={userMenu}
               />
           )
@@ -63,6 +62,5 @@ ChatArea.propTypes = {
   isMine: PropTypes.func,
   openModal: PropTypes.func,
   closeModal: PropTypes.func,
-  toolTipPosition: PropTypes.string,
   userMenu: PropTypes.node
 };

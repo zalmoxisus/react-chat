@@ -16,7 +16,7 @@ export default class Chat extends Component {
 
   render() {
     const {
-      openModal, closeModal, userMenu, toolTipPosition } = this.props;
+      openModal, closeModal, userMenu } = this.props;
     return (
       <div className={styles.base}>
         <ChatArea
@@ -24,7 +24,6 @@ export default class Chat extends Component {
           isMine={this.isMine}
           openModal={openModal}
           closeModal={closeModal}
-          toolTipPosition={toolTipPosition}
           userMenu={userMenu}
         />
         <ChatInput
@@ -39,10 +38,6 @@ Chat.propTypes = {
   chatStore: PropTypes.object,
   openModal: PropTypes.func,
   closeModal: PropTypes.func,
-  toolTipPosition: PropTypes.string,
   userMenu: PropTypes.node
 };
 
-Chat.defaultProps = {
-  toolTipPosition: 'right'
-};

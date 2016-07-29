@@ -11,8 +11,6 @@ import UserMenu from './UserMenu';
 
 useStrict(true);
 
-const toolTipPosition = 'right';
-
 const chatStore = new ChatStore();
 const chatViewStore = new ChatViewStore();
 
@@ -69,7 +67,6 @@ class Container extends Component {
           <Chat
             openModal={this.openModal}
             closeModal={this.closeModal}
-            toolTipPosition={toolTipPosition}
             userMenu={this.userMenu}
           />
         </Provider>
