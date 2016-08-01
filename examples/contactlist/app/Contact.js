@@ -2,10 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import styles from './contactlist.scss';
 import Avatar from 'react-chat/components/Avatar';
 import UserMenu from './UserMenu';
+import { inject } from 'mobx-react';
 
+@inject('chatStore', 'chatViewStore')
 export default class Contact extends Component {
   render() {
-    const { contactItem, onInfo, onMessage, onCall, onDelete, toolTipPosition,
+    const { chatStore, chatViewStore, contactItem,
       openModal, closeModal } = this.props;
     return (
       <li>
@@ -13,15 +15,13 @@ export default class Contact extends Component {
           id={contactItem.id}
           src={contactItem.avatar}
           name={contactItem.name}
-          toolTipPosition={toolTipPosition}
+          toolTipPosition={chatViewStore.toolTipPosition}
           borderRadius={0}
         >
           <UserMenu
-            contactItem={contactItem.id}
-            onInfo={onInfo}
-            onMessage={onMessage}
-            onCall={onCall}
-            onDelete={onDelete}
+            chatStore={chatStore}
+            chatViewStore={chatViewStore}
+            contactItem={contactItem}
             openModal={openModal}
             closeModal={closeModal}
           />
@@ -32,13 +32,9 @@ export default class Contact extends Component {
 }
 
 Contact.propTypes = {
+  chatStore: PropTypes.object,
+  chatViewStore: PropTypes.object,
   contactItem: PropTypes.object,
-  onInfo: PropTypes.func,
-  onMessage: PropTypes.func,
-  onCall: PropTypes.func,
-  onChangeName: PropTypes.func,
-  onDelete: PropTypes.func,
-  toolTipPosition: PropTypes.string,
   openModal: PropTypes.func,
   closeModal: PropTypes.func
 };

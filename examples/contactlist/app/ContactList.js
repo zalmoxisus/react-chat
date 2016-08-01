@@ -1,23 +1,19 @@
 import React, { Component, PropTypes } from 'react';
 import styles from './contactlist.scss';
-import Contacts from './Contact';
+import Contact from './Contact';
+import { inject } from 'mobx-react';
 
+@inject('chatStore')
 export default class ContactList extends Component {
   render() {
-    const { listContacts, onInfo, onMessage, onCall, onDelete,
-      toolTipPosition, openModal, closeModal } = this.props;
+    const { chatStore, toolTipPosition, openModal, closeModal } = this.props;
     return (
       <div className={styles.contactlist}>
         <ul>
           {
-            listContacts.map(contact =>
-              <Contacts key={contact.id}
+            chatStore.listContacts.map(contact =>
+              <Contact key={contact.id}
                 contactItem={contact}
-                onInfo={onInfo}
-                onMessage={onMessage}
-                onCall={onCall}
-                onDelete={onDelete}
-                toolTipPosition={toolTipPosition}
                 openModal={openModal}
                 closeModal={closeModal}
               />
@@ -30,17 +26,8 @@ export default class ContactList extends Component {
 }
 
 ContactList.propTypes = {
-  listContacts: PropTypes.array.isRequired,
-  onInfo: PropTypes.func,
-  onMessage: PropTypes.func,
-  onCall: PropTypes.func,
-  onDelete: PropTypes.func,
-  toolTipPosition: PropTypes.string,
+  chatStore: PropTypes.object,
   openModal: PropTypes.func,
   closeModal: PropTypes.func
 };
 
-
-ContactList.defaultProps = {
-  listContacts: []
-};

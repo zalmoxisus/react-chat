@@ -25,18 +25,18 @@ export default class UserMenu extends Component {
     this.props.closeModal();
   };
   handleConfirm = () => {
-    this.props.onDelete(this.props.contactItem, () => {
+    this.props.chatStore.deleteContact(this.props.contactItem, () => {
       this.props.closeModal();
     });
   };
   showInfo = () => {
-    this.props.onInfo(this.props.contactItem);
+    this.props.chatViewStore.handleInfo(this.props.contactItem);
   };
   sendMessage = () => {
-    this.props.onMessage(this.props.contactItem);
+    this.props.chatViewStore.handleMessage(this.props.contactItem);
   };
   videoCall = () => {
-    this.props.onCall(this.props.contactItem);
+    this.props.chatViewStore.handleCall(this.props.contactItem);
   };
 
   render() {
@@ -52,11 +52,9 @@ export default class UserMenu extends Component {
 }
 
 UserMenu.propTypes = {
-  contactItem: PropTypes.number,
-  onInfo: PropTypes.func,
-  onMessage: PropTypes.func,
-  onCall: PropTypes.func,
-  onDelete: PropTypes.func,
+  chatStore: PropTypes.object,
+  chatViewStore: PropTypes.object,
+  contactItem: PropTypes.object,
   openModal: PropTypes.func,
   closeModal: PropTypes.func
 };
