@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { useStrict } from 'mobx';
 import { Provider, observer } from 'mobx-react';
 import Chat from 'react-chat';
+import AppStore from './store/AppStore';
 import ChatStore from './store/ChatStore';
 import ContactStore from './store/ContactStore';
 import './style.scss';
@@ -11,14 +12,9 @@ import UserMenu from './UserMenu';
 
 useStrict(true);
 
+const appStore = new AppStore();
 const chatStore = new ChatStore();
 const contactStore = new ContactStore();
-
-const me = {
-  id: '2',
-  name: 'Leo',
-  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg'
-};
 
 @observer
 class Container extends Component {
@@ -27,11 +23,10 @@ class Container extends Component {
     this.state = {
       modal: null
     };
-    chatStore.me = me;
   }
 
   userMenu = (
-    <Provider contactStore={contactStore} chatStore={chatStore}>
+    <Provider contactStore={contactStore} chatStore={chatStore} appStore={appStore}>
       <UserMenu />
     </Provider>
   );
@@ -40,12 +35,11 @@ class Container extends Component {
     return (
       <div>
         <ModalDialog
-          content={chatStore.modal}
-          onClose={chatStore.closeModal}
+          content={appStore.modal}
+          onClose={appStore.closeModal}
         />
-        <Provider chatStore={chatStore} contactStore={contactStore}>
+        <Provider appStore={appStore} chatStore={chatStore} contactStore={contactStore}>
           <Chat
-            userId={me.id}
             userMenu={this.userMenu}
           />
         </Provider>

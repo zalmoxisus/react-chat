@@ -12,13 +12,12 @@ export default class ChatStore {
   @observable menuShow = false;
   @observable emoticonShow = false;
   @observable voicesArr = [];
-  @observable modal = null;
 
-  @action send = (msg, success) => {
+  @action send = (msg, me, success) => {
     const message = {
       id: (Date.now() / 1000 | 0),
-      name: this.me.name,
-      avatar: this.me.avatar,
+      name: me.name,
+      avatar: me.avatar,
       msg: msg.txt,
       time: Date.now() / 1000 | 0,
       sender: '1'
@@ -53,12 +52,6 @@ export default class ChatStore {
   };
   @action addVoice = (voice) => {
     this.voicesArr.push(voice);
-  };
-  @action openModal = (modalContent) => {
-    this.modal = modalContent;
-  };
-  @action closeModal = () => {
-    this.modal = null;
   };
 }
 

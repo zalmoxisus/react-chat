@@ -7,7 +7,7 @@ import MessageMenu from './inputMenus/MessageMenu';
 import emojify from '../utils/emojify';
 import EmojiCategories from './inputMenus/EmojiCategories';
 
-@inject('chatStore') @observer
+@inject('chatStore', 'appStore') @observer
 export default class ChatInput extends Component {
   mapRefTextarea = (node) => {
     this.usermsg = node;
@@ -57,7 +57,8 @@ export default class ChatInput extends Component {
     let txt = input.value;
     txt = txt.trim();
     if (txt === '') return;
-    this.props.chatStore.send({ txt }, () => {
+    const me = this.props.appStore.me;
+    this.props.chatStore.send({ txt }, me, () => {
       input.value = '';
     });
   };
@@ -107,5 +108,6 @@ export default class ChatInput extends Component {
 }
 
 ChatInput.propTypes = {
+  appStore: PropTypes.object,
   chatStore: PropTypes.object
 };

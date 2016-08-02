@@ -6,7 +6,7 @@ import MdStop from 'react-icons/lib/md/stop';
 import styles from '../../../chat.scss';
 import SpeechSelect from './SpeechSelect';
 
-@inject('chatStore') @observer
+@inject('chatStore', 'appStore') @observer
 export default class SpeechSynthesis extends Component {
   componentDidMount() {
     this.voiceName = this.props.chatStore.voicesArr[0].name;
@@ -50,7 +50,7 @@ export default class SpeechSynthesis extends Component {
             </div>
           </div>
         );
-        this.props.chatStore.openModal(modalContent);
+        this.props.appStore.openModal(modalContent);
       } else {
         this.lastSpoken = id;
         this.play();
@@ -63,7 +63,7 @@ export default class SpeechSynthesis extends Component {
   speakFromModal = (value = this.props.chatStore.voicesArr[0].name) => {
     this.voiceName = value;
     this.play();
-    this.props.chatStore.closeModal();
+    this.props.appStore.closeModal();
   };
   toggleIcons = (n1, n2) => {
     const node1 = n1;
@@ -88,6 +88,7 @@ export default class SpeechSynthesis extends Component {
 }
 
 SpeechSynthesis.propTypes = {
+  appStore: PropTypes.object,
   chatStore: PropTypes.object,
   message: PropTypes.object,
   isMine: PropTypes.bool
