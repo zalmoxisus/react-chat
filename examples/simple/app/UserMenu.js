@@ -4,7 +4,9 @@ import MdInfo from 'react-icons/lib/md/info';
 import MdMessage from 'react-icons/lib/md/message';
 import MdVideocam from 'react-icons/lib/md/videocam';
 import MdClose from 'react-icons/lib/md/close';
+import { inject } from 'mobx-react';
 
+@inject('contactStore', 'contactViewStore')
 export default class UserMenu extends Component {
   deleteContact = () => {
     const modalContent = (
@@ -25,18 +27,18 @@ export default class UserMenu extends Component {
     this.props.closeModal();
   };
   handleConfirm = () => {
-    this.props.chatStore.remove(this.props.message.id, () => {
+    this.props.contactStore.deleteContact(() => {
       this.props.closeModal();
     });
   };
   showInfo = () => {
-    this.props.onInfo(this.props.message.id);
+    this.props.contactViewStore.handleInfo();
   };
   sendMessage = () => {
-    this.props.onMessage(this.props.message.id);
+    this.props.contactViewStore.handleMessage();
   };
   videoCall = () => {
-    this.props.onCall(this.props.message.id);
+    this.props.contactViewStore.handleCall();
   };
 
   render() {
@@ -52,11 +54,8 @@ export default class UserMenu extends Component {
 }
 
 UserMenu.propTypes = {
-  chatStore: PropTypes.object,
-  message: PropTypes.object,
-  onInfo: PropTypes.func,
-  onMessage: PropTypes.func,
-  onCall: PropTypes.func,
+  contactStore: PropTypes.object,
+  contactViewStore: PropTypes.object,
   openModal: PropTypes.func,
   closeModal: PropTypes.func
 };

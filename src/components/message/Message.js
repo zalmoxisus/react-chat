@@ -75,7 +75,7 @@ export default class Message extends Component {
             src={message.avatar}
             name={message.name}
           >
-            {(userMenu) && React.cloneElement(userMenu, { message })}
+            {(userMenu) && React.cloneElement(userMenu)}
           </Avatar>
         }
         <div className={isMine(message.sender) ? styles.arrowRight : styles.arrowLeft}>

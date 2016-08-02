@@ -6,7 +6,7 @@ import { inject } from 'mobx-react';
 @inject('chatStore')
 export default class ContactList extends Component {
   render() {
-    const { chatStore, toolTipPosition, openModal, closeModal } = this.props;
+    const { chatStore, openModal, closeModal } = this.props;
     return (
       <div className={styles.contactlist}>
         <ul>

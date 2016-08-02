@@ -4,6 +4,8 @@ import { useStrict } from 'mobx';
 import { Provider } from 'mobx-react';
 import ChatStore from './store/ChatStore';
 import ChatViewStore from './store/ChatViewStore';
+import ContactStore from './store/ContactStore';
+import ContactViewStore from './store/ContactViewStore';
 import Chat from 'react-chat';
 import './style.scss';
 import ModalDialog from './ModalDialog';
@@ -13,6 +15,8 @@ useStrict(true);
 
 const chatStore = new ChatStore();
 const chatViewStore = new ChatViewStore();
+const contactStore = new ContactStore();
+const contactViewStore = new ContactViewStore();
 
 class Container extends Component {
   constructor(props) {
@@ -30,30 +34,13 @@ class Container extends Component {
     this.setState({ modal: modalContent });
   };
 
-  handleInfo = () => {
-    // Add here info method
-    console.log('info method');
-  };
-
-  handleMessage = () => {
-    // Add here message method
-    console.log('message method');
-  };
-
-  handleCall = () => {
-    // Add here call method
-    console.log('call method');
-  };
-
   userMenu = (
-    <UserMenu
-      chatStore={chatStore}
-      onInfo={this.handleInfo}
-      onMessage={this.handleMessage}
-      onCall={this.handleCall}
-      openModal={this.openModal}
-      closeModal={this.closeModal}
-    />
+    <Provider contactStore={contactStore} contactViewStore={contactViewStore}>
+      <UserMenu
+        openModal={this.openModal}
+        closeModal={this.closeModal}
+      />
+    </Provider>
   );
 
   render() {
