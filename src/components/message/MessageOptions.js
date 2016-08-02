@@ -7,12 +7,12 @@ import LangSelect from './LangSelect';
 import SpeechSynthesis from './Speech/SpeechSynthesis';
 import convertMedia from '../../utils/convertMedia';
 
-@inject('chatStore', 'chatViewStore') @observer
+@inject('chatStore', 'chatStore') @observer
 export default class MessageOptions extends Component {
   constructor(props) {
     super(props);
-    if (this.props.chatViewStore.nativeLng) {
-      this.nativeLng = this.props.chatViewStore.nativeLng;
+    if (this.props.chatStore.nativeLng) {
+      this.nativeLng = this.props.chatStore.nativeLng;
     }
   }
   selectLang = (val, msg) => {
@@ -34,7 +34,7 @@ export default class MessageOptions extends Component {
             <LangSelect
               msg={message.msg}
               onChange={this.selectLang}
-              chatViewStore={this.props.chatViewStore}
+              chatStore={this.props.chatStore}
             />
             <MdClose className={styles.btn} onClick={this.props.closeModal} />
           </div>
@@ -47,13 +47,13 @@ export default class MessageOptions extends Component {
     }
   };
   render() {
-    const { chatViewStore, message,
-      chatStore, isMine, deleteMsg, openModal, closeModal } = this.props;
+    const { chatStore, message,
+      isMine, deleteMsg, openModal, closeModal } = this.props;
     return (
       <div className={styles.msgOptions}>
         {
-          (chatViewStore.translate &&
-          chatViewStore.translateLanguages &&
+          (chatStore.translate &&
+          chatStore.translateLanguages &&
           !this.isVideo(message.msg)) ?
             <div>
               <div id={'a' + message.id}
@@ -67,7 +67,7 @@ export default class MessageOptions extends Component {
         {
           (!this.isVideo(message.msg) &&
           window.SpeechSynthesisUtterance &&
-          this.props.chatViewStore.voicesArr.length > 0) ?
+          this.props.chatStore.voicesArr.length > 0) ?
             <SpeechSynthesis
               message={message}
               isMine={isMine(message.sender)}
@@ -87,7 +87,6 @@ export default class MessageOptions extends Component {
 }
 MessageOptions.propTypes = {
   chatStore: PropTypes.object,
-  chatViewStore: PropTypes.object,
   message: PropTypes.object,
   isMine: PropTypes.func,
   insertTranslation: PropTypes.func,

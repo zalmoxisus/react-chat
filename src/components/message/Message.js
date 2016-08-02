@@ -6,7 +6,7 @@ import MessageOptions from './MessageOptions';
 import Ban from './Ban';
 import MessageContent from './MessageContent';
 
-@inject('chatViewStore') @observer
+@inject('chatStore') @observer
 export default class Message extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +35,7 @@ export default class Message extends Component {
       }
     });
     if (!isLng) {
-      this.props.chatViewStore.translate(
+      this.props.chatStore.translate(
         msg, lng, txt => {
           const trLang = {
             id: 'tr' + (Date.now() / 1000 | 0),
@@ -57,17 +57,17 @@ export default class Message extends Component {
   };
   restoreMsg = () => {
     this.setState({ deleted: false });
-    this.props.chatViewStore.restore(this.props.message, () => {
+    this.props.chatStore.restore(this.props.message, () => {
     });
   };
   render() {
     const {
       message, isMine, replay, openModal, closeModal,
-      userMenu, chatViewStore } = this.props;
+      userMenu, chatStore } = this.props;
     return (
       <div className={styles.msgBox}>
         {
-          chatViewStore.withPhoto &&
+          chatStore.withPhoto &&
           !isMine(message.sender) &&
           ((typeof message.showAvatars === 'undefined') ? true : message.showAvatars) &&
           <Avatar className={styles.avatar}
@@ -124,7 +124,7 @@ export default class Message extends Component {
 }
 
 Message.propTypes = {
-  chatViewStore: PropTypes.object,
+  chatStore: PropTypes.object,
   message: PropTypes.object,
   isMine: PropTypes.func,
   replay: PropTypes.func,

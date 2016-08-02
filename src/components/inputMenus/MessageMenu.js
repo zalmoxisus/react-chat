@@ -8,7 +8,7 @@ import { observer, inject } from 'mobx-react';
 import styles from '../../chat.scss';
 import convertMedia from '../../utils/convertMedia';
 
-@inject('chatStore', 'chatViewStore') @observer
+@inject('chatStore') @observer
 export default class MessageMenu extends Component {
   constructor(props) {
     super(props);
@@ -51,9 +51,9 @@ export default class MessageMenu extends Component {
 
   insertTranslation = (e) => {
     if (e.nativeEvent.keyCode === 13) {
-      this.props.chatViewStore.translate(
+      this.props.chatStore.translate(
         e.target.value,
-        this.props.chatViewStore.lang,
+        this.props.chatStore.lang,
         txt => {
           this.props.addTranslation(txt);
           this.handleClose();
@@ -71,7 +71,7 @@ export default class MessageMenu extends Component {
       this.recognition = new SpeechRecognition();
       this.recognition.continuous = true;
       this.recognition.interimResults = true;
-      this.recognition.lang = this.props.chatViewStore.lang;
+      this.recognition.lang = this.props.chatStore.lang;
       this.recognition.start();
       this.recognition.onresult = (event) => {
         let interimTranscript = '';
@@ -128,10 +128,10 @@ export default class MessageMenu extends Component {
   };
 
   render() {
-    const { chatViewStore } = this.props;
+    const { chatStore } = this.props;
     return (<div className={styles.userContainer}>
         <ul
-          className={this.props.chatViewStore.menuShow ? styles.showUmenu : styles.hideUmenu}
+          className={this.props.chatStore.menuShow ? styles.showUmenu : styles.hideUmenu}
         >
           {
             this.SpeechRecognition ?
@@ -140,7 +140,7 @@ export default class MessageMenu extends Component {
             </li> : null
           }
           {
-            (chatViewStore.translate && chatViewStore.translateLanguages) ?
+            (chatStore.translate && chatStore.translateLanguages) ?
             <li onClick={this.handleTranslate}>
               <MdMessage /><span>Translate a phrase</span>
             </li> : null
@@ -175,7 +175,6 @@ export default class MessageMenu extends Component {
 }
 MessageMenu.propTypes = {
   chatStore: PropTypes.object,
-  chatViewStore: PropTypes.object,
   addTranslation: PropTypes.func
 };
 

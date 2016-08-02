@@ -6,10 +6,10 @@ import MdStop from 'react-icons/lib/md/stop';
 import styles from '../../../chat.scss';
 import SpeechSelect from './SpeechSelect';
 
-@inject('chatViewStore') @observer
+@inject('chatStore') @observer
 export default class SpeechSynthesis extends Component {
   componentDidMount() {
-    this.voiceName = this.props.chatViewStore.voicesArr[0].name;
+    this.voiceName = this.props.chatStore.voicesArr[0].name;
   }
   getSanitizedMsg() {
     return this.props.message.msg.replace(/(<([^>]+)>)/ig, '').replace(/\+/g, '');
@@ -36,7 +36,7 @@ export default class SpeechSynthesis extends Component {
   speak = () => {
     const { id } = this.props.message;
     if (this.playSpan.childNodes[1].style.visibility === 'hidden') {
-      if (this.lastSpoken === id && this.props.chatViewStore.voicesArr.length > 1) {
+      if (this.lastSpoken === id && this.props.chatStore.voicesArr.length > 1) {
         const modalContent = (
           <div className={styles.modal}>
             <div className={styles.titleModal}>Read it as</div>
@@ -44,7 +44,7 @@ export default class SpeechSynthesis extends Component {
               <SpeechSelect
                 value={this.voiceName}
                 onChange={this.speakFromModal}
-                chatViewStore={this.props.chatViewStore}
+                chatStore={this.props.chatStore}
               />
               <MdClose className={styles.btn} onClick={this.props.closeModal} />
             </div>
@@ -60,7 +60,7 @@ export default class SpeechSynthesis extends Component {
       window.speechSynthesis.cancel();
     }
   };
-  speakFromModal = (value = this.props.chatViewStore.voicesArr[0].name) => {
+  speakFromModal = (value = this.props.chatStore.voicesArr[0].name) => {
     this.voiceName = value;
     this.play();
     this.props.closeModal();
@@ -88,7 +88,7 @@ export default class SpeechSynthesis extends Component {
 }
 
 SpeechSynthesis.propTypes = {
-  chatViewStore: PropTypes.object,
+  chatStore: PropTypes.object,
   message: PropTypes.object,
   isMine: PropTypes.bool,
   openModal: PropTypes.func,

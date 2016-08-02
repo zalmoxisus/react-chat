@@ -3,7 +3,7 @@ import { observer, inject } from 'mobx-react';
 import styles from '../chat.scss';
 import Message from './message/Message';
 
-@inject('chatStore', 'chatViewStore') @observer
+@inject('chatStore') @observer
 export default class ChatArea extends Component {
   componentDidMount() {
     if (window.speechSynthesis) {
@@ -11,9 +11,9 @@ export default class ChatArea extends Component {
         const voices = window.speechSynthesis.getVoices();
         for (let i = 0; i < voices.length; i++) {
           let option = voices[i];
-          if (option.lang.indexOf(this.props.chatViewStore.lang) > -1 &&
-            this.props.chatViewStore.addVoice) {
-            this.props.chatViewStore.addVoice(option);
+          if (option.lang.indexOf(this.props.chatStore.lang) > -1 &&
+            this.props.chatStore.addVoice) {
+            this.props.chatStore.addVoice(option);
           }
         }
       };
@@ -58,7 +58,6 @@ export default class ChatArea extends Component {
 
 ChatArea.propTypes = {
   chatStore: PropTypes.object,
-  chatViewStore: PropTypes.object,
   replay: PropTypes.func,
   isMine: PropTypes.func,
   openModal: PropTypes.func,

@@ -7,7 +7,7 @@ import MessageMenu from './inputMenus/MessageMenu';
 import emojify from '../utils/emojify';
 import EmojiCategories from './inputMenus/EmojiCategories';
 
-@inject('chatStore', 'chatViewStore') @observer
+@inject('chatStore') @observer
 export default class ChatInput extends Component {
   mapRefTextarea = (node) => {
     this.usermsg = node;
@@ -18,9 +18,9 @@ export default class ChatInput extends Component {
     e.currentTarget.addEventListener('mouseleave', () => {
       menuTimer = setTimeout(() => {
         if (menu === 1) {
-          this.props.chatViewStore.menu(false);
+          this.props.chatStore.menu(false);
         } else {
-          this.props.chatViewStore.emoticon(false);
+          this.props.chatStore.emoticon(false);
         }
       }, 1000);
     });
@@ -32,19 +32,19 @@ export default class ChatInput extends Component {
   toggleUmenu = (e) => {
     if ((e.target.parentNode.className === styles.btnContainer) ||
       ((e.target.tagName === 'INPUT'))) {
-      this.props.chatViewStore.menu(false);
+      this.props.chatStore.menu(false);
       return;
     }
-    this.props.chatViewStore.menu(!this.props.chatViewStore.menuShow);
-    if (!this.props.chatViewStore.menuShow) {
+    this.props.chatStore.menu(!this.props.chatStore.menuShow);
+    if (!this.props.chatStore.menuShow) {
       this.toggleMenu(e, 1);
     }
   };
   toggleEmoticons = (e) => {
     if ((e.target.parentNode.className !== styles.categoryBtns) &&
       (e.target.parentNode.className !== styles.categoryBtn)) {
-      this.props.chatViewStore.emoticon(!this.props.chatViewStore.emoticonShow);
-      if (this.props.chatViewStore.emoticonShow) {
+      this.props.chatStore.emoticon(!this.props.chatStore.emoticonShow);
+      if (this.props.chatStore.emoticonShow) {
         this.toggleMenu(e, 2);
       }
     }
@@ -64,7 +64,7 @@ export default class ChatInput extends Component {
 
   addTranslation = (e) => {
     this.addStr(e);
-    this.props.chatViewStore.menu(false);
+    this.props.chatStore.menu(false);
   };
   addStr = (e) => {
     let node = this.usermsg;
@@ -80,7 +80,7 @@ export default class ChatInput extends Component {
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.toggleUmenu}>
           <MdKeyboardArrowUp
-            className={(this.props.chatViewStore.menuShow) ? styles.arrowUp : styles.arrowUpRotate}
+            className={(this.props.chatStore.menuShow) ? styles.arrowUp : styles.arrowUpRotate}
           />
           <MessageMenu
             addTranslation={this.addTranslation}
@@ -93,7 +93,7 @@ export default class ChatInput extends Component {
         />
         <div className={styles.emoticonsContainer} onClick={this.toggleEmoticons}>
           <div
-            className={(!this.props.chatViewStore.emoticonShow) ?
+            className={(!this.props.chatStore.emoticonShow) ?
              styles.emoticonsBtn : styles.emoticonsRotate}
             onMouseOver={this.btnHovered}
           >
@@ -107,6 +107,5 @@ export default class ChatInput extends Component {
 }
 
 ChatInput.propTypes = {
-  chatStore: PropTypes.object,
-  chatViewStore: PropTypes.object
+  chatStore: PropTypes.object
 };

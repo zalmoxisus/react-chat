@@ -3,12 +3,12 @@ import MdCheck from 'react-icons/lib/md/check';
 import { inject } from 'mobx-react';
 import styles from '../../chat.scss';
 
-@inject('chatViewStore')
+@inject('chatStore')
 export default class LangSelect extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: this.props.chatViewStore.lang };
-    this.options = this.props.chatViewStore.translateLanguages
+    this.state = { value: this.props.chatStore.lang };
+    this.options = this.props.chatStore.translateLanguages
       .map(lang => (
         <option key={lang.l} value={lang.c}>{lang.l}</option>
       ));
@@ -35,7 +35,7 @@ export default class LangSelect extends Component {
 }
 
 LangSelect.propTypes = {
-  chatViewStore: PropTypes.object,
+  chatStore: PropTypes.object,
   msg: PropTypes.string,
   onChange: PropTypes.func.isRequired
 };
