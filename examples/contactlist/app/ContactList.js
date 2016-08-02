@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
+import { inject } from 'mobx-react';
 import styles from './contactlist.scss';
 import Contact from './Contact';
-import { inject } from 'mobx-react';
 
 @inject('chatStore')
 export default class ContactList extends Component {
@@ -11,7 +11,7 @@ export default class ContactList extends Component {
       <div className={styles.contactlist}>
         <ul>
           {
-            chatStore.listContacts.map(contact =>
+            chatStore.contactList.map(contact =>
               <Contact key={contact.id}
                 contactItem={contact}
                 openModal={openModal}

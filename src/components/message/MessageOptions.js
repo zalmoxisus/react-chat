@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+import { observer, inject } from 'mobx-react';
+import MdTranslate from 'react-icons/lib/md/translate';
+import MdClose from 'react-icons/lib/md/close';
 import styles from '../../chat.scss';
 import LangSelect from './LangSelect';
 import SpeechSynthesis from './Speech/SpeechSynthesis';
 import convertMedia from '../../utils/convertMedia';
-import MdTranslate from 'react-icons/lib/md/translate';
-import MdClose from 'react-icons/lib/md/close';
-import { observer, inject } from 'mobx-react';
 
 @inject('chatStore', 'chatViewStore') @observer
 export default class MessageOptions extends Component {

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import './style.scss';
 import Modal from 'react-modal';
+import './style.scss';
 
 const customStyles = {
   content: {

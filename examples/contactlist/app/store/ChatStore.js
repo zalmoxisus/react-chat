@@ -1,11 +1,10 @@
 import { observable, action } from 'mobx';
-import testContacts from '../testContacts';
 
 export default class ChatStore {
-  @observable listContacts = testContacts;
+  @observable contactList = this.testContacts;
 
   @action deleteContact(contact, success) {
-    this.listContacts.remove(contact);
+    this.contactList.remove(contact);
     success();
   }
 }

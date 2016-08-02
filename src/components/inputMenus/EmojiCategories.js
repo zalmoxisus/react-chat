@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../../chat.scss';
-import emojify from '../../utils/emojify';
 import shortnames from 'emoji-shortnames';
 import { inject } from 'mobx-react';
+import styles from '../../chat.scss';
+import emojify from '../../utils/emojify';
 
 @inject('chatViewStore')
 export default class EmojiCategories extends Component {

@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import styles from './contactlist.scss';
 import MdInfo from 'react-icons/lib/md/info';
 import MdMessage from 'react-icons/lib/md/message';
 import MdVideocam from 'react-icons/lib/md/videocam';
 import MdClose from 'react-icons/lib/md/close';
+import styles from './contactlist.scss';
 
 export default class UserMenu extends Component {
   deleteContact = () => {

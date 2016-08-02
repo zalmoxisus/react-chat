@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Chat from 'react-chat';
-import style from './style.scss';
 import { useStrict } from 'mobx';
 import { Provider, observer } from 'mobx-react';
+import style from './style.scss';
 import ChatStore from './store/ChatStore';
 import ChatViewStore from './store/ChatViewStore';
 

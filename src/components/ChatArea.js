@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../chat.scss';
 import { observer, inject } from 'mobx-react';
+import styles from '../chat.scss';
 import Message from './message/Message';
 
 @inject('chatStore', 'chatViewStore') @observer

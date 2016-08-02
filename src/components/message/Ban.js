@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../../chat.scss';
 import MdBlock from 'react-icons/lib/md/block';
 import MdClose from 'react-icons/lib/md/close';
 import MdReplay from 'react-icons/lib/md/replay';
 import { inject } from 'mobx-react';
+import styles from '../../chat.scss';
 
 @inject('chatViewStore')
 export default class Ban extends Component {

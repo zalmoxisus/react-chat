@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import styles from './usermenu.scss';
 import MdInfo from 'react-icons/lib/md/info';
 import MdMessage from 'react-icons/lib/md/message';
 import MdVideocam from 'react-icons/lib/md/videocam';
 import MdClose from 'react-icons/lib/md/close';
 import { inject } from 'mobx-react';
+import styles from './usermenu.scss';
 
-@inject('contactStore', 'contactViewStore')
+@inject('contactStore', 'contactViewStore', 'message')
 export default class UserMenu extends Component {
   deleteContact = () => {
     const modalContent = (
@@ -27,18 +27,18 @@ export default class UserMenu extends Component {
     this.props.closeModal();
   };
   handleConfirm = () => {
-    this.props.contactStore.deleteContact(() => {
+    this.props.contactStore.deleteContact(this.props.message, () => {
       this.props.closeModal();
     });
   };
   showInfo = () => {
-    this.props.contactViewStore.handleInfo();
+    this.props.contactViewStore.handleInfo(this.props.message);
   };
   sendMessage = () => {
-    this.props.contactViewStore.handleMessage();
+    this.props.contactViewStore.handleMessage(this.props.message);
   };
   videoCall = () => {
-    this.props.contactViewStore.handleCall();
+    this.props.contactViewStore.handleCall(this.props.message);
   };
 
   render() {
@@ -56,6 +56,7 @@ export default class UserMenu extends Component {
 UserMenu.propTypes = {
   contactStore: PropTypes.object,
   contactViewStore: PropTypes.object,
+  message: PropTypes.object,
   openModal: PropTypes.func,
   closeModal: PropTypes.func
 };

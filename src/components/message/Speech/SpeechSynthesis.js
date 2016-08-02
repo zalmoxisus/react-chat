@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../../../chat.scss';
+import { observer, inject } from 'mobx-react';
 import MdClose from 'react-icons/lib/md/close';
 import MdPlayArrow from 'react-icons/lib/md/play-arrow';
 import MdStop from 'react-icons/lib/md/stop';
+import styles from '../../../chat.scss';
 import SpeechSelect from './SpeechSelect';
-import { observer, inject } from 'mobx-react';
 
 @inject('chatViewStore') @observer
 export default class SpeechSynthesis extends Component {

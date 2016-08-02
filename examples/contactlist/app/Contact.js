@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import styles from './contactlist.scss';
-import Avatar from 'react-chat/components/Avatar';
-import UserMenu from './UserMenu';
 import { inject } from 'mobx-react';
+import Avatar from 'react-chat/components/Avatar';
+import styles from './contactlist.scss';
+import UserMenu from './UserMenu';
 
 @inject('chatStore', 'chatViewStore')
 export default class Contact extends Component {

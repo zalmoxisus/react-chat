@@ -1,11 +1,11 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../chat.scss';
+import { observer, inject } from 'mobx-react';
 import TextareaAutosize from 'react-textarea-autosize';
+import MdKeyboardArrowUp from 'react-icons/lib/md/keyboard-arrow-up';
+import styles from '../chat.scss';
 import MessageMenu from './inputMenus/MessageMenu';
 import emojify from '../utils/emojify';
 import EmojiCategories from './inputMenus/EmojiCategories';
-import MdKeyboardArrowUp from 'react-icons/lib/md/keyboard-arrow-up';
-import { observer, inject } from 'mobx-react';
 
 @inject('chatStore', 'chatViewStore') @observer
 export default class ChatInput extends Component {

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../../chat.scss';
 import MdCheck from 'react-icons/lib/md/check';
 import { inject } from 'mobx-react';
+import styles from '../../chat.scss';
 
 @inject('chatViewStore')
 export default class LangSelect extends Component {

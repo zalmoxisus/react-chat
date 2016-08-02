@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import { observer, inject } from 'mobx-react';
 import styles from '../../chat.scss';
 import Avatar from '../Avatar';
 import MessageOptions from './MessageOptions';
 import Ban from './Ban';
 import MessageContent from './MessageContent';
-import { observer, inject } from 'mobx-react';
 
 @inject('chatViewStore') @observer
 export default class Message extends Component {
@@ -75,7 +75,7 @@ export default class Message extends Component {
             src={message.avatar}
             name={message.name}
           >
-            {(userMenu) && React.cloneElement(userMenu)}
+            {(userMenu) && React.cloneElement(userMenu, { message })}
           </Avatar>
         }
         <div className={isMine(message.sender) ? styles.arrowRight : styles.arrowLeft}>

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { useStrict } from 'mobx';
+import { Provider } from 'mobx-react';
 import './style.scss';
 import ContactList from './ContactList';
 import ModalDialog from './ModalDialog';
-import { useStrict } from 'mobx';
-import { Provider } from 'mobx-react';
+import testContacts from './testContacts';
 import ChatStore from './store/ChatStore';
 import ChatViewStore from './store/ChatViewStore';
 
@@ -19,6 +20,7 @@ class Container extends Component {
     this.state = {
       modal: null
     };
+    chatStore.testContacts = testContacts;
   }
 
   closeModal = () => {

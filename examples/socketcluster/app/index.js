@@ -2,9 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Chat from 'react-chat';
 import socketCluster from 'socketcluster-client';
-import './style.scss';
 import { useStrict } from 'mobx';
 import { Provider } from 'mobx-react';
+import './style.scss';
 import ChatStore from './store/ChatStore';
 import ChatViewStore from './store/ChatViewStore';
 

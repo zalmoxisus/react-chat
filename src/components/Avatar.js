@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import styles from '../chat.scss';
+import { inject } from 'mobx-react';
 import ToolTip from 'react-portal-tooltip';
 import initials from 'initials';
-import { inject } from 'mobx-react';
+import styles from '../chat.scss';
 
 const colors = [
   '#8e44ad', // wisteria
