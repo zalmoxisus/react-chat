@@ -6,7 +6,7 @@ import MdClose from 'react-icons/lib/md/close';
 import { inject } from 'mobx-react';
 import styles from './usermenu.scss';
 
-@inject('contactStore', 'message')
+@inject('chatStore', 'contactStore', 'message')
 export default class UserMenu extends Component {
   deleteContact = () => {
     const modalContent = (
@@ -21,14 +21,14 @@ export default class UserMenu extends Component {
         </div>
       </div>
     );
-    this.props.openModal(modalContent);
+    this.props.chatStore.openModal(modalContent);
   };
   handleClose = () => {
-    this.props.closeModal();
+    this.props.chatStore.closeModal();
   };
   handleConfirm = () => {
     this.props.contactStore.deleteContact(this.props.message, () => {
-      this.props.closeModal();
+      this.props.chatStore.closeModal();
     });
   };
   showInfo = () => {
@@ -54,8 +54,7 @@ export default class UserMenu extends Component {
 }
 
 UserMenu.propTypes = {
+  chatStore: PropTypes.object,
   contactStore: PropTypes.object,
-  message: PropTypes.object,
-  openModal: PropTypes.func,
-  closeModal: PropTypes.func
+  message: PropTypes.object
 };

@@ -47,8 +47,7 @@ export default class MessageOptions extends Component {
     }
   };
   render() {
-    const { chatStore, message,
-      isMine, deleteMsg, openModal, closeModal } = this.props;
+    const { chatStore, message, isMine, deleteMsg } = this.props;
     return (
       <div className={styles.msgOptions}>
         {
@@ -71,8 +70,6 @@ export default class MessageOptions extends Component {
             <SpeechSynthesis
               message={message}
               isMine={isMine(message.sender)}
-              openModal={openModal}
-              closeModal={closeModal}
             /> : null
         }
         {
@@ -90,7 +87,5 @@ MessageOptions.propTypes = {
   message: PropTypes.object,
   isMine: PropTypes.func,
   insertTranslation: PropTypes.func,
-  deleteMsg: PropTypes.func,
-  openModal: PropTypes.func,
-  closeModal: PropTypes.func
+  deleteMsg: PropTypes.func
 };

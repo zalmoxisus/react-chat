@@ -13,15 +13,12 @@ export default class Chat extends Component {
   isMine = id => this.props.userId === id;
 
   render() {
-    const {
-      openModal, closeModal, userMenu } = this.props;
+    const { userMenu } = this.props;
     return (
       <div className={styles.base}>
         <ChatArea
           replay={this.replay}
           isMine={this.isMine}
-          openModal={openModal}
-          closeModal={closeModal}
           userMenu={userMenu}
         />
         <ChatInput
@@ -34,8 +31,6 @@ export default class Chat extends Component {
 
 Chat.propTypes = {
   userId: PropTypes.string.isRequired,
-  openModal: PropTypes.func,
-  closeModal: PropTypes.func,
   userMenu: PropTypes.node
 };
 

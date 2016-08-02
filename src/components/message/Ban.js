@@ -25,17 +25,17 @@ export default class Ban extends Component {
         </div>
       </div>
     );
-    this.props.openModal(modalContent);
+    this.props.chatStore.openModal(modalContent);
   };
   handleClose = () => {
-    this.props.closeModal();
+    this.props.chatStore.closeModal();
   };
   handleConfirm = () => {
     this.props.chatStore.ban(this.props.message.id, () => {
       this.setState({
         banned: true
       });
-      this.props.closeModal();
+      this.props.chatStore.closeModal();
     });
   };
   render() {
@@ -72,7 +72,5 @@ Ban.propTypes = {
   message: PropTypes.object,
   isMine: PropTypes.func,
   onRestore: PropTypes.func,
-  deleted: PropTypes.bool,
-  openModal: PropTypes.func,
-  closeModal: PropTypes.func
+  deleted: PropTypes.bool
 };

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { useStrict } from 'mobx';
-import { Provider } from 'mobx-react';
+import { Provider, observer } from 'mobx-react';
 import Chat from 'react-chat';
 import ChatStore from './store/ChatStore';
 import ContactStore from './store/ContactStore';
@@ -20,6 +20,7 @@ const me = {
   avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg'
 };
 
+@observer
 class Container extends Component {
   constructor(props) {
     super(props);
@@ -29,20 +30,9 @@ class Container extends Component {
     chatStore.me = me;
   }
 
-  closeModal = () => {
-    this.setState({ modal: null });
-  };
-
-  openModal = (modalContent) => {
-    this.setState({ modal: modalContent });
-  };
-
   userMenu = (
-    <Provider contactStore={contactStore}>
-      <UserMenu
-        openModal={this.openModal}
-        closeModal={this.closeModal}
-      />
+    <Provider contactStore={contactStore} chatStore={chatStore}>
+      <UserMenu />
     </Provider>
   );
 
@@ -50,13 +40,11 @@ class Container extends Component {
     return (
       <div>
         <ModalDialog
-          content={this.state.modal}
-          onClose={this.closeModal}
+          content={chatStore.modal}
+          onClose={chatStore.closeModal}
         />
-        <Provider chatStore={chatStore}>
+        <Provider chatStore={chatStore} contactStore={contactStore}>
           <Chat
-            openModal={this.openModal}
-            closeModal={this.closeModal}
             userId={me.id}
             userMenu={this.userMenu}
           />

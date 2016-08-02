@@ -50,7 +50,7 @@ export default class SpeechSynthesis extends Component {
             </div>
           </div>
         );
-        this.props.openModal(modalContent);
+        this.props.chatStore.openModal(modalContent);
       } else {
         this.lastSpoken = id;
         this.play();
@@ -63,7 +63,7 @@ export default class SpeechSynthesis extends Component {
   speakFromModal = (value = this.props.chatStore.voicesArr[0].name) => {
     this.voiceName = value;
     this.play();
-    this.props.closeModal();
+    this.props.chatStore.closeModal();
   };
   toggleIcons = (n1, n2) => {
     const node1 = n1;
@@ -90,7 +90,5 @@ export default class SpeechSynthesis extends Component {
 SpeechSynthesis.propTypes = {
   chatStore: PropTypes.object,
   message: PropTypes.object,
-  isMine: PropTypes.bool,
-  openModal: PropTypes.func,
-  closeModal: PropTypes.func
+  isMine: PropTypes.bool
 };

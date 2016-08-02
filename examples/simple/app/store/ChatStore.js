@@ -12,6 +12,7 @@ export default class ChatStore {
   @observable menuShow = false;
   @observable emoticonShow = false;
   @observable voicesArr = [];
+  @observable modal = null;
 
   @action send = (msg, success) => {
     const message = {
@@ -50,8 +51,14 @@ export default class ChatStore {
   @action emoticon = (val) => {
     this.emoticonShow = val;
   };
-  @action addVoice(voice) {
+  @action addVoice = (voice) => {
     this.voicesArr.push(voice);
-  }
+  };
+  @action openModal = (modalContent) => {
+    this.modal = modalContent;
+  };
+  @action closeModal = () => {
+    this.modal = null;
+  };
 }
 

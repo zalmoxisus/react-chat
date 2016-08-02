@@ -62,8 +62,7 @@ export default class Message extends Component {
   };
   render() {
     const {
-      message, isMine, replay, openModal, closeModal,
-      userMenu, chatStore } = this.props;
+      message, isMine, replay, userMenu, chatStore } = this.props;
     return (
       <div className={styles.msgBox}>
         {
@@ -102,8 +101,6 @@ export default class Message extends Component {
                 isMine={isMine}
                 insertTranslation={this.insertTranslation}
                 deleteMsg={this.deleteMsg}
-                openModal={openModal}
-                closeModal={closeModal}
               /> : null
           }
           {
@@ -113,8 +110,6 @@ export default class Message extends Component {
                 isMine={isMine}
                 onRestore={this.restoreMsg}
                 deleted={this.state.deleted}
-                openModal={openModal}
-                closeModal={closeModal}
               /> : null
           }
         </div>
@@ -128,7 +123,5 @@ Message.propTypes = {
   message: PropTypes.object,
   isMine: PropTypes.func,
   replay: PropTypes.func,
-  openModal: PropTypes.func,
-  closeModal: PropTypes.func,
   userMenu: PropTypes.node
 };
