@@ -25,12 +25,6 @@ class Container extends Component {
     };
   }
 
-  userMenu = (
-    <Provider contactStore={contactStore} chatStore={chatStore} appStore={appStore}>
-      <UserMenu />
-    </Provider>
-  );
-
   render() {
     return (
       <div>
@@ -38,10 +32,11 @@ class Container extends Component {
           content={appStore.modal}
           onClose={appStore.closeModal}
         />
-        <Provider appStore={appStore} chatStore={chatStore} contactStore={contactStore}>
-          <Chat
-            userMenu={this.userMenu}
-          />
+        <Provider
+          appStore={appStore} chatStore={chatStore}
+          contactStore={contactStore} userMenu={UserMenu}
+        >
+          <Chat />
         </Provider>
       </div>
     );

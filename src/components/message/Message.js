@@ -6,7 +6,7 @@ import MessageOptions from './MessageOptions';
 import Ban from './Ban';
 import MessageContent from './MessageContent';
 
-@inject('chatStore') @observer
+@inject('chatStore', 'contactStore', 'appStore', 'userMenu') @observer
 export default class Message extends Component {
   constructor(props) {
     super(props);
@@ -74,7 +74,8 @@ export default class Message extends Component {
             src={message.avatar}
             name={message.name}
           >
-            {(userMenu) && React.cloneElement(userMenu, { message })}
+            <userMenu {...this.props} />
+            {console.log(<userMenu {...this.props} />)}
           </Avatar>
         }
         <div className={isMine(message.sender) ? styles.arrowRight : styles.arrowLeft}>
@@ -120,6 +121,8 @@ export default class Message extends Component {
 
 Message.propTypes = {
   chatStore: PropTypes.object,
+  contactStore: PropTypes.object,
+  appStore: PropTypes.object,
   message: PropTypes.object,
   isMine: PropTypes.func,
   replay: PropTypes.func,
