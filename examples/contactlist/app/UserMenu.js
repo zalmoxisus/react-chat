@@ -30,13 +30,13 @@ export default class UserMenu extends Component {
     });
   };
   showInfo = () => {
-    this.props.chatViewStore.handleInfo(this.props.contactItem);
+    this.props.chatStore.handleInfo(this.props.contactItem);
   };
   sendMessage = () => {
-    this.props.chatViewStore.handleMessage(this.props.contactItem);
+    this.props.chatStore.handleMessage(this.props.contactItem);
   };
   videoCall = () => {
-    this.props.chatViewStore.handleCall(this.props.contactItem);
+    this.props.chatStore.handleCall(this.props.contactItem);
   };
 
   render() {
@@ -53,7 +53,6 @@ export default class UserMenu extends Component {
 
 UserMenu.propTypes = {
   chatStore: PropTypes.object,
-  chatViewStore: PropTypes.object,
   contactItem: PropTypes.object,
   openModal: PropTypes.func,
   closeModal: PropTypes.func

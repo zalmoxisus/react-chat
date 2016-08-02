@@ -7,12 +7,10 @@ import ContactList from './ContactList';
 import ModalDialog from './ModalDialog';
 import testContacts from './testContacts';
 import ChatStore from './store/ChatStore';
-import ChatViewStore from './store/ChatViewStore';
 
 useStrict(true);
 
 const chatStore = new ChatStore();
-const chatViewStore = new ChatViewStore();
 
 class Container extends Component {
   constructor(props) {
@@ -38,7 +36,7 @@ class Container extends Component {
           content={this.state.modal}
           onClose={this.closeModal}
         />
-        <Provider chatStore={chatStore} chatViewStore={chatViewStore}>
+        <Provider chatStore={chatStore}>
           <ContactList
             openModal={this.openModal}
             closeModal={this.closeModal}
