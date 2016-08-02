@@ -2,11 +2,6 @@ import { observable, action } from 'mobx';
 import testMessages from '../testMessages';
 
 export default class ChatStore {
-  @observable me = {
-    id: '2',
-    name: 'Leo',
-    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg'
-  };
   @observable messages = testMessages;
 
   @action send = (msg, success) => {

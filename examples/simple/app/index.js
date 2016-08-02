@@ -18,12 +18,19 @@ const chatViewStore = new ChatViewStore();
 const contactStore = new ContactStore();
 const contactViewStore = new ContactViewStore();
 
+const me = {
+  id: '2',
+  name: 'Leo',
+  avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg'
+};
+
 class Container extends Component {
   constructor(props) {
     super(props);
     this.state = {
       modal: null
     };
+    chatStore.me = me;
   }
 
   closeModal = () => {
@@ -54,6 +61,7 @@ class Container extends Component {
           <Chat
             openModal={this.openModal}
             closeModal={this.closeModal}
+            userId={me.id}
             userMenu={this.userMenu}
           />
         </Provider>

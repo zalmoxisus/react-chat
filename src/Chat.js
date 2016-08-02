@@ -2,9 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import ChatArea from './components/ChatArea';
 import ChatInput from './components/ChatInput';
 import styles from './chat.scss';
-import { inject } from 'mobx-react';
 
-@inject('chatStore')
 export default class Chat extends Component {
   replay = (e) => {
     const name = e.currentTarget.textContent;
@@ -12,7 +10,7 @@ export default class Chat extends Component {
     node.value = name + ', ' + node.value;
     node.focus();
   };
-  isMine = id => this.props.chatStore.me.id === id;
+  isMine = id => this.props.userId === id;
 
   render() {
     const {
@@ -35,7 +33,7 @@ export default class Chat extends Component {
 }
 
 Chat.propTypes = {
-  chatStore: PropTypes.object,
+  userId: PropTypes.string.isRequired,
   openModal: PropTypes.func,
   closeModal: PropTypes.func,
   userMenu: PropTypes.node
