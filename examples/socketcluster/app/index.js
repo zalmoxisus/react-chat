@@ -6,12 +6,12 @@ import { useStrict } from 'mobx';
 import { Provider } from 'mobx-react';
 import './style.scss';
 import ChatStore from './store/ChatStore';
-import ChatViewStore from './store/ChatViewStore';
+import AppStore from './store/AppStore';
 
 useStrict(true);
 
+const appStore = new AppStore();
 const chatStore = new ChatStore();
-const chatViewStore = new ChatViewStore();
 
 const randomId = Math.floor((Math.random() * 100)).toString();
 const me = {
@@ -74,7 +74,7 @@ class Container extends Component {
 
   render() {
     return (
-      <Provider chatStore={chatStore} chatViewStore={chatViewStore}>
+      <Provider appStore={appStore} chatStore={chatStore}>
         <Chat
           me={me}
           messages={this.state.messages}

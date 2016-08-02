@@ -7,13 +7,20 @@ export default class ChatStore {
     avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg'
   };
   @observable messages = [];
+  @observable lang = 'en';
+  @observable nativeLng = 'en';
+  @observable withPhoto = true;
+  @observable toolTipPosition = 'right';
+  @observable menuShow = false;
+  @observable emoticonShow = false;
+  @observable voicesArr = [];
 
   @action setMe = (id, name) => {
     this.me.id = id;
     this.me.name = name;
   };
 
-  @action send = (msg, success) => {
+  @action send = (msg, me, success) => {
     const message = {
       id: (Date.now() / 1000 | 0),
       name: this.me.name,
@@ -25,6 +32,16 @@ export default class ChatStore {
 
     this.messages.push(message);
     success();
+  };
+  @action translate = (txt, to, cb) => {
+    // Add here your translation method
+    cb(txt);
+  };
+  @action menu = (val) => {
+    this.menuShow = val;
+  };
+  @action emoticon = (val) => {
+    this.emoticonShow = val;
   };
 }
 

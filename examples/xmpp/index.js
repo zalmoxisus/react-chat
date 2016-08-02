@@ -5,12 +5,12 @@ import { useStrict } from 'mobx';
 import { Provider, observer } from 'mobx-react';
 import style from './style.scss';
 import ChatStore from './store/ChatStore';
-import ChatViewStore from './store/ChatViewStore';
+import AppStore from './store/AppStore';
 
 useStrict(true);
 
 const chatStore = new ChatStore();
-const chatViewStore = new ChatViewStore();
+const appStore = new AppStore();
 
 const hash = window.location.hash ? window.location.hash.substr(1) : '1';
 const data = {
@@ -50,7 +50,6 @@ class Container extends Component {
      */
     conn.addHandler(this.onMessage, null, 'message', null, null, null);
     conn.addHandler(this.onMessage, null, 'iq', 'set', null, null);
-    console.log(chatStore.me);
     chatStore.setMe(data.name, data.name);
   }
 
@@ -97,7 +96,7 @@ class Container extends Component {
 
   render() {
     return (
-      <Provider chatStore={chatStore} chatViewStore={chatViewStore}>
+      <Provider chatStore={chatStore} appStore={appStore}>
         <Chat userId={this.props.me.id} me={this.props.me} messages={this.props.messages} onSend={this.handleSendMessage} />
       </Provider>
     );
