@@ -3,7 +3,7 @@ import { observer, inject } from 'mobx-react';
 import styles from '../chat.scss';
 import Message from './message/Message';
 
-@inject('chatStore') @observer
+@inject('appStore', 'chatStore') @observer
 export default class ChatArea extends Component {
   componentDidMount() {
     if (window.speechSynthesis) {
@@ -24,6 +24,9 @@ export default class ChatArea extends Component {
   componentDidUpdate() {
     this.updateScrollTop();
   }
+
+  isMine = id => this.props.appStore.me.id === id;
+
   updateScrollTop = () => {
     let node = document.getElementById('container');
     if (!node) {
@@ -34,7 +37,7 @@ export default class ChatArea extends Component {
 
   render() {
     const {
-      chatStore, replay, isMine, userMenu } = this.props;
+      chatStore, replay, userMenu } = this.props;
     return (
       <div id="container" className={styles.container}>
         {
@@ -43,7 +46,7 @@ export default class ChatArea extends Component {
               <Message key={message.id}
                 message={message}
                 replay={replay}
-                isMine={isMine}
+                isMine={this.isMine}
                 userMenu={userMenu}
               />
           )
@@ -54,8 +57,8 @@ export default class ChatArea extends Component {
 }
 
 ChatArea.propTypes = {
+  appStore: PropTypes.object,
   chatStore: PropTypes.object,
   replay: PropTypes.func,
-  isMine: PropTypes.func,
   userMenu: PropTypes.node
 };
