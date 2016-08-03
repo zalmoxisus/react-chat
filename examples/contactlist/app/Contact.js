@@ -4,11 +4,10 @@ import Avatar from 'react-chat/components/Avatar';
 import styles from './contactlist.scss';
 import UserMenu from './UserMenu';
 
-@inject('chatStore')
+@inject('chatStore', 'appStore')
 export default class Contact extends Component {
   render() {
-    const { chatStore, contactItem,
-      openModal, closeModal } = this.props;
+    const { chatStore, appStore, contactItem } = this.props;
     return (
       <li>
         <Avatar className={styles.avatar}
@@ -20,9 +19,8 @@ export default class Contact extends Component {
         >
           <UserMenu
             chatStore={chatStore}
+            appStore={appStore}
             contactItem={contactItem}
-            openModal={openModal}
-            closeModal={closeModal}
           />
         </Avatar>
       </li>
@@ -32,7 +30,6 @@ export default class Contact extends Component {
 
 Contact.propTypes = {
   chatStore: PropTypes.object,
-  contactItem: PropTypes.object,
-  openModal: PropTypes.func,
-  closeModal: PropTypes.func
+  appStore: PropTypes.object,
+  contactItem: PropTypes.object
 };

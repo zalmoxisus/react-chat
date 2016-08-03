@@ -6,7 +6,7 @@ import Contact from './Contact';
 @inject('chatStore')
 export default class ContactList extends Component {
   render() {
-    const { chatStore, openModal, closeModal } = this.props;
+    const { chatStore } = this.props;
     return (
       <div className={styles.contactlist}>
         <ul>
@@ -14,8 +14,6 @@ export default class ContactList extends Component {
             chatStore.contactList.map(contact =>
               <Contact key={contact.id}
                 contactItem={contact}
-                openModal={openModal}
-                closeModal={closeModal}
               />
             )
           }
@@ -26,8 +24,6 @@ export default class ContactList extends Component {
 }
 
 ContactList.propTypes = {
-  chatStore: PropTypes.object,
-  openModal: PropTypes.func,
-  closeModal: PropTypes.func
+  chatStore: PropTypes.object
 };
 

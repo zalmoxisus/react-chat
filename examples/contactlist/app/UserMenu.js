@@ -19,14 +19,14 @@ export default class UserMenu extends Component {
         </div>
       </div>
     );
-    this.props.openModal(modalContent);
+    this.props.appStore.openModal(modalContent);
   };
   handleClose = () => {
-    this.props.closeModal();
+    this.props.appStore.closeModal();
   };
   handleConfirm = () => {
     this.props.chatStore.deleteContact(this.props.contactItem, () => {
-      this.props.closeModal();
+      this.props.appStore.closeModal();
     });
   };
   showInfo = () => {
@@ -53,7 +53,6 @@ export default class UserMenu extends Component {
 
 UserMenu.propTypes = {
   chatStore: PropTypes.object,
-  contactItem: PropTypes.object,
-  openModal: PropTypes.func,
-  closeModal: PropTypes.func
+  appStore: PropTypes.object,
+  contactItem: PropTypes.object
 };

@@ -15,16 +15,11 @@ import translateLanguages from './translateLanguages';
 useStrict(true);
 
 const appStore = new AppStore();
-const chatStore = new ChatStore();
+const chatStore = ChatStore.fromJS(testMessages || [], translateLanguages || []);
 const contactStore = new ContactStore();
 
 @observer
 class Container extends Component {
-  constructor(props) {
-    super(props);
-    chatStore.testMessages = testMessages;
-    chatStore.trLanguages = translateLanguages;
-  }
 
   render() {
     return (

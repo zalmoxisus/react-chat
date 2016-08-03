@@ -1,7 +1,7 @@
 import { observable, action } from 'mobx';
 
 export default class ChatStore {
-  @observable contactList = this.testContacts;
+  @observable contactList;
   @observable toolTipPosition = 'right';
 
   @action deleteContact(contact, success) {
@@ -23,5 +23,11 @@ export default class ChatStore {
     // Add here call method
     console.log('call method');
   };
+
+  @action static fromJS(testContacts) {
+    const chatStore = new ChatStore();
+    chatStore.contactList = testContacts;
+    return chatStore;
+  }
 }
 
