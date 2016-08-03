@@ -46,7 +46,7 @@ export default class SpeechSynthesis extends Component {
                 onChange={this.speakFromModal}
                 chatStore={this.props.chatStore}
               />
-              <MdClose className={styles.btn} onClick={this.props.closeModal} />
+              <MdClose className={styles.btn} onClick={this.props.appStore.closeModal} />
             </div>
           </div>
         );

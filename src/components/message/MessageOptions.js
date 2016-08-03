@@ -7,7 +7,7 @@ import LangSelect from './LangSelect';
 import SpeechSynthesis from './Speech/SpeechSynthesis';
 import convertMedia from '../../utils/convertMedia';
 
-@inject('chatStore', 'chatStore') @observer
+@inject('appStore', 'chatStore', 'chatStore') @observer
 export default class MessageOptions extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +18,7 @@ export default class MessageOptions extends Component {
   selectLang = (val, msg) => {
     this.nativeLng = val;
     this.props.insertTranslation(this.nativeLng, msg);
-    this.props.closeModal();
+    this.props.appStore.closeModal();
   };
   isVideo = (msg) => {
     const media = convertMedia(msg, 150, true);
@@ -36,11 +36,11 @@ export default class MessageOptions extends Component {
               onChange={this.selectLang}
               chatStore={this.props.chatStore}
             />
-            <MdClose className={styles.btn} onClick={this.props.closeModal} />
+            <MdClose className={styles.btn} onClick={this.props.appStore.closeModal} />
           </div>
         </div>
       );
-      this.props.openModal(modalContent);
+      this.props.appStore.openModal(modalContent);
     } else {
       this.lastTranslate = message.id;
       this.props.insertTranslation(this.nativeLng, message.msg);
@@ -83,6 +83,7 @@ export default class MessageOptions extends Component {
   }
 }
 MessageOptions.propTypes = {
+  appStore: PropTypes.object,
   chatStore: PropTypes.object,
   message: PropTypes.object,
   isMine: PropTypes.func,

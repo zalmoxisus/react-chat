@@ -9,6 +9,8 @@ import ContactStore from './store/ContactStore';
 import './style.scss';
 import ModalDialog from './ModalDialog';
 import UserMenu from './UserMenu';
+import testMessages from './testMessages';
+import translateLanguages from './translateLanguages';
 
 useStrict(true);
 
@@ -20,9 +22,8 @@ const contactStore = new ContactStore();
 class Container extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      modal: null
-    };
+    chatStore.testMessages = testMessages;
+    chatStore.trLanguages = translateLanguages;
   }
 
   render() {

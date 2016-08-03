@@ -1,14 +1,12 @@
 import { observable, action } from 'mobx';
-import testMessages from '../testMessages';
-import translateLanguages from '../translateLanguages';
 
 export default class ChatStore {
-  @observable messages = testMessages;
+  @observable messages = this.testMessages;
   @observable lang = 'en';
   @observable nativeLng = 'en';
   @observable withPhoto = true;
   @observable toolTipPosition = 'right';
-  @observable translateLanguages = translateLanguages;
+  @observable translateLanguages = this.trLanguages;
   @observable menuShow = false;
   @observable emoticonShow = false;
   @observable voicesArr = [];
