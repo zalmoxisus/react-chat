@@ -6,7 +6,7 @@ import MessageOptions from './MessageOptions';
 import Ban from './Ban';
 import MessageContent from './MessageContent';
 
-@inject('chatStore', 'contactStore', 'appStore', 'userMenu') @observer
+@inject('chatStore', 'contactStore', 'appStore', 'UserMenu') @observer
 export default class Message extends Component {
   constructor(props) {
     super(props);
@@ -62,7 +62,7 @@ export default class Message extends Component {
   };
   render() {
     const {
-      message, isMine, replay, userMenu, chatStore } = this.props;
+      message, isMine, replay, UserMenu, chatStore } = this.props;
     return (
       <div className={styles.msgBox}>
         {
@@ -74,8 +74,7 @@ export default class Message extends Component {
             src={message.avatar}
             name={message.name}
           >
-            <userMenu {...this.props} />
-            {console.log(<userMenu {...this.props} />)}
+            <UserMenu {...this.props} />
           </Avatar>
         }
         <div className={isMine(message.sender) ? styles.arrowRight : styles.arrowLeft}>
@@ -126,5 +125,5 @@ Message.propTypes = {
   message: PropTypes.object,
   isMine: PropTypes.func,
   replay: PropTypes.func,
-  userMenu: PropTypes.node
+  UserMenu: PropTypes.node
 };

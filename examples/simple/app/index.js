@@ -30,7 +30,7 @@ class Container extends Component {
         />
         <Provider
           appStore={appStore} chatStore={chatStore}
-          contactStore={contactStore} userMenu={UserMenu}
+          contactStore={contactStore} UserMenu={UserMenu}
         >
           <Chat />
         </Provider>
