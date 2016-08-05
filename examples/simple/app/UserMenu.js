@@ -3,10 +3,8 @@ import MdInfo from 'react-icons/lib/md/info';
 import MdMessage from 'react-icons/lib/md/message';
 import MdVideocam from 'react-icons/lib/md/videocam';
 import MdClose from 'react-icons/lib/md/close';
-import { inject } from 'mobx-react';
 import styles from './usermenu.scss';
 
-@inject('appStore', 'chatStore', 'contactStore', 'message')
 export default class UserMenu extends Component {
   deleteContact = () => {
     const modalContent = (

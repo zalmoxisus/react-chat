@@ -7,7 +7,7 @@ import UserMenu from './UserMenu';
 @inject('chatStore', 'appStore')
 export default class Contact extends Component {
   render() {
-    const { chatStore, appStore, contactItem } = this.props;
+    const { chatStore, contactItem } = this.props;
     return (
       <li>
         <Avatar className={styles.avatar}
@@ -17,11 +17,7 @@ export default class Contact extends Component {
           toolTipPosition={chatStore.toolTipPosition}
           borderRadius={0}
         >
-          <UserMenu
-            chatStore={chatStore}
-            appStore={appStore}
-            contactItem={contactItem}
-          />
+          <UserMenu {...this.props} />
         </Avatar>
       </li>
     );
