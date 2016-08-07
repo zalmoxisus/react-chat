@@ -49,7 +49,6 @@ export default class ChatStore {
   }
 
   @action emoticon(val) {
-    console.log('emoticon')
     this.emoticonShow = val;
   }
 

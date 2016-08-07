@@ -1,6 +1,7 @@
+import remotedev from 'mobx-remotedev';
 import { ChatStore as Store } from 'react-chat';
 
-export default class ChatStore extends Store {
+class ChatStore extends Store {
   send(msg, me, success) {
     const message = {
       id: (Date.now() / 1000 | 0),
@@ -14,3 +15,5 @@ export default class ChatStore extends Store {
     super.send(message, success);
   }
 }
+
+export default remotedev(ChatStore);
