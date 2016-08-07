@@ -1,15 +1,23 @@
 import { observable, action } from 'mobx';
 
 export default class ChatStore {
-  @observable messages;
+  @observable messages = [];
   @observable lang = 'en';
   @observable nativeLng = 'en';
   @observable withPhoto = true;
   @observable toolTipPosition = 'right';
-  @observable translateLanguages;
+  @observable translateLanguages = [];
   @observable menuShow = false;
   @observable emoticonShow = false;
   @observable voicesArr = [];
+
+  constructor(state) {
+    if (state) this.importState(state);
+  }
+
+  @action importState(state) {
+    Object.assign(this, state);
+  }
 
   @action send = (msg, me, success) => {
     const message = {
@@ -51,12 +59,4 @@ export default class ChatStore {
   @action addVoice = (voice) => {
     this.voicesArr.push(voice);
   };
-
-  @action static fromJS(testMessages, translateLanguages) {
-    const chatStore = new ChatStore();
-    chatStore.messages = testMessages;
-    chatStore.translateLanguages = translateLanguages;
-    return chatStore;
-  }
 }
-

@@ -15,7 +15,7 @@ import translateLanguages from './translateLanguages';
 useStrict(true);
 
 const appStore = new AppStore();
-const chatStore = ChatStore.fromJS(testMessages || [], translateLanguages || []);
+const chatStore = new ChatStore({ messages: testMessages, translateLanguages });
 const contactStore = new ContactStore();
 
 @observer
