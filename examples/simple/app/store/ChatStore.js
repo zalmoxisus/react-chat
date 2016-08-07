@@ -1,7 +1,7 @@
 import { ChatStore as Store } from 'react-chat';
 
 export default class ChatStore extends Store {
-  send = (msg, me, success) => {
+  send(msg, me, success) {
     const message = {
       id: (Date.now() / 1000 | 0),
       name: me.name,
@@ -12,5 +12,5 @@ export default class ChatStore extends Store {
     };
 
     super.send(message, success);
-  };
+  }
 }

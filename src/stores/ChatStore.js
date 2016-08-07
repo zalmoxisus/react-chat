@@ -19,35 +19,41 @@ export default class ChatStore {
     Object.assign(this, state);
   }
 
-  @action send = (msg, success) => {
+  @action send(msg, success) {
     this.messages.push(msg);
     success();
-  };
+  }
 
-  @action remove = (message, success) => {
+  @action remove(message, success) {
     // Add here delete method
     success();
-  };
+  }
 
-  @action translate = (txt, to, cb) => {
+  @action translate(txt, to, cb) {
     // Add here your translation method
     cb(txt);
-  };
-  @action restore = (message, success) => {
+  }
+
+  @action restore(message, success) {
     // Add here restore method
     success();
-  };
-  @action ban = (id, success) => {
+  }
+
+  @action ban(id, success) {
     // Add here ban method
     success();
-  };
-  @action menu = (val) => {
+  }
+
+  @action menu(val) {
     this.menuShow = val;
-  };
-  @action emoticon = (val) => {
+  }
+
+  @action emoticon(val) {
+    console.log('emoticon')
     this.emoticonShow = val;
-  };
-  @action addVoice = (voice) => {
+  }
+
+  @action addVoice(voice) {
     this.voicesArr.push(voice);
-  };
+  }
 }
