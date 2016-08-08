@@ -5,7 +5,7 @@ import MdReplay from 'react-icons/lib/md/replay';
 import { inject } from 'mobx-react';
 import styles from '../../chat.scss';
 
-@inject('chatStore')
+@inject('chatStore', 'appStore')
 export default class Ban extends Component {
   constructor(props) {
     super(props);
@@ -25,17 +25,17 @@ export default class Ban extends Component {
         </div>
       </div>
     );
-    this.props.chatStore.openModal(modalContent);
+    this.props.appStore.openModal(modalContent);
   };
   handleClose = () => {
-    this.props.chatStore.closeModal();
+    this.props.appStore.closeModal();
   };
   handleConfirm = () => {
     this.props.chatStore.ban(this.props.message.id, () => {
       this.setState({
         banned: true
       });
-      this.props.chatStore.closeModal();
+      this.props.appStore.closeModal();
     });
   };
   render() {
@@ -69,6 +69,7 @@ export default class Ban extends Component {
 
 Ban.propTypes = {
   chatStore: PropTypes.object,
+  appStore: PropTypes.object,
   message: PropTypes.object,
   isMine: PropTypes.func,
   onRestore: PropTypes.func,

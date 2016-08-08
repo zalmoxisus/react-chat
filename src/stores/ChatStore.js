@@ -24,11 +24,6 @@ export default class ChatStore {
     success();
   }
 
-  @action remove(message, success) {
-    // Add here delete method
-    success();
-  }
-
   @action translate(txt, to, cb) {
     // Add here your translation method
     cb(txt);

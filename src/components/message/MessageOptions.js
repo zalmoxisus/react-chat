@@ -7,7 +7,7 @@ import LangSelect from './LangSelect';
 import SpeechSynthesis from './Speech/SpeechSynthesis';
 import convertMedia from '../../utils/convertMedia';
 
-@inject('appStore', 'chatStore', 'chatStore') @observer
+@inject('appStore', 'chatStore') @observer
 export default class MessageOptions extends Component {
   constructor(props) {
     super(props);
@@ -73,7 +73,7 @@ export default class MessageOptions extends Component {
             /> : null
         }
         {
-          (chatStore.remove) ?
+          (chatStore.ban) ?
             <div onClick={deleteMsg} className={styles.btn}>
               <MdClose />
             </div> : null
