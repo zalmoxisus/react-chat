@@ -7,7 +7,7 @@ import LangSelect from './LangSelect';
 import SpeechSynthesis from './Speech/SpeechSynthesis';
 import convertMedia from '../../utils/convertMedia';
 
-@inject('appStore', 'chatStore') @observer
+@inject('appStore', 'chatStore', 'chatStore') @observer
 export default class MessageOptions extends Component {
   constructor(props) {
     super(props);

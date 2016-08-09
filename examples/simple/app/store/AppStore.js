@@ -7,10 +7,10 @@ export default class AppStore {
     avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg'
   };
   @observable modal = null;
-  @action openModal(modalContent) {
+  @action openModal = (modalContent) => {
     this.modal = modalContent;
-  }
-  @action closeModal() {
+  };
+  @action closeModal = () => {
     this.modal = null;
-  }
+  };
 }

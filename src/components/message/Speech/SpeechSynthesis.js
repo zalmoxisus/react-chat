@@ -28,7 +28,7 @@ export default class SpeechSynthesis extends Component {
     msg.onerror = () => {
       this.toggleIcons(stopBtn, playBtn);
     };
-    const voices = window.speechSynthesis.getVoices();
+    const voices = this.props.chatStore.voicesArr;
     msg.voice = voices.filter(voice => voice.name === this.voiceName)[0];
     window.speechSynthesis.speak(msg);
   };

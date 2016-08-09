@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, computed } from 'mobx';
 
 export default class ChatStore {
   @observable messages = [];
@@ -47,7 +47,19 @@ export default class ChatStore {
     this.emoticonShow = val;
   }
 
-  @action addVoice(voice) {
-    this.voicesArr.push(voice);
+  @computed get getVoices() {
+    const selectedVoices = [];
+    const voices = window.speechSynthesis.getVoices();
+    for (let i = 0; i < voices.length; i++) {
+      let option = voices[i];
+      if (option.lang.indexOf(this.lang) > -1) {
+        selectedVoices.push(option);
+      }
+    }
+    return selectedVoices;
+  }
+
+  @action addVoice() {
+    this.voicesArr = this.getVoices;
   }
 }
