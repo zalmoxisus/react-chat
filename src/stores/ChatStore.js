@@ -21,9 +21,12 @@ export default class ChatStore {
     Object.assign(this, state);
   }
 
-  @action send(msg, success) {
+  @action addMessage(msg) {
     this.messages.push(msg);
-    success();
+  }
+
+  @action addMessages(msgs) {
+    this.messages = this.messages.concat(msgs);
   }
 
   @action translate(txt, to, cb) {

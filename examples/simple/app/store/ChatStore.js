@@ -12,7 +12,8 @@ class ChatStore extends Store {
       sender: '1'
     };
 
-    super.send(message, success);
+    super.addMessage(msg);
+    success();
   }
 }
 

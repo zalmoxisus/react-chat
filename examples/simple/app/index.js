@@ -15,8 +15,11 @@ import translateLanguages from './translateLanguages';
 useStrict(true);
 
 const appStore = new AppStore();
-const chatStore = new ChatStore({ messages: testMessages, translateLanguages });
+const chatStore = new ChatStore({ translateLanguages });
 const contactStore = new ContactStore();
+
+// Emulate fetching messages
+setTimeout(() => { chatStore.addMessages(testMessages); });
 
 @observer
 class Container extends Component {

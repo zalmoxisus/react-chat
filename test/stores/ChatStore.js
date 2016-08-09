@@ -17,4 +17,18 @@ describe('ChatStore', () => {
     const store = new ChatStore();
     expect(store.getVoices).toEqual(voices);
   });
+
+  it('should add a message', () => {
+    const store = new ChatStore();
+    store.addMessage(testMessages[0]);
+
+    expect(toJS(store.messages)).toEqual([testMessages[0]]);
+  });
+
+  it('should add messages', () => {
+    const store = new ChatStore();
+    store.addMessages(testMessages);
+
+    expect(toJS(store.messages)).toEqual(testMessages);
+  });
 });
