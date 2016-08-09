@@ -12,7 +12,9 @@ export default class ChatStore {
 
   constructor(state) {
     if (state) this.importState(state);
-    if (window.speechSynthesis) window.speechSynthesis.getVoices(); // Workaround for http://stackoverflow.com/questions/22812303/why-is-my-speech-synthesis-api-voice-changing-when-function-run-more-than-1-time
+
+    // Workaround for http://stackoverflow.com/q/22812303/4218591
+    if (window.speechSynthesis) window.speechSynthesis.getVoices();
   }
 
   @action importState(state) {
@@ -48,6 +50,8 @@ export default class ChatStore {
   }
 
   @computed get getVoices() {
+    if (!window.speechSynthesis) return [];
+
     const selectedVoices = [];
     const voices = window.speechSynthesis.getVoices();
     for (let i = 0; i < voices.length; i++) {
