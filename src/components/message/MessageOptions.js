@@ -63,10 +63,11 @@ export default class MessageOptions extends Component {
               </div>
             </div> : null
         }
+        {console.log(this.props.chatStore.getVoices)}
         {
           (!this.isVideo(message.msg) &&
           window.SpeechSynthesisUtterance &&
-          this.props.chatStore.voicesArr.length > 0) ?
+          this.props.chatStore.getVoices.length > 0) ?
             <SpeechSynthesis
               message={message}
               isMine={isMine(message.sender)}

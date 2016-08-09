@@ -9,10 +9,10 @@ export default class ChatStore {
   @observable translateLanguages = [];
   @observable menuShow = false;
   @observable emoticonShow = false;
-  @observable voicesArr = [];
 
   constructor(state) {
     if (state) this.importState(state);
+    if (window.speechSynthesis) window.speechSynthesis.getVoices(); // Workaround for http://stackoverflow.com/questions/22812303/why-is-my-speech-synthesis-api-voice-changing-when-function-run-more-than-1-time
   }
 
   @action importState(state) {
@@ -57,9 +57,5 @@ export default class ChatStore {
       }
     }
     return selectedVoices;
-  }
-
-  @action addVoice() {
-    this.voicesArr = this.getVoices;
   }
 }
