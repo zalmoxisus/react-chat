@@ -9,7 +9,7 @@ import SpeechSelect from './SpeechSelect';
 @inject('chatStore', 'appStore') @observer
 export default class SpeechSynthesis extends Component {
   componentDidMount() {
-    this.voiceName = this.props.chatStore.getVoices[0].name;
+    this.voiceName = this.props.chatStore.voices[0].name;
   }
   getSanitizedMsg() {
     return this.props.message.msg.replace(/(<([^>]+)>)/ig, '').replace(/\+/g, '');
@@ -28,7 +28,7 @@ export default class SpeechSynthesis extends Component {
     msg.onerror = () => {
       this.toggleIcons(stopBtn, playBtn);
     };
-    const voices = this.props.chatStore.getVoices;
+    const voices = this.props.chatStore.voices;
     msg.voice = voices.filter(voice => voice.name === this.voiceName)[0];
     window.speechSynthesis.speak(msg);
   };
@@ -36,7 +36,7 @@ export default class SpeechSynthesis extends Component {
   speak = () => {
     const { id } = this.props.message;
     if (this.playSpan.childNodes[1].style.visibility === 'hidden') {
-      if (this.lastSpoken === id && this.props.chatStore.getVoices.length > 1) {
+      if (this.lastSpoken === id && this.props.chatStore.voices.length > 1) {
         const modalContent = (
           <div className={styles.modal}>
             <div className={styles.titleModal}>Read it as</div>
@@ -60,7 +60,7 @@ export default class SpeechSynthesis extends Component {
       window.speechSynthesis.cancel();
     }
   };
-  speakFromModal = (value = this.props.chatStore.getVoices[0].name) => {
+  speakFromModal = (value = this.props.chatStore.voices[0].name) => {
     this.voiceName = value;
     this.play();
     this.props.appStore.closeModal();

@@ -52,7 +52,7 @@ export default class ChatStore {
     this.emoticonShow = val;
   }
 
-  @computed get getVoices() {
+  @computed get voices() {
     if (!window.speechSynthesis) return [];
 
     const selectedVoices = [];
