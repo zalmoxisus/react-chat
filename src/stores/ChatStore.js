@@ -63,4 +63,7 @@ export default class ChatStore {
     }
     return selectedVoices;
   }
+  @action getSanitizedMsg(msg) {
+    return msg.replace(/(<([^>]+)>)/ig, '').replace(/\+/g, '');
+  }
 }

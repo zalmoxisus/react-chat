@@ -11,14 +11,14 @@ export default class SpeechSynthesis extends Component {
   componentDidMount() {
     this.voiceName = this.props.chatStore.voices[0].name;
   }
-  getSanitizedMsg() {
-    return this.props.message.msg.replace(/(<([^>]+)>)/ig, '').replace(/\+/g, '');
-  }
+
   mapRef = (node) => {
     this.playSpan = node;
   };
   play = () => {
-    const msg = new SpeechSynthesisUtterance(this.getSanitizedMsg());
+    const { chatStore, message } = this.props;
+    let msg = message.msg;
+    msg = new SpeechSynthesisUtterance(chatStore.getSanitizedMsg(msg));
     this.toggleIcons();
     msg.onend = () => {
       this.toggleIcons();
@@ -26,15 +26,15 @@ export default class SpeechSynthesis extends Component {
     msg.onerror = () => {
       this.toggleIcons();
     };
-    const voices = this.props.chatStore.voices;
+    const voices = chatStore.voices;
     msg.voice = voices.filter(voice => voice.name === this.voiceName)[0];
     window.speechSynthesis.speak(msg);
   };
 
   speak = () => {
-    const { id } = this.props.message;
+    const { chatStore, appStore, message } = this.props;
     if (this.playSpan.childNodes[1].style.visibility === 'hidden') {
-      if (this.lastSpoken === id && this.props.chatStore.voices.length > 1) {
+      if (this.lastSpoken === message.id && chatStore.voices.length > 1) {
         const modalContent = (
           <div className={styles.modal}>
             <div className={styles.titleModal}>Read it as</div>
@@ -42,19 +42,18 @@ export default class SpeechSynthesis extends Component {
               <SpeechSelect
                 value={this.voiceName}
                 onChange={this.speakFromModal}
-                chatStore={this.props.chatStore}
+                chatStore={chatStore}
               />
-              <MdClose className={styles.btn} onClick={this.props.appStore.closeModal} />
+              <MdClose className={styles.btn} onClick={appStore.closeModal} />
             </div>
           </div>
         );
-        this.props.appStore.openModal(modalContent);
+        appStore.openModal(modalContent);
       } else {
-        this.lastSpoken = id;
+        this.lastSpoken = message.id;
         this.play();
       }
     } else {
-      this.toggleIcons();
       window.speechSynthesis.cancel();
     }
   };
