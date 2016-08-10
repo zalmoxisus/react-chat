@@ -56,12 +56,10 @@ export default class ChatStore {
     if (!window.speechSynthesis) return [];
 
     const selectedVoices = [];
-    const voices = window.speechSynthesis.getVoices();
+    const voices = window.speechSynthesis.getVoices()
+      .filter(voice => voice.lang.indexOf(this.lang) > -1);
     for (let i = 0; i < voices.length; i++) {
-      let option = voices[i];
-      if (option.lang.indexOf(this.lang) > -1) {
-        selectedVoices.push(option);
-      }
+      selectedVoices.push(voices[i]);
     }
     return selectedVoices;
   }
