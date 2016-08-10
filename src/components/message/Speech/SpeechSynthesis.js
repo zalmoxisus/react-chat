@@ -19,14 +19,12 @@ export default class SpeechSynthesis extends Component {
   };
   play = () => {
     const msg = new SpeechSynthesisUtterance(this.getSanitizedMsg());
-    this.toggleIcons(this.playSpan.childNodes[0], this.playSpan.childNodes[1]);
-    const playBtn = this.playSpan.childNodes[0];
-    const stopBtn = this.playSpan.childNodes[1];
+    this.toggleIcons();
     msg.onend = () => {
-      this.toggleIcons(stopBtn, playBtn);
+      this.toggleIcons();
     };
     msg.onerror = () => {
-      this.toggleIcons(stopBtn, playBtn);
+      this.toggleIcons();
     };
     const voices = this.props.chatStore.voices;
     msg.voice = voices.filter(voice => voice.name === this.voiceName)[0];
@@ -56,7 +54,7 @@ export default class SpeechSynthesis extends Component {
         this.play();
       }
     } else {
-      this.toggleIcons(this.playSpan.childNodes[1], this.playSpan.childNodes[0]);
+      this.toggleIcons();
       window.speechSynthesis.cancel();
     }
   };
@@ -65,11 +63,11 @@ export default class SpeechSynthesis extends Component {
     this.play();
     this.props.appStore.closeModal();
   };
-  toggleIcons = (n1, n2) => {
-    const node1 = n1;
-    const node2 = n2;
-    node1.style.visibility = 'hidden';
-    node2.style.visibility = 'visible';
+  toggleIcons = () => {
+    const node1 = this.playSpan.childNodes[0].style;
+    const node2 = this.playSpan.childNodes[1].style;
+    node1.visibility = (node1.visibility === 'hidden') ? 'visible' : 'hidden';
+    node2.visibility = (node2.visibility === 'hidden') ? 'visible' : 'hidden';
   };
   render() {
     return (
