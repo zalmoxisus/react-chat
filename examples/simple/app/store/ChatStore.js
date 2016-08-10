@@ -12,7 +12,7 @@ class ChatStore extends Store {
       sender: '1'
     };
 
-    super.addMessage(msg);
+    super.addMessage(message);
     success();
   }
 }

@@ -8,7 +8,7 @@ import { observer, inject } from 'mobx-react';
 import styles from '../../chat.scss';
 import convertMedia from '../../utils/convertMedia';
 
-@inject('chatStore') @observer
+@inject('chatStore', 'appStore') @observer
 export default class MessageMenu extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +41,8 @@ export default class MessageMenu extends Component {
     if (e.nativeEvent.keyCode === 13) {
       const txt = e.target.value;
       if ((txt === '') || (txt === ' ')) return;
-      this.props.chatStore.send({ txt }, () => {
+      const me = this.props.appStore.me;
+      this.props.chatStore.send({ txt }, me, () => {
         this.handleClose(e);
       });
     } else if (e.nativeEvent.keyCode === 27) {
@@ -175,6 +176,7 @@ export default class MessageMenu extends Component {
 }
 MessageMenu.propTypes = {
   chatStore: PropTypes.object,
+  appStore: PropTypes.object,
   addTranslation: PropTypes.func
 };
 
