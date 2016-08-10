@@ -55,13 +55,8 @@ export default class ChatStore {
   @computed get voices() {
     if (!window.speechSynthesis) return [];
 
-    const selectedVoices = [];
-    const voices = window.speechSynthesis.getVoices()
+    return window.speechSynthesis.getVoices()
       .filter(voice => voice.lang.indexOf(this.lang) > -1);
-    for (let i = 0; i < voices.length; i++) {
-      selectedVoices.push(voices[i]);
-    }
-    return selectedVoices;
   }
   @action getSanitizedMsg(msg) {
     return msg.replace(/(<([^>]+)>)/ig, '').replace(/\+/g, '');
