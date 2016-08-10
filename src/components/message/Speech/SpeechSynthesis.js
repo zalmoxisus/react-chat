@@ -18,7 +18,7 @@ export default class SpeechSynthesis extends Component {
   play = () => {
     const { chatStore, message } = this.props;
     let msg = message.msg;
-    msg = new SpeechSynthesisUtterance(chatStore.getSanitizedMsg(msg));
+    msg = new SpeechSynthesisUtterance(msg);
     this.toggleIcons();
     msg.onend = () => {
       this.toggleIcons();
