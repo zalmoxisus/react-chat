@@ -4,10 +4,10 @@ import Avatar from 'react-chat/components/Avatar';
 import styles from './contactlist.scss';
 import UserMenu from './UserMenu';
 
-@inject('chatStore', 'appStore')
+@inject('contactStore', 'appStore', 'chatStore')
 export default class Contact extends Component {
   render() {
-    const { chatStore, appStore, contactItem } = this.props;
+    const { contactStore, appStore, chatStore, contactItem } = this.props;
     return (
       <li>
         <Avatar className={styles.avatar}
@@ -18,7 +18,7 @@ export default class Contact extends Component {
           borderRadius={0}
         >
           <UserMenu
-            chatStore={chatStore}
+            contactStore={contactStore}
             appStore={appStore}
             contactItem={contactItem}
           />
@@ -29,7 +29,8 @@ export default class Contact extends Component {
 }
 
 Contact.propTypes = {
-  chatStore: PropTypes.object,
+  contactStore: PropTypes.object,
   appStore: PropTypes.object,
+  chatStore: PropTypes.object,
   contactItem: PropTypes.object
 };

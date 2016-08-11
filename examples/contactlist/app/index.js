@@ -6,13 +6,15 @@ import './style.scss';
 import ContactList from './ContactList';
 import ModalDialog from './ModalDialog';
 import testContacts from './testContacts';
+import ContactStore from './store/ContactStore';
 import ChatStore from './store/ChatStore';
 import AppStore from './store/AppStore';
 
 useStrict(true);
 
-const chatStore = ChatStore.fromJS(testContacts || []);
+const contactStore = ContactStore.fromJS(testContacts || []);
 const appStore = new AppStore();
+const chatStore = new ChatStore();
 
 @observer
 class Container extends Component {
@@ -24,7 +26,7 @@ class Container extends Component {
           content={appStore.modal}
           onClose={appStore.closeModal}
         />
-        <Provider chatStore={chatStore} appStore={appStore}>
+        <Provider contactStore={contactStore} appStore={appStore} chatStore={chatStore}>
           <ContactList />
         </Provider>
       </div>
