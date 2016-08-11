@@ -58,7 +58,4 @@ export default class ChatStore {
     return window.speechSynthesis.getVoices()
       .filter(voice => voice.lang.indexOf(this.lang) > -1);
   }
-  sanitize(msg) {
-    return msg.replace(/(<([^>]+)>)/ig, '').replace(/\+/g, '');
-  }
 }

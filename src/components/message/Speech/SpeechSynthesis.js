@@ -15,10 +15,13 @@ export default class SpeechSynthesis extends Component {
   mapRef = (node) => {
     this.playSpan = node;
   };
+  sanitize(msg) {
+    return msg.replace(/(<([^>]+)>)/ig, '').replace(/\+/g, '');
+  }
   play = () => {
     const { chatStore, message } = this.props;
     let msg = message.msg;
-    msg = new SpeechSynthesisUtterance(msg);
+    msg = new SpeechSynthesisUtterance(this.sanitize(msg));
     this.toggleIcons();
     msg.onend = () => {
       this.toggleIcons();

@@ -7,7 +7,7 @@ class ChatStore extends Store {
       id: (Date.now() / 1000 | 0),
       name: me.name,
       avatar: me.avatar,
-      msg: this.sanitize(msg.txt),
+      msg: msg.txt,
       time: Date.now() / 1000 | 0,
       sender: '1'
     };
