@@ -19,7 +19,7 @@ export default class SpeechSelect extends Component {
   };
   render() {
     return (
-      <div style={{ whiteSpace: 'nowrap' }}>
+      <div className={styles.flexBox}>
         <select value={this.state.value} onChange={this.handleSelect}>
           {this.options}
         </select>

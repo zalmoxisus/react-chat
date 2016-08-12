@@ -53,10 +53,10 @@ export default class Ban extends Component {
       {isMine(message.sender) ?
         null :
         <span>
-          <span style={{ color: '#bbb' }}> | </span>
+          <span className={styles.banSpan}> | </span>
           {
             (this.state.banned) ?
-              <span style={{ color: '#bbb', cursor: 'default' }}>Banned</span> :
+              <span className={styles.banSpan}>Banned</span> :
               <span onClick={this.ban}><MdBlock /><span>Ban for an hour</span></span>
           }
           {this.state.banned}

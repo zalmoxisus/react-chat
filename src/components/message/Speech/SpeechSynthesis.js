@@ -41,7 +41,7 @@ export default class SpeechSynthesis extends Component {
         const modalContent = (
           <div className={styles.modal}>
             <div className={styles.titleModal}>Read it as</div>
-            <div style={{ display: 'flex' }}>
+            <div className={styles.flexBox}>
               <SpeechSelect
                 value={this.voiceName}
                 onChange={this.speakFromModal}

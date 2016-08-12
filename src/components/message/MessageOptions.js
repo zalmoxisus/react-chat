@@ -30,7 +30,7 @@ export default class MessageOptions extends Component {
       const modalContent = (
         <div className={styles.modal}>
           <div className={styles.titleModal}>Translate it to</div>
-          <div style={{ display: 'flex' }}>
+          <div className={styles.flexBox}>
             <LangSelect
               msg={message.msg}
               onChange={this.selectLang}

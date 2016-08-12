@@ -14,13 +14,13 @@ export default class MessageFooter extends Component {
           !isMine(message.sender) &&
           <div>
             <div className={styles.msgName} onClick={replay}>
-              <span style={{ float: 'left' }}>{message.name}</span>
+              <span className={styles.leftSpan}>{message.name}</span>
               <MdAccessTime className={styles.timeIcon} />
               <MdReply className={styles.replyIcon} />
             </div>
           </div>
         }
-        <div style={{ float: 'left' }}>{getTimeStamp(message.time)} </div>
+        <div className={styles.leftSpan}>{getTimeStamp(message.time)} </div>
       </div>
     );
   }

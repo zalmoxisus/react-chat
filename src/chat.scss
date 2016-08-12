@@ -605,6 +605,17 @@
   font-size: 18px;
   padding: 20px 5px 20px 5px;
 }
+.flexBox{
+  display: flex;
+  white-space: nowrap;
+}
+.leftSpan{
+  float: left;
+}
+.banSpan{
+  color: #bbb;
+  cursor: default;
+}
 @media (max-width: 610px) {
   .msg {
     max-width: 80%;
