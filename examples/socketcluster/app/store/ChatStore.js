@@ -1,42 +1,43 @@
+import { ChatStore as Store } from 'react-chat';
+import socketCluster from 'socketcluster-client';
 import { observable, action } from 'mobx';
 
-export default class ChatStore {
-  @observable me = {
-    id: '2',
-    name: 'Leo',
-    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg'
-  };
-  @observable messages = [];
-  @observable lang = 'en';
-  @observable nativeLng = 'en';
-  @observable withPhoto = true;
-  @observable toolTipPosition = 'right';
-  @observable menuShow = false;
-  @observable emoticonShow = false;
-  @observable voicesArr = [];
+class ChatStore extends Store {
+  @observable socket;
 
-  @action send = (msg, success) => {
+  @action initialize() {
+    this.socket = socketCluster.connect();
+
+    this.socket.on('error', (err) => {
+      console.error('Socket error - ' + err);
+    });
+    this.socket.on('connect', () => {
+      console.log('Connected to server');
+    });
+
+    const channel = this.socket.subscribe('some-chat-room');
+    channel.on('subscribeFail', (err) => {
+      console.log('Failed to subscribe to muc channel due to error: ' + err);
+    });
+    channel.watch(message => {
+      super.addMessage(message);
+    });
+  }
+
+  send(msg, me, success) {
+
     const message = {
       id: (Date.now() / 1000 | 0),
-      name: this.me.name,
-      avatar: this.me.avatar,
+      name: me.name,
+      avatar: me.avatar,
       msg: msg.txt,
       time: Date.now() / 1000 | 0,
       sender: '1'
     };
 
-    this.messages.push(message);
+    this.socket.emit('some-chat-room', message);
     success();
-  };
-  @action translate = (txt, to, cb) => {
-    // Add here your translation method
-    cb(txt);
-  };
-  @action menu = (val) => {
-    this.menuShow = val;
-  };
-  @action emoticon = (val) => {
-    this.emoticonShow = val;
-  };
+  }
 }
 
+export default ChatStore;
