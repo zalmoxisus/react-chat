@@ -7,7 +7,7 @@ import MessageMenu from './inputMenus/MessageMenu';
 import emojify from '../utils/emojify';
 import EmojiCategories from './inputMenus/EmojiCategories';
 
-@inject('chatStore', 'appStore') @observer
+@observer(['chatStore', 'appStore'])
 export default class ChatInput extends Component {
   mapRefTextarea = (node) => {
     this.usermsg = node;

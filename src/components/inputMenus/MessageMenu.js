@@ -4,11 +4,11 @@ import MdMessage from 'react-icons/lib/md/message';
 import MdOndemandVideo from 'react-icons/lib/md/ondemand-video';
 import MdImage from 'react-icons/lib/md/image';
 import MdClose from 'react-icons/lib/md/close';
-import { observer, inject } from 'mobx-react';
+import { observer } from 'mobx-react';
 import styles from '../../chat.scss';
 import convertMedia from '../../utils/convertMedia';
 
-@inject('chatStore', 'appStore') @observer
+@observer(['chatStore', 'appStore'])
 export default class MessageMenu extends Component {
   constructor(props) {
     super(props);

@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import { observer, inject } from 'mobx-react';
+import { observer } from 'mobx-react';
 import styles from '../../chat.scss';
 import Avatar from '../Avatar';
 import MessageOptions from './MessageOptions';
 import Ban from './Ban';
 import MessageContent from './MessageContent';
 
-@inject('chatStore', 'contactStore', 'appStore', 'UserMenu') @observer
+@observer(['chatStore', 'appStore', 'contactStore', 'UserMenu'])
 export default class Message extends Component {
   constructor(props) {
     super(props);

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { observer, inject } from 'mobx-react';
+import { observer } from 'mobx-react';
 import MdTranslate from 'react-icons/lib/md/translate';
 import MdClose from 'react-icons/lib/md/close';
 import styles from '../../chat.scss';
@@ -7,7 +7,7 @@ import LangSelect from './LangSelect';
 import SpeechSynthesis from './Speech/SpeechSynthesis';
 import convertMedia from '../../utils/convertMedia';
 
-@inject('appStore', 'chatStore', 'chatStore') @observer
+@observer(['chatStore', 'appStore'])
 export default class MessageOptions extends Component {
   constructor(props) {
     super(props);

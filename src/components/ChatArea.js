@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { observer, inject } from 'mobx-react';
+import { observer } from 'mobx-react';
 import styles from '../chat.scss';
 import Message from './message/Message';
 
-@inject('appStore', 'chatStore') @observer
+@observer(['chatStore', 'appStore'])
 export default class ChatArea extends Component {
   componentDidMount() {
     setTimeout(this.updateScrollTop, 500);
