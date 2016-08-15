@@ -8,7 +8,7 @@ import { observer } from 'mobx-react';
 import styles from '../../chat.scss';
 import convertMedia from '../../utils/convertMedia';
 
-@observer(['chatStore', 'appStore'])
+@observer
 export default class MessageMenu extends Component {
   constructor(props) {
     super(props);

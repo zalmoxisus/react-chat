@@ -30,21 +30,23 @@ export default class ChatInput extends Component {
   };
 
   toggleUmenu = (e) => {
+    const { chatStore } = this.props;
     if ((e.target.parentNode.className === styles.btnContainer) ||
       ((e.target.tagName === 'INPUT'))) {
-      this.props.chatStore.menu(false);
+      chatStore.menu(false);
       return;
     }
-    this.props.chatStore.menu(!this.props.chatStore.menuShow);
-    if (!this.props.chatStore.menuShow) {
+    chatStore.menu(!chatStore.menuShow);
+    if (!chatStore.menuShow) {
       this.toggleMenu(e, 1);
     }
   };
   toggleEmoticons = (e) => {
+    const { chatStore } = this.props;
     if ((e.target.parentNode.className !== styles.categoryBtns) &&
       (e.target.parentNode.className !== styles.categoryBtn)) {
-      this.props.chatStore.emoticon(!this.props.chatStore.emoticonShow);
-      if (this.props.chatStore.emoticonShow) {
+      chatStore.emoticon(!chatStore.emoticonShow);
+      if (chatStore.emoticonShow) {
         this.toggleMenu(e, 2);
       }
     }
@@ -78,12 +80,15 @@ export default class ChatInput extends Component {
   };
 
   render() {
+    const { chatStore, appStore } = this.props;
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.toggleUmenu}>
           <MdKeyboardArrowUp
-            className={(this.props.chatStore.menuShow) ? styles.arrowUp : styles.arrowUpRotate}
+            className={(chatStore.menuShow) ? styles.arrowUp : styles.arrowUpRotate}
           />
           <MessageMenu
+            chatStore={chatStore}
+            appStore={appStore}
             addTranslation={this.addTranslation}
           />
         </div>
@@ -94,13 +99,13 @@ export default class ChatInput extends Component {
         />
         <div className={styles.emoticonsContainer} onClick={this.toggleEmoticons}>
           <div
-            className={(!this.props.chatStore.emoticonShow) ?
+            className={(!chatStore.emoticonShow) ?
              styles.emoticonsBtn : styles.emoticonsRotate}
             onMouseOver={this.btnHovered}
           >
             {emojify(' :) ')}
           </div>
-          <EmojiCategories addEmoticon={this.addStr} />
+          <EmojiCategories addEmoticon={this.addStr} chatStore={chatStore} />
         </div>
       </div>
     );

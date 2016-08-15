@@ -61,8 +61,7 @@ export default class Message extends Component {
     });
   };
   render() {
-    const {
-      message, isMine, replay, UserMenu, chatStore } = this.props;
+    const { message, isMine, replay, UserMenu, chatStore, appStore } = this.props;
     return (
       <div className={styles.msgBox}>
         {
@@ -101,6 +100,8 @@ export default class Message extends Component {
                 isMine={isMine}
                 insertTranslation={this.insertTranslation}
                 deleteMsg={this.deleteMsg}
+                chatStore={chatStore}
+                appStore={appStore}
               /> : null
           }
           {
@@ -110,6 +111,8 @@ export default class Message extends Component {
                 isMine={isMine}
                 onRestore={this.restoreMsg}
                 deleted={this.state.deleted}
+                chatStore={chatStore}
+                appStore={appStore}
               /> : null
           }
         </div>

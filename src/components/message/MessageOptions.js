@@ -7,7 +7,7 @@ import LangSelect from './LangSelect';
 import SpeechSynthesis from './Speech/SpeechSynthesis';
 import convertMedia from '../../utils/convertMedia';
 
-@observer(['chatStore', 'appStore'])
+@observer
 export default class MessageOptions extends Component {
   constructor(props) {
     super(props);
@@ -47,7 +47,7 @@ export default class MessageOptions extends Component {
     }
   };
   render() {
-    const { chatStore, message, isMine, deleteMsg } = this.props;
+    const { chatStore, appStore, message, isMine, deleteMsg } = this.props;
     return (
       <div className={styles.msgOptions}>
         {
@@ -68,6 +68,8 @@ export default class MessageOptions extends Component {
           window.SpeechSynthesisUtterance &&
           this.props.chatStore.voices.length > 0) ?
             <SpeechSynthesis
+              chatStore={chatStore}
+              appStore={appStore}
               message={message}
               isMine={isMine(message.sender)}
             /> : null

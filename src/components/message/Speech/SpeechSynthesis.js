@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 import MdClose from 'react-icons/lib/md/close';
 import MdPlayArrow from 'react-icons/lib/md/play-arrow';
 import MdStop from 'react-icons/lib/md/stop';
 import styles from '../../../chat.scss';
 import SpeechSelect from './SpeechSelect';
 
-@observer(['chatStore', 'appStore'])
+@observer
 export default class SpeechSynthesis extends Component {
   componentDidMount() {
     this.voiceName = this.props.chatStore.voices[0].name;

@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import shortnames from 'emoji-shortnames';
-import { inject } from 'mobx-react';
 import styles from '../../chat.scss';
 import emojify from '../../utils/emojify';
 
-@inject('chatStore')
 export default class EmojiCategories extends Component {
   constructor(props) {
     super(props);
@@ -50,7 +48,7 @@ export default class EmojiCategories extends Component {
 }
 
 EmojiCategories.propTypes = {
-  chatStore: PropTypes.func,
+  chatStore: PropTypes.object,
   text: PropTypes.string,
   addEmoticon: PropTypes.func
 };
