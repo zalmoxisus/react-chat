@@ -1,6 +1,7 @@
 import { observable, action } from 'mobx';
+import remotedev from 'mobx-remotedev';
 
-export default class ContactStore {
+class ContactStore {
   @observable contactList;
 
   @action deleteContact(contact, success) {
@@ -30,3 +31,4 @@ export default class ContactStore {
   }
 }
 
+export default remotedev(ContactStore);

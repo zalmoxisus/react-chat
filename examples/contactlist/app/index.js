@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { useStrict } from 'mobx';
 import { Provider, observer } from 'mobx-react';
+import DevTools from 'mobx-react-devtools';
 import './style.scss';
 import ContactList from './ContactList';
 import ModalDialog from './ModalDialog';
@@ -22,6 +23,7 @@ class Container extends Component {
   render() {
     return (
       <div>
+        <DevTools />
         <ModalDialog
           content={appStore.modal}
           onClose={appStore.closeModal}
