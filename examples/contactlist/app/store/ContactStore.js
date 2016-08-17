@@ -3,6 +3,7 @@ import remotedev from 'mobx-remotedev';
 
 class ContactStore {
   @observable contactList;
+  @observable toolTipPosition = 'right';
 
   @action deleteContact(contact, success) {
     this.contactList.remove(contact);

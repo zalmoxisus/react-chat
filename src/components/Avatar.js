@@ -17,7 +17,7 @@ const colors = [
   '#c0392b' // pomegranate
 ];
 
-@inject('chatStore')
+@inject('contactStore')
 export default class Avatar extends Component {
   constructor(props) {
     super(props);
@@ -38,7 +38,7 @@ export default class Avatar extends Component {
     const {
       src,
       name,
-      chatStore,
+      contactStore,
       borderRadius = '20%',
       color,
       size = 40,
@@ -92,10 +92,10 @@ export default class Avatar extends Component {
       >
         {inner}
         {
-          chatStore.toolTipPosition &&
+          contactStore.toolTipPosition &&
           <ToolTip
             active={this.state.showTooltip}
-            position={chatStore.toolTipPosition}
+            position={contactStore.toolTipPosition}
             arrow={ (this.state.mouseTop) ? 'top' : 'bottom' }
             parent={'#a' + this.props.id}
           >
@@ -114,7 +114,7 @@ export default class Avatar extends Component {
 }
 
 Avatar.propTypes = {
-  chatStore: PropTypes.object,
+  contactStore: PropTypes.object,
   id: PropTypes.number,
   src: PropTypes.string,
   name: PropTypes.string.isRequired,

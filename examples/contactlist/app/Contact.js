@@ -4,7 +4,7 @@ import Avatar from 'react-chat/components/Avatar';
 import styles from './contactlist.scss';
 import UserMenu from './UserMenu';
 
-@inject('contactStore', 'appStore', 'chatStore')
+@inject('contactStore', 'appStore')
 export default class Contact extends Component {
   render() {
     const { contactStore, appStore, chatStore, contactItem } = this.props;
@@ -14,7 +14,7 @@ export default class Contact extends Component {
           id={contactItem.id}
           src={contactItem.avatar}
           name={contactItem.name}
-          toolTipPosition={chatStore.toolTipPosition}
+          toolTipPosition={contactStore.toolTipPosition}
           borderRadius={0}
         >
           <UserMenu
@@ -31,6 +31,5 @@ export default class Contact extends Component {
 Contact.propTypes = {
   contactStore: PropTypes.object,
   appStore: PropTypes.object,
-  chatStore: PropTypes.object,
   contactItem: PropTypes.object
 };
