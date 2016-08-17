@@ -12,7 +12,7 @@ import AppStore from './store/AppStore';
 
 useStrict(true);
 
-const contactStore = ContactStore.fromJS(testContacts || []);
+const contactStore = new ContactStore({ contactList: testContacts });
 const appStore = new AppStore();
 
 @observer

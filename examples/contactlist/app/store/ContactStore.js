@@ -2,8 +2,16 @@ import { observable, action } from 'mobx';
 import remotedev from 'mobx-remotedev';
 
 class ContactStore {
-  @observable contactList;
+  @observable contactList = [];
   @observable toolTipPosition = 'right';
+
+  constructor(state) {
+    if (state) this.importState(state);
+  }
+
+  @action importState(state) {
+    Object.assign(this, state);
+  }
 
   @action deleteContact(contact, success) {
     this.contactList.remove(contact);
