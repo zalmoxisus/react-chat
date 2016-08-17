@@ -12,8 +12,13 @@ import ModalDialog from './ModalDialog';
 import translateLanguages from './translateLanguages';
 
 useStrict(true);
+const randomId = Math.floor((Math.random() * 100)).toString();
 
-const appStore = new AppStore();
+const appStore = new AppStore({
+  me: { id: randomId,
+    name: `User ${randomId}`,
+    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg' }
+});
 const chatStore = new ChatStore({ translateLanguages });
 const contactStore = new ContactStore();
 
@@ -21,7 +26,7 @@ const contactStore = new ContactStore();
 class Container extends Component {
 
   componentDidMount() {
-    chatStore.initialize();
+    chatStore.connect();
   }
 
   render() {

@@ -14,7 +14,11 @@ import translateLanguages from './translateLanguages';
 
 useStrict(true);
 
-const appStore = new AppStore();
+const appStore = new AppStore({
+  me: { id: '2',
+    name: 'Leo',
+    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg' }
+});
 const chatStore = new ChatStore({ translateLanguages });
 const contactStore = new ContactStore();
 

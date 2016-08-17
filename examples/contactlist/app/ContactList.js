@@ -3,10 +3,10 @@ import { inject } from 'mobx-react';
 import styles from './contactlist.scss';
 import Contact from './Contact';
 
-@inject('contactStore')
+@inject('contactStore', 'appStore')
 export default class ContactList extends Component {
   render() {
-    const { contactStore } = this.props;
+    const { contactStore, appStore } = this.props;
     return (
       <div className={styles.contactlist}>
         <ul>
@@ -14,6 +14,8 @@ export default class ContactList extends Component {
             contactStore.contactList.map(contact =>
               <Contact key={contact.id}
                 contactItem={contact}
+                contactStore={contactStore}
+                appStore={appStore}
               />
             )
           }

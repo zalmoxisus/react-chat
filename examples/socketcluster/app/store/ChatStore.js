@@ -5,7 +5,7 @@ import { observable, action } from 'mobx';
 class ChatStore extends Store {
   @observable socket;
 
-  @action initialize() {
+  @action connect() {
     this.socket = socketCluster.connect();
 
     this.socket.on('error', (err) => {
