@@ -24,7 +24,7 @@ export default class ChatArea extends Component {
   };
 
   render() {
-    const { chatStore, replay } = this.props;
+    const { chatStore } = this.props;
     return (
       <div id="container" className={styles.container}>
         {
@@ -32,7 +32,6 @@ export default class ChatArea extends Component {
           chatStore.messages.map(message =>
               <Message key={message.id}
                 message={message}
-                replay={replay}
                 isMine={this.isMine}
               />
           )
@@ -44,6 +43,5 @@ export default class ChatArea extends Component {
 
 ChatArea.propTypes = {
   appStore: PropTypes.object,
-  chatStore: PropTypes.object,
-  replay: PropTypes.func
+  chatStore: PropTypes.object
 };

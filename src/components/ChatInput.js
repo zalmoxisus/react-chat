@@ -62,21 +62,16 @@ export default class ChatInput extends Component {
     const me = this.props.appStore.me;
     this.props.chatStore.send({ txt }, me, () => {
       input.value = '';
+      this.props.chatStore.changeInpValue('');
     });
-  };
-
-  addTranslation = (e) => {
-    this.addStr(e);
-    this.props.chatStore.menu(false);
-  };
-  addStr = (e) => {
-    let node = this.usermsg;
-    node.value = node.value + e + ' ';
-    node.focus();
   };
 
   btnHovered = (e) => {
     e.currentTarget.children[0].removeAttribute('title');
+  };
+
+  changeValue = (e) => {
+    this.props.chatStore.changeInpValue(e.target.value);
   };
 
   render() {
@@ -89,13 +84,14 @@ export default class ChatInput extends Component {
           <MessageMenu
             chatStore={chatStore}
             appStore={appStore}
-            addTranslation={this.addTranslation}
           />
         </div>
         <TextareaAutosize autoFocus
           ref={this.mapRefTextarea}
           className={styles.usermsg}
           onKeyPress={this.sendMsg}
+          value={chatStore.inputValue}
+          onChange={this.changeValue}
         />
         <div className={styles.emoticonsContainer} onClick={this.toggleEmoticons}>
           <div
@@ -105,7 +101,7 @@ export default class ChatInput extends Component {
           >
             {emojify(' :) ')}
           </div>
-          <EmojiCategories addEmoticon={this.addStr} chatStore={chatStore} />
+          <EmojiCategories chatStore={chatStore} />
         </div>
       </div>
     );

@@ -8,6 +8,7 @@ export default class ChatStore {
   @observable translateLanguages = [];
   @observable menuShow = false;
   @observable emoticonShow = false;
+  @observable inputValue = '';
 
   constructor(state) {
     if (state) this.importState(state);
@@ -50,6 +51,10 @@ export default class ChatStore {
   @action emoticon(val) {
     this.emoticonShow = val;
   }
+
+  @action changeInpValue = (val) => {
+    this.inputValue = val;
+  };
 
   @computed get voices() {
     if (!window.speechSynthesis) return [];

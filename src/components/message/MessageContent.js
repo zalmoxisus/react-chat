@@ -17,7 +17,7 @@ export default class MessageContent extends Component {
     return false;
   };
   render() {
-    const { message, isMine, replay, trLangs, deleteBox } = this.props;
+    const { message, isMine, trLangs, deleteBox } = this.props;
     return (
       <div className={styles.msgContent}>
         <div
@@ -33,7 +33,6 @@ export default class MessageContent extends Component {
         <MessageFooter
           message={message}
           isMine={isMine}
-          replay={replay}
         />
       </div>
     );
@@ -43,7 +42,6 @@ export default class MessageContent extends Component {
 MessageContent.propTypes = {
   message: PropTypes.object,
   isMine: PropTypes.func,
-  replay: PropTypes.func,
   trLangs: PropTypes.array,
   deleteBox: PropTypes.func,
   deleted: PropTypes.bool

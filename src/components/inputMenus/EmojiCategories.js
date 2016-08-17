@@ -28,7 +28,9 @@ export default class EmojiCategories extends Component {
   };
   addEmoticon = (e) => {
     if (e.target.nodeName === 'SPAN') {
-      this.props.addEmoticon(e.target.title);
+      const { chatStore } = this.props;
+      chatStore.changeInpValue(chatStore.inputValue + e.target.title);
+      this.props.chatStore.menu(false);
     }
   };
   render() {
@@ -49,8 +51,7 @@ export default class EmojiCategories extends Component {
 
 EmojiCategories.propTypes = {
   chatStore: PropTypes.object,
-  text: PropTypes.string,
-  addEmoticon: PropTypes.func
+  text: PropTypes.string
 };
 EmojiCategories.defaultProps = {
   text: shortnames['people'].join('')

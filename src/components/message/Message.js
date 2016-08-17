@@ -61,7 +61,7 @@ export default class Message extends Component {
     });
   };
   render() {
-    const { message, isMine, replay, UserMenu, chatStore, appStore } = this.props;
+    const { message, isMine, UserMenu, chatStore, appStore } = this.props;
     return (
       <div className={styles.msgBox}>
         {
@@ -87,7 +87,6 @@ export default class Message extends Component {
               <MessageContent
                 message={message}
                 isMine={isMine}
-                replay={replay}
                 trLangs={this.state.trLangs}
                 deleteBox={this.deleteBox}
                 deleted={this.state.deleted}
@@ -127,6 +126,5 @@ Message.propTypes = {
   appStore: PropTypes.object,
   message: PropTypes.object,
   isMine: PropTypes.func,
-  replay: PropTypes.func,
   UserMenu: PropTypes.node
 };

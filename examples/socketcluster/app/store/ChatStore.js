@@ -5,6 +5,15 @@ import { observable, action } from 'mobx';
 class ChatStore extends Store {
   @observable socket;
 
+  constructor(state) {
+    super();
+    if (state) this.importState(state);
+  }
+
+  @action importState(state) {
+    Object.assign(this, state);
+  }
+
   @action connect() {
     this.socket = socketCluster.connect();
 

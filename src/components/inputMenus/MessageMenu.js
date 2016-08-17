@@ -51,12 +51,14 @@ export default class MessageMenu extends Component {
   };
 
   insertTranslation = (e) => {
+    const { chatStore } = this.props;
     if (e.nativeEvent.keyCode === 13) {
       this.props.chatStore.translate(
         e.target.value,
-        this.props.chatStore.lang,
+        chatStore.lang,
         txt => {
-          this.props.addTranslation(txt);
+          chatStore.changeInpValue(chatStore.inputValue + txt);
+          chatStore.menu(false);
           this.handleClose();
         }
       );
@@ -66,13 +68,14 @@ export default class MessageMenu extends Component {
   };
 
   handleSpeech = (e) => {
+    const { chatStore } = this.props;
     this.setState({ micShow: true });
     const SpeechRecognition = this.SpeechRecognition;
     if (SpeechRecognition) {
       this.recognition = new SpeechRecognition();
       this.recognition.continuous = true;
       this.recognition.interimResults = true;
-      this.recognition.lang = this.props.chatStore.lang;
+      this.recognition.lang = chatStore.lang;
       this.recognition.start();
       this.recognition.onresult = (event) => {
         let interimTranscript = '';
@@ -84,7 +87,9 @@ export default class MessageMenu extends Component {
             interimTranscript += event.results[i][0].transcript;
           }
         }
-        if (finalTranscript !== '') this.props.addTranslation(finalTranscript);
+        if (finalTranscript !== '') {
+          chatStore.changeInpValue(chatStore.inputValue + finalTranscript);
+        }
       };
       this.recognition.onerror = () => {
         this.hideIndicator(e);
@@ -176,7 +181,6 @@ export default class MessageMenu extends Component {
 }
 MessageMenu.propTypes = {
   chatStore: PropTypes.object,
-  appStore: PropTypes.object,
-  addTranslation: PropTypes.func
+  appStore: PropTypes.object
 };
 
