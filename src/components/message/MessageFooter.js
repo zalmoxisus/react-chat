@@ -10,7 +10,7 @@ export default class MessageFooter extends Component {
 
   reply = () => {
     const { chatStore } = this.props;
-    chatStore.changeInpValue(chatStore.inputValue + this.props.message.name + ', ');
+    chatStore.changeInpValue(this.props.message.name + ', ' + chatStore.inputValue);
   };
 
   render() {

@@ -1,18 +1,14 @@
 import React, { Component, PropTypes } from 'react';
-import { observer, inject } from 'mobx-react';
-import TextareaAutosize from 'react-textarea-autosize';
+import { observer } from 'mobx-react';
 import MdKeyboardArrowUp from 'react-icons/lib/md/keyboard-arrow-up';
 import styles from '../chat.scss';
-import MessageMenu from './inputMenus/MessageMenu';
+import MessageMenu from './input/MessageMenu';
 import emojify from '../utils/emojify';
-import EmojiCategories from './inputMenus/EmojiCategories';
+import EmojiCategories from './input/EmojiCategories';
+import TextArea from './input/TextArea';
 
 @observer(['chatStore', 'appStore'])
 export default class ChatInput extends Component {
-  mapRefTextarea = (node) => {
-    this.usermsg = node;
-  };
-
   toggleMenu = (e, menu) => {
     let menuTimer = 0;
     e.currentTarget.addEventListener('mouseleave', () => {
@@ -52,26 +48,8 @@ export default class ChatInput extends Component {
     }
   };
 
-  sendMsg = (e) => {
-    if (e.nativeEvent.keyCode !== 13 || e.shiftKey) return;
-    e.preventDefault();
-    const input = e.target;
-    let txt = input.value;
-    txt = txt.trim();
-    if (txt === '') return;
-    const me = this.props.appStore.me;
-    this.props.chatStore.send({ txt }, me, () => {
-      input.value = '';
-      this.props.chatStore.changeInpValue('');
-    });
-  };
-
   btnHovered = (e) => {
     e.currentTarget.children[0].removeAttribute('title');
-  };
-
-  changeValue = (e) => {
-    this.props.chatStore.changeInpValue(e.target.value);
   };
 
   render() {
@@ -86,12 +64,9 @@ export default class ChatInput extends Component {
             appStore={appStore}
           />
         </div>
-        <TextareaAutosize autoFocus
-          ref={this.mapRefTextarea}
-          className={styles.usermsg}
-          onKeyPress={this.sendMsg}
-          value={chatStore.inputValue}
-          onChange={this.changeValue}
+        <TextArea
+          chatStore={chatStore}
+          appStore={appStore}
         />
         <div className={styles.emoticonsContainer} onClick={this.toggleEmoticons}>
           <div
