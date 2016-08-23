@@ -5,9 +5,10 @@ import styles from '../../chat.scss';
 export default class TextArea extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.inputValue !== this.props.inputValue) {
-      if (document.activeElement !== this.usermsg) {
+      if (!this.fromInput) {
         this.usermsg.focus();
       }
+      this.fromInput = false;
     }
   }
   mapRef = (node) => {
@@ -15,6 +16,7 @@ export default class TextArea extends Component {
   };
   changeValue = (e) => {
     this.props.changeInpValue(e.target.value);
+    this.fromInput = true;
   };
 
   render() {
