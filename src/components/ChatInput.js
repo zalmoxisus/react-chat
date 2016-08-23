@@ -76,7 +76,11 @@ export default class ChatInput extends Component {
           >
             {emojify(' :) ')}
           </div>
-          <EmojiCategories chatStore={chatStore} />
+          <EmojiCategories
+            changeInpValue={chatStore.changeInpValue}
+            inputValue={chatStore.inputValue}
+            emoticonShow={chatStore.emoticonShow}
+          />
         </div>
       </div>
     );
