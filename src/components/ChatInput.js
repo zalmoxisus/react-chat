@@ -61,7 +61,7 @@ export default class ChatInput extends Component {
           />
           <MessageMenu
             chatStore={chatStore}
-            appStore={appStore}
+            me={appStore.me}
           />
         </div>
         <Input

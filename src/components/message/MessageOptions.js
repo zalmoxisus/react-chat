@@ -27,6 +27,7 @@ export default class MessageOptions extends Component {
   translate = () => {
     const message = this.props.message;
     if (this.lastTranslate === message.id || !this.nativeLng) {
+      const chatStore = this.props.chatStore;
       const modalContent = (
         <div className={styles.modal}>
           <div className={styles.titleModal}>Translate it to</div>
@@ -34,7 +35,8 @@ export default class MessageOptions extends Component {
             <LangSelect
               msg={message.msg}
               onChange={this.selectLang}
-              chatStore={this.props.chatStore}
+              lang={chatStore.lang}
+              translateLanguages={chatStore.translateLanguages}
             />
             <MdClose className={styles.btn} onClick={this.props.appStore.closeModal} />
           </div>

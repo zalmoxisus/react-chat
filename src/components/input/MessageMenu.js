@@ -41,7 +41,7 @@ export default class MessageMenu extends Component {
     if (e.nativeEvent.keyCode === 13) {
       const txt = e.target.value;
       if ((txt === '') || (txt === ' ')) return;
-      const me = this.props.appStore.me;
+      const me = this.props.me;
       this.props.chatStore.send({ txt }, me, () => {
         this.handleClose(e);
       });
@@ -181,6 +181,6 @@ export default class MessageMenu extends Component {
 }
 MessageMenu.propTypes = {
   chatStore: PropTypes.object,
-  appStore: PropTypes.object
+  me: PropTypes.object
 };
 

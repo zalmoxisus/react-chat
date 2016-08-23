@@ -5,8 +5,8 @@ import styles from '../../chat.scss';
 export default class LangSelect extends Component {
   constructor(props) {
     super(props);
-    this.state = { value: this.props.chatStore.lang };
-    this.options = this.props.chatStore.translateLanguages
+    this.state = { value: this.props.lang };
+    this.options = this.props.translateLanguages
       .map(lang => (
         <option key={lang.l} value={lang.c}>{lang.l}</option>
       ));
@@ -33,7 +33,8 @@ export default class LangSelect extends Component {
 }
 
 LangSelect.propTypes = {
-  chatStore: PropTypes.object,
+  lang: PropTypes.string,
+  translateLanguages: PropTypes.object,
   msg: PropTypes.string,
   onChange: PropTypes.func.isRequired
 };
