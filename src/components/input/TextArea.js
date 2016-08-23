@@ -16,26 +16,13 @@ export default class TextArea extends Component {
   changeValue = (e) => {
     this.props.changeInpValue(e.target.value);
   };
-  sendMsg = (e) => {
-    const { me, sendMsg, changeInpValue } = this.props;
-    if (e.nativeEvent.keyCode !== 13 || e.shiftKey) return;
-    e.preventDefault();
-    const input = e.target;
-    let txt = input.value;
-    txt = txt.trim();
-    if (txt === '') return;
-    sendMsg.send({ txt }, me, () => {
-      input.value = '';
-      changeInpValue('');
-    });
-  };
 
   render() {
-    const { inputValue } = this.props;
+    const { inputValue, sendMsg } = this.props;
     return (<TextareaAutosize autoFocus
       ref={this.mapRef}
       className={styles.usermsg}
-      onKeyPress={this.sendMsg}
+      onKeyPress={sendMsg}
       value={inputValue}
       onChange={this.changeValue}
     />
@@ -44,7 +31,6 @@ export default class TextArea extends Component {
 }
 
 TextArea.propTypes = {
-  me: PropTypes.string,
   changeInpValue: PropTypes.func,
   sendMsg: PropTypes.func,
   inputValue: PropTypes.string

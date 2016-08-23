@@ -5,7 +5,7 @@ import styles from '../chat.scss';
 import MessageMenu from './input/MessageMenu';
 import emojify from '../utils/emojify';
 import EmojiCategories from './input/EmojiCategories';
-import ChatInput from './input/Input';
+import Input from './input/Input';
 
 @observer(['chatStore', 'appStore'])
 export default class ChatInput extends Component {
@@ -64,7 +64,7 @@ export default class ChatInput extends Component {
             appStore={appStore}
           />
         </div>
-        <ChatInput
+        <Input
           chatStore={chatStore}
           appStore={appStore}
         />
