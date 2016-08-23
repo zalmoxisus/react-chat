@@ -9,7 +9,7 @@ import SpeechSelect from './SpeechSelect';
 @observer
 export default class SpeechSynthesis extends Component {
   componentDidMount() {
-    this.voiceName = this.props.chatStore.voices[0].name;
+    this.voiceName = this.props.voices[0].name;
   }
 
   mapRef = (node) => {
@@ -19,7 +19,7 @@ export default class SpeechSynthesis extends Component {
     return msg.replace(/(<([^>]+)>)/ig, '').replace(/\+/g, '');
   }
   play = () => {
-    const { chatStore, message } = this.props;
+    const { voices, message } = this.props;
     let msg = message.msg;
     msg = new SpeechSynthesisUtterance(this.sanitize(msg));
     this.toggleIcons();
@@ -29,15 +29,14 @@ export default class SpeechSynthesis extends Component {
     msg.onerror = () => {
       this.toggleIcons();
     };
-    const voices = chatStore.voices;
     msg.voice = voices.filter(voice => voice.name === this.voiceName)[0];
     window.speechSynthesis.speak(msg);
   };
 
   speak = () => {
-    const { chatStore, appStore, message } = this.props;
+    const { appStore, voices, message } = this.props;
     if (this.playSpan.childNodes[1].style.visibility === 'hidden') {
-      if (this.lastSpoken === message.id && chatStore.voices.length > 1) {
+      if (this.lastSpoken === message.id && voices.length > 1) {
         const modalContent = (
           <div className={styles.modal}>
             <div className={styles.titleModal}>Read it as</div>
@@ -45,7 +44,7 @@ export default class SpeechSynthesis extends Component {
               <SpeechSelect
                 value={this.voiceName}
                 onChange={this.speakFromModal}
-                chatStore={chatStore}
+                voices={voices}
               />
               <MdClose className={styles.btn} onClick={appStore.closeModal} />
             </div>
@@ -60,7 +59,7 @@ export default class SpeechSynthesis extends Component {
       window.speechSynthesis.cancel();
     }
   };
-  speakFromModal = (value = this.props.chatStore.voices[0].name) => {
+  speakFromModal = (value = this.props.voices[0].name) => {
     this.voiceName = value;
     this.play();
     this.props.appStore.closeModal();
@@ -89,7 +88,7 @@ export default class SpeechSynthesis extends Component {
 
 SpeechSynthesis.propTypes = {
   appStore: PropTypes.object,
-  chatStore: PropTypes.object,
+  voices: PropTypes.array,
   message: PropTypes.object,
   isMine: PropTypes.bool
 };

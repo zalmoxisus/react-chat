@@ -68,7 +68,7 @@ export default class MessageOptions extends Component {
           window.SpeechSynthesisUtterance &&
           this.props.chatStore.voices.length > 0) ?
             <SpeechSynthesis
-              chatStore={chatStore}
+              voices={chatStore.voices}
               appStore={appStore}
               message={message}
               isMine={isMine(message.sender)}

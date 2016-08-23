@@ -6,7 +6,7 @@ export default class SpeechSelect extends Component {
   constructor(props) {
     super(props);
     this.state = { value: this.props.value };
-    this.options = this.props.chatStore.voices
+    this.options = this.props.voices
       .map(voice => (
         <option key={voice.name} value={voice.name}>{voice.name.replace('Google', '')}</option>
       ));
@@ -33,7 +33,7 @@ export default class SpeechSelect extends Component {
 }
 
 SpeechSelect.propTypes = {
-  chatStore: PropTypes.object,
+  voices: PropTypes.array,
   value: PropTypes.string,
   onChange: PropTypes.func.isRequired
 };
