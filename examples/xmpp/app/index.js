@@ -4,13 +4,18 @@ import Chat from 'react-chat';
 import { useStrict } from 'mobx';
 import { Provider, observer } from 'mobx-react';
 import style from './style.scss';
+import UserMenu from './UserMenu';
 import ChatStore from './store/ChatStore';
 import AppStore from './store/AppStore';
+import ContactStore from './store/ContactStore';
+import ModalDialog from './ModalDialog';
+import translateLanguages from './translateLanguages';
 
 useStrict(true);
 
-const chatStore = new ChatStore();
+const chatStore = new ChatStore({ translateLanguages });
 const appStore = new AppStore();
+const contactStore = new ContactStore();
 
 const hash = window.location.hash ? window.location.hash.substr(1) : '1';
 const data = {
@@ -25,13 +30,6 @@ let conn;
 
 @observer
 class Container extends Component {
-  static propTypes = {
-    messages: PropTypes.array,
-    me: PropTypes.object
-  };
-  static defaultProps = {
-    messages: []
-  };
 
   constructor(props) {
     super(props);
@@ -52,14 +50,6 @@ class Container extends Component {
     conn.addHandler(this.onMessage, null, 'iq', 'set', null, null);
     chatStore.setMe(data.name, data.name);
   }
-
-  state = {
-    messages: this.props.messages,
-
-    add(message) {
-      this.messages.push(message);
-    }
-  };
 
   onMessage = (stanza) => {
     console.log('received', stanza);
@@ -96,9 +86,17 @@ class Container extends Component {
 
   render() {
     return (
-      <Provider chatStore={chatStore} appStore={appStore}>
-        <Chat userId={this.props.me.id} me={this.props.me} messages={this.props.messages} onSend={this.handleSendMessage} />
-      </Provider>
+      <div>
+        <ModalDialog
+          content={appStore.modal}
+          onClose={appStore.closeModal}
+        />
+        <Provider
+          chatStore={chatStore} appStore={appStore}
+          contactStore={contactStore} UserMenu={UserMenu}>
+          <Chat />
+        </Provider>
+      </div>
     );
   }
 }

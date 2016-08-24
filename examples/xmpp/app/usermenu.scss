@@ -1,0 +1,30 @@
+.menuBtns{
+  color: #626161;
+  border-radius: 2px;
+  width: 125px;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+.menuBtns svg{
+  padding: 3px 4px 3px 4px;
+  border: 1px solid #eee;
+  font-size: 20px;
+}
+.menuBtns svg:hover{
+  cursor: pointer;
+  color: #7B7A7A;
+  border: 1px solid #fff;
+}
+.confirmBtns{
+  float: right;
+}
+.confirmBtns span{
+  margin-left: 10px;
+  font-size: 16px;
+  color: #41B1E0;
+  cursor: pointer;
+}
+.confirmText{
+  font-size: 14px;
+  margin-bottom: 15px;
+}
