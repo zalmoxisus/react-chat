@@ -4,13 +4,13 @@ import styles from '../chat.scss';
 export default function convertMedia(html, height, onlyvideo, autoplay, isAct, start) {
   let replacement;
   let htmlReplace;
-  let pattern1 = /(?:https?:\/\/)?(?:www\.)?(?:vimeo\.com)(?:[\w\-\_\/]*)?\/([0-9]+)/;
+  const pattern1 = /(?:https?:\/\/)?(?:www\.)?(?:vimeo\.com)(?:[\w\-\_\/]*)?\/([0-9]+)/;
   /*eslint-disable max-len,  no-irregular-whitespace */
-  let pattern2 = /(?:https?:\/\/)?(?:www\.)?youtu(?:be\.com\/watch\??[\w\-\_=&;]*?v=|\.be\/)([\w\-\_]*)?([\w\?‌​=&;#]*)?/;
+  const pattern2 = /(?:https?:\/\/)?(?:www\.)?youtu(?:be\.com\/watch\??[\w\-\_=&;]*?v=|\.be\/)([\w\-\_]*)?([\w\?‌​=&;#]*)?/;
   /*eslint-enable max-len,  no-irregular-whitespace */
-  let pattern3 = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/;
-  let pattern4 = /(?:https?:\/\/)?(?:www\.)?(?:prezi\.com)\/?([^/]+)\/?(.+)/;
-  let pattern5 = /(https?:\/\/.*\.(?:png|jpg))/;
+  const pattern3 = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?/;
+  const pattern4 = /(?:https?:\/\/)?(?:www\.)?(?:prezi\.com)\/?([^/]+)\/?(.+)/;
+  const pattern5 = /(https?:\/\/.*\.(?:png|jpg))/;
 
   if (pattern1.test(html)) {
     replacement = '<iframe width="100%" height="' + (height || 320) +

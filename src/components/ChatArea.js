@@ -16,7 +16,7 @@ export default class ChatArea extends Component {
   isMine = id => this.props.appStore.me.id === id;
 
   updateScrollTop = () => {
-    let node = document.getElementById('container');
+    const node = document.getElementById('container');
     if (!node) {
       return;
     }

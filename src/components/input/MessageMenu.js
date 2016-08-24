@@ -27,9 +27,9 @@ export default class MessageMenu extends Component {
   };
 
   changeVideoInp = (e) => {
-    let media = convertMedia(e.target.value, 150, true);
-    let videoContainer = this.videoInpContainer;
-    let mediaContainer = document.createElement('span');
+    const media = convertMedia(e.target.value, 150, true);
+    const videoContainer = this.videoInpContainer;
+    const mediaContainer = document.createElement('span');
 
     mediaContainer.innerHTML = media;
     if (videoContainer) {

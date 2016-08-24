@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { observer } from 'mobx-react';
 import Avatar from 'react-chat/components/Avatar';
 import styles from './contactlist.scss';
 import UserMenu from './UserMenu';

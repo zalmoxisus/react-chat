@@ -26,6 +26,7 @@ export default class ContactList extends Component {
 }
 
 ContactList.propTypes = {
+  appStore: PropTypes.object,
   contactStore: PropTypes.object
 };
 

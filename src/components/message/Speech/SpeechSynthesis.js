@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { observer, inject } from 'mobx-react';
+import { observer } from 'mobx-react';
 import MdClose from 'react-icons/lib/md/close';
 import MdPlayArrow from 'react-icons/lib/md/play-arrow';
 import MdStop from 'react-icons/lib/md/stop';
@@ -56,7 +56,8 @@ export default class SpeechSynthesis extends Component {
         this.play();
       }
     } else {
-      window.speechSynthesis.cancel();
+      if (!window.speechSynthesis.speaking) this.toggleIcons();
+      else window.speechSynthesis.cancel();
     }
   };
   speakFromModal = (value = this.props.voices[0].name) => {

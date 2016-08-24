@@ -14,10 +14,10 @@ export default class EmojiCategories extends Component {
     );
   }
   setActive = (node) => {
-    let children = (node.target.tagName === 'LI') ?
+    const children = (node.target.tagName === 'LI') ?
       node.target.parentNode.childNodes :
       node.target.parentNode.parentNode.childNodes;
-    let child = (node.target.tagName === 'LI') ? node.target : node.target.parentNode;
+    const child = (node.target.tagName === 'LI') ? node.target : node.target.parentNode;
     for (let i = 0; i < children.length; i++) {
       children[i].style.background = '#D2DCEA';
       if (child === children[i]) {
