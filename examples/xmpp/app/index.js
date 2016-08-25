@@ -13,10 +13,6 @@ import translateLanguages from './translateLanguages';
 
 useStrict(true);
 
-const chatStore = new ChatStore({ translateLanguages });
-const appStore = new AppStore();
-const contactStore = new ContactStore();
-
 const hash = window.location.hash ? window.location.hash.substr(1) : '1';
 const data = {
   bosh: 'https://xmpp.jix.im/http-bind',
@@ -25,64 +21,11 @@ const data = {
   password: 'react1react1react1',
   muc: 'reactchat@muc.jix.im'
 };
-const me = { id: data.name, name: data.name };
+
 let conn;
 
 @observer
 class Container extends Component {
-
-  constructor(props) {
-    super(props);
-
-    conn.send($pres({ from: data.jid, to: data.muc + '/' + data.name }));
-    /*
-     const iq = $iq({ to: data.muc, type: 'set' }).c("query", {
-     xmlns: Strophe.NS.MUC_OWNER
-     });
-     iq.c('x', { xmlns: "jabber:x:data", type: "submit" });
-     iq.c('field', { 'var': 'FORM_TYPE' }).c('value').t('http://jabber.org/protocol/muc#roomconfig').up().up();
-     iq.c('field', { 'var': 'muc#roomconfig_persistentroom' }).c('value').t(true).up().up();
-     conn.sendIQ(iq.tree(), function() {
-      console.log('success'); }, function(err) { console.log('error', err);
-     });
-     */
-    conn.addHandler(this.onMessage, null, 'message', null, null, null);
-    conn.addHandler(this.onMessage, null, 'iq', 'set', null, null);
-    chatStore.setMe(data.name, data.name);
-  }
-
-  onMessage = (stanza) => {
-    console.log('received', stanza);
-    const id = Strophe.getResourceFromJid(stanza.attributes.from.value);
-    const msg = stanza.querySelectorAll('body')[0].innerHTML;
-    const delay = stanza.querySelectorAll('delay')[0];
-    const time = (delay ?
-        (new Date(delay.attributes.stamp.value)).getTime() :
-        Date.now()) / 1000 | 0;
-    const message = {
-      id: id + time,
-      name: id,
-      msg,
-      time,
-      sender: id
-    };
-
-    this.state.add(message);
-    this.setState(this.state);
-    return true;
-  };
-
-  sendMessage = (message, to) => {
-    const reply = $msg({ to, type: 'groupchat' })
-      .cnode(Strophe.xmlElement('body', message)).up();
-    conn.send(reply);
-    console.log(`I sent to ${to}: ${message}`);
-  };
-
-  handleSendMessage = (msg, success) => {
-    this.sendMessage(msg.txt, data.muc);
-    success();
-  };
 
   render() {
     return (
@@ -102,7 +45,7 @@ class Container extends Component {
 }
 
 function init() {
-  ReactDOM.render(<Container me={me} />, document.getElementById('root'));
+  ReactDOM.render(<Container />, document.getElementById('root'));
 }
 
 conn = new Strophe.Connection(data.bosh);
@@ -115,3 +58,12 @@ conn.connect(data.jid, data.password, function (status) {
     console.log('disconnected');
   }
 });
+
+const chatStore = new ChatStore({ translateLanguages, conn, data });
+const appStore = new AppStore({
+  me: {
+    id: data.name,
+    name: data.name
+  }
+});
+const contactStore = new ContactStore();
