@@ -23,13 +23,19 @@ export default class Avatar extends Component {
     super(props);
     this.state = {
       showTooltip: false,
-      mouseTop: true
+      mouseTop: true,
+      mouseRight: false
     };
   }
   handleMouseEnter = (e) => {
     const mouseTop = e.pageY < (document.body.scrollHeight - 200);
+    let mouseRight = true;
+    if (this.props.size) {
+      mouseRight = ((document.body.offsetWidth - e.pageX) > (this.props.size + 10));
+    }
     setTimeout(() => { this.setState({ showTooltip: true }); }, 0);
     setTimeout(() => { this.setState({ mouseTop }); }, 0);
+    setTimeout(() => { this.setState({ mouseRight }); }, 0);
   };
   handleMouseLeave = () => {
     this.setState({ showTooltip: false });
@@ -95,7 +101,7 @@ export default class Avatar extends Component {
           contactStore.toolTipPosition &&
           <ToolTip
             active={this.state.showTooltip}
-            position={contactStore.toolTipPosition}
+            position={this.state.mouseRight ? contactStore.toolTipPosition : 'left'}
             arrow={ (this.state.mouseTop) ? 'top' : 'bottom' }
             parent={'#a' + this.props.id}
           >
