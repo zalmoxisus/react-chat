@@ -29,6 +29,10 @@ export default class ChatStore {
     this.messages = this.messages.concat(msgs);
   }
 
+  @action removeAllMessages() {
+    this.messages = [];
+  }
+
   @action translate(txt, to, cb) {
     // Add here your translation method
     cb(txt);
