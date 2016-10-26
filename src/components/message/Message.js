@@ -120,11 +120,11 @@ export default class Message extends Component {
   }
 }
 
-Message.propTypes = {
+Message.wrappedComponent.propTypes = {
   chatStore: PropTypes.object,
   contactStore: PropTypes.object,
   appStore: PropTypes.object,
   message: PropTypes.object,
   isMine: PropTypes.func,
-  UserMenu: PropTypes.node
+  UserMenu: PropTypes.func
 };

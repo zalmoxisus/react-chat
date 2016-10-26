@@ -119,7 +119,7 @@ export default class Avatar extends Component {
   }
 }
 
-Avatar.propTypes = {
+Avatar.wrappedComponent.propTypes = {
   contactStore: PropTypes.object,
   id: PropTypes.number,
   src: PropTypes.string,

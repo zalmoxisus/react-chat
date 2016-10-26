@@ -41,7 +41,7 @@ export default class ChatArea extends Component {
   }
 }
 
-ChatArea.propTypes = {
+ChatArea.wrappedComponent.propTypes = {
   appStore: PropTypes.object,
   chatStore: PropTypes.object
 };

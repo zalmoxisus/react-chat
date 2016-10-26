@@ -33,7 +33,7 @@ export default class MessageFooter extends Component {
   }
 }
 
-MessageFooter.propTypes = {
+MessageFooter.wrappedComponent.propTypes = {
   chatStore: PropTypes.object,
   message: PropTypes.object,
   isMine: PropTypes.func

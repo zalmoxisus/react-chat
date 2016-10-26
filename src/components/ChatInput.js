@@ -87,7 +87,7 @@ export default class ChatInput extends Component {
   }
 }
 
-ChatInput.propTypes = {
+ChatInput.wrappedComponent.propTypes = {
   appStore: PropTypes.object,
   chatStore: PropTypes.object
 };
