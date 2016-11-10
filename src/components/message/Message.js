@@ -61,7 +61,7 @@ export default class Message extends Component {
     });
   };
   render() {
-    const { message, isMine, UserMenu, chatStore, appStore } = this.props;
+    const { message, isMine, UserMenu, chatStore, appStore, contactStore } = this.props;
     return (
       <div className={styles.msgBox}>
         {
@@ -73,7 +73,12 @@ export default class Message extends Component {
             src={message.avatar}
             name={message.name}
           >
-            <UserMenu {...this.props} />
+            <UserMenu
+              appStore={appStore}
+              contactStore={contactStore}
+              name={message.name}
+              msgId={message.id}
+            />
           </Avatar>
         }
         <div className={isMine(message.sender) ? styles.arrowRight : styles.arrowLeft}>

@@ -10,7 +10,7 @@ export default class UserMenu extends Component {
     const modalContent = (
       <div>
         <div className={styles.confirmText}>
-          You are about to remove {this.props.message.name}.
+          You are about to remove {this.props.name}.
           <br />All related chats will be closed.
         </div>
         <div className={styles.confirmBtns}>
@@ -25,18 +25,18 @@ export default class UserMenu extends Component {
     this.props.appStore.closeModal();
   };
   handleConfirm = () => {
-    this.props.contactStore.deleteContact(this.props.message, () => {
+    this.props.contactStore.deleteContact(this.props.appStore.me.id, this.props.msgId, () => {
       this.props.appStore.closeModal();
     });
   };
   showInfo = () => {
-    this.props.contactStore.handleInfo(this.props.message);
+    this.props.contactStore.handleInfo(this.props.appStore.me.id, this.props.msgId);
   };
   sendMessage = () => {
-    this.props.contactStore.handleMessage(this.props.message);
+    this.props.contactStore.handleMessage(this.props.appStore.me.id, this.props.msgId);
   };
   videoCall = () => {
-    this.props.contactStore.handleCall(this.props.message);
+    this.props.contactStore.handleCall(this.props.appStore.me.id, this.props.msgId);
   };
 
   render() {
@@ -53,7 +53,7 @@ export default class UserMenu extends Component {
 
 UserMenu.propTypes = {
   appStore: PropTypes.object,
-  chatStore: PropTypes.object,
   contactStore: PropTypes.object,
-  message: PropTypes.object
+  name: PropTypes.string,
+  msgId: PropTypes.string
 };
