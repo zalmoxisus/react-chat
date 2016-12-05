@@ -2,18 +2,17 @@ import React, { Component, PropTypes } from 'react';
 import { observer } from 'mobx-react';
 import ChatArea from './TextArea';
 
-@observer
+@observer(['chatStore', 'speakinStore'])
 export default class Input extends Component {
   sendMsg = (e) => {
-    const { chatStore, appStore } = this.props;
-    const me = appStore.me;
+    const { chatStore } = this.props;
     if (e.nativeEvent.keyCode !== 13 || e.shiftKey) return;
     e.preventDefault();
     const input = e.target;
     let txt = input.value;
     txt = txt.trim();
     if (txt === '') return;
-    chatStore.send({ txt }, me, () => {
+    this.props.speakinStore.send({ txt }, () => {
       input.value = '';
       chatStore.changeInpValue(e.target.value);
     });
@@ -29,7 +28,7 @@ export default class Input extends Component {
   }
 }
 
-Input.propTypes = {
-  appStore: PropTypes.object,
-  chatStore: PropTypes.object
+Input.wrappedComponent.propTypes = {
+  chatStore: PropTypes.object,
+  speakinStore: PropTypes.object
 };

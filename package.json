@@ -85,6 +85,7 @@
     "initials": "^2.1.5",
     "mobx": "^2.6.0",
     "mobx-react": "^3.5.1",
+    "mobx-state-tree": "^0.0.1",
     "node-sass": "^3.7.0",
     "postcss": "^5.0.21",
     "react": "15.2.1",

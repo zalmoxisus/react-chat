@@ -6,7 +6,7 @@ import MessageOptions from './MessageOptions';
 import Ban from './Ban';
 import MessageContent from './MessageContent';
 
-@observer(['chatStore', 'appStore', 'contactStore', 'UserMenu'])
+@observer(['chatStore', 'appStore', 'UserMenu'])
 export default class Message extends Component {
   constructor(props) {
     super(props);
@@ -61,7 +61,7 @@ export default class Message extends Component {
     });
   };
   render() {
-    const { message, isMine, UserMenu, chatStore, appStore, contactStore } = this.props;
+    const { message, isMine, UserMenu, chatStore, appStore } = this.props;
     return (
       <div className={styles.msgBox}>
         {
@@ -69,13 +69,12 @@ export default class Message extends Component {
           !isMine(message.sender) &&
           ((typeof message.showAvatars === 'undefined') ? true : message.showAvatars) &&
           <Avatar className={styles.avatar}
-            id={message.id}
+            id={message.id.toString()}
             src={message.avatar}
             name={message.name}
           >
             <UserMenu
               appStore={appStore}
-              contactStore={contactStore}
               name={message.name}
               msgId={message.id}
             />
@@ -127,7 +126,6 @@ export default class Message extends Component {
 
 Message.wrappedComponent.propTypes = {
   chatStore: PropTypes.object,
-  contactStore: PropTypes.object,
   appStore: PropTypes.object,
   message: PropTypes.object,
   isMine: PropTypes.func,

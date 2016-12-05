@@ -1,7 +1,6 @@
 import { observable, action, computed } from 'mobx';
 
 export default class ChatStore {
-  @observable messages = [];
   @observable lang = 'en';
   @observable nativeLng = 'en';
   @observable withPhoto = true;
@@ -19,18 +18,6 @@ export default class ChatStore {
 
   @action importState(state) {
     Object.assign(this, state);
-  }
-
-  @action addMessage(msg) {
-    this.messages.push(msg);
-  }
-
-  @action addMessages(msgs) {
-    this.messages = this.messages.concat(msgs);
-  }
-
-  @action removeAllMessages() {
-    this.messages = [];
   }
 
   @action translate(txt, to, cb) {

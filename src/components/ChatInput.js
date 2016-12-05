@@ -7,7 +7,7 @@ import emojify from '../utils/emojify';
 import EmojiCategories from './input/EmojiCategories';
 import Input from './input/Input';
 
-@observer(['chatStore', 'appStore'])
+@observer(['chatStore'])
 export default class ChatInput extends Component {
   toggleMenu = (e, menu) => {
     let menuTimer = 0;
@@ -53,7 +53,7 @@ export default class ChatInput extends Component {
   };
 
   render() {
-    const { chatStore, appStore } = this.props;
+    const { chatStore } = this.props;
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.toggleUmenu}>
           <MdKeyboardArrowUp
@@ -61,12 +61,10 @@ export default class ChatInput extends Component {
           />
           <MessageMenu
             chatStore={chatStore}
-            me={appStore.me}
           />
         </div>
         <Input
           chatStore={chatStore}
-          appStore={appStore}
         />
         <div className={styles.emoticonsContainer} onClick={this.toggleEmoticons}>
           <div
@@ -88,6 +86,5 @@ export default class ChatInput extends Component {
 }
 
 ChatInput.wrappedComponent.propTypes = {
-  appStore: PropTypes.object,
   chatStore: PropTypes.object
 };

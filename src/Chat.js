@@ -2,14 +2,20 @@ import React, { Component } from 'react';
 import ChatArea from './components/ChatArea';
 import ChatInput from './components/ChatInput';
 import styles from './chat.scss';
+import ChatStore from './stores/ChatStore';
+import { Provider } from 'mobx-react';
+
+const chatStore = new ChatStore();
 
 export default class Chat extends Component {
   render() {
     return (
-      <div className={styles.base}>
-        <ChatArea />
-        <ChatInput />
-      </div>
+      <Provider chatStore={chatStore}>
+        <div className={styles.base}>
+          <ChatArea />
+          <ChatInput />
+        </div>
+      </Provider>
     );
   }
 }

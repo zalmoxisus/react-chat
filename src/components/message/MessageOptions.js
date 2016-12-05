@@ -7,7 +7,7 @@ import LangSelect from './LangSelect';
 import SpeechSynthesis from './Speech/SpeechSynthesis';
 import convertMedia from '../../utils/convertMedia';
 
-@observer
+@observer(['speakinStore'])
 export default class MessageOptions extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +27,6 @@ export default class MessageOptions extends Component {
   translate = () => {
     const message = this.props.message;
     if (this.lastTranslate === message.id || !this.nativeLng) {
-      const chatStore = this.props.chatStore;
       const modalContent = (
         <div className={styles.modal}>
           <div className={styles.titleModal}>Translate it to</div>
@@ -35,8 +34,8 @@ export default class MessageOptions extends Component {
             <LangSelect
               msg={message.msg}
               onChange={this.selectLang}
-              lang={chatStore.lang}
-              translateLanguages={chatStore.translateLanguages}
+              lang={this.props.lang}
+              translateLanguages={this.props.speakinStore.translateLanguages}
             />
             <MdClose className={styles.btn} onClick={this.props.appStore.closeModal} />
           </div>
@@ -49,12 +48,12 @@ export default class MessageOptions extends Component {
     }
   };
   render() {
-    const { chatStore, appStore, message, isMine, deleteMsg } = this.props;
+    const { chatStore, appStore, message, isMine, deleteMsg, speakinStore } = this.props;
     return (
       <div className={styles.msgOptions}>
         {
           (chatStore.translate &&
-          chatStore.translateLanguages &&
+          speakinStore.translateLanguages &&
           !this.isVideo(message.msg)) ?
             <div>
               <div id={'a' + message.id}
@@ -86,9 +85,10 @@ export default class MessageOptions extends Component {
     );
   }
 }
-MessageOptions.propTypes = {
+MessageOptions.wrappedComponent.propTypes = {
   appStore: PropTypes.object,
   chatStore: PropTypes.object,
+  speakinStore: PropTypes.object,
   message: PropTypes.object,
   isMine: PropTypes.func,
   insertTranslation: PropTypes.func,
