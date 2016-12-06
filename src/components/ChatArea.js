@@ -24,7 +24,7 @@ export default class ChatArea extends Component {
   };
 
   render() {
-    const { speakinStore } = this.props;
+    const { speakinStore, UserMenu } = this.props;
     return (
       <div id="container" className={styles.container}>
         {
@@ -32,6 +32,7 @@ export default class ChatArea extends Component {
           speakinStore.messages.map(message =>
               <Message key={message.id}
                 message={message}
+                UserMenu={UserMenu}
                 isMine={this.isMine}
               />
           )
@@ -42,5 +43,6 @@ export default class ChatArea extends Component {
 }
 
 ChatArea.wrappedComponent.propTypes = {
-  speakinStore: PropTypes.object
+  speakinStore: PropTypes.object,
+  UserMenu: PropTypes.func
 };

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import ChatArea from './components/ChatArea';
 import ChatInput from './components/ChatInput';
 import styles from './chat.scss';
@@ -19,3 +19,7 @@ export default class Chat extends Component {
     );
   }
 }
+
+Chat.propTypes = {
+  UserMenu: PropTypes.func
+};

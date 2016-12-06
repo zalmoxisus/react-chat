@@ -6,7 +6,7 @@ import MessageOptions from './MessageOptions';
 import Ban from './Ban';
 import MessageContent from './MessageContent';
 
-@observer(['chatStore', 'appStore', 'UserMenu'])
+@observer(['chatStore', 'appStore'])
 export default class Message extends Component {
   constructor(props) {
     super(props);
@@ -73,11 +73,13 @@ export default class Message extends Component {
             src={message.avatar}
             name={message.name}
           >
-            <UserMenu
-              appStore={appStore}
-              name={message.name}
-              msgId={message.id}
-            />
+            { UserMenu &&
+              <UserMenu
+                appStore={appStore}
+                name={message.name}
+                msgId={message.id}
+              />
+            }
           </Avatar>
         }
         <div className={isMine(message.sender) ? styles.arrowRight : styles.arrowLeft}>
