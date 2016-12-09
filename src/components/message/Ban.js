@@ -24,7 +24,7 @@ export default class Ban extends Component {
       title: this.props.message.name + ' will be banned for this discussion',
       func: this.handleConfirm
     };
-    this.props.appStore.openModal(modalContent);
+    this.props.speakinStore.openModal(modalContent);
   };
 
   render() {
@@ -58,7 +58,7 @@ export default class Ban extends Component {
 
 Ban.propTypes = {
   chatStore: PropTypes.object,
-  appStore: PropTypes.object,
+  speakinStore: PropTypes.object,
   message: PropTypes.object,
   isMine: PropTypes.func,
   onRestore: PropTypes.func,

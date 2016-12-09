@@ -32,14 +32,14 @@ export default class MessageOptions extends Component {
         func: this.selectLang,
         msg: message.msg
       };
-      this.props.appStore.openModal(modalContent);
+      this.props.speakinStore.openModal(modalContent);
     } else {
       this.lastTranslate = message.id;
       this.props.insertTranslation(this.nativeLng, message.msg);
     }
   };
   render() {
-    const { chatStore, appStore, message, isMine, deleteMsg, speakinStore } = this.props;
+    const { chatStore, message, isMine, deleteMsg, speakinStore } = this.props;
     return (
       <div className={styles.msgOptions}>
         {
@@ -61,7 +61,7 @@ export default class MessageOptions extends Component {
           this.props.chatStore.voices.length > 0) ?
             <SpeechSynthesis
               voices={chatStore.voices}
-              appStore={appStore}
+              speakinStore={speakinStore}
               message={message}
               isMine={isMine(message.sender)}
             /> : null
@@ -77,7 +77,6 @@ export default class MessageOptions extends Component {
   }
 }
 MessageOptions.wrappedComponent.propTypes = {
-  appStore: PropTypes.object,
   chatStore: PropTypes.object,
   speakinStore: PropTypes.object,
   message: PropTypes.object,
