@@ -32,7 +32,7 @@ export default class SpeechSynthesis extends Component {
   };
 
   speak = () => {
-    const { speakinStore, voices, message } = this.props;
+    const { store, voices, message } = this.props;
     if (this.playSpan.childNodes[1].style.visibility === 'hidden') {
       if (this.lastSpoken === message.id && voices.length > 1) {
         const modalContent = {
@@ -41,7 +41,7 @@ export default class SpeechSynthesis extends Component {
           list: voices,
           func: this.speakFromModal
         };
-        speakinStore.openModal(modalContent);
+        store.openModal(modalContent);
       } else {
         this.lastSpoken = message.id;
         this.play();
@@ -78,7 +78,7 @@ export default class SpeechSynthesis extends Component {
 }
 
 SpeechSynthesis.propTypes = {
-  speakinStore: PropTypes.object,
+  store: PropTypes.object,
   voices: PropTypes.array,
   message: PropTypes.object,
   isMine: PropTypes.bool

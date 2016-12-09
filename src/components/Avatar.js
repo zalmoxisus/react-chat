@@ -17,7 +17,7 @@ const colors = [
   '#c0392b' // pomegranate
 ];
 
-@inject('speakinStore')
+@inject('store')
 export default class Avatar extends Component {
   constructor(props) {
     super(props);
@@ -44,7 +44,7 @@ export default class Avatar extends Component {
     const {
       src,
       name,
-      speakinStore,
+      store,
       borderRadius = '20%',
       color,
       size = 40,
@@ -98,10 +98,10 @@ export default class Avatar extends Component {
       >
         {inner}
         {
-          speakinStore.toolTipPosition &&
+          store.toolTipPosition &&
           <ToolTip
             active={this.state.showTooltip}
-            position={this.state.mouseRight ? speakinStore.toolTipPosition : 'left'}
+            position={this.state.mouseRight ? store.toolTipPosition : 'left'}
             arrow={ (this.state.mouseTop) ? 'top' : 'bottom' }
             parent={'#a' + this.props.id}
           >
@@ -120,7 +120,7 @@ export default class Avatar extends Component {
 }
 
 Avatar.wrappedComponent.propTypes = {
-  speakinStore: PropTypes.object,
+  store: PropTypes.object,
   id: PropTypes.string,
   src: PropTypes.string,
   name: PropTypes.string.isRequired,

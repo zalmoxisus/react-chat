@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { observer } from 'mobx-react';
 import ChatArea from './TextArea';
 
-@observer(['chatStore', 'speakinStore'])
+@observer(['chatStore', 'store'])
 export default class Input extends Component {
   sendMsg = (e) => {
     const { chatStore } = this.props;
@@ -12,7 +12,7 @@ export default class Input extends Component {
     let txt = input.value;
     txt = txt.trim();
     if (txt === '') return;
-    this.props.speakinStore.send({ txt }, () => {
+    this.props.store.send({ txt }, () => {
       input.value = '';
       chatStore.changeInpValue(e.target.value);
     });
@@ -30,5 +30,5 @@ export default class Input extends Component {
 
 Input.wrappedComponent.propTypes = {
   chatStore: PropTypes.object,
-  speakinStore: PropTypes.object
+  store: PropTypes.object
 };

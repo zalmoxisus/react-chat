@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import styles from '../chat.scss';
 import Message from './message/Message';
 
-@observer(['speakinStore'])
+@observer(['store'])
 export default class ChatArea extends Component {
   componentDidMount() {
     setTimeout(this.updateScrollTop, 500);
@@ -13,7 +13,7 @@ export default class ChatArea extends Component {
     this.updateScrollTop();
   }
 
-  isMine = id => this.props.speakinStore.me.get('id') === id;
+  isMine = id => this.props.store.me.get('id') === id;
 
   updateScrollTop = () => {
     const node = document.getElementById('container');
@@ -24,12 +24,12 @@ export default class ChatArea extends Component {
   };
 
   render() {
-    const { speakinStore, UserMenu } = this.props;
+    const { store, UserMenu } = this.props;
     return (
       <div id="container" className={styles.container}>
         {
-          (speakinStore.messages && speakinStore.messages.length > 0) &&
-          speakinStore.messages.map(message =>
+          (store.messages && store.messages.length > 0) &&
+          store.messages.map(message =>
               <Message key={message.id}
                 message={message}
                 UserMenu={UserMenu}
@@ -43,6 +43,6 @@ export default class ChatArea extends Component {
 }
 
 ChatArea.wrappedComponent.propTypes = {
-  speakinStore: PropTypes.object,
+  store: PropTypes.object,
   UserMenu: PropTypes.func
 };

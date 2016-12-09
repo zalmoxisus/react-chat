@@ -6,7 +6,7 @@ import styles from '../../chat.scss';
 import SpeechSynthesis from './Speech/SpeechSynthesis';
 import convertMedia from '../../utils/convertMedia';
 
-@observer(['speakinStore'])
+@observer(['store'])
 export default class MessageOptions extends Component {
   constructor(props) {
     super(props);
@@ -28,23 +28,23 @@ export default class MessageOptions extends Component {
       const modalContent = {
         type: 'translate',
         title: 'Translate it to',
-        list: this.props.speakinStore.translateLanguages,
+        list: this.props.store.translateLanguages,
         func: this.selectLang,
         msg: message.msg
       };
-      this.props.speakinStore.openModal(modalContent);
+      this.props.store.openModal(modalContent);
     } else {
       this.lastTranslate = message.id;
       this.props.insertTranslation(this.nativeLng, message.msg);
     }
   };
   render() {
-    const { chatStore, message, isMine, deleteMsg, speakinStore } = this.props;
+    const { chatStore, message, isMine, deleteMsg, store } = this.props;
     return (
       <div className={styles.msgOptions}>
         {
           (chatStore.translate &&
-          speakinStore.translateLanguages &&
+          store.translateLanguages &&
           !this.isVideo(message.msg)) ?
             <div>
               <div id={'a' + message.id}
@@ -61,7 +61,7 @@ export default class MessageOptions extends Component {
           this.props.chatStore.voices.length > 0) ?
             <SpeechSynthesis
               voices={chatStore.voices}
-              speakinStore={speakinStore}
+              store={store}
               message={message}
               isMine={isMine(message.sender)}
             /> : null
@@ -78,7 +78,7 @@ export default class MessageOptions extends Component {
 }
 MessageOptions.wrappedComponent.propTypes = {
   chatStore: PropTypes.object,
-  speakinStore: PropTypes.object,
+  store: PropTypes.object,
   message: PropTypes.object,
   isMine: PropTypes.func,
   insertTranslation: PropTypes.func,

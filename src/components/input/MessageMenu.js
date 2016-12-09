@@ -8,7 +8,7 @@ import { observer } from 'mobx-react';
 import styles from '../../chat.scss';
 import convertMedia from '../../utils/convertMedia';
 
-@observer(['chatStore', 'speakinStore'])
+@observer(['chatStore', 'store'])
 export default class MessageMenu extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +41,7 @@ export default class MessageMenu extends Component {
     if (e.nativeEvent.keyCode === 13) {
       const txt = e.target.value;
       if ((txt === '') || (txt === ' ')) return;
-      this.props.speakinStore.send({ txt }, () => {
+      this.props.store.send({ txt }, () => {
         this.handleClose(e);
       });
     } else if (e.nativeEvent.keyCode === 27) {
@@ -133,7 +133,7 @@ export default class MessageMenu extends Component {
   };
 
   render() {
-    const { chatStore, speakinStore } = this.props;
+    const { chatStore, store } = this.props;
     return (<div className={styles.userContainer}>
         <ul
           className={this.props.chatStore.menuShow ? styles.showUmenu : styles.hideUmenu}
@@ -145,7 +145,7 @@ export default class MessageMenu extends Component {
             </li> : null
           }
           {
-            (chatStore.translate && speakinStore.translateLanguages) ?
+            (chatStore.translate && store.translateLanguages) ?
             <li onClick={this.handleTranslate}>
               <MdMessage /><span>Translate a phrase</span>
             </li> : null
@@ -180,6 +180,6 @@ export default class MessageMenu extends Component {
 }
 MessageMenu.wrappedComponent.propTypes = {
   chatStore: PropTypes.object,
-  speakinStore: PropTypes.object
+  store: PropTypes.object
 };
 
