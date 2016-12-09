@@ -11,31 +11,22 @@ export default class Ban extends Component {
       banned: false
     };
   }
-  ban = () => {
-    const modalContent = (
-      <div>
-        <div className={styles.confirmText}>
-          {this.props.message.name} will be banned for this discussion
-        </div>
-        <div className={styles.confirmBtns}>
-          <span onClick={this.handleClose}>Cancel</span>
-          <span onClick={this.handleConfirm}>Confirm</span>
-        </div>
-      </div>
-    );
-    this.props.appStore.openModal(modalContent);
-  };
-  handleClose = () => {
-    this.props.appStore.closeModal();
-  };
-  handleConfirm = () => {
+  handleConfirm = (name) => {
     this.props.chatStore.ban(this.props.message.id, () => {
       this.setState({
         banned: true
       });
-      this.props.appStore.closeModal();
     });
   };
+  ban = () => {
+    const modalContent = {
+      type: 'ban',
+      title: this.props.message.name + ' will be banned for this discussion',
+      func: this.handleConfirm
+    };
+    this.props.appStore.openModal(modalContent);
+  };
+
   render() {
     const { message, isMine, onRestore } = this.props;
     return (

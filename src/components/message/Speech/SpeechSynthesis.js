@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { observer } from 'mobx-react';
-import MdClose from 'react-icons/lib/md/close';
 import MdPlayArrow from 'react-icons/lib/md/play-arrow';
 import MdStop from 'react-icons/lib/md/stop';
 import styles from '../../../chat.scss';
-import SpeechSelect from './SpeechSelect';
 
 @observer
 export default class SpeechSynthesis extends Component {
@@ -37,19 +35,12 @@ export default class SpeechSynthesis extends Component {
     const { appStore, voices, message } = this.props;
     if (this.playSpan.childNodes[1].style.visibility === 'hidden') {
       if (this.lastSpoken === message.id && voices.length > 1) {
-        const modalContent = (
-          <div className={styles.modal}>
-            <div className={styles.titleModal}>Read it as</div>
-            <div className={styles.flexBox}>
-              <SpeechSelect
-                value={this.voiceName}
-                onChange={this.speakFromModal}
-                voices={voices}
-              />
-              <MdClose className={styles.btn} onClick={appStore.closeModal} />
-            </div>
-          </div>
-        );
+        const modalContent = {
+          type: 'speech',
+          title: 'Read it as',
+          list: voices,
+          func: this.speakFromModal
+        };
         appStore.openModal(modalContent);
       } else {
         this.lastSpoken = message.id;
@@ -60,10 +51,9 @@ export default class SpeechSynthesis extends Component {
       else window.speechSynthesis.cancel();
     }
   };
-  speakFromModal = (value = this.props.voices[0].name) => {
+  speakFromModal = (value) => {
     this.voiceName = value;
     this.play();
-    this.props.appStore.closeModal();
   };
   toggleIcons = () => {
     const node1 = this.playSpan.childNodes[0].style;

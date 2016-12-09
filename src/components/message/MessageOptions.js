@@ -3,7 +3,6 @@ import { observer } from 'mobx-react';
 import MdTranslate from 'react-icons/lib/md/translate';
 import MdClose from 'react-icons/lib/md/close';
 import styles from '../../chat.scss';
-import LangSelect from './LangSelect';
 import SpeechSynthesis from './Speech/SpeechSynthesis';
 import convertMedia from '../../utils/convertMedia';
 
@@ -18,7 +17,6 @@ export default class MessageOptions extends Component {
   selectLang = (val, msg) => {
     this.nativeLng = val;
     this.props.insertTranslation(this.nativeLng, msg);
-    this.props.appStore.closeModal();
   };
   isVideo = (msg) => {
     const media = convertMedia(msg, 150, true);
@@ -27,20 +25,13 @@ export default class MessageOptions extends Component {
   translate = () => {
     const message = this.props.message;
     if (this.lastTranslate === message.id || !this.nativeLng) {
-      const modalContent = (
-        <div className={styles.modal}>
-          <div className={styles.titleModal}>Translate it to</div>
-          <div className={styles.flexBox}>
-            <LangSelect
-              msg={message.msg}
-              onChange={this.selectLang}
-              lang={this.props.lang}
-              translateLanguages={this.props.speakinStore.translateLanguages}
-            />
-            <MdClose className={styles.btn} onClick={this.props.appStore.closeModal} />
-          </div>
-        </div>
-      );
+      const modalContent = {
+        type: 'translate',
+        title: 'Translate it to',
+        list: this.props.speakinStore.translateLanguages,
+        func: this.selectLang,
+        msg: message.msg
+      };
       this.props.appStore.openModal(modalContent);
     } else {
       this.lastTranslate = message.id;
