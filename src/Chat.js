@@ -12,7 +12,7 @@ export default class Chat extends Component {
     return (
       <Provider chatStore={chatStore}>
         <div className={styles.base}>
-          <ChatArea />
+          <ChatArea UserMenu={this.props.UserMenu} />
           <ChatInput />
         </div>
       </Provider>

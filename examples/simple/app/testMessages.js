@@ -38,7 +38,7 @@ const testMessages = [
     sender: '1'
   },
   {
-    id: 8,
+    id: 12,
     name: 'Marry',
     avatar: '',
     msg: 'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! ' +

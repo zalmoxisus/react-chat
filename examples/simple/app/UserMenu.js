@@ -19,24 +19,24 @@ export default class UserMenu extends Component {
         </div>
       </div>
     );
-    this.props.appStore.openModal(modalContent);
+    this.props.store.openModal(modalContent);
   };
   handleClose = () => {
-    this.props.appStore.closeModal();
+    this.props.store.closeModal();
   };
   handleConfirm = () => {
-    this.props.contactStore.deleteContact(this.props.appStore.me.id, this.props.msgId, () => {
-      this.props.appStore.closeModal();
+    this.props.store.deleteContact(this.props.store.me.get('id'), this.props.msgId, () => {
+      this.props.store.closeModal();
     });
   };
   showInfo = () => {
-    this.props.contactStore.handleInfo(this.props.appStore.me.id, this.props.msgId);
+    this.props.store.handleInfo(this.props.store.me.get('id'), this.props.msgId);
   };
   sendMessage = () => {
-    this.props.contactStore.handleMessage(this.props.appStore.me.id, this.props.msgId);
+    this.props.store.handleMessage(this.props.store.me.get('id'), this.props.msgId);
   };
   videoCall = () => {
-    this.props.contactStore.handleCall(this.props.appStore.me.id, this.props.msgId);
+    this.props.store.handleCall(this.props.store.me.get('id'), this.props.msgId);
   };
 
   render() {
@@ -52,8 +52,7 @@ export default class UserMenu extends Component {
 }
 
 UserMenu.propTypes = {
-  appStore: PropTypes.object,
-  contactStore: PropTypes.object,
+  store: PropTypes.object,
   name: PropTypes.string,
-  msgId: PropTypes.string
+  msgId: PropTypes.number
 };
