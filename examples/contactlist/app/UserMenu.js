@@ -6,37 +6,33 @@ import MdClose from 'react-icons/lib/md/close';
 import styles from './contactlist.scss';
 
 export default class UserMenu extends Component {
+  getIndex() {
+    const contacts = this.props.store.contactList;
+    const index = contacts.map((item) => { return item.id; }).indexOf(this.props.contactItem.id);
+    return contacts[index];
+  }
   deleteContact = () => {
-    const modalContent = (
-      <div>
-        <div className={styles.confirmText}>
-          You are about to remove {this.props.contactItem.name}.
-          <br />All related chats will be closed.
-        </div>
-        <div className={styles.confirmBtns}>
-          <span onClick={this.handleClose}>Cancel</span>
-          <span onClick={this.handleConfirm}>Confirm</span>
-        </div>
-      </div>
-    );
-    this.props.appStore.openModal(modalContent);
+    const modalContent = {
+      type: 'contacts',
+      title: this.props.contactItem.name,
+      func: this.handleConfirm
+    };
+    this.props.store.openModal(modalContent);
   };
   handleClose = () => {
-    this.props.appStore.closeModal();
+    this.props.store.closeModal();
   };
   handleConfirm = () => {
-    this.props.contactStore.deleteContact(this.props.contactItem, () => {
-      this.props.appStore.closeModal();
-    });
+    this.getIndex().deleteContact(this.props.contactItem);
   };
   showInfo = () => {
-    this.props.contactStore.handleInfo(this.props.contactItem);
+    this.getIndex().handleInfo(this.props.contactItem);
   };
   sendMessage = () => {
-    this.props.contactStore.handleMessage(this.props.contactItem);
+    this.getIndex().handleMessage(this.props.contactItem);
   };
   videoCall = () => {
-    this.props.contactStore.handleCall(this.props.contactItem);
+    this.getIndex().handleCall(this.props.contactItem);
   };
 
   render() {
@@ -50,9 +46,3 @@ export default class UserMenu extends Component {
     );
   }
 }
-
-UserMenu.propTypes = {
-  contactStore: PropTypes.object,
-  appStore: PropTypes.object,
-  contactItem: PropTypes.object
-};

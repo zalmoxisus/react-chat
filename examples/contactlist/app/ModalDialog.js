@@ -17,19 +17,28 @@ const customStyles = {
 };
 export default class ModalDialog extends Component {
   render() {
-    const { content, onClose } = this.props;
+    const { store } = this.props;
     return (
       <Modal
-        isOpen={(content !== null)}
-        onRequestClose={onClose}
+        isOpen={(store.modal !== null)}
+        onRequestClose={store.closeModal}
         style={customStyles}
+        contentLabel={store.modal.get('title')}
       >
-        {content}
+        <div>
+          <div>
+            You are about to remove &nbsp;
+            {store.modal.get('title')} .
+            <br />
+            All related chats will be closed.
+          </div>
+          <span onClick={store.closeModal}>Cancel</span>
+          <span onClick={store.modal.func}>Confirm</span>
+        </div>
       </Modal>
     );
   }
 }
 ModalDialog.propTypes = {
-  content: PropTypes.object,
-  onClose: PropTypes.func
+  store: PropTypes.object
 };

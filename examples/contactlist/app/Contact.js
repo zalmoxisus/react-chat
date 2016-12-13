@@ -5,7 +5,7 @@ import UserMenu from './UserMenu';
 
 export default class Contact extends Component {
   render() {
-    const { contactStore, appStore, contactItem } = this.props;
+    const { store, contactItem } = this.props;
     return (
       <li>
         <Avatar className={styles.avatar}
@@ -15,8 +15,7 @@ export default class Contact extends Component {
           borderRadius={0}
         >
           <UserMenu
-            contactStore={contactStore}
-            appStore={appStore}
+            store={store}
             contactItem={contactItem}
           />
         </Avatar>
@@ -26,7 +25,6 @@ export default class Contact extends Component {
 }
 
 Contact.propTypes = {
-  contactStore: PropTypes.object,
-  appStore: PropTypes.object,
+  store: PropTypes.object,
   contactItem: PropTypes.object
 };

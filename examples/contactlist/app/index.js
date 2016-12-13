@@ -7,13 +7,9 @@ import './style.scss';
 import ContactList from './ContactList';
 import ModalDialog from './ModalDialog';
 import testContacts from './testContacts';
-import ContactStore from './store/ContactStore';
-import AppStore from './store/AppStore';
+import store from './store/Store';
 
 useStrict(true);
-
-const contactStore = new ContactStore({ contactList: testContacts });
-const appStore = new AppStore();
 
 @observer
 class Container extends Component {
@@ -21,12 +17,13 @@ class Container extends Component {
   render() {
     return (
       <div>
-        <DevTools />
-        <ModalDialog
-          content={appStore.modal}
-          onClose={appStore.closeModal}
-        />
-        <Provider contactStore={contactStore} appStore={appStore}>
+        {
+          store.modal &&
+          <ModalDialog
+            store={store}
+          />
+        }
+        <Provider store={store}>
           <ContactList />
         </Provider>
       </div>
