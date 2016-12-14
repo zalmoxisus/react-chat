@@ -1,44 +1,44 @@
 const testMessages = [
   {
-    id: 1,
+    id: '1',
     name: 'John',
     avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/oagra/128.jpg',
     msg: 'Hello, Marry!',
     time: 1444428192,
-    sender: '1'
+    sender: '12'
   },
-  { id: 2, name: 'Marry', avatar: '', msg: 'Welcome, John!', time: 1444428192, sender: '2' },
+  { id: '2', name: 'Marry', avatar: '', msg: 'Welcome, John!', time: 1444428192, sender: '2' },
   {
-    id: 3,
+    id: '3',
     name: 'John',
     avatar: '',
     msg: 'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! ' +
     'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry!',
     time: 1444428192,
-    sender: '1'
+    sender: '23'
   },
   {
-    id: 4,
+    id: '4',
     name: 'Marry',
     avatar: '',
     msg: 'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! ' +
     'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry!',
     time: 1444428192,
-    sender: '2'
+    sender: '389'
   },
-  { id: 5, name: 'John', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/igorgarybaldi/128.jpg', msg: 'Hello, Marry!', time: 1444428192, sender: '1' },
-  { id: 6, name: 'Marry', avatar: '', msg: 'Welcome, John!', time: 1444428192, sender: '2' },
+  { id: '5', name: 'John', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/igorgarybaldi/128.jpg', msg: 'Hello, Marry!', time: 1444428192, sender: '1' },
+  { id: '6', name: 'Marry', avatar: '', msg: 'Welcome, John!', time: 1444428192, sender: '2' },
   {
-    id: 7,
+    id: '7',
     name: 'John',
     avatar: '',
     msg: 'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! ' +
     'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry!',
     time: 1444428192,
-    sender: '1'
+    sender: '328'
   },
   {
-    id: 12,
+    id: '12',
     name: 'Marry',
     avatar: '',
     msg: 'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! ' +

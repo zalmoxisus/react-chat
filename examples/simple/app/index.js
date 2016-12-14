@@ -31,7 +31,7 @@ class Container extends Component {
         <Provider
           store={store}
         >
-          <Chat />
+          <Chat UserMenu={UserMenu} />
         </Provider>
       </div>
     );

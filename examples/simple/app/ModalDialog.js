@@ -64,15 +64,14 @@ export default class ModalDialog extends Component {
                   <option key={item.c} value={item.c}>{item.l}</option>
                 ))}
             </select> :
-            store.modal.get('type') === 'speech' ?
-              <select onChange={this.selectVoice}>
-                {store.modal.list
-                  .map(item => (
-                    <option key={item.name} value={item.name}>
-                      {item.name.replace('Google', '')}
-                    </option>
-                  ))}
-              </select> : null
+            <select onChange={this.selectVoice}>
+              {store.modal.list
+                .map(item => (
+                  <option key={item.name} value={item.name}>
+                    {item.name.replace('Google', '')}
+                  </option>
+                ))}
+            </select>
           }
         </div>
         }

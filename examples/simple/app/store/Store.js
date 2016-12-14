@@ -31,10 +31,10 @@ export const Contacts = createFactory({
   name: '',
   avatar: '',
 
-  deleteContact: action(function (userId, msgId, success) {
+  deleteContact: action(function (userId, msgId) {
     // Add here remove contact method
     console.log('delete method');
-    success();
+    store.modal = undefined;
   }),
 
   handleInfo: action(function (userId, msgId) {
@@ -56,6 +56,7 @@ export const Contacts = createFactory({
 const Store = createFactory({
   // App
   me: mapOf(),
+  contactList: arrayOf(Contacts),
   modal: mapOf(Modal),
 
   toolTipPosition: (process.env.ISMOBILE) ? undefined : 'right',
