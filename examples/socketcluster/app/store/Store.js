@@ -1,6 +1,8 @@
 import { createFactory, arrayOf, mapOf } from 'mobx-state-tree';
 import { action } from 'mobx';
-import testContacts from '../testContacts';
+import socketCluster from 'socketcluster-client';
+
+let socket;
 
 export const Message = createFactory({
   id: '',
@@ -26,37 +28,9 @@ export const Modal = createFactory({
   })
 });
 
-export const Contacts = createFactory({
-  id: '',
-  name: '',
-  avatar: '',
-
-  deleteContact: action(function (userId, msgId) {
-    // Add here remove contact method
-    console.log('delete method');
-    store.modal = undefined;
-  }),
-
-  handleInfo: action(function (userId, msgId) {
-    // Add here info method
-    console.log('info method');
-  }),
-
-  handleMessage: action(function (userId, msgId) {
-    // Add here message method
-    console.log('message method');
-  }),
-
-  handleCall: action(function (userId, msgId) {
-    // Add here call method
-    console.log('call method');
-  })
-});
-
 const Store = createFactory({
   // App
   me: mapOf(),
-  contactList: arrayOf(Contacts),
   modal: mapOf(Modal),
 
   toolTipPosition: (process.env.ISMOBILE) ? undefined : 'right',
@@ -65,8 +39,24 @@ const Store = createFactory({
   messages: arrayOf(Message),
   translateLanguages: arrayOf(Languages),
 
-  // Contacts
-  contactList: arrayOf(Contacts),
+  connect: action(function () {
+    socket = socketCluster.connect();
+
+    socket.on('error', (err) => {
+      console.error('Socket error - ' + err);
+    });
+    socket.on('connect', () => {
+      console.log('Connected to server');
+    });
+
+    const channel = socket.subscribe('some-chat-room');
+    channel.on('subscribeFail', (err) => {
+      console.log('Failed to subscribe to muc channel due to error: ' + err);
+    });
+    channel.watch(message => {
+      this.addMessage(message);
+    });
+  }),
 
   // App
   getUserdata: action(function () {
@@ -123,7 +113,7 @@ const Store = createFactory({
       sender: this.me.get('id')
     };
 
-    this.addMessage(message);
+    socket.emit('some-chat-room', message);
     success();
   },
   addMessages: action(function (msgs) {
@@ -136,7 +126,6 @@ const Store = createFactory({
 });
 
 const store = Store({
-  contactList: testContacts,
   modal: undefined
 });
 

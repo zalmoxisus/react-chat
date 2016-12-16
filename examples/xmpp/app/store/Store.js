@@ -40,7 +40,7 @@ const Store = createFactory({
   getUserdata: action(function () {
     const id = Math.floor((Math.random() * 1000)).toString();
     this.me = {
-      id: 12,
+      id,
       name: 'User' + id,
       avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/fenbox/128.jpg'
     };
