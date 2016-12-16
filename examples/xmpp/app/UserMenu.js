@@ -1,42 +1,41 @@
 import React, { Component, PropTypes } from 'react';
+import { inject } from 'mobx-react';
 import MdInfo from 'react-icons/lib/md/info';
 import MdMessage from 'react-icons/lib/md/message';
 import MdVideocam from 'react-icons/lib/md/videocam';
 import MdClose from 'react-icons/lib/md/close';
 import styles from './usermenu.scss';
 
+@inject('store')
 export default class UserMenu extends Component {
+  getIndex() {
+    const contacts = this.props.store.contactList;
+    const index = contacts.map((item) => { return item.id; }).indexOf(this.props.msgId);
+    return contacts[index];
+  }
   deleteContact = () => {
-    const modalContent = (
-      <div>
-        <div className={styles.confirmText}>
-          You are about to remove {this.props.message.name}.
-          <br />All related chats will be closed.
-        </div>
-        <div className={styles.confirmBtns}>
-          <span onClick={this.handleClose}>Cancel</span>
-          <span onClick={this.handleConfirm}>Confirm</span>
-        </div>
-      </div>
-    );
-    this.props.appStore.openModal(modalContent);
+    const modalContent = {
+      type: 'delete',
+      title: this.props.name + ' will be banned',
+      func: this.handleConfirm
+    };
+    this.props.store.openModal(modalContent);
   };
   handleClose = () => {
-    this.props.appStore.closeModal();
+    this.props.store.closeModal();
   };
   handleConfirm = () => {
-    this.props.contactStore.deleteContact(this.props.message, () => {
-      this.props.appStore.closeModal();
-    });
+    this.getIndex()
+      .deleteContact(this.props.store.me.get('id'), this.props.msgId);
   };
   showInfo = () => {
-    this.props.contactStore.handleInfo(this.props.message);
+    this.getIndex().handleInfo(this.props.store.me.get('id'), this.props.msgId);
   };
   sendMessage = () => {
-    this.props.contactStore.handleMessage(this.props.message);
+    this.getIndex().handleMessage(this.props.store.me.get('id'), this.props.msgId);
   };
   videoCall = () => {
-    this.props.contactStore.handleCall(this.props.message);
+    this.getIndex().handleCall(this.props.store.me.get('id'), this.props.msgId);
   };
 
   render() {
@@ -50,10 +49,3 @@ export default class UserMenu extends Component {
     );
   }
 }
-
-UserMenu.propTypes = {
-  appStore: PropTypes.object,
-  chatStore: PropTypes.object,
-  contactStore: PropTypes.object,
-  message: PropTypes.object
-};

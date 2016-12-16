@@ -5,11 +5,9 @@ import { useStrict } from 'mobx';
 import { Provider, observer } from 'mobx-react';
 import style from './style.scss';
 import UserMenu from './UserMenu';
-import ChatStore from './store/ChatStore';
-import AppStore from './store/AppStore';
-import ContactStore from './store/ContactStore';
 import ModalDialog from './ModalDialog';
 import translateLanguages from './translateLanguages';
+import store from './store/Store'
 
 useStrict(true);
 
@@ -24,20 +22,24 @@ const data = {
 
 let conn;
 
+store.getLanguages(translateLanguages);
+
 @observer
 class Container extends Component {
 
   render() {
     return (
       <div>
-        <ModalDialog
-          content={appStore.modal}
-          onClose={appStore.closeModal}
-        />
+        {
+          store.modal &&
+          <ModalDialog
+            store={store}
+          />
+        }
         <Provider
-          chatStore={chatStore} appStore={appStore}
-          contactStore={contactStore} UserMenu={UserMenu}>
-          <Chat />
+          store={store}
+        >
+          <Chat UserMenu={UserMenu} />
         </Provider>
       </div>
     );
@@ -58,12 +60,3 @@ conn.connect(data.jid, data.password, function (status) {
     console.log('disconnected');
   }
 });
-
-const chatStore = new ChatStore({ translateLanguages, conn, data });
-const appStore = new AppStore({
-  me: {
-    id: data.name,
-    name: data.name
-  }
-});
-const contactStore = new ContactStore();
