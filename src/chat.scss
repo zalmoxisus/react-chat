@@ -619,7 +619,9 @@
   .videoInpContainer{
     width: 180px;
   }
-
+  .footerMsg{
+    font-size: 10px;
+  }
 }
 @media (max-width: 320px) {
   .msg {
@@ -627,6 +629,9 @@
   }
   .modal select{
     width: 80px;
+  }
+  .footerMsg{
+    font-size: 10px;
   }
 }
 @media (max-width: 250px) {
@@ -638,5 +643,8 @@
   }
   .videoInpContainer{
     width: 135px;
+  }
+  .footerMsg{
+    font-size: 9px;
   }
 }
