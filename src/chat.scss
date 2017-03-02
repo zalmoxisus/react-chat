@@ -79,18 +79,19 @@
 
 .msgContent {
   padding: 6px 5px 2px 5px;
+  border: solid 1px #a6b8c9;
 }
 .uMsg .msgContent {
-  margin-right: 4px;
+  margin-right: -1px;
 }
 .myMsg .msgContent {
-  margin-left: 4px;
+  margin-left: -1px;
 }
 .msgOptions {
   display: flex;
   flex-direction: column;
   position: absolute;
-  height: 102%;
+  height: 100%;
 }
 .msgOptions svg {
   padding: 3px;
@@ -99,15 +100,13 @@
   right: -33px;
   background: rgba(249, 252, 255, 1);
   border-top: solid 1px #a6b8c9;
-  top: -1px;
   border-top-right-radius : 3px;
   border-bottom-right-radius : 3px;
 }
 .myMsg .msgOptions {
   left: -33px;
   background: #e6ffd1;
-  border-top: solid 1px #b4d89f;
-  top: -1px;
+  border-top: solid 1px #a6b8c9;
   border-top-left-radius : 3px;
   border-bottom-left-radius : 3px;
 }
@@ -146,7 +145,6 @@
 .myMsg {
   composes: msg;
   background: #e6ffd1;
-  border: solid 1px #b4d89f;
   float: right;
   border-top-right-radius : 3px;
   border-bottom-right-radius : 3px;
@@ -155,7 +153,6 @@
 .uMsg {
   composes: msg;
   background: rgba(249, 252, 255, 1);
-  border: solid 1px #a6b8c9;
   float: left;
   border-top-left-radius : 3px;
   border-bottom-left-radius : 3px;
@@ -236,6 +233,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: #000;
 }
 
 .usermsg {
@@ -352,6 +350,7 @@
   background: #ffffff;
   padding: 0;
   margin: 0;
+  font-size: 14px;
 }
 
 .usermenu {
@@ -604,18 +603,6 @@
   .contentMsg{
     font-size: 14px;
   }
-  .emoticons{
-    width: 160px;
-  }
-  .categoryBtns{
-    display: inline-block;
-    width: 157px;
-    margin: 3px 0 0 3px;
-  }
-  .categoryBtn{
-    font-size: 8px;
-    border-bottom: 1px solid #ffffff;
-  }
   .videoInpContainer{
     width: 180px;
   }
@@ -630,11 +617,23 @@
   .modal select{
     width: 80px;
   }
+  .emoticons{
+    width: 250px;
+  }
+  .categoryBtns{
+    display: inline-block;
+    width: 247px;
+    margin: 3px 0 0 3px;
+  }
+  .categoryBtn{
+    font-size: 8px;
+    border-bottom: 1px solid #ffffff;
+  }
   .footerMsg{
     font-size: 10px;
   }
 }
-@media (max-width: 250px) {
+@media (max-width: 220px) {
   .msg {
     max-width: 55%;
   }
@@ -646,5 +645,14 @@
   }
   .footerMsg{
     font-size: 9px;
+  }
+  .emoticons{
+    width: 160px;
+  }
+  .categoryBtns{
+    width: 157px;
+  }
+  .categoryBtn{
+    font-size: 8px;
   }
 }
