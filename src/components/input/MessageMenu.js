@@ -14,13 +14,17 @@ export default class MessageMenu extends Component {
     super(props);
     this.state = {
       micShow: false,
-      submenuShow: false
+      submenuShow: false,
+      voicesAccess: false
     };
     this.SpeechRecognition = window.SpeechRecognition ||
       window.webkitSpeechRecognition ||
       window.mozSpeechRecognition ||
       window.msSpeechRecognition ||
       window.oSpeechRecognition;
+  }
+  componentDidMount() {
+    this.voiceAccess();
   }
   mapRefContainer = (node) => {
     this.videoInpContainer = node;
@@ -99,6 +103,17 @@ export default class MessageMenu extends Component {
     }
   };
 
+  voiceAccess = () => {
+    navigator.getUserMedia({audio: true}, () => {
+      this.setState({voicesAccess: true});
+    }, (err) => {
+      if(err.name === "PermissionDismissedError" ||
+        err.name === "PermissionDeniedError"){
+        this.setState({voicesAccess: false});
+      }
+    });
+  };
+
   handleTranslate = () => {
     this.setState({ submenuShow: true });
     this.submenu = (<input autoFocus
@@ -139,7 +154,7 @@ export default class MessageMenu extends Component {
           className={this.props.chatStore.menuShow ? styles.showUmenu : styles.hideUmenu}
         >
           {
-            this.SpeechRecognition ?
+            this.SpeechRecognition && this.state.voicesAccess ?
             <li onClick={this.handleSpeech}>
               <MdMic /><span>Dictate text</span>
             </li> : null
@@ -169,7 +184,7 @@ export default class MessageMenu extends Component {
            </div> : null
         }
         {
-          (this.state.micShow) ?
+          this.state.micShow ?
            <div className={styles.micShow}>
              <MdMic className={styles.iconMic} onClick={this.hideIndicator} />
            </div> : null

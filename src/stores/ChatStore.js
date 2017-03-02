@@ -4,7 +4,6 @@ export default class ChatStore {
   @observable lang = 'en';
   @observable nativeLng = 'en';
   @observable withPhoto = true;
-  @observable translateLanguages = [];
   @observable menuShow = false;
   @observable emoticonShow = false;
   @observable inputValue = '';
