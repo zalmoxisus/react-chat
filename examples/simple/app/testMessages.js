@@ -17,7 +17,7 @@ const testMessages = [
       avatar: ''
     },
     text: 'Welcome, John!',
-    createdAt: 1444428192
+    createdAt: new Date(Date.UTC(2017, 3, 4, 17, 21, 0))
   },
   {
     _id: '3',

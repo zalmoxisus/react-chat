@@ -7,7 +7,7 @@ import MessageFooter from './MessageFooter';
 import convertMedia from '../../utils/convertMedia';
 
 export default class MessageContent extends Component {
-  isLink = (msg) => {
+  getMedia = (msg) => {
     const media = convertMedia(msg, 150, true);
     if (media.indexOf('<iframe') > -1 ||
       media.indexOf('<a href') > -1 ||
@@ -17,23 +17,20 @@ export default class MessageContent extends Component {
     return false;
   };
   render() {
-    const { message, isMine, trLangs, deleteBox } = this.props;
+    const { message, isMine, updateInputValue, trLangs, deleteBox } = this.props;
+    const { text } = message;
+    const media = this.getMedia(text);
     return (
       <div className={styles.msgContent}>
         <div
-          className={message.msg.length < 16 ?
-                    styles.bigContent :
-                    styles.smallContent}
+          className={text.length < 16 ? styles.bigContent : styles.smallContent}
         >
-          {this.isLink(message.msg) ?
-            <VideoContainer src={this.isLink(message.msg)} /> :
-            emojify(message.msg)}
+          {media ? <VideoContainer src={media} /> : emojify(text)}
+          {/* TO FIX
           <TranslateBox trLangs={trLangs} onDelete={deleteBox} />
+          */}
         </div>
-        <MessageFooter
-          message={message}
-          isMine={isMine}
-        />
+        <MessageFooter message={message} isMine={isMine} updateInputValue={updateInputValue} />
       </div>
     );
   }
@@ -41,8 +38,8 @@ export default class MessageContent extends Component {
 
 MessageContent.propTypes = {
   message: PropTypes.object,
-  isMine: PropTypes.func,
+  isMine: PropTypes.bool,
   trLangs: PropTypes.array,
   deleteBox: PropTypes.func,
-  deleted: PropTypes.bool
+  updateInputValue: PropTypes.func
 };

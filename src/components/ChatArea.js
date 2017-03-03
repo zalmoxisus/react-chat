@@ -25,5 +25,6 @@ ChatArea.propTypes = {
     id: PropTypes.any
   }).isRequired,
   showAvatars: PropTypes.bool,
-  avatarPreviewPosition: PropTypes.string
+  avatarPreviewPosition: PropTypes.string,
+  updateInputValue: PropTypes.func
 };

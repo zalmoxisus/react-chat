@@ -6,16 +6,25 @@ export default class Chat extends Component {
   render() {
     return (
       <div className={styles.base}>
-        <ChatArea messages={this.props.messages} />
+        <ChatArea {...this.props} />
       </div>
     );
   }
 }
 
 Chat.defaultProps = {
-  messages: []
+  messages: [],
+  user: {},
+  showAvatars: true,
+  avatarPreviewPosition: 'right'
 };
 
 Chat.propTypes = {
-  messages: PropTypes.array
+  messages: PropTypes.array,
+  user: PropTypes.shape({
+    _id: PropTypes.any
+  }),
+  showAvatars: PropTypes.bool,
+  avatarPreviewPosition: PropTypes.string,
+  updateInputValue: PropTypes.func
 };

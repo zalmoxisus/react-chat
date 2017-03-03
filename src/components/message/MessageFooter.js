@@ -1,40 +1,38 @@
 import React, { Component, PropTypes } from 'react';
-import { inject } from 'mobx-react';
 import styles from '../../chat.scss';
 import getTimeStamp from '../../utils/getTimeStamp.js';
 import MdAccessTime from 'react-icons/lib/md/access-time';
 import MdReply from 'react-icons/lib/md/reply';
 
-@inject('chatStore')
 export default class MessageFooter extends Component {
-
   reply = () => {
-    const { chatStore } = this.props;
-    chatStore.changeInpValue(this.props.message.name + ', ' + chatStore.inputValue);
+    const updateInputValue = this.props.updateInputValue;
+    if (updateInputValue) {
+      updateInputValue(inputValue => `${this.props.message.name}, ${inputValue}`);
+    }
   };
 
   render() {
     const { message, isMine } = this.props;
     return (
       <div className={styles.footerMsg}>
-        {
-          !isMine(message.sender) &&
+        {!isMine &&
           <div>
             <div className={styles.msgName} onClick={this.reply}>
-              <span className={styles.leftSpan}>{message.name}</span>
+              <span className={styles.leftSpan}>{message.user.name}</span>
               <MdAccessTime className={styles.timeIcon} />
               <MdReply className={styles.replyIcon} />
             </div>
           </div>
         }
-        <div className={styles.leftSpan}>{getTimeStamp(message.time)} </div>
+        <div className={styles.leftSpan}>{getTimeStamp(message.createdAt)} </div>
       </div>
     );
   }
 }
 
-MessageFooter.wrappedComponent.propTypes = {
-  chatStore: PropTypes.object,
+MessageFooter.propTypes = {
   message: PropTypes.object,
-  isMine: PropTypes.func
+  isMine: PropTypes.bool,
+  updateInputValue: PropTypes.func
 };

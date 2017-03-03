@@ -5,7 +5,7 @@ import MessageContent from './MessageContent';
 
 export default class Message extends Component {
   render() {
-    const { message, user, showAvatars, avatarPreviewPosition } = this.props;
+    const { message, user, showAvatars, avatarPreviewPosition, updateInputValue } = this.props;
     const isMine = message.user._id === user._id;
     return (
       <div className={styles.msgBox}>
@@ -27,6 +27,7 @@ export default class Message extends Component {
             <MessageContent
               message={message}
               isMine={isMine}
+              updateInputValue={updateInputValue}
             />
           }
         </div>
@@ -41,5 +42,6 @@ Message.propTypes = {
     id: PropTypes.any
   }).isRequired,
   showAvatars: PropTypes.bool,
-  avatarPreviewPosition: PropTypes.string
+  avatarPreviewPosition: PropTypes.string,
+  updateInputValue: PropTypes.func
 };

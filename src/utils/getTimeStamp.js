@@ -1,5 +1,4 @@
-export default function getTimeStamp(msgTime) {
-  const date = new Date(msgTime * 1000);
+export default function getTimeStamp(date) {
   const day = date.getDate();
   const minutes = '0' + date.getMinutes();
 
