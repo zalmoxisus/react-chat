@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { inject } from 'mobx-react';
 import ToolTip from 'react-portal-tooltip';
 import initials from 'initials';
 import styles from '../chat.scss';
@@ -17,7 +16,6 @@ const colors = [
   '#c0392b' // pomegranate
 ];
 
-@inject('store')
 export default class Avatar extends Component {
   constructor(props) {
     super(props);
@@ -44,11 +42,13 @@ export default class Avatar extends Component {
     const {
       src,
       name,
-      store,
       borderRadius = '20%',
       color,
       size = 40,
-      ...rest
+      toolTipPosition,
+      id,
+      className,
+      children
      } = this.props;
 
     const imageStyle = {
@@ -91,19 +91,18 @@ export default class Avatar extends Component {
     return (
       <div
         style={innerStyle}
-        {...rest}
+        className={className}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
-        id={'a' + this.props.id}
+        id={`rc-avatar-${id}`}
       >
         {inner}
-        {
-          store.toolTipPosition &&
+        {toolTipPosition &&
           <ToolTip
             active={this.state.showTooltip}
-            position={this.state.mouseRight ? store.toolTipPosition : 'left'}
-            arrow={ (this.state.mouseTop) ? 'top' : 'bottom' }
-            parent={'#a' + this.props.id}
+            position={this.state.mouseRight ? toolTipPosition : 'left'}
+            arrow={this.state.mouseTop ? 'top' : 'bottom' }
+            parent={`#rc-avatar-${id}`}
           >
             <div>
               <div className={styles.avtrName}>
@@ -111,7 +110,7 @@ export default class Avatar extends Component {
               </div>
               { src && <img src={src} /> }
             </div>
-            <div>{this.props.children}</div>
+            <div>{children}</div>
           </ToolTip>
         }
       </div>
@@ -119,14 +118,21 @@ export default class Avatar extends Component {
   }
 }
 
-Avatar.wrappedComponent.propTypes = {
-  store: PropTypes.object,
+/*
+Avatar.defaultProps = {
+  toolTipPosition: 'ontouchstart' in window ? null : 'right' // disabled for touch devices
+};
+*/
+
+Avatar.propTypes = {
   id: PropTypes.string,
   src: PropTypes.string,
   name: PropTypes.string.isRequired,
   borderRadius: PropTypes.number,
   color: PropTypes.string,
   size: PropTypes.number,
+  toolTipPosition: PropTypes.string,
   buttons: PropTypes.bool,
-  children: React.PropTypes.any
+  className: PropTypes.string,
+  children: PropTypes.any
 };
