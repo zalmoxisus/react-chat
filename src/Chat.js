@@ -6,6 +6,7 @@ import ChatStore from './stores/ChatStore';
 import { Provider } from 'mobx-react';
 
 const chatStore = new ChatStore();
+//chatStore.voiceAccess = false;
 
 export default class Chat extends Component {
   render() {

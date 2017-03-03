@@ -7,6 +7,7 @@ export default class ChatStore {
   @observable menuShow = false;
   @observable emoticonShow = false;
   @observable inputValue = '';
+  @observable voiceAccess = true;
 
   constructor(state) {
     if (state) this.importState(state);
@@ -47,7 +48,7 @@ export default class ChatStore {
   };
 
   @computed get voices() {
-    if (!window.speechSynthesis) return [];
+    if (!window.speechSynthesis || !this.voiceAccess) return [];
 
     return window.speechSynthesis.getVoices()
       .filter(voice => voice.lang.indexOf(this.lang) > -1);
