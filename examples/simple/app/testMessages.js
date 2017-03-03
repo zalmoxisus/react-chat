@@ -1,50 +1,77 @@
 const testMessages = [
   {
-    id: '1',
-    name: 'John',
-    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/oagra/128.jpg',
-    msg: 'Hello, Marry!',
-    time: 1444428192,
-    sender: '12'
-  },
-  { id: '2', name: 'Marry', avatar: '', msg: 'Welcome, John!', time: 1444428192, sender: '2' },
-  {
-    id: '3',
-    name: 'John',
-    avatar: '',
-    msg: 'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! ' +
-    'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry!',
-    time: 1444428192,
-    sender: '23'
+    _id: '1',
+    user: {
+      _id: '1',
+      name: 'John',
+      avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/oagra/128.jpg'
+    },
+    text: 'Hello, Marry!',
+    createdAt: new Date(Date.UTC(2017, 4, 3, 17, 20, 0))
   },
   {
-    id: '4',
-    name: 'Marry',
-    avatar: '',
-    msg: 'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! ' +
-    'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry!',
-    time: 1444428192,
-    sender: '389'
-  },
-  { id: '5', name: 'John', avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/igorgarybaldi/128.jpg', msg: 'Hello, Marry!', time: 1444428192, sender: '1' },
-  { id: '6', name: 'Marry', avatar: '', msg: 'Welcome, John!', time: 1444428192, sender: '2' },
-  {
-    id: '7',
-    name: 'John',
-    avatar: '',
-    msg: 'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! ' +
-    'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry!',
-    time: 1444428192,
-    sender: '328'
+    _id: '2',
+    user: {
+      _id: '2',
+      name: 'Marry',
+      avatar: ''
+    },
+    text: 'Welcome, John!',
+    createdAt: 1444428192
   },
   {
-    id: '12',
-    name: 'Marry',
-    avatar: '',
-    msg: 'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! ' +
+    _id: '3',
+    user: {
+      _id: '1',
+      name: 'John',
+      avatar: ''
+    },
+    text: 'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! ' +
     'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry!',
-    time: 1444428192,
-    sender: '2'
+    createdAt: new Date(Date.UTC(2017, 3, 4, 17, 22, 0))
+  },
+  {
+    _id: '4',
+    user: {
+      _id: '2',
+      name: 'Marry',
+      avatar: ''
+    },
+    text: 'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! ' +
+    'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry!',
+    createdAt: new Date(Date.UTC(2017, 3, 4, 18, 23, 0))
+  },
+  {
+    _id: '5',
+    user: {
+      _id: '1',
+      name: 'John',
+      avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/igorgarybaldi/128.jpg'
+    },
+    text: 'Hello, Marry!',
+    createdAt: new Date(Date.UTC(2017, 5, 4, 17, 23, 0))
+  },
+  {
+    _id: '7',
+    user: {
+      _id: '1',
+      name: 'John',
+      avatar: ''
+    },
+    text: 'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! ' +
+    'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry!',
+    createdAt: new Date(Date.UTC(2017, 6, 4, 17, 23, 0))
+  },
+  {
+    _id: '12',
+    user: {
+      _id: 'Marry',
+      name: 'John',
+      avatar: ''
+    },
+    text: 'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! ' +
+    'Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry! Hello, Marry!',
+    createdAt: new Date(Date.UTC(2017, 6, 4, 17, 25, 0))
   }
 ];
 

@@ -9,7 +9,7 @@ export default class ChatArea extends Component {
       <div id="container" className={styles.container}>
         {
           messages.map(message =>
-            <Message key={message.id} message={message} />
+            <Message key={message._id} message={message} />
           )
         }
       </div>
