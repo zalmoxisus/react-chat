@@ -1,34 +1,39 @@
 import React, { Component, PropTypes } from 'react';
-import { observer } from 'mobx-react';
-import ChatArea from './TextArea';
+import TextareaAutosize from 'react-textarea-autosize';
+import styles from '../../chat.scss';
 
-@observer(['chatStore', 'store'])
 export default class Input extends Component {
-  sendMsg = (e) => {
-    const { chatStore } = this.props;
+  getRef = (node) => {
+    this.input = node;
+    this.props.inputRef(node);
+  };
+
+  send = (e) => {
     if (e.nativeEvent.keyCode !== 13 || e.shiftKey) return;
     e.preventDefault();
-    const input = e.target;
-    let txt = input.value;
-    txt = txt.trim();
-    if (txt === '') return;
-    this.props.store.send({ txt }, () => {
-      input.value = '';
-      chatStore.changeInpValue(e.target.value);
-    });
+    const text = e.target.value.trim();
+    if (text === '') return;
+    this.props.onSend({ text });
+    this.input.value = '';
+    this.props.onInputTextChanged('');
   };
+
   render() {
-    const { chatStore } = this.props;
-    return (<ChatArea
-      changeInpValue={chatStore.changeInpValue}
-      sendMsg={this.sendMsg}
-      inputValue={chatStore.inputValue}
-    />
+    const { onInputTextChanged } = this.props;
+    return (
+      <TextareaAutosize
+        autoFocus
+        ref={this.getRef}
+        className={styles.usermsg}
+        onKeyPress={this.send}
+        onChange={onInputTextChanged}
+      />
     );
   }
 }
 
-Input.wrappedComponent.propTypes = {
-  chatStore: PropTypes.object,
-  store: PropTypes.object
+Input.propTypes = {
+  onSend: PropTypes.func,
+  onInputTextChanged: PropTypes.func,
+  inputRef: PropTypes.func.isRequired
 };

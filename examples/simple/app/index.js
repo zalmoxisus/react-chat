@@ -4,11 +4,41 @@ import Chat from 'react-chat';
 import './style.scss';
 import testMessages from './testMessages';
 
+const user = {
+  _id: '2',
+  name: 'Marry'
+};
+
 class Container extends Component {
+  state = { messages: testMessages };
+
+  onSend = message => {
+    console.log('new message', message);
+    this.setState(previousState => ({
+      messages: [
+        ...previousState.messages,
+        {
+          ...message,
+          _id: Date.now() / 1000 | 0,
+          createdAt: new Date(),
+          user
+        }
+      ]
+    }));
+  };
+
+  onInputTextChanged = value => {
+    console.log('input text changed', value);
+  };
 
   render() {
     return (
-      <Chat messages={testMessages} />
+      <Chat
+        user={user}
+        messages={this.state.messages}
+        onSend={this.onSend}
+        onInputTextChanged={this.onInputTextChanged}
+      />
     );
   }
 }

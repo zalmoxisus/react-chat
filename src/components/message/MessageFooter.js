@@ -6,10 +6,7 @@ import MdReply from 'react-icons/lib/md/reply';
 
 export default class MessageFooter extends Component {
   reply = () => {
-    const updateInputValue = this.props.updateInputValue;
-    if (updateInputValue) {
-      updateInputValue(inputValue => `${this.props.message.name}, ${inputValue}`);
-    }
+    this.props.updateInputValue(inputValue => `${this.props.message.user.name}, ${inputValue}`);
   };
 
   render() {

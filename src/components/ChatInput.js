@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { observer } from 'mobx-react';
 import MdKeyboardArrowUp from 'react-icons/lib/md/keyboard-arrow-up';
 import styles from '../chat.scss';
 import MessageMenu from './input/MessageMenu';
@@ -7,7 +6,6 @@ import emojify from '../utils/emojify';
 import EmojiCategories from './input/EmojiCategories';
 import Input from './input/Input';
 
-@observer(['chatStore'])
 export default class ChatInput extends Component {
   toggleMenu = (e, menu) => {
     let menuTimer = 0;
@@ -53,19 +51,20 @@ export default class ChatInput extends Component {
   };
 
   render() {
-    const { chatStore } = this.props;
+    const { onSend, onInputTextChanged, inputRef } = this.props;
+    const chatStore = {}; // TODO: use state
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.toggleUmenu}>
+          {/*
           <MdKeyboardArrowUp
             className={(chatStore.menuShow) ? styles.arrowUp : styles.arrowUpRotate}
           />
           <MessageMenu
             chatStore={chatStore}
           />
+          */}
         </div>
-        <Input
-          chatStore={chatStore}
-        />
+        <Input onSend={onSend} onInputTextChanged={onInputTextChanged} inputRef={inputRef} />
         <div className={styles.emoticonsContainer} onClick={this.toggleEmoticons}>
           <div
             className={(!chatStore.emoticonShow) ?
@@ -85,6 +84,8 @@ export default class ChatInput extends Component {
   }
 }
 
-ChatInput.wrappedComponent.propTypes = {
-  chatStore: PropTypes.object
+ChatInput.propTypes = {
+  onSend: PropTypes.func.isRequired,
+  onInputTextChanged: PropTypes.func,
+  inputRef: PropTypes.func
 };
