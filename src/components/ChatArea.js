@@ -4,7 +4,18 @@ import Message from './message/Message';
 
 export default class ChatArea extends Component {
   componentDidMount() {
+    this.scrollDown = true;
     setTimeout(this.updateScrollTop, 0);
+  }
+
+  componentWillReceiveProps() {
+    const node = this.node;
+    if (!node) {
+      this.scrollDown = true;
+    } else {
+      const { scrollTop, offsetHeight, scrollHeight } = node;
+      this.scrollDown = Math.abs(scrollHeight - (scrollTop + offsetHeight)) < 50;
+    }
   }
 
   componentDidUpdate() {
@@ -17,7 +28,7 @@ export default class ChatArea extends Component {
   };
 
   updateScrollTop = () => {
-    if (!this.node) return;
+    if (!this.scrollDown || !this.node) return;
     this.node.scrollTop = this.node.scrollHeight;
   };
 
