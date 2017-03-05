@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, Component, PropTypes } from 'react';
 import ChatArea from './components/ChatArea';
 import ChatInput from './components/ChatInput';
 import styles from './chat.scss';
 
-export default class Chat extends Component {
+export default class Chat extends (PureComponent || Component) {
   getInputRef = (node) => {
     this.input = node;
     if (this.props.inputRef) this.props.inputRef(node);

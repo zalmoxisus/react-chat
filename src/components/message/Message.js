@@ -4,6 +4,10 @@ import Avatar from '../Avatar';
 import MessageContent from './MessageContent';
 
 export default class Message extends Component {
+  shouldComponentUpdate(nextProps) {
+    return false; // nextProps.removed !== this.props.removed
+  }
+
   render() {
     const { message, user, showAvatars, avatarPreviewPosition, updateInputValue } = this.props;
     const isMine = message.user._id === user._id;

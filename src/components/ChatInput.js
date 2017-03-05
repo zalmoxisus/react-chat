@@ -7,6 +7,10 @@ import EmojiCategories from './input/EmojiCategories';
 import Input from './input/Input';
 
 export default class ChatInput extends Component {
+  shouldComponentUpdate() {
+    return false;
+  }
+
   toggleMenu = (e, menu) => {
     let menuTimer = 0;
     e.currentTarget.addEventListener('mouseleave', () => {
