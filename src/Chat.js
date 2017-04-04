@@ -9,6 +9,11 @@ export default class Chat extends (PureComponent || Component) {
     if (this.props.inputRef) this.props.inputRef(node);
   };
 
+  inputValue = () => this.input;
+  setInputValue = (val) => {
+    this.input.value = val;
+  };
+
   updateInputValue = fn => {
     const input = this.input;
     input.value = fn(input.value);
@@ -27,7 +32,12 @@ export default class Chat extends (PureComponent || Component) {
             updateInputValue: this.updateInputValue
           }}
         />
-        <ChatInput {...{ onSend, onInputTextChanged }} inputRef={this.getInputRef} />
+        <ChatInput
+          {...{ onSend, onInputTextChanged }}
+          inputRef={this.getInputRef}
+          inputValue={this.inputValue}
+          setInputValue={this.setInputValue}
+        />
       </div>
     );
   }

@@ -7,8 +7,9 @@ import EmojiCategories from './input/EmojiCategories';
 import Input from './input/Input';
 
 export default class ChatInput extends Component {
-  shouldComponentUpdate() {
-    return false;
+  constructor(props) {
+    super(props);
+    this.state = {emoticonShow: false}
   }
 
   toggleMenu = (e, menu) => {
@@ -16,9 +17,9 @@ export default class ChatInput extends Component {
     e.currentTarget.addEventListener('mouseleave', () => {
       menuTimer = setTimeout(() => {
         if (menu === 1) {
-          this.props.chatStore.menu(false);
+         // this.props.chatStore.menu(false);
         } else {
-          this.props.chatStore.emoticon(false);
+          this.setState({ emoticonShow: false });
         }
       }, 1000);
     });
@@ -40,13 +41,10 @@ export default class ChatInput extends Component {
     }
   };
   toggleEmoticons = (e) => {
-    const { chatStore } = this.props;
     if ((e.target.parentNode.className !== styles.categoryBtns) &&
       (e.target.parentNode.className !== styles.categoryBtn)) {
-      chatStore.emoticon(!chatStore.emoticonShow);
-      if (chatStore.emoticonShow) {
-        this.toggleMenu(e, 2);
-      }
+      this.setState({ emoticonShow: !this.state.emoticonShow });
+      this.toggleMenu(e, 2);
     }
   };
 
@@ -55,7 +53,7 @@ export default class ChatInput extends Component {
   };
 
   render() {
-    const { onSend, onInputTextChanged, inputRef } = this.props;
+    const { onSend, onInputTextChanged, inputRef, inputValue, setInputValue } = this.props;
     const chatStore = {}; // TODO: use state
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.toggleUmenu}>
@@ -71,16 +69,17 @@ export default class ChatInput extends Component {
         <Input onSend={onSend} onInputTextChanged={onInputTextChanged} inputRef={inputRef} />
         <div className={styles.emoticonsContainer} onClick={this.toggleEmoticons}>
           <div
-            className={(!chatStore.emoticonShow) ?
+            className={(!this.state.emoticonShow) ?
              styles.emoticonsBtn : styles.emoticonsRotate}
             onMouseOver={this.btnHovered}
           >
             {emojify(' :) ')}
           </div>
           <EmojiCategories
-            changeInpValue={chatStore.changeInpValue}
-            inputValue={chatStore.inputValue}
-            emoticonShow={chatStore.emoticonShow}
+            changeInpValue={onInputTextChanged}
+            setInputValue={setInputValue}
+            inputValue={inputValue}
+            emoticonShow={this.state.emoticonShow}
           />
         </div>
       </div>
@@ -91,5 +90,7 @@ export default class ChatInput extends Component {
 ChatInput.propTypes = {
   onSend: PropTypes.func.isRequired,
   onInputTextChanged: PropTypes.func,
-  inputRef: PropTypes.func
+  inputRef: PropTypes.func,
+  inputValue: PropTypes.func,
+  setInputValue: PropTypes.func
 };
