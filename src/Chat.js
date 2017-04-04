@@ -22,7 +22,8 @@ export default class Chat extends (PureComponent || Component) {
 
   render() {
     const {
-      messages, user, showAvatars, avatarPreviewPosition, onSend, onInputTextChanged
+      messages, user, showAvatars, avatarPreviewPosition, onSend, onInputTextChanged,
+      onTranslate, translateLanguages, lang
     } = this.props;
     return (
       <div className={styles.base}>
@@ -37,6 +38,9 @@ export default class Chat extends (PureComponent || Component) {
           inputRef={this.getInputRef}
           inputValue={this.inputValue}
           setInputValue={this.setInputValue}
+          onTranslate={onTranslate}
+          translateLanguages={translateLanguages}
+          lang={lang}
         />
       </div>
     );
@@ -61,5 +65,8 @@ Chat.propTypes = {
   avatarPreviewPosition: PropTypes.string,
   onSend: PropTypes.func,
   onInputTextChanged: PropTypes.func,
-  inputRef: PropTypes.func
+  inputRef: PropTypes.func,
+  onTranslate: PropTypes.func,
+  translateLanguages: PropTypes.array,
+  lang: PropTypes.string
 };

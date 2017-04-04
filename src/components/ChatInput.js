@@ -9,7 +9,10 @@ import Input from './input/Input';
 export default class ChatInput extends Component {
   constructor(props) {
     super(props);
-    this.state = {emoticonShow: false}
+    this.state = {
+      emoticonShow: false,
+      menuShow: false
+    }
   }
 
   toggleMenu = (e, menu) => {
@@ -17,7 +20,7 @@ export default class ChatInput extends Component {
     e.currentTarget.addEventListener('mouseleave', () => {
       menuTimer = setTimeout(() => {
         if (menu === 1) {
-         // this.props.chatStore.menu(false);
+          this.setState({ menuShow: false });
         } else {
           this.setState({ emoticonShow: false });
         }
@@ -32,13 +35,11 @@ export default class ChatInput extends Component {
     const { chatStore } = this.props;
     if ((e.target.parentNode.className === styles.btnContainer) ||
       ((e.target.tagName === 'INPUT'))) {
-      chatStore.menu(false);
+      this.setState({ menuShow: false });
       return;
     }
-    chatStore.menu(!chatStore.menuShow);
-    if (!chatStore.menuShow) {
-      this.toggleMenu(e, 1);
-    }
+    this.setState({ menuShow: !this.state.menuShow });
+    this.toggleMenu(e, 1);
   };
   toggleEmoticons = (e) => {
     if ((e.target.parentNode.className !== styles.categoryBtns) &&
@@ -53,18 +54,25 @@ export default class ChatInput extends Component {
   };
 
   render() {
-    const { onSend, onInputTextChanged, inputRef, inputValue, setInputValue } = this.props;
+    const {
+      onSend, onInputTextChanged, inputRef, inputValue, setInputValue, onTranslate,
+      translateLanguages, lang
+      } = this.props;
     const chatStore = {}; // TODO: use state
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.toggleUmenu}>
-          {/*
           <MdKeyboardArrowUp
-            className={(chatStore.menuShow) ? styles.arrowUp : styles.arrowUpRotate}
+            className={(this.state.menuShow) ? styles.arrowUp : styles.arrowUpRotate}
           />
           <MessageMenu
-            chatStore={chatStore}
+            menuShow={this.state.menuShow}
+            onTranslate={onTranslate}
+            translateLanguages={translateLanguages}
+            setInputValue={setInputValue}
+            inputValue={inputValue}
+            lang={lang}
+            onSend={onSend}
           />
-          */}
         </div>
         <Input onSend={onSend} onInputTextChanged={onInputTextChanged} inputRef={inputRef} />
         <div className={styles.emoticonsContainer} onClick={this.toggleEmoticons}>
@@ -92,5 +100,8 @@ ChatInput.propTypes = {
   onInputTextChanged: PropTypes.func,
   inputRef: PropTypes.func,
   inputValue: PropTypes.func,
-  setInputValue: PropTypes.func
+  setInputValue: PropTypes.func,
+  onTranslate: PropTypes.func,
+  translateLanguages: PropTypes.array,
+  lang: PropTypes.string
 };

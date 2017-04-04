@@ -4,11 +4,9 @@ import MdMessage from 'react-icons/lib/md/message';
 import MdOndemandVideo from 'react-icons/lib/md/ondemand-video';
 import MdImage from 'react-icons/lib/md/image';
 import MdClose from 'react-icons/lib/md/close';
-import { observer } from 'mobx-react';
 import styles from '../../chat.scss';
 import convertMedia from '../../utils/convertMedia';
 
-@observer(['chatStore', 'store'])
 export default class MessageMenu extends Component {
   constructor(props) {
     super(props);
@@ -38,27 +36,24 @@ export default class MessageMenu extends Component {
       else videoContainer.replaceChild(mediaContainer, videoContainer.children[1]);
     }
 
-
     if (e.nativeEvent.keyCode === 13) {
-      const txt = e.target.value;
-      if ((txt === '') || (txt === ' ')) return;
-      this.props.store.send({ txt }, () => {
-        this.handleClose(e);
-      });
+      const text = e.target.value.trim();
+      if ((text === '') || (text === ' ')) return;
+      this.props.onSend({ text });
+      this.handleClose(e);
     } else if (e.nativeEvent.keyCode === 27) {
       this.handleClose(e);
     }
   };
 
   insertTranslation = (e) => {
-    const { chatStore } = this.props;
+    const { onTranslate, setInputValue, inputValue, lang } = this.props;
     if (e.nativeEvent.keyCode === 13) {
-      this.props.chatStore.translate(
+      onTranslate(
         e.target.value,
-        chatStore.lang,
-        txt => {
-          chatStore.changeInpValue(chatStore.inputValue + txt);
-          chatStore.menu(false);
+        lang,
+        text => {
+          setInputValue(inputValue().value + text);
           this.handleClose();
         }
       );
@@ -68,14 +63,14 @@ export default class MessageMenu extends Component {
   };
 
   handleSpeech = (e) => {
-    const { chatStore } = this.props;
+    const { setInputValue, lang, inputValue } = this.props;
     this.setState({ micShow: true });
     const SpeechRecognition = this.SpeechRecognition;
     if (SpeechRecognition) {
       this.recognition = new SpeechRecognition();
       this.recognition.continuous = true;
       this.recognition.interimResults = true;
-      this.recognition.lang = chatStore.lang;
+      this.recognition.lang = lang;
       this.recognition.start();
       this.recognition.onresult = (event) => {
         let interimTranscript = '';
@@ -88,7 +83,7 @@ export default class MessageMenu extends Component {
           }
         }
         if (finalTranscript !== '') {
-          chatStore.changeInpValue(chatStore.inputValue + finalTranscript);
+          setInputValue(inputValue().value + finalTranscript);
         }
       };
       this.recognition.onerror = () => {
@@ -134,10 +129,10 @@ export default class MessageMenu extends Component {
   };
 
   render() {
-    const { chatStore, store } = this.props;
+    const {  } = this.props;
     return (<div className={styles.userContainer}>
         <ul
-          className={this.props.chatStore.menuShow ? styles.showUmenu : styles.hideUmenu}
+          className={this.props.menuShow ? styles.showUmenu : styles.hideUmenu}
         >
           {
             this.SpeechRecognition ?
@@ -146,7 +141,7 @@ export default class MessageMenu extends Component {
             </li> : null
           }
           {
-            (chatStore.translate && store.translateLanguages) ?
+            (this.props.onTranslate && this.props.translateLanguages) ?
             <li onClick={this.handleTranslate}>
               <MdMessage /><span>Translate a phrase</span>
             </li> : null
@@ -179,8 +174,13 @@ export default class MessageMenu extends Component {
     );
   }
 }
-MessageMenu.wrappedComponent.propTypes = {
-  chatStore: PropTypes.object,
-  store: PropTypes.object
+MessageMenu.propTypes = {
+  menuShow: PropTypes.bool,
+  onTranslate: PropTypes.func,
+  translateLanguages: PropTypes.array,
+  setInputValue: PropTypes.func,
+  inputValue: PropTypes.func,
+  lang: PropTypes.string,
+  onSend: PropTypes.func
 };
 

@@ -3,11 +3,14 @@ import ReactDOM from 'react-dom';
 import Chat from 'react-chat';
 import './style.scss';
 import testMessages from './testMessages';
+import translateLanguages from './translateLanguages';
 
 const user = {
   _id: '2',
   name: 'Marry'
 };
+
+const lang = 'en';
 
 class Container extends Component {
   state = { messages: testMessages };
@@ -31,6 +34,11 @@ class Container extends Component {
     console.log('input text changed', value);
   };
 
+  onTranslate(txt, to, cb) {
+    // Add here your translation method
+    cb(txt);
+  }
+
   render() {
     return (
       <Chat
@@ -38,6 +46,9 @@ class Container extends Component {
         messages={this.state.messages}
         onSend={this.onSend}
         onInputTextChanged={this.onInputTextChanged}
+        onTranslate={this.onTranslate}
+        translateLanguages={translateLanguages}
+        lang={lang}
       />
     );
   }
