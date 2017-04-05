@@ -33,13 +33,14 @@ export default class ChatArea extends Component {
   };
 
   render() {
-    const { messages, ...rest } = this.props;
+    const { messages, UserMenu, ...rest } = this.props;
     return (
       <div ref={this.getRef} className={styles.container}>
         {messages.map(message =>
           <Message
             key={message._id}
             message={message}
+            UserMenu={UserMenu}
             {...rest}
           />
         )}
@@ -55,5 +56,6 @@ ChatArea.propTypes = {
   }).isRequired,
   showAvatars: PropTypes.bool,
   avatarPreviewPosition: PropTypes.string,
-  updateInputValue: PropTypes.func
+  updateInputValue: PropTypes.func,
+  UserMenu: PropTypes.any
 };

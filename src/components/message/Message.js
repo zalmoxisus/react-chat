@@ -9,7 +9,7 @@ export default class Message extends Component {
   }
 
   render() {
-    const { message, user, showAvatars, avatarPreviewPosition, updateInputValue } = this.props;
+    const { message, user, showAvatars, avatarPreviewPosition, updateInputValue, UserMenu } = this.props;
     const isMine = message.user._id === user._id;
     return (
       <div className={styles.msgBox}>
@@ -20,6 +20,12 @@ export default class Message extends Component {
             name={message.user.name}
             toolTipPosition={avatarPreviewPosition}
           >
+            { UserMenu &&
+            <UserMenu
+              name={message.name}
+              msgId={message.id}
+            />
+            }
           </Avatar>
         }
         <div className={isMine ? styles.arrowRight : styles.arrowLeft} />
@@ -47,5 +53,6 @@ Message.propTypes = {
   }).isRequired,
   showAvatars: PropTypes.bool,
   avatarPreviewPosition: PropTypes.string,
-  updateInputValue: PropTypes.func
+  updateInputValue: PropTypes.func,
+  UserMenu: PropTypes.any
 };

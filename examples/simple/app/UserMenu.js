@@ -1,12 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import { inject } from 'mobx-react';
 import MdInfo from 'react-icons/lib/md/info';
 import MdMessage from 'react-icons/lib/md/message';
 import MdVideocam from 'react-icons/lib/md/videocam';
 import MdClose from 'react-icons/lib/md/close';
 import styles from './usermenu.scss';
 
-@inject('store')
 export default class UserMenu extends Component {
   getIndex() {
     const contacts = this.props.store.contactList;

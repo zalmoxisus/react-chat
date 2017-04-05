@@ -4,6 +4,7 @@ import Chat from 'react-chat';
 import './style.scss';
 import testMessages from './testMessages';
 import translateLanguages from './translateLanguages';
+import UserMenu from './UserMenu';
 
 const user = {
   _id: '2',
@@ -49,6 +50,7 @@ class Container extends Component {
         onTranslate={this.onTranslate}
         translateLanguages={translateLanguages}
         lang={lang}
+        UserMenu={UserMenu}
       />
     );
   }
