@@ -28,9 +28,9 @@ export default class EmojiCategories extends Component {
   };
   addEmoticon = (e) => {
     if (e.target.nodeName === 'SPAN') {
-      const { changeInpValue,inputValue, setInputValue } = this.props;
+      const { onInputTextChanged,inputValue, setInputValue } = this.props;
       const value = inputValue().value + e.target.title;
-      changeInpValue(value);
+      onInputTextChanged(value);
       setInputValue(value);
     }
   };
@@ -51,7 +51,7 @@ export default class EmojiCategories extends Component {
 }
 
 EmojiCategories.propTypes = {
-  changeInpValue: PropTypes.func,
+  onInputTextChanged: PropTypes.func,
   inputValue: PropTypes.func,
   setInputValue: PropTypes.func,
   emoticonShow: PropTypes.bool,

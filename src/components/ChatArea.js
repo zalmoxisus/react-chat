@@ -57,5 +57,9 @@ ChatArea.propTypes = {
   showAvatars: PropTypes.bool,
   avatarPreviewPosition: PropTypes.string,
   updateInputValue: PropTypes.func,
-  UserMenu: PropTypes.any
+  UserMenu: PropTypes.any,
+  onTranslate: PropTypes.func,
+  translateLanguages: PropTypes.array,
+  nativeLng: PropTypes.string,
+  openModal: PropTypes.func
 };

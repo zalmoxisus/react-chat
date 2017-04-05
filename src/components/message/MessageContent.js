@@ -26,9 +26,9 @@ export default class MessageContent extends Component {
           className={text.length < 16 ? styles.bigContent : styles.smallContent}
         >
           {media ? <VideoContainer src={media} /> : emojify(text)}
-          {/* TO FIX
-          <TranslateBox trLangs={trLangs} onDelete={deleteBox} />
-          */}
+          {
+            <TranslateBox trLangs={trLangs} deleteBox={deleteBox} />
+          }
         </div>
         <MessageFooter message={message} isMine={isMine} updateInputValue={updateInputValue} />
       </div>

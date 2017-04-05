@@ -1,17 +1,18 @@
 import React, { Component, PropTypes } from 'react';
-import { observer } from 'mobx-react';
 import MdTranslate from 'react-icons/lib/md/translate';
 import MdClose from 'react-icons/lib/md/close';
 import styles from '../../chat.scss';
 import SpeechSynthesis from './Speech/SpeechSynthesis';
 import convertMedia from '../../utils/convertMedia';
 
-@observer(['store'])
 export default class MessageOptions extends Component {
   constructor(props) {
     super(props);
-    if (this.props.chatStore.nativeLng) {
-      this.nativeLng = this.props.chatStore.nativeLng;
+    this.nativeLng = this.props.nativeLng;
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.trLangs.length === 0) {
+      this.lastTranslate = undefined;
     }
   }
   selectLang = (val, msg) => {
@@ -24,27 +25,26 @@ export default class MessageOptions extends Component {
   };
   translate = () => {
     const message = this.props.message;
-    if (this.lastTranslate === message.id || !this.nativeLng) {
+    if (this.lastTranslate === message._id || !this.nativeLng) {
       const modalContent = {
         type: 'translate',
         title: 'Translate it to',
-        list: this.props.store.translateLanguages,
+        list: this.props.translateLanguages,
         func: this.selectLang,
-        msg: message.msg
+        msg: message.text
       };
-      this.props.store.openModal(modalContent);
+      this.props.openModal(modalContent);
     } else {
-      this.lastTranslate = message.id;
-      this.props.insertTranslation(this.nativeLng, message.msg);
+      this.lastTranslate = message._id;
+      this.props.insertTranslation(this.nativeLng, message.text);
     }
   };
   render() {
-    const { chatStore, message, isMine, deleteMsg, store } = this.props;
+    const { message, isMine, deleteMsg, onTranslate, translateLanguages, voices } = this.props;
     return (
       <div className={styles.msgOptions}>
         {
-          (chatStore.translate &&
-          store.translateLanguages &&
+          (onTranslate && translateLanguages &&
           !this.isVideo(message.msg)) ?
             <div>
               <div id={'a' + message.id}
@@ -55,32 +55,20 @@ export default class MessageOptions extends Component {
               </div>
             </div> : null
         }
-        {
-          (!this.isVideo(message.msg) &&
-          window.SpeechSynthesisUtterance &&
-          this.props.chatStore.voices.length > 0) ?
-            <SpeechSynthesis
-              voices={chatStore.voices}
-              store={store}
-              message={message}
-              isMine={isMine(message.sender)}
-            /> : null
-        }
-        {
-          (chatStore.ban) ?
-            <div onClick={deleteMsg} className={styles.btn}>
-              <MdClose />
-            </div> : null
-        }
+
       </div>
     );
   }
 }
-MessageOptions.wrappedComponent.propTypes = {
-  chatStore: PropTypes.object,
-  store: PropTypes.object,
+MessageOptions.propTypes = {
   message: PropTypes.object,
-  isMine: PropTypes.func,
+  isMine: PropTypes.bool,
   insertTranslation: PropTypes.func,
-  deleteMsg: PropTypes.func
+  deleteMsg: PropTypes.func,
+  onTranslate: PropTypes.func,
+  translateLanguages: PropTypes.array,
+  voices: PropTypes.array,
+  nativeLng: PropTypes.string,
+  trLangs: PropTypes.array,
+  openModal: PropTypes.func
 };

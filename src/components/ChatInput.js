@@ -65,13 +65,8 @@ export default class ChatInput extends Component {
             className={(this.state.menuShow) ? styles.arrowUp : styles.arrowUpRotate}
           />
           <MessageMenu
+            {...{ onTranslate, translateLanguages, setInputValue, inputValue, lang, onSend }}
             menuShow={this.state.menuShow}
-            onTranslate={onTranslate}
-            translateLanguages={translateLanguages}
-            setInputValue={setInputValue}
-            inputValue={inputValue}
-            lang={lang}
-            onSend={onSend}
           />
         </div>
         <Input onSend={onSend} onInputTextChanged={onInputTextChanged} inputRef={inputRef} />
@@ -84,9 +79,7 @@ export default class ChatInput extends Component {
             {emojify(' :) ')}
           </div>
           <EmojiCategories
-            changeInpValue={onInputTextChanged}
-            setInputValue={setInputValue}
-            inputValue={inputValue}
+            {...{ onInputTextChanged, setInputValue, inputValue, lang, onSend }}
             emoticonShow={this.state.emoticonShow}
           />
         </div>

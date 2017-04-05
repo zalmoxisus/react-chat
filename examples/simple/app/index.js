@@ -5,6 +5,7 @@ import './style.scss';
 import testMessages from './testMessages';
 import translateLanguages from './translateLanguages';
 import UserMenu from './UserMenu';
+import ModalDialog from './ModalDialog';
 
 const user = {
   _id: '2',
@@ -12,9 +13,13 @@ const user = {
 };
 
 const lang = 'en';
+const nativeLng = 'en';
 
 class Container extends Component {
-  state = { messages: testMessages };
+  state = {
+    messages: testMessages,
+    modal: undefined
+  };
 
   onSend = message => {
     console.log('new message', message);
@@ -40,18 +45,52 @@ class Container extends Component {
     cb(txt);
   }
 
+  openModal = (modalContent) => {
+    this.modal = {
+      type: modalContent.type,
+      title: modalContent.title,
+      msg: modalContent.msg
+    };
+    if (modalContent.list) {
+      this.modal.list = modalContent.list.map(function (item) {
+        return item;
+      });
+    }
+    this.modal.func = modalContent.func;
+    this.setState({ modal: this.modal });
+  };
+
+  submitModal = (val) => {
+    const modal = this.state.modal;
+    if (modal['msg']) modal.func(val, modal['msg']);
+    else modal.func(val);
+    setTimeout(() => { this.closeModal(); }, 1);
+  };
+
+  closeModal = () => {
+    this.setState({ modal: undefined });
+  };
+
   render() {
     return (
-      <Chat
-        user={user}
-        messages={this.state.messages}
-        onSend={this.onSend}
-        onInputTextChanged={this.onInputTextChanged}
-        onTranslate={this.onTranslate}
-        translateLanguages={translateLanguages}
-        lang={lang}
-        UserMenu={UserMenu}
-      />
+      <div>
+        {
+          this.state.modal &&
+          <ModalDialog
+            modal={this.state.modal}
+            closeModal={this.closeModal}
+            submitModal={this.submitModal}
+          />
+        }
+        <Chat
+          {...{ user, translateLanguages, lang, nativeLng, UserMenu }}
+          messages={this.state.messages}
+          onSend={this.onSend}
+          onInputTextChanged={this.onInputTextChanged}
+          onTranslate={this.onTranslate}
+          openModal={this.openModal}
+        />
+      </div>
     );
   }
 }

@@ -21,10 +21,10 @@ export default class ModalDialog extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lang: this.props.store.modal.get('type') === 'translate' ?
-        this.props.store.modal.list[0].c : null,
-      voice: this.props.store.modal.get('type') === 'speech' ?
-        this.props.store.modal.list[0].name : null
+      lang: this.props.modal['type'] === 'translate' ?
+        this.props.modal.list[0].c : null,
+      voice: this.props.modal['type'] === 'speech' ?
+        this.props.modal.list[0].name : null
     };
   }
   selectLang = (e) => {
@@ -34,38 +34,38 @@ export default class ModalDialog extends Component {
     this.setState({ voice: e.target.value });
   };
   formSubmit = () => {
-    const type = this.props.store.modal.get('type');
+    const type = this.props.modal['type'];
     let val;
     switch (type) {
       case 'translate': val = this.state.lang; break;
       case 'speech': val = this.state.voice; break;
-      case 'ban': val = this.props.store.modal.msg; break;
+      case 'ban': val = this.props.modal.msg; break;
       default: val = null;
     }
-    this.props.store.submitModal(val);
+    this.props.submitModal(val);
   };
   render() {
-    const { store } = this.props;
+    const { modal, closeModal } = this.props;
     return (
       <Modal
-        isOpen={(store.modal !== null)}
-        onRequestClose={store.closeModal}
+        isOpen={(modal !== null)}
+        onRequestClose={closeModal}
         style={customStyles}
       >
-        <h1>{store.modal.get('title')}</h1>
-        {store.modal.list &&
+        <h1>{modal['title']}</h1>
+        {modal.list &&
         <div>
-          {store.modal.get('type') === 'translate' ?
+          {modal['type'] === 'translate' ?
             <select
               value={this.state.lang} onChange={this.selectLang}
             >
-              {store.modal.list
+              {modal.list
                 .map(item => (
                   <option key={item.c} value={item.c}>{item.l}</option>
                 ))}
             </select> :
             <select onChange={this.selectVoice}>
-              {store.modal.list
+              {modal.list
                 .map(item => (
                   <option key={item.name} value={item.name}>
                     {item.name.replace('Google', '')}
@@ -76,11 +76,13 @@ export default class ModalDialog extends Component {
         </div>
         }
         <MdCheck onClick={this.formSubmit} />
-        <MdClose onClick={store.closeModal} />
+        <MdClose onClick={closeModal} />
       </Modal>
     );
   }
 }
 ModalDialog.propTypes = {
-  store: PropTypes.object
+  modal: PropTypes.object,
+  submitModal: PropTypes.func,
+  closeModal: PropTypes.func
 };

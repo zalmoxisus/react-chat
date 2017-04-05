@@ -5,7 +5,7 @@ import styles from '../../chat.scss';
 
 export default class TranslateBox extends Component {
   removeBox = (trLang) => {
-    this.props.onDelete(trLang);
+    this.props.deleteBox(trLang);
   };
   render() {
     return (
@@ -31,5 +31,5 @@ export default class TranslateBox extends Component {
 
 TranslateBox.propTypes = {
   trLangs: PropTypes.array,
-  onDelete: PropTypes.func
+  deleteBox: PropTypes.func
 };
