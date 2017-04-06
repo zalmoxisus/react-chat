@@ -51,7 +51,9 @@ export default class Message extends Component {
   };
   render() {
     const { message, user, showAvatars, avatarPreviewPosition, updateInputValue,
-      UserMenu, onTranslate, translateLanguages, nativeLng, openModal} = this.props;
+      UserMenu, onTranslate, translateLanguages, nativeLng, openModal, voices,
+      voicesAccess
+    } = this.props;
     const isMine = message.user._id === user._id;
     return (
       <div className={styles.msgBox}>
@@ -84,7 +86,8 @@ export default class Message extends Component {
           }
           {!message.removed &&
             <MessageOptions
-              {...{ message, isMine, onTranslate, translateLanguages, nativeLng, openModal }}
+              {...{ message, isMine, onTranslate, translateLanguages, nativeLng,
+                openModal, voices, voicesAccess }}
               insertTranslation={this.insertTranslation}
               deleteMsg={this.deleteMsg}
               trLangs={this.state.trLangs}
@@ -108,5 +111,7 @@ Message.propTypes = {
   onTranslate: PropTypes.func,
   translateLanguages: PropTypes.array,
   nativeLng: PropTypes.string,
-  openModal: PropTypes.func
+  openModal: PropTypes.func,
+  voices: PropTypes.array,
+  voicesAccess: PropTypes.bool
 };

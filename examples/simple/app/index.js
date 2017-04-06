@@ -14,11 +14,20 @@ const user = {
 
 const lang = 'en';
 const nativeLng = 'en';
+const voicesAccess = true;
 
 class Container extends Component {
   state = {
     messages: testMessages,
-    modal: undefined
+    modal: undefined,
+    voices: []
+  };
+
+  componentDidMount = () => {
+    window.speechSynthesis.onvoiceschanged = () => {
+      this.voices = window.speechSynthesis.getVoices().filter(voice => voice.lang.indexOf(lang) > -1);
+      this.setState({ voices: this.voices });
+    };
   };
 
   onSend = message => {
@@ -83,12 +92,13 @@ class Container extends Component {
           />
         }
         <Chat
-          {...{ user, translateLanguages, lang, nativeLng, UserMenu }}
+          {...{ user, translateLanguages, lang, nativeLng, UserMenu, voicesAccess }}
           messages={this.state.messages}
           onSend={this.onSend}
           onInputTextChanged={this.onInputTextChanged}
           onTranslate={this.onTranslate}
           openModal={this.openModal}
+          voices={this.state.voices}
         />
       </div>
     );

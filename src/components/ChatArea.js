@@ -61,5 +61,7 @@ ChatArea.propTypes = {
   onTranslate: PropTypes.func,
   translateLanguages: PropTypes.array,
   nativeLng: PropTypes.string,
-  openModal: PropTypes.func
+  openModal: PropTypes.func,
+  voices: PropTypes.array,
+  voicesAccess: PropTypes.bool
 };

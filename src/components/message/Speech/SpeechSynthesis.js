@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
-import { observer } from 'mobx-react';
 import MdPlayArrow from 'react-icons/lib/md/play-arrow';
 import MdStop from 'react-icons/lib/md/stop';
 import styles from '../../../chat.scss';
 
-@observer
 export default class SpeechSynthesis extends Component {
-  componentDidMount() {
-    this.voiceName = this.props.voices[0].name;
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.voices !== this.props.voices && nextProps.voices.length > 0) {
+      this.voiceName = nextProps.voices[0].name;
+    }
   }
 
   mapRef = (node) => {
@@ -18,7 +18,7 @@ export default class SpeechSynthesis extends Component {
   }
   play = () => {
     const { voices, message } = this.props;
-    let msg = message.msg;
+    let msg = message.text;
     msg = new SpeechSynthesisUtterance(this.sanitize(msg));
     this.toggleIcons();
     msg.onend = () => {
@@ -32,18 +32,18 @@ export default class SpeechSynthesis extends Component {
   };
 
   speak = () => {
-    const { store, voices, message } = this.props;
+    const { voices, message } = this.props;
     if (this.playSpan.childNodes[1].style.visibility === 'hidden') {
-      if (this.lastSpoken === message.id && voices.length > 1) {
+      if (this.lastSpoken === message._id && voices.length > 1) {
         const modalContent = {
           type: 'speech',
           title: 'Read it as',
           list: voices,
           func: this.speakFromModal
         };
-        store.openModal(modalContent);
+        this.props.openModal(modalContent);
       } else {
-        this.lastSpoken = message.id;
+        this.lastSpoken = message._id;
         this.play();
       }
     } else {
@@ -78,8 +78,7 @@ export default class SpeechSynthesis extends Component {
 }
 
 SpeechSynthesis.propTypes = {
-  store: PropTypes.object,
   voices: PropTypes.array,
   message: PropTypes.object,
-  isMine: PropTypes.bool
+  openModal: PropTypes.func
 };

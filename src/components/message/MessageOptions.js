@@ -40,7 +40,8 @@ export default class MessageOptions extends Component {
     }
   };
   render() {
-    const { message, isMine, deleteMsg, onTranslate, translateLanguages, voices } = this.props;
+    const { message, isMine, deleteMsg, onTranslate, translateLanguages,
+      voices, voicesAccess, openModal } = this.props;
     return (
       <div className={styles.msgOptions}>
         {
@@ -55,7 +56,14 @@ export default class MessageOptions extends Component {
               </div>
             </div> : null
         }
-
+        { (!this.isVideo(message.text) &&
+          window.SpeechSynthesisUtterance) ?
+            <SpeechSynthesis
+              voices={voices}
+              message={message}
+              openModal={openModal}
+            /> : null
+        }
       </div>
     );
   }
@@ -68,6 +76,7 @@ MessageOptions.propTypes = {
   onTranslate: PropTypes.func,
   translateLanguages: PropTypes.array,
   voices: PropTypes.array,
+  voicesAccess: PropTypes.bool,
   nativeLng: PropTypes.string,
   trLangs: PropTypes.array,
   openModal: PropTypes.func
