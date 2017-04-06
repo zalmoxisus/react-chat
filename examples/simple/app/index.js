@@ -80,6 +80,21 @@ class Container extends Component {
     this.setState({ modal: undefined });
   };
 
+  ban(id, success) {
+    // Add here ban method
+    success();
+  }
+
+  manageMessage = (id, removeMsg, success) => {
+    const messages = this.state.messages;
+    messages.forEach((message, index, object) => {
+      if (message._id === id) {
+        message.removed = removeMsg;
+        this.setState({ messages });
+      }
+    });
+  };
+
   render() {
     return (
       <div>
@@ -99,6 +114,8 @@ class Container extends Component {
           onTranslate={this.onTranslate}
           openModal={this.openModal}
           voices={this.state.voices}
+          manageMessage={this.manageMessage}
+          ban={this.ban}
         />
       </div>
     );

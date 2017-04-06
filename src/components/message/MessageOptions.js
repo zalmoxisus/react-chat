@@ -40,8 +40,8 @@ export default class MessageOptions extends Component {
     }
   };
   render() {
-    const { message, isMine, deleteMsg, onTranslate, translateLanguages,
-      voices, voicesAccess, openModal } = this.props;
+    const { message, isMine, removeMsg, onTranslate, translateLanguages,
+      voices, voicesAccess, openModal, ban } = this.props;
     return (
       <div className={styles.msgOptions}>
         {
@@ -56,13 +56,15 @@ export default class MessageOptions extends Component {
               </div>
             </div> : null
         }
-        { (!this.isVideo(message.text) &&
-          window.SpeechSynthesisUtterance) ?
+        { !this.isVideo(message.text) && window.SpeechSynthesisUtterance &&
             <SpeechSynthesis
-              voices={voices}
-              message={message}
-              openModal={openModal}
-            /> : null
+              {...{ voices, message, openModal }}
+            />
+        }
+        { ban &&
+            <div onClick={removeMsg} className={styles.btn}>
+              <MdClose />
+            </div>
         }
       </div>
     );
@@ -72,12 +74,13 @@ MessageOptions.propTypes = {
   message: PropTypes.object,
   isMine: PropTypes.bool,
   insertTranslation: PropTypes.func,
-  deleteMsg: PropTypes.func,
+  removeMsg: PropTypes.func,
   onTranslate: PropTypes.func,
   translateLanguages: PropTypes.array,
   voices: PropTypes.array,
   voicesAccess: PropTypes.bool,
   nativeLng: PropTypes.string,
   trLangs: PropTypes.array,
-  openModal: PropTypes.func
+  openModal: PropTypes.func,
+  ban: PropTypes.func
 };

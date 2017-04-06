@@ -12,7 +12,7 @@ export default class Ban extends Component {
     };
   }
   handleConfirm = (name) => {
-    this.props.chatStore.ban(this.props.message.id, () => {
+    this.props.ban(this.props.message.id, () => {
       this.setState({
         banned: true
       });
@@ -21,10 +21,10 @@ export default class Ban extends Component {
   ban = () => {
     const modalContent = {
       type: 'ban',
-      title: this.props.message.name + ' will be banned for this discussion',
+      title: this.props.message.user.name + ' will be banned for this discussion',
       func: this.handleConfirm
     };
-    this.props.store.openModal(modalContent);
+    this.props.openModal(modalContent);
   };
 
   render() {
@@ -39,7 +39,7 @@ export default class Ban extends Component {
               <MdReplay />
               <span>Restore the message</span>
             </span>
-      {isMine(message.sender) ?
+      {isMine ?
         null :
         <span>
           <span className={styles.banSpan}> | </span>
@@ -57,10 +57,8 @@ export default class Ban extends Component {
 }
 
 Ban.propTypes = {
-  chatStore: PropTypes.object,
-  store: PropTypes.object,
   message: PropTypes.object,
-  isMine: PropTypes.func,
+  isMine: PropTypes.bool,
   onRestore: PropTypes.func,
   deleted: PropTypes.bool
 };

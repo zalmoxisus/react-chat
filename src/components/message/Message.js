@@ -3,13 +3,13 @@ import styles from '../../chat.scss';
 import Avatar from '../Avatar';
 import MessageContent from './MessageContent';
 import MessageOptions from './MessageOptions';
+import Ban from './Ban';
 
 export default class Message extends Component {
   constructor(props) {
     super(props);
     this.state = {
       trLangs: [],
-      deleted: false,
 
       add(trLang) {
         this.trLangs.push(trLang);
@@ -49,10 +49,18 @@ export default class Message extends Component {
     this.state.delete(trLang);
     this.setState(this.state);
   };
+  removeMsg = () => {
+    this.props.manageMessage(this.props.message._id, true, () => {
+    });
+  };
+  restoreMsg = () => {
+    this.props.manageMessage(this.props.message._id, false, () => {
+    });
+  };
   render() {
     const { message, user, showAvatars, avatarPreviewPosition, updateInputValue,
       UserMenu, onTranslate, translateLanguages, nativeLng, openModal, voices,
-      voicesAccess
+      voicesAccess, ban
     } = this.props;
     const isMine = message.user._id === user._id;
     return (
@@ -87,10 +95,20 @@ export default class Message extends Component {
           {!message.removed &&
             <MessageOptions
               {...{ message, isMine, onTranslate, translateLanguages, nativeLng,
-                openModal, voices, voicesAccess }}
+                openModal, voices, voicesAccess, ban }}
               insertTranslation={this.insertTranslation}
-              deleteMsg={this.deleteMsg}
+              removeMsg={this.removeMsg}
               trLangs={this.state.trLangs}
+            />
+          }
+          {message.removed &&
+            <Ban
+              message={message}
+              isMine={isMine}
+              onRestore={this.restoreMsg}
+              deleted={message.deleted}
+              ban={ban}
+              openModal={openModal}
             />
           }
         </div>
@@ -113,5 +131,7 @@ Message.propTypes = {
   nativeLng: PropTypes.string,
   openModal: PropTypes.func,
   voices: PropTypes.array,
-  voicesAccess: PropTypes.bool
+  voicesAccess: PropTypes.bool,
+  manageMessage: PropTypes.func,
+  ban: PropTypes.func
 };

@@ -63,5 +63,7 @@ ChatArea.propTypes = {
   nativeLng: PropTypes.string,
   openModal: PropTypes.func,
   voices: PropTypes.array,
-  voicesAccess: PropTypes.bool
+  voicesAccess: PropTypes.bool,
+  manageMessage: PropTypes.func,
+  ban: PropTypes.func
 };
