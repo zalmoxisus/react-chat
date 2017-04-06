@@ -40,8 +40,8 @@ export default class MessageOptions extends Component {
     }
   };
   render() {
-    const { message, isMine, removeMsg, onTranslate, translateLanguages,
-      voices, voicesAccess, openModal, ban } = this.props;
+    const { message, removeMsg, onTranslate, translateLanguages,
+      voices, openModal, ban } = this.props;
     return (
       <div className={styles.msgOptions}>
         {
@@ -72,13 +72,11 @@ export default class MessageOptions extends Component {
 }
 MessageOptions.propTypes = {
   message: PropTypes.object,
-  isMine: PropTypes.bool,
   insertTranslation: PropTypes.func,
   removeMsg: PropTypes.func,
   onTranslate: PropTypes.func,
   translateLanguages: PropTypes.array,
   voices: PropTypes.array,
-  voicesAccess: PropTypes.bool,
   nativeLng: PropTypes.string,
   trLangs: PropTypes.array,
   openModal: PropTypes.func,

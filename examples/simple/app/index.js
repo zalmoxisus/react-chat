@@ -14,7 +14,6 @@ const user = {
 
 const lang = 'en';
 const nativeLng = 'en';
-const voicesAccess = true;
 
 class Container extends Component {
   state = {
@@ -107,7 +106,7 @@ class Container extends Component {
           />
         }
         <Chat
-          {...{ user, translateLanguages, lang, nativeLng, UserMenu, voicesAccess }}
+          {...{ user, translateLanguages, lang, nativeLng, UserMenu }}
           messages={this.state.messages}
           onSend={this.onSend}
           onInputTextChanged={this.onInputTextChanged}

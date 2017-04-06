@@ -24,23 +24,22 @@ export default class Chat extends (PureComponent || Component) {
     const {
       messages, user, showAvatars, avatarPreviewPosition, onSend, onInputTextChanged,
       onTranslate, translateLanguages, lang, UserMenu, nativeLng, openModal, voices,
-      voicesAccess, ban, manageMessage
+      ban, manageMessage
     } = this.props;
     return (
       <div className={styles.base}>
         <ChatArea
           {...{
             messages, user, showAvatars, avatarPreviewPosition, UserMenu, onTranslate,
-            translateLanguages, nativeLng, openModal, voicesAccess, voices, ban, manageMessage,
+            translateLanguages, nativeLng, openModal, voices, ban, manageMessage,
             updateInputValue: this.updateInputValue
           }}
         />
         <ChatInput
-          {...{ onSend, onInputTextChanged, onTranslate, translateLanguages }}
+          {...{ onSend, onInputTextChanged, onTranslate, translateLanguages, lang }}
           inputRef={this.getInputRef}
           inputValue={this.inputValue}
           setInputValue={this.setInputValue}
-          lang={lang}
         />
       </div>
     );
@@ -72,7 +71,6 @@ Chat.propTypes = {
   nativeLng: PropTypes.string,
   UserMenu: PropTypes.any,
   openModal: PropTypes.func,
-  voicesAccess: PropTypes.bool,
   voices: PropTypes.array,
   manageMessage: PropTypes.func,
   ban: PropTypes.func

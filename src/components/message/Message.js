@@ -59,8 +59,7 @@ export default class Message extends Component {
   };
   render() {
     const { message, user, showAvatars, avatarPreviewPosition, updateInputValue,
-      UserMenu, onTranslate, translateLanguages, nativeLng, openModal, voices,
-      voicesAccess, ban
+      UserMenu, onTranslate, translateLanguages, nativeLng, openModal, voices, ban
     } = this.props;
     const isMine = message.user._id === user._id;
     return (
@@ -95,7 +94,7 @@ export default class Message extends Component {
           {!message.removed &&
             <MessageOptions
               {...{ message, isMine, onTranslate, translateLanguages, nativeLng,
-                openModal, voices, voicesAccess, ban }}
+                openModal, voices, ban }}
               insertTranslation={this.insertTranslation}
               removeMsg={this.removeMsg}
               trLangs={this.state.trLangs}
@@ -131,7 +130,6 @@ Message.propTypes = {
   nativeLng: PropTypes.string,
   openModal: PropTypes.func,
   voices: PropTypes.array,
-  voicesAccess: PropTypes.bool,
   manageMessage: PropTypes.func,
   ban: PropTypes.func
 };
