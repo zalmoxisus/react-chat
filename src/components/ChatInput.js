@@ -32,7 +32,6 @@ export default class ChatInput extends Component {
   };
 
   toggleUmenu = (e) => {
-    const { chatStore } = this.props;
     if ((e.target.parentNode.className === styles.btnContainer) ||
       ((e.target.tagName === 'INPUT'))) {
       this.setState({ menuShow: false });
@@ -58,7 +57,6 @@ export default class ChatInput extends Component {
       onSend, onInputTextChanged, inputRef, inputValue, setInputValue, onTranslate,
       translateLanguages, lang
       } = this.props;
-    const chatStore = {}; // TODO: use state
     return (<div className={styles.chatInpContainer}>
         <div className={styles.chatOptions} onClick={this.toggleUmenu}>
           <MdKeyboardArrowUp
