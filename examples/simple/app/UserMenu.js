@@ -6,34 +6,28 @@ import MdClose from 'react-icons/lib/md/close';
 import styles from './usermenu.scss';
 
 export default class UserMenu extends Component {
-  getIndex() {
-    const contacts = this.props.store.contactList;
-    const index = contacts.map((item) => { return item.id; }).indexOf(this.props.msgId);
-    return contacts[index];
-  }
   deleteContact = () => {
     const modalContent = {
       type: 'delete',
-      title: this.props.name + ' will be banned',
+      title: this.props.user.name + ' will be banned',
       func: this.handleConfirm
     };
-    this.props.store.openModal(modalContent);
+    this.props.openModal(modalContent);
   };
   handleClose = () => {
-    this.props.store.closeModal();
+    this.props.closeModal();
   };
   handleConfirm = () => {
-    this.getIndex()
-      .deleteContact(this.props.store.me.get('id'), this.props.msgId);
+    this.props.deleteContact(this.props.user._id, this.props.msgId);
   };
   showInfo = () => {
-    this.getIndex().handleInfo(this.props.store.me.get('id'), this.props.msgId);
+    this.props.handleContactInfo(this.props.user._id, this.props.msgId);
   };
   sendMessage = () => {
-    this.getIndex().handleMessage(this.props.store.me.get('id'), this.props.msgId);
+    this.props.handleContactMessage(this.props.user._id, this.props.msgId);
   };
   videoCall = () => {
-    this.getIndex().handleCall(this.props.store.me.get('id'), this.props.msgId);
+    this.props.handleContactCall(this.props.user._id, this.props.msgId);
   };
 
   render() {

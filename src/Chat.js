@@ -24,7 +24,8 @@ export default class Chat extends (PureComponent || Component) {
     const {
       messages, user, showAvatars, avatarPreviewPosition, onSend, onInputTextChanged,
       onTranslate, translateLanguages, lang, UserMenu, nativeLng, openModal, voices,
-      ban, manageMessage
+      ban, manageMessage, handleContactInfo, handleContactMessage, handleContactCall,
+      deleteContact, closeModal
     } = this.props;
     return (
       <div className={styles.base}>
@@ -32,6 +33,7 @@ export default class Chat extends (PureComponent || Component) {
           {...{
             messages, user, showAvatars, avatarPreviewPosition, UserMenu, onTranslate,
             translateLanguages, nativeLng, openModal, voices, ban, manageMessage,
+            handleContactInfo, handleContactMessage, handleContactCall, deleteContact, closeModal,
             updateInputValue: this.updateInputValue
           }}
         />
@@ -71,7 +73,12 @@ Chat.propTypes = {
   nativeLng: PropTypes.string,
   UserMenu: PropTypes.any,
   openModal: PropTypes.func,
+  closeModal: PropTypes.func,
   voices: PropTypes.array,
   manageMessage: PropTypes.func,
-  ban: PropTypes.func
+  ban: PropTypes.func,
+  handleContactInfo: PropTypes.func,
+  handleContactMessage: PropTypes.func,
+  handleContactCall: PropTypes.func,
+  deleteContactContact: PropTypes.func
 };
