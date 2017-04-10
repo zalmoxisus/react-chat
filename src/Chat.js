@@ -3,7 +3,7 @@ import ChatArea from './components/ChatArea';
 import ChatInput from './components/ChatInput';
 import styles from './chat.scss';
 
-export default class Chat extends (PureComponent || Component) {
+export default class Chat extends Component {
   getInputRef = (node) => {
     this.input = node;
     if (this.props.inputRef) this.props.inputRef(node);

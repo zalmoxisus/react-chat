@@ -1,0 +1,29 @@
+.modal {
+  h1 {
+    font-size: 20px;
+  }
+  .modalContent {
+    display: flex;
+    .btns {
+      margin-left: auto;
+    }
+    svg {
+      font-size: 18px;
+      border: 1px solid #ccc;
+      padding: 3px 5px 3px 5px;
+    }
+    svg:last-child {
+      margin-left: -1px;
+    }
+    svg:hover {
+      cursor: pointer;
+      color: #2C2C2C;
+      background: #eeeeee;
+    }
+    select {
+      vertical-align: middle;
+      padding: 4px 5px 4px 5px;
+      margin-right: 5px;
+    }
+  }
+}

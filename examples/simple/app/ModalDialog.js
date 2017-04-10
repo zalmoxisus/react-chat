@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import MdCheck from 'react-icons/lib/md/check';
 import MdClose from 'react-icons/lib/md/close';
 import './style.scss';
+import styles from './modal.scss';
 
 const customStyles = {
   content: {
@@ -52,31 +53,37 @@ export default class ModalDialog extends Component {
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <h1>{modal['title']}</h1>
-        {modal.list &&
-        <div>
-          {modal['type'] === 'translate' ?
-            <select
-              value={this.state.lang} onChange={this.selectLang}
-            >
-              {modal.list
-                .map(item => (
-                  <option key={item.c} value={item.c}>{item.l}</option>
-                ))}
-            </select> :
-            <select onChange={this.selectVoice}>
-              {modal.list
-                .map(item => (
-                  <option key={item.name} value={item.name}>
-                    {item.name.replace('Google', '')}
-                  </option>
-                ))}
-            </select>
-          }
+        <div className={styles.modal}>
+          <h1>{modal['title']}</h1>
+          <div className={styles.modalContent}>
+            {modal.list &&
+            <div>
+              {modal['type'] === 'translate' ?
+                <select
+                  value={this.state.lang} onChange={this.selectLang}
+                >
+                  {modal.list
+                    .map(item => (
+                      <option key={item.c} value={item.c}>{item.l}</option>
+                    ))}
+                </select> :
+                <select onChange={this.selectVoice}>
+                  {modal.list
+                    .map(item => (
+                      <option key={item.name} value={item.name}>
+                        {item.name.replace('Google', '')}
+                      </option>
+                    ))}
+                </select>
+              }
+            </div>
+            }
+            <div className={styles.btns}>
+              <MdCheck onClick={this.formSubmit} />
+              <MdClose onClick={closeModal} />
+            </div>
+          </div>
         </div>
-        }
-        <MdCheck onClick={this.formSubmit} />
-        <MdClose onClick={closeModal} />
       </Modal>
     );
   }
