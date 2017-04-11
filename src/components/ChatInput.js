@@ -12,7 +12,7 @@ export default class ChatInput extends Component {
     this.state = {
       emoticonShow: false,
       menuShow: false
-    }
+    };
   }
 
   toggleMenu = (e, menu) => {

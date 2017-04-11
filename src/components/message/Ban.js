@@ -11,7 +11,7 @@ export default class Ban extends Component {
       banned: false
     };
   }
-  handleConfirm = (name) => {
+  handleConfirm = () => {
     this.props.ban(this.props.message.id, () => {
       this.setState({
         banned: true
@@ -28,7 +28,7 @@ export default class Ban extends Component {
   };
 
   render() {
-    const { message, isMine, onRestore } = this.props;
+    const { isMine, onRestore } = this.props;
     return (
     <div className={styles.restoreMsg}>
       <div>
@@ -61,5 +61,6 @@ Ban.propTypes = {
   isMine: PropTypes.bool,
   onRestore: PropTypes.func,
   deleted: PropTypes.bool,
-  handleModal: PropTypes.func
+  handleModal: PropTypes.func,
+  ban: PropTypes.func
 };

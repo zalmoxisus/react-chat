@@ -75,7 +75,6 @@ export default class Message extends Component {
             { UserMenu &&
             <UserMenu
               {...{ user, handleModal }}
-              name={message.name}
               msgId={message._id}
             />
             }
@@ -118,7 +117,7 @@ export default class Message extends Component {
 Message.propTypes = {
   message: PropTypes.object.isRequired,
   user: PropTypes.shape({
-    id: PropTypes.any
+    _id: PropTypes.any
   }).isRequired,
   showAvatars: PropTypes.bool,
   avatarPreviewPosition: PropTypes.string,

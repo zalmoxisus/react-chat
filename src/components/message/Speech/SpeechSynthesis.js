@@ -9,7 +9,7 @@ export default class SpeechSynthesis extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(prevProps.voices !== this.props.voices && this.props.voices.length > 0) {
+    if (prevProps.voices !== this.props.voices && this.props.voices.length > 0) {
       this.voiceName = this.props.voices[0].name;
     }
   }

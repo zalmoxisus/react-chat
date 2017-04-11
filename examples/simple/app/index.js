@@ -24,7 +24,8 @@ class Container extends Component {
 
   componentDidMount = () => {
     window.speechSynthesis.onvoiceschanged = () => {
-      this.voices = window.speechSynthesis.getVoices().filter(voice => voice.lang.indexOf(lang) > -1);
+      this.voices = window.speechSynthesis.getVoices()
+        .filter(voice => voice.lang.indexOf(lang) > -1);
       this.setState({ voices: this.voices });
     };
   };
@@ -70,9 +71,9 @@ class Container extends Component {
     success();
   }
 
-  manageMessage = (id, removeMsg, success) => {
+  manageMessage = (id, removeMsg) => {
     const messages = this.state.messages;
-    messages.forEach((message, index, object) => {
+    messages.forEach((message) => {
       if (message._id === id) {
         message.removed = removeMsg;
         this.setState({ messages });

@@ -6,20 +6,6 @@ import MdClose from 'react-icons/lib/md/close';
 import styles from './usermenu.scss';
 
 export default class UserMenu extends Component {
-  deleteContact = () => {
-    const modalContent = {
-      type: 'delete',
-      title: this.props.user.name + ' will be banned',
-      func: this.onDelete
-    };
-    this.props.handleModal(modalContent, true);
-  };
-
-  showInfo = () => {
-    // Add here info method
-    console.log('handleInfo. userId: ' + this.props.user._id + '. msgId: ' + this.props.msgId);
-  };
-
   onSend = () => {
     // Add here message method
     console.log('handleMessage: ' + this.props.user._id + '. msgId: ' + this.props.msgId);
@@ -36,6 +22,20 @@ export default class UserMenu extends Component {
     this.props.handleModal();
   };
 
+  deleteContact = () => {
+    const modalContent = {
+      type: 'delete',
+      title: this.props.user.name + ' will be banned',
+      func: this.onDelete
+    };
+    this.props.handleModal(modalContent, true);
+  };
+
+  showInfo = () => {
+    // Add here info method
+    console.log('handleInfo. userId: ' + this.props.user._id + '. msgId: ' + this.props.msgId);
+  };
+
   render() {
     return (
       <div className={styles.menuBtns}>
@@ -47,3 +47,12 @@ export default class UserMenu extends Component {
     );
   }
 }
+
+UserMenu.propTypes = {
+  user: PropTypes.shape({
+    _id: PropTypes.any,
+    name: PropTypes.string
+  }).isRequired,
+  handleModal: PropTypes.func,
+  msgId: PropTypes.string
+};

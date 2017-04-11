@@ -30,7 +30,7 @@ export default class MessageOptions extends Component {
         type: 'translate',
         title: 'Translate it to',
         list: this.props.translateLanguages,
-        selectedItem: this.props.trLangs[this.props.trLangs.length-1].lang,
+        selectedItem: this.props.trLangs[this.props.trLangs.length - 1].lang,
         func: this.selectLang,
         msg: message.text
       };

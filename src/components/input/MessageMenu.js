@@ -129,7 +129,6 @@ export default class MessageMenu extends Component {
   };
 
   render() {
-    const {  } = this.props;
     return (<div className={styles.userContainer}>
         <ul
           className={this.props.menuShow ? styles.showUmenu : styles.hideUmenu}
