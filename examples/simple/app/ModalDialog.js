@@ -28,6 +28,10 @@ export default class ModalDialog extends Component {
         this.props.modal.list[0].name : null
     };
   }
+  componentDidMount() {
+    console.log(this.props.modal);
+    this.setState({ lang: this.props.modal.selectedItem });
+  }
   selectLang = (e) => {
     this.setState({ lang: e.target.value });
   };
@@ -60,7 +64,8 @@ export default class ModalDialog extends Component {
             <div>
               {modal['type'] === 'translate' ?
                 <select
-                  value={this.state.lang} onChange={this.selectLang}
+                  value={this.state.lang}
+                  onChange={this.selectLang}
                 >
                   {modal.list
                     .map(item => (

@@ -54,18 +54,7 @@ class Container extends Component {
   }
 
   openModal = (modalContent) => {
-    this.modal = {
-      type: modalContent.type,
-      title: modalContent.title,
-      msg: modalContent.msg
-    };
-    if (modalContent.list) {
-      this.modal.list = modalContent.list.map(function (item) {
-        return item;
-      });
-    }
-    this.modal.func = modalContent.func;
-    this.setState({ modal: this.modal });
+    this.setState({ modal: modalContent });
   };
 
   submitModal = (val) => {
