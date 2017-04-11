@@ -53,19 +53,16 @@ class Container extends Component {
     cb(txt);
   }
 
-  openModal = (modalContent) => {
-    this.setState({ modal: modalContent });
+  handleModal = (modalContent, closed) => {
+    if (closed) this.setState({ modal: modalContent });
+    else this.setState({ modal: undefined });
   };
 
   submitModal = (val) => {
     const modal = this.state.modal;
     if (modal['msg']) modal.func(val, modal['msg']);
     else modal.func(val);
-    setTimeout(() => { this.closeModal(); }, 1);
-  };
-
-  closeModal = () => {
-    this.setState({ modal: undefined });
+    setTimeout(() => { this.handleModal(); }, 1);
   };
 
   ban(id, success) {
@@ -90,7 +87,7 @@ class Container extends Component {
           this.state.modal &&
           <ModalDialog
             modal={this.state.modal}
-            closeModal={this.closeModal}
+            handleModal={this.handleModal}
             submitModal={this.submitModal}
           />
         }
@@ -100,8 +97,7 @@ class Container extends Component {
           onSend={this.onSend}
           onInputTextChanged={this.onInputTextChanged}
           onTranslate={this.onTranslate}
-          openModal={this.openModal}
-          closeModal={this.closeModal}
+          handleModal={this.handleModal}
           voices={this.state.voices}
           manageMessage={this.manageMessage}
           ban={this.ban}

@@ -60,8 +60,7 @@ ChatArea.propTypes = {
   onTranslate: PropTypes.func,
   translateLanguages: PropTypes.array,
   nativeLng: PropTypes.string,
-  openModal: PropTypes.func,
-  closeModal: PropTypes.func,
+  handleModal: PropTypes.func,
   voices: PropTypes.array,
   manageMessage: PropTypes.func,
   ban: PropTypes.func

@@ -49,11 +49,11 @@ export default class ModalDialog extends Component {
     this.props.submitModal(val);
   };
   render() {
-    const { modal, closeModal } = this.props;
+    const { modal, handleModal } = this.props;
     return (
       <Modal
         isOpen={(modal !== null)}
-        onRequestClose={closeModal}
+        onRequestClose={handleModal}
         style={customStyles}
       >
         <div className={styles.modal}>
@@ -84,7 +84,7 @@ export default class ModalDialog extends Component {
             }
             <div className={styles.btns}>
               <MdCheck onClick={this.formSubmit} />
-              <MdClose onClick={closeModal} />
+              <MdClose onClick={handleModal} />
             </div>
           </div>
         </div>
@@ -95,5 +95,5 @@ export default class ModalDialog extends Component {
 ModalDialog.propTypes = {
   modal: PropTypes.object,
   submitModal: PropTypes.func,
-  closeModal: PropTypes.func
+  handleModal: PropTypes.func
 };

@@ -45,7 +45,7 @@ export default class SpeechSynthesis extends Component {
           list: voices,
           func: this.speakFromModal
         };
-        this.props.openModal(modalContent);
+        this.props.handleModal(modalContent, true);
       } else {
         this.lastSpoken = message._id;
         this.play();
@@ -84,5 +84,5 @@ export default class SpeechSynthesis extends Component {
 SpeechSynthesis.propTypes = {
   voices: PropTypes.array,
   message: PropTypes.object,
-  openModal: PropTypes.func
+  handleModal: PropTypes.func
 };

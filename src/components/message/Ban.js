@@ -24,7 +24,7 @@ export default class Ban extends Component {
       title: this.props.message.user.name + ' will be banned for this discussion',
       func: this.handleConfirm
     };
-    this.props.openModal(modalContent);
+    this.props.handleModal(modalContent, true);
   };
 
   render() {
@@ -60,5 +60,6 @@ Ban.propTypes = {
   message: PropTypes.object,
   isMine: PropTypes.bool,
   onRestore: PropTypes.func,
-  deleted: PropTypes.bool
+  deleted: PropTypes.bool,
+  handleModal: PropTypes.func
 };

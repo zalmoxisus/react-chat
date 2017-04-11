@@ -59,8 +59,8 @@ export default class Message extends Component {
   };
   render() {
     const { message, user, showAvatars, avatarPreviewPosition, updateInputValue,
-      UserMenu, onTranslate, translateLanguages, nativeLng, openModal, voices, ban,
-      closeModal, manageMessage
+      UserMenu, onTranslate, translateLanguages, nativeLng, handleModal, voices, ban,
+      manageMessage
     } = this.props;
     const isMine = message.user._id === user._id;
     return (
@@ -74,8 +74,7 @@ export default class Message extends Component {
           >
             { UserMenu &&
             <UserMenu
-              {...{ openModal, closeModal }}
-              user={user}
+              {...{ user, handleModal }}
               name={message.name}
               msgId={message._id}
             />
@@ -97,7 +96,7 @@ export default class Message extends Component {
           {!message.removed &&
             <MessageOptions
               {...{ message, isMine, onTranslate, translateLanguages, nativeLng,
-                openModal, voices, ban, manageMessage }}
+                handleModal, voices, ban, manageMessage }}
               insertTranslation={this.insertTranslation}
               removeMsg={this.removeMsg}
               trLangs={this.state.trLangs}
@@ -105,12 +104,9 @@ export default class Message extends Component {
           }
           {message.removed &&
             <Ban
-              message={message}
-              isMine={isMine}
+              {...{ message, isMine, ban, handleModal }}
               onRestore={this.restoreMsg}
               deleted={message.deleted}
-              ban={ban}
-              openModal={openModal}
             />
           }
         </div>
@@ -131,8 +127,7 @@ Message.propTypes = {
   onTranslate: PropTypes.func,
   translateLanguages: PropTypes.array,
   nativeLng: PropTypes.string,
-  openModal: PropTypes.func,
-  closeModal: PropTypes.func,
+  handleModal: PropTypes.func,
   voices: PropTypes.array,
   manageMessage: PropTypes.func,
   ban: PropTypes.func

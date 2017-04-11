@@ -12,7 +12,7 @@ export default class UserMenu extends Component {
       title: this.props.user.name + ' will be banned',
       func: this.onDelete
     };
-    this.props.openModal(modalContent);
+    this.props.handleModal(modalContent, true);
   };
 
   showInfo = () => {
@@ -33,7 +33,7 @@ export default class UserMenu extends Component {
   onDelete = () => {
     // Add here remove contact method
     console.log('delete method: ' + this.props.user._id + '. msgId: ' + this.props.msgId);
-    this.props.closeModal();
+    this.props.handleModal();
   };
 
   render() {

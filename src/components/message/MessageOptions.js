@@ -34,7 +34,7 @@ export default class MessageOptions extends Component {
         func: this.selectLang,
         msg: message.text
       };
-      this.props.openModal(modalContent);
+      this.props.handleModal(modalContent, true);
     } else {
       this.lastTranslate = message._id;
       this.props.insertTranslation(this.nativeLng, message.text);
@@ -42,7 +42,7 @@ export default class MessageOptions extends Component {
   };
   render() {
     const { message, removeMsg, onTranslate, translateLanguages,
-      voices, openModal, ban, manageMessage } = this.props;
+      voices, handleModal, ban, manageMessage } = this.props;
     return (
       <div className={styles.msgOptions}>
         {
@@ -60,7 +60,7 @@ export default class MessageOptions extends Component {
         { !this.isVideo(message.text) && window.SpeechSynthesisUtterance &&
           voices && voices.length > 0 &&
             <SpeechSynthesis
-              {...{ voices, message, openModal }}
+              {...{ voices, message, handleModal }}
             />
         }
         { ban && manageMessage &&
@@ -81,7 +81,7 @@ MessageOptions.propTypes = {
   voices: PropTypes.array,
   nativeLng: PropTypes.string,
   trLangs: PropTypes.array,
-  openModal: PropTypes.func,
+  handleModal: PropTypes.func,
   ban: PropTypes.func,
   manageMessage: PropTypes.func
 };
