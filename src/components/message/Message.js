@@ -60,7 +60,8 @@ export default class Message extends Component {
   render() {
     const { message, user, showAvatars, avatarPreviewPosition, updateInputValue,
       UserMenu, onTranslate, translateLanguages, nativeLng, openModal, voices, ban,
-      handleContactInfo, handleContactMessage, handleContactCall, deleteContact, closeModal
+      handleContactInfo, handleContactMessage, handleContactCall, deleteContact, closeModal,
+      manageMessage
     } = this.props;
     const isMine = message.user._id === user._id;
     return (
@@ -98,7 +99,7 @@ export default class Message extends Component {
           {!message.removed &&
             <MessageOptions
               {...{ message, isMine, onTranslate, translateLanguages, nativeLng,
-                openModal, voices, ban }}
+                openModal, voices, ban, manageMessage }}
               insertTranslation={this.insertTranslation}
               removeMsg={this.removeMsg}
               trLangs={this.state.trLangs}

@@ -4,9 +4,13 @@ import MdStop from 'react-icons/lib/md/stop';
 import styles from '../../../chat.scss';
 
 export default class SpeechSynthesis extends Component {
-  componentWillReceiveProps(nextProps) {
-    if(nextProps.voices !== this.props.voices && nextProps.voices.length > 0) {
-      this.voiceName = nextProps.voices[0].name;
+  componentDidMount() {
+    this.voiceName = this.props.voices[0].name;
+  }
+
+  componentDidUpdate(prevProps) {
+    if(prevProps.voices !== this.props.voices && this.props.voices.length > 0) {
+      this.voiceName = this.props.voices[0].name;
     }
   }
 

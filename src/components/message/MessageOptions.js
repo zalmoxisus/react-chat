@@ -41,7 +41,7 @@ export default class MessageOptions extends Component {
   };
   render() {
     const { message, removeMsg, onTranslate, translateLanguages,
-      voices, openModal, ban } = this.props;
+      voices, openModal, ban, manageMessage } = this.props;
     return (
       <div className={styles.msgOptions}>
         {
@@ -57,11 +57,12 @@ export default class MessageOptions extends Component {
             </div> : null
         }
         { !this.isVideo(message.text) && window.SpeechSynthesisUtterance &&
+          voices && voices.length > 0 &&
             <SpeechSynthesis
               {...{ voices, message, openModal }}
             />
         }
-        { ban &&
+        { ban && manageMessage &&
             <div onClick={removeMsg} className={styles.btn}>
               <MdClose />
             </div>
@@ -80,5 +81,6 @@ MessageOptions.propTypes = {
   nativeLng: PropTypes.string,
   trLangs: PropTypes.array,
   openModal: PropTypes.func,
-  ban: PropTypes.func
+  ban: PropTypes.func,
+  manageMessage: PropTypes.func
 };
