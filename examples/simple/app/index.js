@@ -83,27 +83,6 @@ class Container extends Component {
     });
   };
 
-  handleContactInfo(userId, msgId) {
-    // Add here info method
-    console.log('handleInfo. userId: ' + userId + '. msgId: ' + msgId);
-  }
-
-  handleContactMessage(userId, msgId) {
-    // Add here message method
-    console.log('handleMessage: ' + userId + '. msgId: ' + msgId);
-  }
-
-  handleContactCall(userId, msgId) {
-    // Add here call method
-    console.log('call method: ' + userId + '. msgId: ' + msgId);
-  }
-
-  deleteContact(userId, msgId) {
-    // Add here remove contact method
-    console.log('delete method: ' + userId + '. msgId: ' + msgId);
-    this.closeModal();
-  }
-
   render() {
     return (
       <div>
@@ -126,10 +105,6 @@ class Container extends Component {
           voices={this.state.voices}
           manageMessage={this.manageMessage}
           ban={this.ban}
-          handleContactInfo={this.handleContactInfo}
-          handleContactMessage={this.handleContactMessage}
-          handleContactCall={this.handleContactCall}
-          deleteContact={this.deleteContact}
         />
       </div>
     );

@@ -64,9 +64,5 @@ ChatArea.propTypes = {
   closeModal: PropTypes.func,
   voices: PropTypes.array,
   manageMessage: PropTypes.func,
-  ban: PropTypes.func,
-  handleContactInfo: PropTypes.func,
-  handleContactMessage: PropTypes.func,
-  handleContactCall: PropTypes.func,
-  deleteContactContact: PropTypes.func
+  ban: PropTypes.func
 };

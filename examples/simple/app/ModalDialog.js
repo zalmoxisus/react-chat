@@ -29,7 +29,6 @@ export default class ModalDialog extends Component {
     };
   }
   componentDidMount() {
-    console.log(this.props.modal);
     this.setState({ lang: this.props.modal.selectedItem });
   }
   selectLang = (e) => {

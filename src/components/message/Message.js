@@ -60,8 +60,7 @@ export default class Message extends Component {
   render() {
     const { message, user, showAvatars, avatarPreviewPosition, updateInputValue,
       UserMenu, onTranslate, translateLanguages, nativeLng, openModal, voices, ban,
-      handleContactInfo, handleContactMessage, handleContactCall, deleteContact, closeModal,
-      manageMessage
+      closeModal, manageMessage
     } = this.props;
     const isMine = message.user._id === user._id;
     return (
@@ -75,8 +74,7 @@ export default class Message extends Component {
           >
             { UserMenu &&
             <UserMenu
-              {...{ handleContactInfo, handleContactMessage, handleContactCall,
-                deleteContact, openModal, closeModal }}
+              {...{ openModal, closeModal }}
               user={user}
               name={message.name}
               msgId={message._id}
@@ -137,9 +135,5 @@ Message.propTypes = {
   closeModal: PropTypes.func,
   voices: PropTypes.array,
   manageMessage: PropTypes.func,
-  ban: PropTypes.func,
-  handleContactInfo: PropTypes.func,
-  handleContactMessage: PropTypes.func,
-  handleContactCall: PropTypes.func,
-  deleteContact: PropTypes.func
+  ban: PropTypes.func
 };
