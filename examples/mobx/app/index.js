@@ -13,6 +13,11 @@ const chatStore = new Store();
 
 @observer
 class Container extends Component {
+  componentWillMount() {
+    window.speechSynthesis.onvoiceschanged = () => {
+      chatStore.getVoices();
+    };
+  }
   render() {
     return (
       <div>
@@ -37,6 +42,7 @@ class Container extends Component {
           handleModal={chatStore.handleModal}
           manageMessage={chatStore.manageMessage}
           ban={chatStore.ban}
+          voices={chatStore.voices.toJS()}
         />
       </div>
     );

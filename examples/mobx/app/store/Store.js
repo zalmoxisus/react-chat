@@ -10,6 +10,7 @@ export default class Store {
   @observable lang = 'en';
   @observable nativeLng = 'en';
   @observable modal = undefined;
+  @observable voices = [];
 
   @action onSend = message => {
     console.log('new message', message);
@@ -58,4 +59,9 @@ export default class Store {
       }
     });
   };
+
+  @action getVoices = () => {
+    this.voices = window.speechSynthesis.getVoices()
+      .filter(voice => voice.lang.indexOf(this.lang) > -1);
+  }
 }
