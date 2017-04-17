@@ -35,6 +35,8 @@ class Container extends Component {
           lang={chatStore.lang}
           nativeLng={chatStore.nativeLng}
           handleModal={chatStore.handleModal}
+          manageMessage={chatStore.manageMessage}
+          ban={chatStore.ban}
         />
       </div>
     );

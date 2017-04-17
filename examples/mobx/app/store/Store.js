@@ -42,4 +42,20 @@ export default class Store {
     else modal.func(val);
     setTimeout(() => { this.handleModal(); }, 1);
   };
+
+  @action ban = (id, success) => {
+    // Add here ban method
+    console.log('ban user : ' + id);
+    success();
+  };
+
+  @action manageMessage = (id, removeMsg) => {
+    this.messages.forEach((message, i) => {
+      if (message._id === id) {
+        const updateItem = message;
+        updateItem.removed = removeMsg;
+        this.messages.splice(i, 1, updateItem);
+      }
+    });
+  };
 }

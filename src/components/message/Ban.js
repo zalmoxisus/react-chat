@@ -11,8 +11,8 @@ export default class Ban extends Component {
       banned: false
     };
   }
-  handleConfirm = () => {
-    this.props.ban(this.props.message.id, () => {
+  handleConfirm = (val) => {
+    this.props.ban(this.props.message._id, () => {
       this.setState({
         banned: true
       });
