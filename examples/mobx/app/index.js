@@ -7,6 +7,7 @@ import './style.scss';
 import Store from './store/Store';
 import translateLanguages from './translateLanguages';
 import ModalDialog from './ModalDialog';
+import UserMenu from './UserMenu';
 
 useStrict(true);
 const chatStore = new Store();
@@ -30,7 +31,7 @@ class Container extends Component {
           />
         }
         <Chat
-          {...{ translateLanguages }}
+          {...{ translateLanguages, UserMenu }}
           user={chatStore.user}
           messages={chatStore.messages.toJS()}
           onSend={chatStore.onSend}
