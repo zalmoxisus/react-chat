@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import MdKeyboardArrowUp from 'react-icons/lib/md/keyboard-arrow-up';
 import styles from '../chat.scss';
 import MessageMenu from './input/MessageMenu';

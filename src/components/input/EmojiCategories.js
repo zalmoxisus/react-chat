@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import shortnames from 'emoji-shortnames';
 import styles from '../../chat.scss';
 import emojify from '../../utils/emojify';

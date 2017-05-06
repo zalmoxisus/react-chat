@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import MdMic from 'react-icons/lib/md/mic';
 import MdMessage from 'react-icons/lib/md/message';
 import MdOndemandVideo from 'react-icons/lib/md/ondemand-video';

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styles from '../../chat.scss';
 import getTimeStamp from '../../utils/getTimeStamp.js';
 import MdAccessTime from 'react-icons/lib/md/access-time';

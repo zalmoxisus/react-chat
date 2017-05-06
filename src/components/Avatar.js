@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ToolTip from 'react-portal-tooltip';
 import initials from 'initials';
 import styles from '../chat.scss';

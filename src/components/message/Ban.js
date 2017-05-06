@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import MdBlock from 'react-icons/lib/md/block';
 import MdClose from 'react-icons/lib/md/close';
 import MdReplay from 'react-icons/lib/md/replay';
