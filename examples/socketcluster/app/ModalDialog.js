@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import MdCheck from 'react-icons/lib/md/check';
 import MdClose from 'react-icons/lib/md/close';
